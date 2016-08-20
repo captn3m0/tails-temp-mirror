@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+echo "Disabling suspend when closing lid"
+
+sed -i --regexp-extended 's/^#?HandleLidSwitch=.*/HandleLidSwitch=ignore/' \
+	/etc/systemd/logind.conf
