@@ -577,6 +577,7 @@ method=auto
 
 [ipv4]
 method=auto
+dhcp-send-hostname=false
 EOF
   con_content.split("\n").each do |line|
     $vm.execute("echo '#{line}' >> /tmp/NM.#{con_name}")
