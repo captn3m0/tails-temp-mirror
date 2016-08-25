@@ -59,6 +59,7 @@ apt-get --yes purge  \
     '^aptitude*' \
     daemontools \
     '^geoclue*' \
+    isc-dhcp-client \
     krb5-locales \
     libdvdcss2-dbgsym \
     live-build \
