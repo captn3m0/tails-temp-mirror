@@ -12,3 +12,4 @@ method=ignore
 
 [ipv4]
 method=auto
+dhcp-send-hostname=false
