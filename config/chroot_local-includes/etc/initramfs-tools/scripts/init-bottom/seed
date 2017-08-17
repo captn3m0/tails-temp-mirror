@@ -1,0 +1,25 @@
+#!/bin/sh
+
+PREREQ=""
+prereqs()
+{
+    echo "$PREREQ"
+}
+
+case $1 in
+prereqs)
+    prereqs
+    exit 0
+    ;;
+esac
+
+RANDOM_SEED_PATH=$rootmnt"/lib/live/mount/medium/utils/linux/random-seed"
+
+. /scripts/functions
+if [ -e  $RANDOM_SEED_PATH ]; then
+    log_begin_msg "Copy seed file"
+    /bin/cp $RANDOM_SEED_PATH "/root/var/lib/systemd/random-seed"
+    log_end_msg
+fi
+
+exit 0
