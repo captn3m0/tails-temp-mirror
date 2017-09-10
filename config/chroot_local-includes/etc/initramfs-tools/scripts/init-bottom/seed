@@ -1,24 +1,22 @@
-#!/bin/sh
+#!/bin/sh -e
 
-PREREQ=""
-prereqs()
-{
-    echo "$PREREQ"
-}
+PREREQS=""
 
-case $1 in
-prereqs)
+prereqs() { echo "$PREREQS"; }
+
+case "$1" in
+    prereqs)
     prereqs
     exit 0
     ;;
 esac
 
-RANDOM_SEED_PATH=$rootmnt"/lib/live/mount/medium/utils/linux/random-seed"
+RANDOM_SEED_PATH="$rootmnt/lib/live/mount/medium/utils/linux/random-seed"
 
 . /scripts/functions
 if [ -e  $RANDOM_SEED_PATH ]; then
-    log_begin_msg "Copy seed file"
-    /bin/cp $RANDOM_SEED_PATH "/root/var/lib/systemd/random-seed"
+    log_begin_msg "Copying random seed file"
+    /bin/cp "$RANDOM_SEED_PATH" "$rootmnt/var/lib/systemd/random-seed"
     log_end_msg
 fi
 
