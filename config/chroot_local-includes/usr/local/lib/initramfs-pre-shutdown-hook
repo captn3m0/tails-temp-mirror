@@ -39,7 +39,8 @@ mount --move \
       /mnt/live/medium
 
 mount -o remount,rw /mnt/live/medium
-echo "test1" > /mnt/live/medium/utils/linux/random-seed
+/bin/cp /oldroot/var/lib/systemd/random-seed \
+        /mnt/live/medium/utils/linux/random-seed
 
 # Finally, really unmount relevant filesystems
 umount /oldroot
