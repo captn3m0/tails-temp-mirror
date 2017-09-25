@@ -1,3 +1,4 @@
+
 # /dev/random and /dev/urandom radomness seeding in Tails
 
 /dev/random and /dev/urandom are special Linux devices that provide access from
@@ -124,25 +125,28 @@ Tails installer can be used on Debian and Ubuntu, and is the tool people
 running OSX or Windows are told to use to install their final Tails
 USB stick with, by using an intermediary Tails to create the final USB.
 
-Tails installer could store a seed in the FAT filesystem of the system
-partition. That would workaround this first boot problem not handled by the
-persistence option.
+Tails installer will create and store a seed in the FAT filesystem of the system
+partition. That creates a workaround for the first boot problem not handled by the
+persistence option. Tails will copy this file on booting by a initramfs-tools boot
+script, before the systemd random-seed service reads that file:
 
-We can't sadly update this seed while running Tails, as mounting RW the system
-FAT partition during a Tails session does not work. So the question whether updating it
-or not is open.
+* [[!tails_gitweb config/chroot_local-includes/etc/initramfs-tools/scripts/init-bottom/seed]]
 
-If we want to do so, we'll have to update it at the system shutdown. This will
-mean remount this partition, write the new random seed, then unmount it and
-start the shutdown of the system. Obviously we can do this only in normal
-shutdown process, and will have to avoid it in emergency shutdown mode.
+According to the systemd random seed service [11] the seed file is read when the
+service starts, and immediately it is overwritten with new random data. This value
+remains unchanged until the next boot. Tails will copy back that file to the FAT
+filesystem on shuting down by a initramfs script hook, which provides a solution
+to the seed persistence problem:
 
-We may alternatively not update it, and use it only when the persistence is not
-enabled. That would still be a unique source of entropy per Tails installation,
-so that would be a better situation that the current one.
+* [[!tails_gitweb config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook]]
 
-One drawback: this would break the ability to verify this system partition with
-a simple shasum operation.
+This will mean remount this partition, write the new random seed, then unmount it
+and start the shutdown of the system. We can do this only in normal shutdown process,
+and will have to avoid it in emergency shutdown mode.
+
+A remaining question is if this solves or complements the Persist entropy pool seeds
+solution. One related drawback: using the FAT filesystem would break the ability to
+verify this system partition with a simple shasum operation.
 
 ### Use stronger/more entropy collectors [[!tails_ticket 5650]]
 
@@ -206,4 +210,5 @@ This is about [[!tails_ticket 7642]], [[!tails_ticket 7675]],
 * [7] <https://www.av8n.com/computer/htm/secure-random.htm>
 * [8] <http://www.av8n.com/computer/htm/fixup-live-cd.htm>
 * [9] <https://www.python.org/dev/peps/pep-0506/>
-* [10]<https://docs.python.org/2/library/os.html#os.urandom>
+* [10] <https://docs.python.org/2/library/os.html#os.urandom>
+* [11] <https://github.com/systemd/systemd/blob/master/src/random-seed/random-seed.c>
