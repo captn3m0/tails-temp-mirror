@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2017-01-18 10:13+0100\n"
+"POT-Creation-Date: 2017-10-26 13:58+0300\n"
 "PO-Revision-Date: 2015-10-16 15:08+0000\n"
 "Last-Translator: sprint5 <translation5@451f.org>\n"
 "Language-Team: Persian <http://weblate.451f.org:8889/projects/tails/news/fa/"
@@ -21,10 +21,10 @@ msgstr ""
 
 #.  Changing this title breaks the test suite. See #12134#note-7. 
 #. type: Content of: outside any tag (error?)
-#, fuzzy
-#| msgid "[[!meta title=\"News\"]]\n"
-msgid "[[!meta title=\"News\"]] [[!meta robots=\"noindex\"]]"
-msgstr "[[!meta title=\"اخبار\"]]\n"
+msgid ""
+"[[!meta title=\"News\"]] [[!meta robots=\"noindex\"]] [[!meta stylesheet="
+"\"home\" rel=\"stylesheet\" title=\"\"]] [[!meta script=\"survey\"]]"
+msgstr ""
 
 #.  Note for translators: You can use <span class="twolines">
 #.  if your
@@ -34,35 +34,41 @@ msgid ""
 "<a href=\"https://check.torproject.org/\"> [[!img \"lib/onion.png\" link=\"no"
 "\"]] <span>Tor check</span> </a>"
 msgstr ""
+"<a href=\"https://check.torproject.org/\"> [[!img \"lib/onion.png\" link=\"no"
+"\"]] <span>تست تور</span> </a>"
 
-#. type: Content of: outside any tag (error?)
-msgid "[[!inline pages=\"news\" raw=\"yes\" sort=\"age\"]]"
+#. type: Content of: <a>
+msgid ""
+"<a id=\"survey\" href=\"https://survey.tails.boum.org/index.php/339872?"
+"lang=en\">"
 msgstr ""
 
-#~ msgid "[[!meta title=\"News\"]]\n"
-#~ msgstr "[[!meta title=\"اخبار\"]]\n"
+#. type: Content of: <a><h2>
+msgid "Survey on <strong>file storage encryption</strong>"
+msgstr ""
 
-#~ msgid ""
-#~ "<div id=\"tor_check\">\n"
-#~ "<a href=\"https://check.torproject.org/\">\n"
-#~ msgstr ""
-#~ "<div id=\"tor_check\">\n"
-#~ "<a href=\"https://check.torproject.org/\">\n"
+#. type: Content of: <a><p>
+msgid ""
+"<b>Contribute to Tails by answering these few questions.</b> (2&ndash;6 "
+"minutes)"
+msgstr ""
 
-#~ msgid "[[!img \"lib/onion.png\" link=\"no\"]]\n"
-#~ msgstr "[[!img \"lib/onion.png\" link=\"no\"]]\n"
+#. type: Content of: <a><p>
+msgid ""
+"To improve Tails we need to learn how people use it but, unlike others, we "
+"don't track you against your will. Your answers are anonymous and only our "
+"team can access the data."
+msgstr ""
 
-#~ msgid ""
-#~ "<!-- Note for translators: You can use <span class=\"twolines\"> if your\n"
-#~ "translation of the label below is long and gets split into two lines. --"
-#~ ">\n"
-#~ "<span>Tor check</span>\n"
-#~ "</a>\n"
-#~ "</div>\n"
-#~ msgstr ""
-#~ "<!-- قابل توجه مترجم‌ها: اگر ترجمه‌تان از این برچسب طولانی است و تبدیل به "
-#~ "دو خط می‌شود\n"
-#~ "می‌توانید از <span class=\"twolines\"> استفاده کنید. -->\n"
-#~ "<span>تست تور</span>\n"
-#~ "</a>\n"
-#~ "</div>\n"
+#. type: Content of: <a><div>
+msgid "<span>Take the survey!</span>"
+msgstr ""
+
+#. type: Content of: outside any tag (error?)
+#, fuzzy
+#| msgid "[[!inline pages=\"news\" raw=\"yes\" sort=\"age\"]]"
+msgid "</a> [[!inline pages=\"news\" raw=\"yes\" sort=\"age\"]]"
+msgstr "[[!inline pages=\"news.fa\" raw=\"yes\" sort=\"age\"]]"
+
+#~ msgid "[[!meta title=\"News\"]] [[!meta robots=\"noindex\"]]"
+#~ msgstr "[[!meta title=\"اخبار\"]] [[!meta robots=\"noindex\"]]"
