@@ -1,5 +1,8 @@
 require 'fileutils'
 require 'yaml'
+require "#{Dir.pwd}/features/support/helpers/assert.rb"
+require "#{Dir.pwd}/features/support/helpers/command.rb"
+require "#{Dir.pwd}/features/support/helpers/git.rb"
 require "#{Dir.pwd}/features/support/helpers/misc_helpers.rb"
 
 # These files deal with options like some of the settings passed

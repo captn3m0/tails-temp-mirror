@@ -1,3 +1,6 @@
+# This adds the .rfc2822 class method to Time.
+require 'time'
+
 # In some steps below we allow some slack when verifying that the date
 # was set appropriately because it may take time to send the `date`
 # command over the remote shell and get the answer back, parsing and
