@@ -37,7 +37,7 @@ Then /^I can watch a WebM video over HTTPs$/ do
   recovery_on_failure = Proc.new do
     step 'I close Totem'
   end
-  retry_tor(recovery_on_failure) do
+  try_tor(recovery_on_failure) do
     step "I open \"#{test_url}\" with Totem"
     @screen.wait("SampleRemoteWebMVideoFrame.png", 120)
   end

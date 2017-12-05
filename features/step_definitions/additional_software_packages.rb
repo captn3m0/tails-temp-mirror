@@ -11,7 +11,7 @@ Then /^the Additional Software (upgrade|installation) service has started$/ do |
       service = "tails-additional-software-upgrade"
       seconds_to_wait = 900
     end
-    try_for(seconds_to_wait, :delay => 10) do
+    try(timeout: seconds_to_wait, delay: 10) do
       $vm.execute("systemctl status #{service}.service").success?
     end
     if service == "installation"
@@ -52,7 +52,7 @@ Then /^Additional Software is correctly configured for package "([^"]*)"$/ do |p
   step 'all persistence configuration files have safe access rights'
   $vm.execute_successfully("ls /live/persistence/TailsData_unlocked/apt/cache/#{package}_*.deb")
   $vm.execute_successfully("ls /live/persistence/TailsData_unlocked/apt/lists/*_Packages")
-  try_for(30) do
+  try(timeout: 30) do
     $vm.execute("grep --line-regexp --fixed-strings #{package} #{ASP_CONF}").success?
   end
 end
@@ -60,7 +60,7 @@ end
 Then /^"([^"]*)" is not in the list of Additional Software$/ do |package|
   assert($vm.file_exist?(ASP_CONF), "ASP configuration file not found")
   step 'all persistence configuration files have safe access rights'
-  try_for(30) do
+  try(timeout: 30) do
     $vm.execute("grep \"#{package}\" #{ASP_CONF}").stdout.empty?
   end
 end
@@ -117,15 +117,15 @@ end
 Then /^I can open the Additional Software documentation from the notification$/  do
   gnome_shell = Dogtail::Application.new('gnome-shell')
   gnome_shell.child('Documentation', roleName: 'push button').click
-  try_for(60) { @torbrowser = Dogtail::Application.new('Firefox') }
+  try(timeout: 60) { @torbrowser = Dogtail::Application.new('Firefox') }
   step '"Tails - Install from another Tails" has loaded in the Tor Browser'
 end
 
 Then /^the Additional Software dpkg hook has been run for package "([^"]*)" and notices the persistence is locked$/ do |package|
   asp_logs = "#{ASP_STATE_DIR}/log"
   assert(!$vm.file_empty?(asp_logs))
-  try_for(60) { $vm.execute("grep -E '^.*New\spackages\smanually\sinstalled:\s.*#{package}.*$' #{asp_logs}").success? }
-  try_for(60) { $vm.file_content(asp_logs).include?('Warning: persistence storage is locked') }
+  try(timeout: 60) { $vm.execute("grep -E '^.*New\spackages\smanually\sinstalled:\s.*#{package}.*$' #{asp_logs}").success? }
+  try(timeout: 60) { $vm.file_content(asp_logs).include?('Warning: persistence storage is locked') }
 end
 
 When /^I can open the Additional Software configuration window from the notification$/ do
@@ -137,5 +137,5 @@ end
 Then /^I can open the Additional Software log file from the notification$/ do
   gnome_shell = Dogtail::Application.new('gnome-shell')
   gnome_shell.child('Show Log', roleName: 'push button').click
-  try_for(60) { Dogtail::Application.new('gedit').child("log [Read-Only] (#{ASP_STATE_DIR}) - gedit", roleName: 'frame') }
+  try(timeout: 60) { Dogtail::Application.new('gedit').child("log [Read-Only] (#{ASP_STATE_DIR}) - gedit", roleName: 'frame') }
 end

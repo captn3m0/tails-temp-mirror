@@ -54,7 +54,7 @@ Then /^the Unsafe Browser has only Firefox's default bookmarks configured$/ do
   path = "/home/#{info[:user]}/bookmarks"
   @screen.type(path + Sikuli::Key.ENTER)
   chroot_path = "#{info[:chroot]}/#{path}.json"
-  try_for(10) { $vm.file_exist?(chroot_path) }
+  try_for_success(timeout: 10) { $vm.file_exist?(chroot_path) }
   dump = JSON.load($vm.file_content(chroot_path))
 
   def check_bookmarks_helper(a)

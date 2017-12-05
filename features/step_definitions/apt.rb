@@ -43,7 +43,7 @@ When /^I update APT using apt$/ do
     step 'I kill the process "apt"'
     $vm.execute('rm -rf /var/lib/apt/lists/*')
   end
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     Timeout::timeout(15*60) do
       $vm.execute_successfully("echo #{@sudo_password} | " +
                                "sudo -S apt update", :user => LIVE_USER)
@@ -52,7 +52,7 @@ When /^I update APT using apt$/ do
 end
 
 def wait_for_package_installation(package)
-  try_for(2*60) do
+  try(timeout: 2*60) do
     $vm.execute_successfully("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*installed$'")
   end
 end
@@ -64,19 +64,17 @@ Then /^I install "(.+)" using apt$/ do |package|
     # installed at this point, and then "apt purge" would return non-zero.
     $vm.execute("apt purge #{package}")
   end
-  retry_tor(recovery_proc) do
-    Timeout::timeout(3*60) do
-      $vm.execute("echo #{@sudo_password} | " +
-                               "sudo -S DEBIAN_PRIORITY=critical apt -y install #{package}",
-                               :user => LIVE_USER,
-                               :spawn => true)
-      wait_for_package_installation(package)
-    end
+  try_tor(recovery_proc, timeout: 3*60) do
+    $vm.execute_successfully("echo #{@sudo_password} | " +
+                             "sudo -S DEBIAN_PRIORITY=critical apt -y install #{package}",
+                             :user => LIVE_USER,
+                             :spawn => true)
+    wait_for_package_installation(package)
   end
 end
 
 def wait_for_package_removal(package)
-  try_for(3*60) do
+  try_for_success(timeout: 3*60) do
     # Once purged, a package is removed from the installed package status database
     # and "dpkg -s" returns a non-zero exit code
     ! $vm.execute("dpkg -s #{package}").success?
@@ -140,12 +138,15 @@ When /^I update APT using Synaptic$/ do
     step 'I kill the process "synaptic"'
     step "I start Synaptic"
   end
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     @synaptic.button('Reload').click
     sleep 10 # It might take some time before APT starts downloading
-    try_for(15*60, :msg => "Took too much time to download the APT data") {
+    try_for_success(
+      timeout: 15*60,
+      message: "Took too much time to download the APT data"
+    ) do
       !$vm.has_process?("/usr/lib/apt/methods/tor+http")
-    }
+    end
     assert_raise(RuntimeError) do
       @synaptic.child(roleName: 'dialog', recursive: false)
         .child('Error', roleName: 'icon', retry: false)
@@ -164,7 +165,7 @@ Then /^I install "(.+)" using Synaptic$/ do |package_name|
     $vm.execute("apt -y purge #{package_name}")
     step "I start Synaptic"
   end
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     @synaptic.button('Search').click
     find_dialog = @synaptic.dialog('Find')
     find_dialog.child(roleName: 'text').typeText(package_name)
@@ -175,11 +176,10 @@ Then /^I install "(.+)" using Synaptic$/ do |package_name|
     package_entry.doubleClick
     @synaptic.button('Apply').click
     apply_prompt = nil
-    try_for(60) { apply_prompt = @synaptic.dialog('Summary'); true }
+    try(timeout: 60) { apply_prompt = @synaptic.dialog('Summary') }
     apply_prompt.button('Apply').click
-    try_for(4*60) do
+    try(timeout: 4*60) do
       @synaptic.child('Changes applied', roleName: 'frame', recursive: false)
-      true
     end
     step 'I kill the process "synaptic"'
   end

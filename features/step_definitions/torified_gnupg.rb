@@ -66,7 +66,7 @@ When /^I fetch the "([^"]+)" OpenPGP key using the GnuPG CLI( without any signat
   else
     importopts = ''
   end
-  retry_tor(Proc.new { setup_onion_keyserver }) do
+  try_tor(Proc.new { setup_onion_keyserver }) do
     @gnupg_recv_key_res = $vm.execute_successfully(
       "timeout 120 gpg --batch #{importopts} --recv-key '#{@fetched_openpgp_keyid}'",
       :user => LIVE_USER)
@@ -90,10 +90,14 @@ end
 
 When /^the "([^"]+)" key is in the live user's public keyring(?: after at most (\d) seconds)?$/ do |keyid, delay|
   delay = 10 unless delay
-  try_for(delay.to_i, :msg => "The '#{keyid}' key is not in the live user's public keyring") {
-    $vm.execute("gpg --batch --list-keys '#{keyid}'",
-                :user => LIVE_USER).success?
-  }
+  try(
+    timeout: delay.to_i,
+    message: "The '#{keyid}' key is not in the live user's public keyring"
+  ) do
+    $vm.execute_successfully(
+      "gpg --batch --list-keys '#{keyid}'", :user => LIVE_USER
+    )
+  end
 end
 
 When /^I start Seahorse( via the OpenPGP Applet)?$/ do |withgpgapplet|
@@ -144,7 +148,7 @@ Then /^I synchronize keys in Seahorse$/ do
     end
   end
 
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     @screen.wait_and_click("SeahorseWindow.png", 10)
     seahorse_menu_click_helper('SeahorseRemoteMenu.png',
                                'SeahorseRemoteMenuSync.png',
@@ -152,9 +156,13 @@ Then /^I synchronize keys in Seahorse$/ do
     @screen.wait('SeahorseSyncKeys.png', 20)
     @screen.type("s", Sikuli::KeyModifier.ALT) # Button: Sync
     # There's no visual feedback of Seahorse in Tails/Jessie, except on error.
-    try_for(120) {
-      change_of_status?
-    }
+    try(timeout: 120) do
+      assert(
+        count_gpg_signatures(@fetched_openpgp_keyid) > 2 ||
+        @screen.exists('GnomeCloseButton.png') ||
+        !$vm.has_process?('seahorse')
+      )
+    end
     check_for_seahorse_error
     raise OpenPGPKeyserverCommunicationError.new(
       'Seahorse crashed with a segfault.') unless $vm.has_process?('seahorse')
@@ -163,24 +171,12 @@ end
 
 When /^I fetch the "([^"]+)" OpenPGP key using Seahorse( via the OpenPGP Applet)?$/ do |keyid, withgpgapplet|
   step "I start Seahorse#{withgpgapplet}"
-
-  def change_of_status?(keyid)
-    # Due to a lack of visual feedback in Seahorse we'll break out of the
-    # try_for loop below by returning "true" when there's something we can act
-    # upon.
-    if $vm.execute_successfully(
-      "gpg --batch --list-keys '#{keyid}'", :user => LIVE_USER) ||
-      @screen.exists('GnomeCloseButton.png')
-      true
-    end
-  end
-
   recovery_proc = Proc.new do
     setup_onion_keyserver
     @screen.click('GnomeCloseButton.png') if @screen.exists('GnomeCloseButton.png')
     @screen.type("w", Sikuli::KeyModifier.CTRL)
   end
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     @screen.wait_and_click("SeahorseWindow.png", 10)
     seahorse_menu_click_helper('SeahorseRemoteMenu.png',
                                'SeahorseRemoteMenuFind.png',
@@ -203,10 +199,12 @@ When /^I fetch the "([^"]+)" OpenPGP key using Seahorse( via the OpenPGP Applet)
     @screen.click("SeahorseKeyResultWindow.png")
     @screen.click("SeahorseFoundKeyResult.png")
     @screen.click("SeahorseImport.png")
-    try_for(120) do
-      change_of_status?(keyid)
+    try_for_success(timeout: 120) do
+      $vm.execute_successfully(
+        "gpg --batch --list-keys '#{keyid}'", :user => LIVE_USER
+      ) ||
+      @screen.exists('GnomeCloseButton.png')
     end
-    check_for_seahorse_error
   end
 end
 

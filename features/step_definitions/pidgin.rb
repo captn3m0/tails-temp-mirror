@@ -29,7 +29,7 @@ end
 
 def focus_pidgin_irc_conversation_window(account)
   account = account.sub(/^irc\./, '')
-  try_for(20) do
+  try(timeout: 20) do
     $vm.focus_window(".*#{Regexp.escape(account)}$")
   end
 end
@@ -101,7 +101,7 @@ end
 Then /^Pidgin automatically enables my XMPP account$/ do
   account = xmpp_account("Tails_account")
   jid = account["username"] + '@' + account["domain"]
-  try_for(3*60) do
+  try_for_success(timeout: 3*60) do
     pidgin_account_connected?(jid, 'prpl-jabber')
   end
   $vm.focus_window('Buddy List')
@@ -157,7 +157,7 @@ Then /^I receive a response from my friend( in the multi-user chat)?$/ do |multi
   else
     $vm.focus_window(@friend_name)
   end
-  try_for(60) do
+  try(timeout: 60) do
     if @screen.exists('PidginServerMessage.png')
       @screen.click('PidginDialogCloseButton.png')
     end
@@ -371,7 +371,7 @@ Then /^Pidgin successfully connects to the "([^"]+)" account$/ do |account|
       deactivate_and_activate_pidgin_account(account)
     end
   end
-  retry_tor(recovery_on_failure) do
+  try_tor(recovery_on_failure) do
     begin
       $vm.focus_window('Buddy List')
     rescue ExecutionFailedInVM
@@ -418,7 +418,7 @@ Then /^I can join the( pre-configured)? "([^"]+)" channel on "([^"]+)"$/ do |pre
     $vm.focus_window(@chat_room_jid)
   end
   @screen.hide_cursor
-  try_for(60) do
+  try(timeout: 60) do
     begin
       @screen.wait_and_click(chan_image(account, channel, 'conversation_tab'), 5)
     rescue FindFailed => e
@@ -503,7 +503,7 @@ When /^I close Pidgin's certificate import failure dialog$/ do
 end
 
 When /^I see the Tails roadmap URL$/ do
-  try_for(60) do
+  try(timeout: 60) do
     if @screen.exists('PidginServerMessage.png')
       @screen.click('PidginDialogCloseButton.png')
     end
@@ -518,7 +518,7 @@ end
 
 When /^I click on the Tails roadmap URL$/ do
   @screen.click('PidginTailsRoadmapUrl.png')
-  try_for(60) { @torbrowser = Dogtail::Application.new('Firefox') }
+  try(timeout: 60) { @torbrowser = Dogtail::Application.new('Firefox') }
 end
 
 Then /^Pidgin's D-Bus interface is not available$/ do

@@ -33,7 +33,7 @@ When /^I start Thunderbird$/ do
     $vm.file_append('/etc/thunderbird/pref/thunderbird.js', line)
   end
   step 'I start "Thunderbird" via GNOME Activities Overview'
-  try_for(60) { thunderbird_main }
+  try(timeout: 60) { thunderbird_main }
 end
 
 When /^I have not configured an email account$/ do
@@ -98,7 +98,7 @@ When /^I enter my email credentials into the autoconfiguration wizard$/ do
   thunderbird_wizard.child('Password:', roleName: 'entry').typeText(password)
   thunderbird_wizard.button('Continue').click
   # This button is shown if and only if a configuration has been found
-  try_for(120) { thunderbird_wizard.button('Done') }
+  try(timeout: 120) { thunderbird_wizard.button('Done') }
 end
 
 Then /^the autoconfiguration wizard's choice for the (incoming|outgoing) server is secure (.+)$/ do |type, protocol|
@@ -117,31 +117,24 @@ When /^I fetch my email$/ do
 
   thunderbird_main.child('Mail Toolbar', roleName: 'tool bar')
     .button('Get Messages').click
-  try_for(120) do
-    begin
+  try(timeout: 120) do
+    assert_raise do
       thunderbird_main.child(roleName: 'status bar', retry: false)
         .child(roleName: 'progress bar', retry: false)
-      false
-    rescue
-      true
     end
   end
 end
 
 When /^I accept the (?:autoconfiguration wizard's|manual) configuration$/ do
   # The password check can fail due to bad Tor circuits.
-  retry_tor do
-    try_for(120) do
-      begin
+  try_tor do
+    try(timeout: 120) do
+      assert_raise do
         # Spam the button, even if it is disabled (while it is still
         # testing the password).
         thunderbird_wizard.button('Done').click
-        false
-      rescue
-        true
       end
     end
-    true
   end
   # The account isn't fully created before we fetch our mail. For
   # instance, if we'd try to send an email before this, yet another
@@ -193,14 +186,14 @@ When /^I send an email to myself$/ do
     .typeText('test')
   compose_window.child('Composition Toolbar', roleName: 'tool bar')
     .button('Send').click
-  try_for(120) do
+  try_for_success(timeout: 120) do
     not compose_window.exist?
   end
 end
 
 Then /^I can find the email I sent to myself in my inbox$/ do
   recovery_proc = Proc.new { step 'I fetch my email' }
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     thunderbird_inbox.click
     filter = thunderbird_main.child('Filter these messages <Ctrl+Shift+K>',
                                 roleName: 'entry')

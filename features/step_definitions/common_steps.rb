@@ -9,7 +9,7 @@ def post_vm_start_hook
 end
 
 def context_menu_helper(top, bottom, menu_item)
-  try_for(60) do
+  try(timeout: 60) do
     t = @screen.wait(top, 10)
     b = @screen.wait(bottom, 10)
     # In Sikuli, lower x == closer to the left, lower y == closer to the top
@@ -19,7 +19,6 @@ def context_menu_helper(top, bottom, menu_item)
     @screen.right_click(center)
     @screen.hide_cursor
     @screen.wait_and_click(menu_item, 10)
-    return
   end
 end
 
@@ -73,7 +72,10 @@ end
 
 Then /^drive "([^"]+)" is detected by Tails$/ do |name|
   raise "Tails is not running" unless $vm.is_running?
-  try_for(20, :msg => "Drive '#{name}' is not detected by Tails") do
+  try_for_success(
+    timeout: 20,
+    message: "Drive '#{name}' is not detected by Tails"
+  ) do
     $vm.disk_detected?(name)
   end
 end
@@ -88,7 +90,7 @@ end
 
 Given /^the network connection is ready(?: within (\d+) seconds)?$/ do |timeout|
   timeout ||= 30
-  try_for(timeout.to_i) { $vm.has_network? }
+  try(timeout: timeout.to_i) { assert($vm.has_network?) }
 end
 
 Given /^the hardware clock is set to "([^"]*)"$/ do |time|
@@ -238,7 +240,7 @@ Given /^Tails is at the boot menu's cmdline( after rebooting)?$/ do |reboot|
   dealt_with_uefi_setup = false
   # The below code is not completely reliable, so we might have to
   # retry by rebooting.
-  try_for(boot_timeout) do
+  try(timeout: boot_timeout) do
     begin
       tab_spammer = IO.popen(['ruby', '-e', tab_spammer_code])
       if not(dealt_with_uefi_setup) && @os_loader == 'UEFI'
@@ -259,7 +261,6 @@ Given /^Tails is at the boot menu's cmdline( after rebooting)?$/ do |reboot|
       Process.kill("TERM", tab_spammer.pid)
       tab_spammer.close
     end
-    true
   end
 end
 
@@ -322,7 +323,7 @@ end
 Given /^Tails Greeter has applied all settings$/ do
   # I.e. it is done with PostLogin, which is ensured to happen before
   # a logind session is opened for LIVE_USER.
-  try_for(120) {
+  try_for_success(timeout: 120) {
     $vm.execute_successfully("loginctl").stdout
       .match(/^\s*\S+\s+\d+\s+#{LIVE_USER}\s+seat\d+\s+\S+\s*$/) != nil
   }
@@ -360,8 +361,8 @@ When /^I see the "(.+)" notification(?: after at most (\d+) seconds)?$/ do |titl
   notification_list = gnome_shell.child(
     'No Notifications', roleName: 'label', showingOnly: false
   ).parent.parent
-  try_for(timeout) do
-    notification_list.child?(title, roleName: 'label', showingOnly: false)
+  try(timeout: timeout) do
+    notification_list.child(title, roleName: 'label', showingOnly: false)
   end
 end
 
@@ -373,8 +374,10 @@ Given /^Tor is ready$/ do
   if !$vm.file_exist?('/run/live-additional-software/doomed_to_fail')
     step "the Additional Software upgrade service has started"
     begin
-      try_for(30) { $vm.execute('systemctl is-system-running').success? }
-    rescue Timeout::Error
+      try_for_success(timeout: 30) do
+        $vm.execute('systemctl is-system-running').success?
+      end
+    rescue TryFailed
       jobs = $vm.execute('systemctl list-jobs').stdout
       units_status = $vm.execute('systemctl').stdout
       raise "The system is not fully running yet:\n#{jobs}\n#{units_status}"
@@ -392,7 +395,9 @@ end
 Given /^the time has synced$/ do
   begin
     ["/run/tordate/done", "/run/htpdate/success"].each do |file|
-      try_for(300) { $vm.execute("test -e #{file}").success? }
+      try_for_success(timeout: 300) do
+        $vm.execute("test -e #{file}").success?
+      end
     end
   rescue
     File.open("#{$config["TMPDIR"]}/log.htpdate", 'w') do |file|
@@ -403,9 +408,9 @@ Given /^the time has synced$/ do
 end
 
 Given /^available upgrades have been checked$/ do
-  try_for(300) {
+  try_for_success(timeout: 300) do
     $vm.execute("test -e '/run/tails-upgrader/checked_upgrades'").success?
-  }
+  end
 end
 
 When /^I start the Tor Browser( in offline mode)?$/ do |offline|
@@ -424,9 +429,9 @@ When /^I start the Tor Browser( in offline mode)?$/ do |offline|
 end
 
 Given /^the Tor Browser (?:has started|starts)( in offline mode)?$/ do |offline|
-  try_for(60) do
+  try(timeout: 60) do
     @torbrowser = Dogtail::Application.new('Firefox')
-    @torbrowser.child?(roleName: 'frame', recursive: false)
+    @torbrowser.child(roleName: 'frame', recursive: false)
   end
 end
 
@@ -473,12 +478,12 @@ Given /^all notifications have disappeared$/ do
   # bar, which when clicked opens the calendar.
   x, y = 512, 10
   gnome_shell = Dogtail::Application.new('gnome-shell')
-  retry_action(10, recovery_proc: Proc.new { @screen.type(Sikuli::Key.ESC) }) do
+  try(attempts: 10, recovery_proc: Proc.new { @screen.type(Sikuli::Key.ESC) }) do
     @screen.click_point(x, y)
     unless gnome_shell.child?('No Notifications', roleName: 'label')
       @screen.click('GnomeCloseAllNotificationsButton.png')
     end
-    gnome_shell.child?('No Notifications', roleName: 'label')
+    gnome_shell.child('No Notifications', roleName: 'label')
   end
   @screen.type(Sikuli::Key.ESC)
 end
@@ -528,33 +533,34 @@ Given /^process "([^"]+)" is (not )?running$/ do |process, not_running|
 end
 
 Given /^process "([^"]+)" is running within (\d+) seconds$/ do |process, time|
-  try_for(time.to_i, :msg => "Process '#{process}' is not running after " +
-                             "waiting for #{time} seconds") do
+  try_for_success(
+    timeout: time.to_i,
+    message: "Process '#{process}' is not running after waiting for #{time} seconds"
+  ) do
     $vm.has_process?(process)
   end
 end
 
 Given /^process "([^"]+)" has stopped running after at most (\d+) seconds$/ do |process, time|
-  try_for(time.to_i, :msg => "Process '#{process}' is still running after " +
-                             "waiting for #{time} seconds") do
+  try_for_success(
+    timeout: time.to_i,
+    message: "Process '#{process}' is still running after waiting for #{time} seconds"
+  ) do
     not $vm.has_process?(process)
   end
 end
 
 Given /^I kill the process "([^"]+)"$/ do |process|
   $vm.execute("killall #{process}")
-  try_for(10, :msg => "Process '#{process}' could not be killed") {
-    !$vm.has_process?(process)
-  }
+  step "process \"#{process}\" has stopped running after at most 10 seconds"
 end
 
 Then /^Tails eventually (shuts down|restarts)$/ do |mode|
-  try_for(3*60) do
+  try(timeout: 3*60) do
     if mode == 'restarts'
       @screen.find('TailsGreeter.png')
-      true
     else
-      ! $vm.is_running?
+      assert(! $vm.is_running?)
     end
   end
 end
@@ -620,7 +626,7 @@ EOF
       "type ethernet autoconnect yes ifname eth0"
     )
   end
-  try_for(10) {
+  try_for_success(timeout: 10) {
     nm_con_list = $vm.execute("nmcli --terse --fields NAME connection show").stdout
     nm_con_list.split("\n").include? "#{con_name}"
   }
@@ -628,7 +634,7 @@ end
 
 Given /^I switch to the "([^"]+)" NetworkManager connection$/ do |con_name|
   $vm.execute("nmcli connection up id #{con_name}")
-  try_for(60) do
+  try_for_success(timeout: 60) do
     $vm.execute("nmcli --terse --fields NAME,STATE connection show").stdout.chomp.split("\n").include?("#{con_name}:activated")
   end
 end
@@ -649,12 +655,12 @@ end
 
 When /^the file "([^"]+)" exists(?:| after at most (\d+) seconds)$/ do |file, timeout|
   timeout = 0 if timeout.nil?
-  try_for(
-    timeout.to_i,
-    :msg => "The file #{file} does not exist after #{timeout} seconds"
-  ) {
+  try_for_success(
+    timeout: timeout.to_i,
+    message: "The file #{file} does not exist after #{timeout} seconds"
+  ) do
     $vm.file_exist?(file)
-  }
+  end
 end
 
 When /^the file "([^"]+)" does not exist$/ do |file|
@@ -750,7 +756,7 @@ Then /^there is a GNOME bookmark for the (amnesiac|persistent) Tor Browser direc
 end
 
 Then /^there is no GNOME bookmark for the persistent Tor Browser directory$/ do
-  try_for(65) do
+  try(timeout: 65) do
     @screen.wait_and_click('GnomePlaces.png', 10)
     @screen.wait("GnomePlacesWithoutTorBrowserPersistent.png", 10)
     @screen.type(Sikuli::Key.ESC)
@@ -773,7 +779,7 @@ When /^I double-click on the (Tails documentation|Report an Error) launcher on t
   image = 'Desktop' + launcher.split.map { |s| s.capitalize } .join + '.png'
   info = xul_application_info('Tor Browser')
   # Sometimes the double-click is lost (#12131).
-  retry_action(10) do
+  try(attempts: 10) do
     @screen.wait_and_double_click(image, 10) if $vm.execute("pgrep --uid #{info[:user]} --full --exact '#{info[:cmd_regex]}'").failure?
     step 'the Tor Browser has started'
   end
@@ -801,9 +807,12 @@ When /^I (can|cannot) save the current page as "([^"]+[.]html)" to the (.*) dire
   @screen.type(output_file.sub(/[.]html$/, ''))
   @screen.type(Sikuli::Key.ENTER)
   if should_work
-    try_for(20, :msg => "The page was not saved to #{output_dir}/#{output_file}") {
+    try_for_success(
+      timeout: 20,
+      message: "The page was not saved to #{output_dir}/#{output_file}"
+    ) do
       $vm.file_exist?("#{output_dir}/#{output_file}")
-    }
+    end
   else
     @screen.wait("TorBrowserCannotSavePage.png", 10)
   end
@@ -826,9 +835,12 @@ When /^I can print the current page as "([^"]+[.]pdf)" to the (default downloads
   @screen.type('v', Sikuli::KeyModifier.CTRL)
   @screen.type(Sikuli::Key.ENTER)
   @screen.wait_and_click("Gtk3PrintButton.png", 10)
-  try_for(30, :msg => "The page was not printed to #{output_dir}/#{output_file}") {
+  try_for_success(
+    timeout: 30,
+    message: "The page was not printed to #{output_dir}/#{output_file}"
+  ) do
     $vm.file_exist?("#{output_dir}/#{output_file}")
-  }
+  end
 end
 
 Given /^a web server is running on the LAN$/ do
@@ -859,7 +871,10 @@ Given /^a web server is running on the LAN$/ do
 EOF
   add_lan_host(@web_server_ip_addr, @web_server_port)
   proc = IO.popen(['ruby', '-e', code])
-  try_for(10, :msg => "It seems the LAN web server failed to start") do
+  try_for_success(
+    timeout: 10,
+    message: "It seems the LAN web server failed to start"
+  ) do
     Process.kill(0, proc.pid) == 1
   end
 
@@ -873,10 +888,13 @@ EOF
   # more consistent result, so let's rely on that instead. Note that
   # this forces us to capture traffic *after* this step in case
   # accessing this server matters, like when testing the Tor Browser..
-  try_for(30, :msg => "Something is wrong with the LAN web server") do
-    msg = $vm.execute_successfully("curl #{@web_server_url}",
-                                   :user => LIVE_USER).stdout.chomp
-    web_server_hello_msg == msg
+  try_for_success(
+    timeout: 30,
+    message: "Something is wrong with the LAN web server"
+  ) do
+    content = $vm.execute_successfully("curl #{@web_server_url}",
+                                       :user => LIVE_USER).stdout.chomp
+    web_server_hello_msg == content
   end
 end
 
@@ -913,16 +931,15 @@ When /^AppArmor has (not )?denied "([^"]+)" from opening "([^"]+)"$/ do |anti_te
          "'I monitor the AppArmor log of ...' step")
   audit_line_regex = 'apparmor="DENIED" operation="open" profile="%s" name="%s"' % [profile, file]
   begin
-    try_for(10, { :delay => 1 }) {
+    try(timeout: 10, delay: 1 ) {
       audit_log = $vm.execute(
         "journalctl --full --no-pager " +
         "--since='#{@apparmor_profile_monitoring_start[profile]}' " +
         "SYSLOG_IDENTIFIER=kernel | grep -w '#{audit_line_regex}'"
       ).stdout.chomp
       assert(audit_log.empty? == (anti_test ? true : false))
-      true
     }
-  rescue Timeout::Error, Test::Unit::AssertionFailedError => e
+  rescue TryFailed, Test::Unit::AssertionFailedError => e
     raise e, "AppArmor has #{anti_test ? "" : "not "}denied the operation"
   end
 end

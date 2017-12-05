@@ -102,7 +102,7 @@ When /^I connect to an SSH server on the (Internet|LAN)$/ do |location|
     step 'I run "clear" in GNOME Terminal'
   end
 
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     step "I run \"#{cmd}\" in GNOME Terminal"
     step 'process "ssh" is running within 10 seconds'
     step 'I verify the SSH fingerprint for the SSH server'
@@ -124,7 +124,7 @@ Then /^I connect to an SFTP server on the Internet$/ do
     step 'I kill the process "nautilus"'
   end
 
-  retry_tor(recovery_proc) do
+  try_tor(recovery_proc) do
     step 'I start "Nautilus" via GNOME Activities Overview'
     nautilus = Dogtail::Application.new('nautilus')
     nautilus.child(roleName: 'frame')
@@ -140,8 +140,8 @@ Then /^I connect to an SFTP server on the Internet$/ do
 end
 
 Then /^I verify the SSH fingerprint for the SFTP server$/ do
-  try_for(30) do
-    Dogtail::Application.new('gnome-shell').child?('Log In Anyway')
+  try(timeout: 30) do
+    Dogtail::Application.new('gnome-shell').child('Log In Anyway')
   end
   # Here we'd like to click on the button using Dogtail, but something
   # is buggy so let's just use the keyboard.
@@ -149,8 +149,8 @@ Then /^I verify the SSH fingerprint for the SFTP server$/ do
 end
 
 Then /^I successfully connect to the SFTP server$/ do
-  try_for(60) do
+  try(timeout: 60) do
     Dogtail::Application.new('nautilus')
-      .child?("#{@sftp_username} on #{@sftp_host}")
+      .child("#{@sftp_username} on #{@sftp_host}")
   end
 end

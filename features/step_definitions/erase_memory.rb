@@ -118,13 +118,20 @@ Given /^I fill the guest's memory with a known pattern and the allocating proces
               :user => LIVE_USER)
   end
   # We make sure that all fillram processes have started...
-  try_for(10, :msg => "all fillram processes didn't start", :delay => 0.1) do
+  try_for_success(
+    timeout: 10,
+    message: "all fillram processes didn't start",
+    :delay => 0.1
+  ) do
     nr_fillram_procs = $vm.pidof("fillram").size
     nr_instances == nr_fillram_procs
   end
   prev_used_ram_ratio = -1
   # ... and that it finishes
-  try_for(nr_instances*2*60, { :msg => "fillram didn't complete, probably the VM crashed" }) do
+  try_for_success(
+    timeout: nr_instances*2*60,
+    message: "fillram didn't complete, probably the VM crashed"
+  ) do
     used_ram_ratio = (used_ram_in_MiB.to_f/@detected_ram_m)*100
     # Round down to closest multiple of 10 to limit the logging a bit.
     used_ram_ratio = (used_ram_ratio/10).round*10

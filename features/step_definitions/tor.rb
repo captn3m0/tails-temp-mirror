@@ -341,7 +341,7 @@ When /^I connect Gobby to "([^"]+)"$/ do |host|
   connect_dialog.button('Connect').click
   # This looks for the live user's presence entry in the chat, which
   # will only be shown if the connection succeeded.
-  try_for(60) { gobby.child(LIVE_USER, roleName: 'table cell'); true }
+  try(timeout: 60) { gobby.child(LIVE_USER, roleName: 'table cell') }
 end
 
 When /^the Tor Launcher autostarts$/ do

@@ -458,7 +458,7 @@ class VM
   end
 
   def wait_until_remote_shell_is_up(timeout = 90)
-    try_for(timeout, :msg => "Remote shell seems to be down") do
+    try_for_success(timeout: timeout, message: "Remote shell seems to be down") do
       remote_shell_is_up?
     end
   end

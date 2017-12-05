@@ -98,9 +98,9 @@ When /^I open the address "([^"]*)" in the (.*)$/ do |address, browser|
     open_address.call
   end
   if browser == "Tor Browser"
-    retry_method = method(:retry_tor)
+    retry_method = method(:try_tor)
   else
-    retry_method = Proc.new { |p, &b| retry_action(10, recovery_proc: p, &b) }
+    retry_method = Proc.new { |p, &b| try(attempts: 10, recovery_proc: p, &b) }
   end
   open_address.call
   retry_method.call(recovery_on_failure) do
@@ -120,12 +120,12 @@ Then /^"([^"]+)" has loaded in the Tor Browser$/ do |title|
     reload_action = 'Reload'
   end
   expected_title = "#{title} - #{browser_name}"
-  try_for(60) { @torbrowser.child(expected_title, roleName: 'frame') }
+  try(timeout: 60) { @torbrowser.child(expected_title, roleName: 'frame') }
   # The 'Reload' button (graphically shown as a looping arrow)
   # is only shown when a page has loaded, so once we see the
   # expected title *and* this button has appeared, then we can be sure
   # that the page has fully loaded.
-  try_for(60) { @torbrowser.child(reload_action, roleName: 'push button') }
+  try(timeout: 60) { @torbrowser.child(reload_action, roleName: 'push button') }
 end
 
 Then /^the (.*) has no plugins installed$/ do |browser|
@@ -170,9 +170,11 @@ end
 
 Then /^the (.*) chroot is torn down$/ do |browser|
   info = xul_application_info(browser)
-  try_for(30, :msg => "The #{browser} chroot '#{info[:chroot]}' was " \
-                      "not removed") do
-    !$vm.execute("test -d '#{info[:chroot]}'").success?
+  try_for_success(
+    timeout: 30,
+    message: "The #{browser} chroot '#{info[:chroot]}' was not removed"
+  ) do
+    $vm.execute("test -d '#{info[:chroot]}'").failure?
   end
 end
 
@@ -206,7 +208,7 @@ end
 Then /^the file is saved to the default Tor Browser download directory$/ do
   assert_not_nil(@some_file)
   expected_path = "/home/#{LIVE_USER}/Tor Browser/#{@some_file}"
-  try_for(10) { $vm.file_exist?(expected_path) }
+  try_for_success(timeout: 10) { $vm.file_exist?(expected_path) }
 end
 
 When /^I open Tails homepage in the (.+)$/ do |browser|
@@ -237,7 +239,7 @@ Then /^I can listen to an Ogg audio track in Tor Browser$/ do
   end
   step "no application is playing audio"
   open_test_url.call
-  retry_tor(recovery_on_failure) do
+  try_tor(recovery_on_failure) do
     step "1 application is playing audio after 30 seconds"
   end
 end
@@ -254,7 +256,7 @@ Then /^I can watch a WebM video in Tor Browser$/ do
     open_test_url.call
   end
   open_test_url.call
-  retry_tor(recovery_on_failure) do
+  try_tor(recovery_on_failure) do
     @screen.wait("TorBrowserSampleRemoteWebMVideoFrame.png", 30)
   end
 end

@@ -7,10 +7,6 @@ module RemoteShell
   class ServerFailure < StandardError
   end
 
-  # Used to differentiate vs Timeout::Error, which is thrown by
-  # try_for() (by default) and often wraps around remote shell usage
-  # -- in that case we don't want to catch that "outer" exception in
-  # our handling of remote shell timeouts below.
   class Timeout < ServerFailure
   end
 

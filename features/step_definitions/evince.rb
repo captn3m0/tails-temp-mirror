@@ -14,9 +14,12 @@ Then /^I can print the current document to "([^"]+)"$/ do |output_file|
   @screen.type('v', Sikuli::KeyModifier.CTRL)
   @screen.type(Sikuli::Key.ENTER)
   @screen.wait_and_click("Gtk3PrintButton.png", 10)
-  try_for(10, :msg => "The document was not printed to #{output_file}") {
+  try_for_success(
+    timeout: 10,
+    message: "The document was not printed to #{output_file}"
+  ) do
     $vm.file_exist?(output_file)
-  }
+  end
 end
 
 When /^I close Evince$/ do

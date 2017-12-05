@@ -15,7 +15,7 @@ Then /^I start Electrum through the GNOME menu$/ do
 end
 
 Then /^Electrum (?:has started|starts)$/ do
-  try_for(60) do
+  try(timeout: 60) do
     electrum_app
   end
 end
@@ -33,7 +33,7 @@ When /^a bitcoin wallet is (|not )present$/ do |existing|
 end
 
 Then /^I am prompted to (configure Electrum|enter my Electrum wallet password)$/ do |mode|
-  try_for(30) do
+  try(timeout: 30) do
     electrum_wizard.child('Electrum wallet', roleName: 'label')
   end
   case mode
@@ -92,7 +92,7 @@ end
 
 Then /^Electrum successfully connects to the network$/ do
   electrum_statusbar = electrum_main.child(roleName: 'status bar')
-  try_for(180) do
+  try_for_success(timeout: 180) do
     electrum_statusbar.children(roleName: 'label').any? do |n|
       # The balance is shown iff we are connected.
       n.name.start_with?('Balance: ')

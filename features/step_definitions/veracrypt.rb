@@ -116,8 +116,8 @@ When /^I unlock and mount this VeraCrypt (volume|file container) with Unlock Ver
   @screen.click('VeraCryptUnlockDialogHiddenVolumeLabel.png') if @veracrypt_is_hidden
   @screen.type(Sikuli::Key.ENTER)
   @screen.waitVanish('VeraCryptUnlockDialog.png', 10)
-  try_for(30) do
-      $vm.execute_successfully('ls /media/amnesia/*/SecretFile')
+  try(timeout: 30) do
+    $vm.execute_successfully('ls /media/amnesia/*/SecretFile')
   end
 end
 
@@ -143,28 +143,16 @@ When /^I unlock and mount this VeraCrypt (volume|file container) with GNOME Disk
     attach_dialog.child('Set up read-only loop device', roleName: 'check box').click
     filter = attach_dialog.child('Disk Images (*.img, *.iso)', roleName: 'combo box')
     filter.click
-    try_for(5) do
-      begin
-        filter.child('All Files', roleName: 'menu item').click
-        true
-      rescue RuntimeError
-        # we probably clicked too early, which triggered an "Attempting
-        # to generate a mouse event at negative coordinates" Dogtail error
-        false
-      end
+    try(timeout: 5) do
+      filter.child('All Files', roleName: 'menu item').click
     end
     @screen.type(@veracrypt_shared_dir_in_guest + '/' + $veracrypt_volume_name)
     sleep 2 # avoid ENTER being eaten by the auto-completion system
     @screen.type(Sikuli::Key.ENTER)
-    try_for(15) do
-      begin
-        disks.children(roleName: 'table cell').find { |row|
-          /^105 MB Loop Device/.match(row.name)
-        }.grabFocus
-        true
-      rescue NoMethodError
-        false
-      end
+    try(timeout: 15) do
+      disks.children(roleName: 'table cell').find do |row|
+        /^105 MB Loop Device/.match(row.name)
+      end.grabFocus
     end
   end
   disks.child('', roleName: 'panel', description: 'Unlock selected encrypted partition').click
@@ -187,25 +175,18 @@ When /^I unlock and mount this VeraCrypt (volume|file container) with GNOME Disk
   # (that sometimes clicks just a little bit outside of the button)
   @screen.wait('Gtk3UnlockButton.png', 10)
   @screen.type('u', Sikuli::KeyModifier.ALT) # "Unlock" button
-  try_for(10, :msg => "Failed to mount the unlocked volume") do
-    begin
-      unlocked_volume = disks.child('105 MB VeraCrypt/TrueCrypt', roleName: 'panel', showingOnly: true)
-      unlocked_volume.click
-      # Move the focus down to the "Filesystem\n107 MB FAT" item (that Dogtail
-      # is not able to find) using the 'Down' arrow, in order to display
-      # the "Mount selected partition" button.
-      unlocked_volume.grabFocus()
-      sleep 0.5 # otherwise the following key press is sometimes lost
-      disks.pressKey('Down')
-      disks.child('', roleName: 'panel', description: 'Mount selected partition', showingOnly: true).click
-      true
-    rescue RuntimeError
-      # we probably did something too early, which triggered a Dogtail error
-      # such as "Attempting to generate a mouse event at negative coordinates"
-      false
-    end
+  try(timeout: 10, message: "Failed to mount the unlocked volume") do
+    unlocked_volume = disks.child('105 MB VeraCrypt/TrueCrypt', roleName: 'panel', showingOnly: true)
+    unlocked_volume.click
+    # Move the focus down to the "Filesystem\n107 MB FAT" item (that Dogtail
+    # is not able to find) using the 'Down' arrow, in order to display
+    # the "Mount selected partition" button.
+    unlocked_volume.grabFocus()
+    sleep 0.5 # otherwise the following key press is sometimes lost
+    disks.pressKey('Down')
+    disks.child('', roleName: 'panel', description: 'Mount selected partition', showingOnly: true).click
   end
-  try_for(10, :msg => "/media/amnesia/*/SecretFile does not exist") do
+  try(timeout: 10, message: "/media/amnesia/*/SecretFile does not exist") do
     $vm.execute_successfully('ls /media/amnesia/*/SecretFile')
   end
 end

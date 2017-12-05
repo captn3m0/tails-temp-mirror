@@ -1,10 +1,9 @@
 def seahorse_menu_click_helper(main, sub, verify = nil)
-  try_for(60) do
+  try(timeout: 60) do
     step "process \"#{verify}\" is running" if verify
     @screen.hide_cursor
     @screen.wait_and_click(main, 10)
     @screen.wait_and_click(sub, 10)
-    return
   end
 end
 
