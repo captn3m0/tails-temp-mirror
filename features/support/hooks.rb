@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'rb-inotify'
 require 'tmpdir'
-require "#{Dir.pwd}/features/support/helpers/vm_helper.rb"
+require "#{Dir.pwd}/features/support/helpers/vm.rb"
 
 # Run once, before any feature
 AfterConfiguration do |config|

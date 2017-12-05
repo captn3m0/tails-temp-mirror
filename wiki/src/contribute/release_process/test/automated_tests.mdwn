@@ -17,7 +17,7 @@ The automated test suite is essentially a glue between:
 Its goal is to automate the development and release testing processes
 with a Continuous Integration server.
 
-A [[!tails_gitweb features/support/helpers/sikuli_helper.rb
+A [[!tails_gitweb features/support/helpers/sikuli.rb
 desc="custom thin Ruby wrapper"]], using the
 [rjb](http://rjb.rubyforge.org/) Ruby-Java bridge, gives us access to
 the Sikuli programmatic interface from our step definitions.

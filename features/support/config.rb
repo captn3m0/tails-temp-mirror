@@ -3,7 +3,7 @@ require 'yaml'
 require "#{Dir.pwd}/features/support/helpers/assert.rb"
 require "#{Dir.pwd}/features/support/helpers/command.rb"
 require "#{Dir.pwd}/features/support/helpers/git.rb"
-require "#{Dir.pwd}/features/support/helpers/misc_helpers.rb"
+require "#{Dir.pwd}/features/support/helpers/misc.rb"
 
 # These files deal with options like some of the settings passed
 # to the `run_test_suite` script, and "secrets" like credentials
