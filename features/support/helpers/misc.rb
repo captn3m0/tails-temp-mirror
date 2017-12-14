@@ -74,7 +74,7 @@ def get_free_space(machine, path)
     free = cmd_helper(["df", path])
   when 'guest'
     assert($vm.file_exist?(path), "Path '#{path}' not found on #{machine}.")
-    free = $vm.execute_successfully("df '#{path}'")
+    free = $vm.execute_successfully("df '#{path}'").stdout
   else
     raise 'Unsupported machine type #{machine} passed.'
   end
