@@ -39,13 +39,13 @@ Then /^the live user has been setup by live\-boot$/ do
   assert($vm.execute("test -e /var/lib/live/config/user-setup").success?,
          "live-boot failed its user-setup")
   actual_username = $vm.execute(". /etc/live/config/username.conf; " +
-                                "echo $LIVE_USERNAME").stdout.chomp
+                                "echo $LIVE_USERNAME").stdout
   assert_equal(LIVE_USER, actual_username)
 end
 
 Then /^the live user is a member of only its own group and "(.*?)"$/ do |groups|
   expected_groups = groups.split(" ") << LIVE_USER
-  actual_groups = $vm.execute("groups #{LIVE_USER}").stdout.chomp.sub(/^#{LIVE_USER} : /, "").split(" ")
+  actual_groups = $vm.execute("groups #{LIVE_USER}").stdout.sub(/^#{LIVE_USER} : /, "").split(" ")
   unexpected = actual_groups - expected_groups
   missing = expected_groups - actual_groups
   assert_equal(0, unexpected.size,
@@ -58,14 +58,14 @@ Then /^the live user owns its home dir and it has normal permissions$/ do
   home = "/home/#{LIVE_USER}"
   assert($vm.execute("test -d #{home}").success?,
          "The live user's home doesn't exist or is not a directory")
-  owner = $vm.execute("stat -c %U:%G #{home}").stdout.chomp
-  perms = $vm.execute("stat -c %a #{home}").stdout.chomp
+  owner = $vm.execute("stat -c %U:%G #{home}").stdout
+  perms = $vm.execute("stat -c %a #{home}").stdout
   assert_equal("#{LIVE_USER}:#{LIVE_USER}", owner)
   assert_equal("700", perms)
 end
 
 Then /^no unexpected services are listening for network connections$/ do
-  for line in $vm.execute_successfully("ss -ltupn").stdout.chomp.split("\n") do
+  for line in $vm.execute_successfully("ss -ltupn").stdout.split("\n") do
     splitted = line.split(/[[:blank:]]+/)
     proto = splitted[0]
     next unless ['tcp', 'udp'].include?(proto)
@@ -151,7 +151,7 @@ Then /^AppArmor is enabled$/ do
 end
 
 Then /^some AppArmor profiles are enforced$/ do
-  assert($vm.execute("aa-status --enforced").stdout.chomp.to_i > 0,
+  assert($vm.execute("aa-status --enforced").stdout.to_i > 0,
          "No AppArmor profile is enforced")
 end
 

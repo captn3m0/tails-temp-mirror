@@ -206,7 +206,7 @@ When /^I join some empty multi-user chat$/ do
   @screen.type("a", Sikuli::KeyModifier.CTRL)
   @screen.type("c", Sikuli::KeyModifier.CTRL)
   conference_server =
-    $vm.execute_successfully("xclip -o", :user => LIVE_USER).stdout.chomp
+    $vm.execute_successfully("xclip -o", :user => LIVE_USER).stdout
   @chat_room_jid = chat_room + "@" + conference_server
 
   @screen.click("PidginJoinChatButton.png")

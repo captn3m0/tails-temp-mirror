@@ -6,7 +6,7 @@ end
 
 Given(/^I disable Tails' firewall$/) do
   $vm.execute("/usr/local/lib/do_not_ever_run_me")
-  iptables = $vm.execute("iptables -L -n -v").stdout.chomp.split("\n")
+  iptables = $vm.execute("iptables -L -n -v").stdout.split("\n")
   for line in iptables do
     if !line[/Chain (INPUT|OUTPUT|FORWARD) \(policy ACCEPT/] and
        !line[/pkts[[:blank:]]+bytes[[:blank:]]+target/] and

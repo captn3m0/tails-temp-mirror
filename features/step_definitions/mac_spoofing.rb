@@ -18,7 +18,7 @@ Then /^the (\d+)(?:st|nd|rd|th) network device has (its real|a spoofed) MAC addr
   nic = "eth#{dev_nr.to_i - 1}"
   nic_current_mac = $vm.execute_successfully(
     "get_current_mac_of_nic #{nic}", :libs => 'hardware'
-  ).stdout.chomp
+  ).stdout
   begin
     if is_spoofed
       if nic_real_mac == nic_current_mac
@@ -93,7 +93,7 @@ Then /^the MAC spoofing panic mode disabled networking$/ do
     ["nic_ipv4_addr", "nic_ipv6_addr"].each do |function|
       addr = $vm.execute_successfully(
         "#{function} #{nic}", :libs => 'hardware'
-      ).stdout.chomp
+      ).stdout
       assert_equal("", addr, "NIC #{nic} was assigned address #{addr}")
     end
   end
@@ -104,7 +104,7 @@ When /^I hotplug a network device( and wait for it to be initialized)?$/ do |wai
   # XXX:Buster: when we stop supporting the test suite on Stretch
   # hosts, let's remove this workaround related to #14819 and just
   # settle on a device that works on all supported platforms.
-  if cmd_helper('lsb_release --short --codename').chomp == 'stretch'
+  if cmd_helper('lsb_release --short --codename') == 'stretch'
     device = 'virtio'
   else
     device = 'pcnet'

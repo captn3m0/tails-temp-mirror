@@ -1,7 +1,7 @@
 Then /^I should be able to run administration commands as the live user$/ do
   stdout = $vm.execute("echo #{@sudo_password} | sudo -S whoami",
                        :user => LIVE_USER).stdout
-  actual_user = stdout.sub(/^\[sudo\] password for #{LIVE_USER}: /, "").chomp
+  actual_user = stdout.sub(/^\[sudo\] password for #{LIVE_USER}: /, "")
   assert_equal("root", actual_user, "Could not use sudo")
 end
 

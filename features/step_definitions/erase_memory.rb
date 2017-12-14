@@ -12,7 +12,7 @@ def udev_watchdog_monitored_device
   monitored_device_id = $vm.file_content('/sys' + monitored_out + '/dev').chomp
   monitored_device =
     $vm.execute_successfully(
-      "readlink -f /dev/block/'#{monitored_device_id}'").stdout.chomp
+      "readlink -f /dev/block/'#{monitored_device_id}'").stdout
   return monitored_device
 end
 
@@ -21,11 +21,11 @@ Given /^udev-watchdog is monitoring the correct device$/ do
 end
 
 def used_ram_in_MiB
-  return $vm.execute_successfully("free -m | awk '/^Mem:/ { print $3 }'").stdout.chomp.to_i
+  return $vm.execute_successfully("free -m | awk '/^Mem:/ { print $3 }'").stdout.to_i
 end
 
 def detected_ram_in_MiB
-  return $vm.execute_successfully("free -m | awk '/^Mem:/ { print $2 }'").stdout.chomp.to_i
+  return $vm.execute_successfully("free -m | awk '/^Mem:/ { print $2 }'").stdout.to_i
 end
 
 def pattern_coverage_in_guest_ram(reference_memory_b)

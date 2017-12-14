@@ -65,7 +65,17 @@ module RemoteShell
       opts[:spawn] = false unless opts.has_key?(:spawn)
       type = opts[:spawn] ? "spawn" : "call"
       debug_log("#{type}ing as #{opts[:user]}: #{cmd}")
-      ret = RemoteShell.communicate(vm, 'sh_' + type, opts[:user], cmd, **opts)
+      status, stdout, stderr =
+        RemoteShell.communicate(vm, 'sh_' + type, opts[:user], cmd, **opts)
+      # The extra \n on the end printed by most shell-friendly
+      # programs adds no value and just causes trouble for
+      # us. Example:
+      #    stdout == "expected string"
+      # would otherwise actually require one of:
+      #    stdout.chomp == "expected string"
+      #    stdout == "expected string\n"
+      # which is easy to forget. So let's kill it!
+      ret = [status, stdout.chomp, stderr.chomp]
       debug_log("#{type} returned: #{ret}") if not(opts[:spawn])
       return ret
     end

@@ -451,7 +451,7 @@ class VM
   def remote_shell_is_up?
     msg = 'hello?'
     Timeout::timeout(3) do
-      execute_successfully("echo '#{msg}'").stdout.chomp == msg
+      execute_successfully("echo '#{msg}'").stdout == msg
     end
   rescue
     false
@@ -479,7 +479,7 @@ class VM
   end
 
   def pidof(process)
-    return execute("pidof -x -o '%PPID' " + process).stdout.chomp.split
+    return execute("pidof -x -o '%PPID' " + process).stdout.split
   end
 
   def select_virtual_desktop(desktop_number, user = LIVE_USER)
@@ -542,7 +542,7 @@ class VM
             shift
           done'
       EOF
-    ).stdout.chomp.split("\0")
+    ).stdout.split("\0")
   end
 
   def file_open(path)

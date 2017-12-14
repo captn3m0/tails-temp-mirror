@@ -48,6 +48,8 @@ opt_parser.parse!(ARGV)
 cmd = ARGV.join(" ")
 c = RemoteShell::ShellCommand.new(FakeVM.new, cmd, cmd_opts)
 puts "Return status: #{c.returncode}"
-puts "STDOUT:\n#{c.stdout}"
-puts "STDERR:\n#{c.stderr}"
+puts "STDOUT:"
+puts "#{c.stdout}\n"
+puts "STDERR:"
+puts "#{c.stderr}\n"
 exit c.returncode

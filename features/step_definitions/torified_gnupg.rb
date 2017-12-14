@@ -251,7 +251,7 @@ Then /^GnuPG's dirmngr uses the configured keyserver$/ do
   dirmngr_request = $vm.execute_successfully(
     'gpg-connect-agent --dirmngr "keyserver --hosttable" /bye', user: LIVE_USER
   )
-  server = dirmngr_request.stdout.chomp.lines[1].split[4]
+  server = dirmngr_request.stdout.lines[1].split[4]
   server = /keyserver\s+(\S+)$/.match(
     $vm.file_content("/home/#{LIVE_USER}/.gnupg/dirmngr.conf")
   )[1]

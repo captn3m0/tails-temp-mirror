@@ -79,7 +79,7 @@ def get_free_space(machine, path)
     raise 'Unsupported machine type #{machine} passed.'
   end
   output = free.split("\n").last
-  return output.match(/[^\s]\s+[0-9]+\s+[0-9]+\s+([0-9]+)\s+.*/)[1].chomp.to_i
+  return output.match(/[^\s]\s+[0-9]+\s+[0-9]+\s+([0-9]+)\s+.*/)[1].to_i
 end
 
 def random_string_from_set(set, min_len, max_len)

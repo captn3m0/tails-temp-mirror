@@ -4,7 +4,7 @@ Given /^the only hosts in APT sources are "([^"]*)"$/ do |hosts_str|
   hosts = hosts_str.split(',')
   apt_sources = $vm.execute_successfully(
     "cat /etc/apt/sources.list /etc/apt/sources.list.d/*"
-  ).stdout.chomp
+  ).stdout
   apt_sources.each_line do |line|
     next if ! line.start_with? "deb"
     source_host = URI(line.split[1]).host

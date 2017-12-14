@@ -16,7 +16,7 @@ EOF
   # above perl script any way
   script.delete!("\n")
   presets_configs = $vm.execute_successfully("perl -E '#{script}'")
-                       .stdout.chomp.split("\n")
+                       .stdout.split("\n")
   assert presets_configs.size >= 10,
          "Got #{presets_configs.size} persistence preset configuration lines, " +
          "which is too few"
@@ -48,7 +48,7 @@ def persistent_mounts
 end
 
 def persistent_volumes_mountpoints
-  $vm.execute("ls -1 -d /live/persistence/*_unlocked/").stdout.chomp.split
+  $vm.execute("ls -1 -d /live/persistence/*_unlocked/").stdout.split
 end
 
 # Returns an array that for each persistence preset the running Tails is aware of,
@@ -76,7 +76,7 @@ EOF
   # above perl script any way
   script.delete!("\n")
   presets = $vm.execute_successfully("perl -E '#{script}'")
-               .stdout.chomp.split("\n")
+               .stdout.split("\n")
   assert presets.size >= 10,
          "Got #{presets.size} persistence presets, " +
          "which is too few"
@@ -316,7 +316,7 @@ def tails_is_installed_helper(name, tails_root, loader)
   assert(c.success?,
          "USB drive '#{name}' has differences in /live:\n#{c.stdout}\n#{c.stderr}")
 
-  syslinux_files = $vm.execute("ls -1 #{target_root}/syslinux").stdout.chomp.split
+  syslinux_files = $vm.execute("ls -1 #{target_root}/syslinux").stdout.split
   # We deal with these files separately
   ignores = ["syslinux.cfg", "exithelp.cfg", "ldlinux.c32", "ldlinux.sys"]
   for f in syslinux_files - ignores do
@@ -428,7 +428,7 @@ Given /^all persistence presets(| from the old Tails version)(| but the first on
     assert_not_nil($remembered_persistence_mounts)
     expected_mounts = $remembered_persistence_mounts
   end
-  mount = $vm.execute("mount").stdout.chomp
+  mount = $vm.execute("mount").stdout
   for _, dir in expected_mounts do
     assert(mount.include?("on #{dir} "),
            "Persistent directory '#{dir}' is not mounted")
@@ -446,15 +446,15 @@ end
 def boot_device
   # Approach borrowed from
   # config/chroot_local_includes/lib/live/config/998-permissions
-  boot_dev_id = $vm.execute("udevadm info --device-id-of-file=/lib/live/mount/medium").stdout.chomp
-  boot_dev = $vm.execute("readlink -f /dev/block/'#{boot_dev_id}'").stdout.chomp
+  boot_dev_id = $vm.execute("udevadm info --device-id-of-file=/lib/live/mount/medium").stdout
+  boot_dev = $vm.execute("readlink -f /dev/block/'#{boot_dev_id}'").stdout
   return boot_dev
 end
 
 def device_info(dev)
   # Approach borrowed from
   # config/chroot_local_includes/lib/live/config/998-permissions
-  info = $vm.execute("udevadm info --query=property --name='#{dev}'").stdout.chomp
+  info = $vm.execute("udevadm info --query=property --name='#{dev}'").stdout
   info.split("\n").map { |e| e.split('=') } .to_h
 end
 
@@ -511,17 +511,17 @@ end
 Then /^the boot device has safe access rights$/ do
 
   super_boot_dev = boot_device.sub(/[[:digit:]]+$/, "")
-  devs = $vm.execute("ls -1 #{super_boot_dev}*").stdout.chomp.split
+  devs = $vm.execute("ls -1 #{super_boot_dev}*").stdout.split
   assert(devs.size > 0, "Could not determine boot device")
-  all_users = $vm.execute("cut -d':' -f1 /etc/passwd").stdout.chomp.split
+  all_users = $vm.execute("cut -d':' -f1 /etc/passwd").stdout.split
   all_users_with_groups = all_users.collect do |user|
-    groups = $vm.execute("groups #{user}").stdout.chomp.sub(/^#{user} : /, "").split(" ")
+    groups = $vm.execute("groups #{user}").stdout.sub(/^#{user} : /, "").split(" ")
     [user, groups]
   end
   for dev in devs do
-    dev_owner = $vm.execute("stat -c %U #{dev}").stdout.chomp
-    dev_group = $vm.execute("stat -c %G #{dev}").stdout.chomp
-    dev_perms = $vm.execute("stat -c %a #{dev}").stdout.chomp
+    dev_owner = $vm.execute("stat -c %U #{dev}").stdout
+    dev_group = $vm.execute("stat -c %G #{dev}").stdout
+    dev_perms = $vm.execute("stat -c %a #{dev}").stdout
     assert_equal("root", dev_owner)
     assert(dev_group == "disk" || dev_group == "root",
            "Boot device '#{dev}' owned by group '#{dev_group}', expected " +
@@ -542,9 +542,9 @@ end
 
 Then /^all persistent filesystems have safe access rights$/ do
   persistent_volumes_mountpoints.each do |mountpoint|
-    fs_owner = $vm.execute("stat -c %U #{mountpoint}").stdout.chomp
-    fs_group = $vm.execute("stat -c %G #{mountpoint}").stdout.chomp
-    fs_perms = $vm.execute("stat -c %a #{mountpoint}").stdout.chomp
+    fs_owner = $vm.execute("stat -c %U #{mountpoint}").stdout
+    fs_group = $vm.execute("stat -c %G #{mountpoint}").stdout
+    fs_perms = $vm.execute("stat -c %a #{mountpoint}").stdout
     assert_equal("root", fs_owner)
     assert_equal("root", fs_group)
     assert_equal('775', fs_perms)
@@ -563,10 +563,10 @@ Then /^all persistence configuration files have safe access rights$/ do
            "#{mountpoint}/live-persistence.conf does exist, while it should not")
     $vm.execute(
       "ls -1 #{mountpoint}/persistence.conf* #{mountpoint}/live-*.conf"
-    ).stdout.chomp.split.each do |f|
-      file_owner = $vm.execute("stat -c %U '#{f}'").stdout.chomp
-      file_group = $vm.execute("stat -c %G '#{f}'").stdout.chomp
-      file_perms = $vm.execute("stat -c %a '#{f}'").stdout.chomp
+    ).stdout.split.each do |f|
+      file_owner = $vm.execute("stat -c %U '#{f}'").stdout
+      file_group = $vm.execute("stat -c %G '#{f}'").stdout
+      file_perms = $vm.execute("stat -c %a '#{f}'").stdout
       assert_equal("tails-persistence-setup", file_owner)
       assert_equal("tails-persistence-setup", file_group)
       case f
@@ -590,8 +590,8 @@ Then /^all persistent directories(| from the old Tails version) have safe access
     expected_dirs.each do |src, dest|
       full_src = "#{mountpoint}/#{src}"
       assert_vmcommand_success $vm.execute("test -d #{full_src}")
-      dir_perms = $vm.execute_successfully("stat -c %a '#{full_src}'").stdout.chomp
-      dir_owner = $vm.execute_successfully("stat -c %U '#{full_src}'").stdout.chomp
+      dir_perms = $vm.execute_successfully("stat -c %a '#{full_src}'").stdout
+      dir_owner = $vm.execute_successfully("stat -c %U '#{full_src}'").stdout
       if dest.start_with?("/home/#{LIVE_USER}")
         expected_perms = "700"
         expected_owner = LIVE_USER
@@ -611,7 +611,7 @@ end
 
 When /^I write some files expected to persist$/ do
   persistent_mounts.each do |_, dir|
-    owner = $vm.execute("stat -c %U #{dir}").stdout.chomp
+    owner = $vm.execute("stat -c %U #{dir}").stdout
     assert($vm.execute("touch #{dir}/XXX_persist", :user => owner).success?,
            "Could not create file in persistent directory #{dir}")
   end
@@ -625,7 +625,7 @@ end
 
 When /^I remove some files expected to persist$/ do
   persistent_mounts.each do |_, dir|
-    owner = $vm.execute("stat -c %U #{dir}").stdout.chomp
+    owner = $vm.execute("stat -c %U #{dir}").stdout
     assert($vm.execute("rm #{dir}/XXX_persist", :user => owner).success?,
            "Could not remove file in persistent directory #{dir}")
   end
@@ -633,7 +633,7 @@ end
 
 When /^I write some files not expected to persist$/ do
   persistent_mounts.each do |_, dir|
-    owner = $vm.execute("stat -c %U #{dir}").stdout.chomp
+    owner = $vm.execute("stat -c %U #{dir}").stdout
     assert($vm.execute("touch #{dir}/XXX_gone", :user => owner).success?,
            "Could not create file in persistent directory #{dir}")
   end

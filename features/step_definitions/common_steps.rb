@@ -635,7 +635,7 @@ end
 Given /^I switch to the "([^"]+)" NetworkManager connection$/ do |con_name|
   $vm.execute("nmcli connection up id #{con_name}")
   try_for_success(timeout: 60) do
-    $vm.execute("nmcli --terse --fields NAME,STATE connection show").stdout.chomp.split("\n").include?("#{con_name}:activated")
+    $vm.execute("nmcli --terse --fields NAME,STATE connection show").stdout.split("\n").include?("#{con_name}:activated")
   end
 end
 
@@ -684,7 +684,7 @@ def is_persistent?(app)
   conf = get_persistence_presets_config(true)["#{app}"]
   c = $vm.execute("findmnt --noheadings --output SOURCE --target '#{conf}'")
   # This check assumes that we haven't enabled read-only persistence.
-  c.success? and c.stdout.chomp != "aufs"
+  c.success? and c.stdout != "aufs"
 end
 
 Then /^persistence for "([^"]+)" is (|not )enabled$/ do |app, enabled|
@@ -893,7 +893,7 @@ EOF
     message: "Something is wrong with the LAN web server"
   ) do
     content = $vm.execute_successfully("curl #{@web_server_url}",
-                                       :user => LIVE_USER).stdout.chomp
+                                       :user => LIVE_USER).stdout
     web_server_hello_msg == content
   end
 end
@@ -919,7 +919,7 @@ Given /^I (?:re)?start monitoring the AppArmor log of "([^"]+)"$/ do |profile|
   # We will only care about entries for this profile from this time
   # and on.
   guest_time = $vm.execute_successfully(
-    'date +"%Y-%m-%d %H:%M:%S"').stdout.chomp
+    'date +"%Y-%m-%d %H:%M:%S"').stdout
   @apparmor_profile_monitoring_start ||= Hash.new
   @apparmor_profile_monitoring_start[profile] = guest_time
 end
@@ -936,7 +936,7 @@ When /^AppArmor has (not )?denied "([^"]+)" from opening "([^"]+)"$/ do |anti_te
         "journalctl --full --no-pager " +
         "--since='#{@apparmor_profile_monitoring_start[profile]}' " +
         "SYSLOG_IDENTIFIER=kernel | grep -w '#{audit_line_regex}'"
-      ).stdout.chomp
+      ).stdout
       assert(audit_log.empty? == (anti_test ? true : false))
     }
   rescue TryFailed, Test::Unit::AssertionFailedError => e
@@ -998,7 +998,7 @@ def share_host_files(files)
     files.each { |f| g.upload(f, "/" + File.basename(f)) }
   end
   step "I plug USB drive \"#{disk}\""
-  mount_dir = $vm.execute_successfully('mktemp -d').stdout.chomp
+  mount_dir = $vm.execute_successfully('mktemp -d').stdout
   dev = $vm.disk_dev(disk)
   partition = dev + '1'
   $vm.execute_successfully("mount #{partition} #{mount_dir}")
@@ -1008,7 +1008,7 @@ end
 
 def mount_USB_drive(disk, fs_options = {})
   fs_options[:encrypted] ||= false
-  @tmp_usb_drive_mount_dir = $vm.execute_successfully('mktemp -d').stdout.chomp
+  @tmp_usb_drive_mount_dir = $vm.execute_successfully('mktemp -d').stdout
   dev = $vm.disk_dev(disk)
   partition = dev + '1'
   if fs_options[:encrypted]

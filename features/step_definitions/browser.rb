@@ -22,7 +22,7 @@ def xul_application_info(application)
     user = LIVE_USER
     binary = $vm.execute_successfully(
       'echo ${TBB_INSTALL}/firefox.real', :libs => 'tor-browser'
-    ).stdout.chomp
+    ).stdout
     cmd_regex = "#{binary} .* -profile /home/#{user}/\.tor-browser/profile\.default"
     chroot = ""
     browser_reload_button_image = "TorBrowserReloadButton.png"
@@ -32,7 +32,7 @@ def xul_application_info(application)
     user = "clearnet"
     binary = $vm.execute_successfully(
       'echo ${TBB_INSTALL}/firefox.real', :libs => 'tor-browser'
-    ).stdout.chomp
+    ).stdout
     cmd_regex = "#{binary} .* -profile /home/#{user}/\.unsafe-browser/profile\.default"
     chroot = "/var/lib/unsafe-browser/chroot"
     browser_reload_button_image = "UnsafeBrowserReloadButton.png"
@@ -43,10 +43,10 @@ def xul_application_info(application)
     # We do not enable AppArmor confinement for the Tor Launcher.
     binary = $vm.execute_successfully(
       'echo ${TBB_INSTALL}/firefox-unconfined', :libs => 'tor-browser'
-    ).stdout.chomp
+    ).stdout
     tor_launcher_install = $vm.execute_successfully(
       'echo ${TOR_LAUNCHER_INSTALL}', :libs => 'tor-browser'
-    ).stdout.chomp
+    ).stdout
     cmd_regex = "#{binary}\s+-app #{tor_launcher_install}/application\.ini.*"
     chroot = ""
     new_tab_button_image = nil
@@ -163,7 +163,7 @@ end
 
 Then /^the (.*) uses all expected TBB shared libraries$/ do |application|
   info = xul_application_info(application)
-  pid = $vm.execute_successfully("pgrep --uid #{info[:user]} --full --exact '#{info[:cmd_regex]}'").stdout.chomp
+  pid = $vm.execute_successfully("pgrep --uid #{info[:user]} --full --exact '#{info[:cmd_regex]}'").stdout
   assert(/\A\d+\z/.match(pid), "It seems like #{application} is not running")
   xul_app_shared_lib_check(pid, info[:chroot], info[:unused_tbb_libs])
 end

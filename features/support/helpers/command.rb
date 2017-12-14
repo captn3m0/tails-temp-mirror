@@ -6,7 +6,7 @@ def cmd_helper(cmd, env = {})
   end
   env = ENV.to_h.merge(env)
   IO.popen(env, cmd) do |p|
-    out = p.readlines.join("\n")
+    out = p.read.chomp
     p.close
     ret = $?
     assert_equal(0, ret, "Command failed (returned #{ret}): #{cmd}:\n#{out}")
