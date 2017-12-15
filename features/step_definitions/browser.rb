@@ -16,6 +16,7 @@ end
 
 def xul_application_info(application)
   address_bar_image = "BrowserAddressBar.png"
+  address_bar_selected_image = "BrowserAddressBarSelected.png"
   unused_tbb_libs = ['libnssdbm3.so', "libmozavcodec.so", "libmozavutil.so"]
   case application
   when "Tor Browser"
@@ -65,6 +66,7 @@ def xul_application_info(application)
     :chroot => chroot,
     :new_tab_button_image => new_tab_button_image,
     :address_bar_image => address_bar_image,
+    :address_bar_selected_image => address_bar_selected_image,
     :browser_reload_button_image => browser_reload_button_image,
     :browser_stop_button_image => browser_stop_button_image,
     :unused_tbb_libs => unused_tbb_libs,
@@ -80,11 +82,24 @@ end
 When /^I open the address "([^"]*)" in the (.*)$/ do |address, browser|
   step "I open a new tab in the #{browser}"
   info = xul_application_info(browser)
+  # The image only works for an empty address bar, which we have right
+  # now, but now while doing retries. So let's record the coordinates
+  # and just reuse them, which works as long as the window is not
+  # moved or resized, which shouldn't happen.
+  address_bar_match = @screen.find(info[:address_bar_image])
+  address_bar_coordinates = [address_bar_match.getX, address_bar_match.getY]
   open_address = Proc.new do
-    @screen.click(info[:address_bar_image])
-    # This static here since we have no reliable visual indicators
-    # that we can watch to know when typing is "safe".
-    sleep 5
+    @screen.hide_cursor
+    @screen.click_point(*address_bar_coordinates)
+    # This image can easily get incorrectly matched, so we require
+    # a pixel-by-pixel exact match, i.e. similarity = 1.0.
+    pattern = Sikuli::Pattern.new(info[:address_bar_selected_image])
+    pattern.similar(1.0)
+    @screen.wait(pattern, 10)
+    # Now we now the address bar is properly focused.
+    # Remove any remains from previous attempts.
+    @screen.type('a', Sikuli::KeyModifier.CTRL)
+    @screen.type(Sikuli::Key.BACKSPACE)
     # The browser sometimes loses keypresses when suggestions are
     # shown, which we work around by pasting the address from the
     # clipboard, in one go.
