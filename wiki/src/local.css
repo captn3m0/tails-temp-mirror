@@ -905,10 +905,8 @@ blockquote > p:hover {
 }
 
 #crumbs {
-    border-bottom:1px solid #DEDEDE;
-    margin: 0 -2em;
+    margin: 0;
     padding-right:2em;
-    max-width:110%;
     font-weight:normal;
     margin-bottom:0;
     margin-top: 0;
