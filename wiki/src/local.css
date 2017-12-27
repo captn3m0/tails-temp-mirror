@@ -55,7 +55,6 @@ html {
 body {
     font-family: "DejaVu Sans", "Verdana", sans-serif;
     color: black;
-    background: url(lib/strip.png);
     margin: 0;
     padding: 0;
 }
@@ -213,13 +212,13 @@ ol, ul {
 .page {
     margin:0 auto;
     padding: 0 2em 2em 2em;
-    max-width:930px;
     position:relative;
-    border :0px solid black;
-    -moz-box-shadow: 3px 3px 5px #ccc;
-    -webkit-box-shadow: 3px 3px 5px #ccc;
-    box-shadow: 3px 3px 5px #ccc;
     background: white;
+}
+
+.pageheader, #pagebody, #footer {
+    position: relative;
+    left: 270px;
 }
 
 .header {
@@ -234,7 +233,6 @@ ol, ul {
     box-shadow: 3px 3px 5px #ccc;
     padding: 0 2em;
     margin: 0 auto;
-    max-width: 930px;
     border: none;
 }
 
@@ -304,13 +302,15 @@ span.title {
 /* Sidebar */
 
 .sidebar {
+    position: absolute;
+    left: 30px;
+    top: 30px;
     font-family: "Source Sans Pro Regular", "DejaVu Sans", "Verdana", sans-serif;
     z-index: 10;
     border: 0;
     padding: 0;
     width: auto;
     width: 18em;
-    margin-left: 2em;
     line-height: 2.2em;
 }
 
