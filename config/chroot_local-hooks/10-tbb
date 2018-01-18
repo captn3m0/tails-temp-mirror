@@ -117,6 +117,16 @@ EOF
     # Otherwise the "General" section in the preferences is not displayed.
     install -d -m 0755 "${prep}"/TorBrowser/UpdateInfo
 
+    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
+                     extensions.torlauncher.transportproxy_path \
+                     '"/usr/bin/obfs4proxy"'
+    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
+                     extensions.torlauncher.default_bridge_recommended_type \
+                     '"meek_lite"'
+    # We only want Tor's default Meek pluggable transports, and we use
+    # them as meek_lite instead (#8243).
+    sed --regexp-extended -n 's@pref\("(extensions.torlauncher.default_bridge.meek-[^"]*)", "meek ([^"]*)"\);@pref("\1", "meek_lite \2");@p' "${prep}"/TorBrowser/Data/Browser/profile.default/preferences/extension-overrides.js >> /etc/xul-ext/tor-launcher.js
+
     mv "${prep}" "${destination}"
 
     rm -r "${tmp}"
