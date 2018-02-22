@@ -78,6 +78,11 @@ install_tor_browser() {
     # so disable this for now.
     # cp "${prep}"/TorBrowser/Tor/libstdc++.so.6 "${prep}"
 
+    mv "${prep}"/TorBrowser/Tor/PluggableTransports /usr/local/lib/meek
+    chmod -R a+rX /usr/local/lib/meek
+    chown -R root:root /usr/local/lib/meek
+    sed -i 's/attach_disconnected/attach_disconnected,complain/' /etc/apparmor.d/system_tor
+
     # We don't need the Tor binary, the shared libraries Tor needs
     # (but Firefox doesn't) and documentation shipped in the TBB.
     rm -r "${prep}"/TorBrowser/Tor "${prep}"/TorBrowser/Docs
