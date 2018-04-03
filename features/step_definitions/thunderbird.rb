@@ -152,10 +152,6 @@ When /^I select the autoconfiguration wizard's (IMAP|POP3) choice$/ do |protocol
   thunderbird_wizard.child(choice, roleName: 'radio button').click
 end
 
-When /^I select manual configuration$/ do
-  thunderbird_wizard.button('Manual config').click
-end
-
 When /^I alter the email configuration to use (.*) over a hidden services$/ do |protocol|
   case protocol.upcase
   when 'IMAP', 'POP3'
