@@ -721,6 +721,15 @@ Given /^I start "([^"]+)" via GNOME Activities Overview$/ do |app_name|
   @screen.type(Sikuli::Key.ENTER, Sikuli::KeyModifier.CTRL)
 end
 
+When /^application "([^"]+)" (?:starts|has started|is running)$/ do |app_name|
+  # Let's say it is running as soon as some *visible* (i.e. "showing")
+  # child exists.
+  try(timeout: 60) do
+    Dogtail::Application.new(app_name)
+      .child(showingOnly: true, recursive: false)
+  end
+end
+
 When /^I type "([^"]+)"$/ do |string|
   @screen.type(string)
 end
@@ -1102,4 +1111,41 @@ end
 When /^I disable the (.*) (system|user) unit$/ do |unit, scope|
   options = scope == 'system' ? '' : '--global'
   $vm.execute_successfully("systemctl #{options} disable '#{unit}'")
+end
+
+When /^I (see|(?:double )?click|point) (the|a|no|\d+) "([^"]+)" ([a-z ]+)(?: in application "([^"]+)")?$/ do |action, article, name, role, app|
+  action = 'doubleClick' if action == 'double click'
+  if /^(no|d+)$/.match(article)
+    req_hits = article.to_i  # 'no'.to_i == 0
+  else
+    req_hits = nil
+  end
+  if req_hits != 1
+    # Drop potential plural "s"
+    role.sub!(/s$/, '')
+  end
+  role = Dogtail.translate_role(role)
+  flags = {}
+  generic_roles = ['node', 'object', 'widget', 'thingy']
+  unless generic_roles.include?(role)
+    flags[:roleName] = role
+  end
+  if app
+    Dogtail::Application.last = Dogtail::Application.new(app)
+  end
+  hits = Dogtail::Application.last.children(name, **flags)
+  if req_hits
+    if req_hits != hits.size
+      raise "Did not get the expected number of matches " +
+            "(got #{hits.size}, expected #{req_hits})"
+    end
+  else
+    if hits.empty?
+      raise 'No match found'
+    end
+    hits = [hits.first]
+  end
+  if action != 'see'
+    hits.each { |node| node.method(action).call }
+  end
 end

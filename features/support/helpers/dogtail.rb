@@ -5,6 +5,9 @@ module Dogtail
     RIGHT_CLICK = 3
   end
 
+  class ScriptFailure < StandardError
+  end
+
   TREE_API_NODE_SEARCHES = [
     :button,
     :child,
@@ -36,6 +39,13 @@ module Dogtail
     :window,
   ]
 
+  def self.translate_role(name)
+    {
+      'button' => 'push button',
+      'text area' => 'text',
+    }[name] || name
+  end
+
   # We want to keep this class immutable so that handles always are
   # left intact when doing new (proxied) method calls.  This way we
   # can support stuff like:
@@ -51,8 +61,21 @@ module Dogtail
 
   class Application
     @@node_counter ||= 0
+    @@last ||= nil
+
+    def self.last
+      @@last
+    end
+
+    def self.last=(app)
+      assert_equal(Application, app.class)
+      @@last = app
+    end
+
+    attr_reader :app
 
     def initialize(app_name, opts = {})
+      @app = self
       @var = "node#{@@node_counter += 1}"
       @app_name = app_name
       @opts = opts
@@ -77,10 +100,11 @@ module Dogtail
     end
 
     def run(code)
+      self.class.last = self.app
       code = code.join("\n") if code.class == Array
       c = RemoteShell::PythonCommand.new($vm, code, user: @opts[:user])
       if c.failure?
-        raise RuntimeError.new("The Dogtail script raised: #{c.exception}")
+        raise ScriptFailure.new("The Dogtail script raised: #{c.exception}")
       end
       return c
     end
@@ -160,7 +184,7 @@ module Dogtail
       ]
       size = run(find_script_lines).stdout.chomp.to_i
       return size.times.map do |i|
-        Node.new("#{nodes_var}[#{i}]", @opts)
+        Node.new(@app, "#{nodes_var}[#{i}]", @opts)
       end
     end
 
@@ -202,13 +226,13 @@ module Dogtail
       define_method(method) do |*args|
         args_str = self.class.args_to_s(args)
         method_call = "#{method.to_s}(#{args_str})"
-        Node.new("#{@var}.#{method_call}", @opts)
+        Node.new(@app, "#{@var}.#{method_call}", @opts)
       end
     end
 
     TREE_API_NODE_SEARCH_FIELDS.each do |field|
       define_method(field) do
-        Node.new("#{@var}.#{field}", @opts)
+        Node.new(@app, "#{@var}.#{field}", @opts)
       end
     end
 
@@ -216,7 +240,8 @@ module Dogtail
 
   class Node < Application
 
-    def initialize(expr, opts = {})
+    def initialize(app, expr, opts = {})
+      @app = app
       @expr = expr
       @opts = opts
       @opts[:user] ||= LIVE_USER
@@ -229,7 +254,7 @@ module Dogtail
       define_method(method) do |*args|
         args_str = self.class.args_to_s(args)
         method_call = "#{method.to_s}(#{args_str})"
-        Node.new("#{@var}.#{method_call}", @opts)
+        Node.new(@app, "#{@var}.#{method_call}", @opts)
       end
     end
 

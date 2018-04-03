@@ -147,7 +147,7 @@ When /^I update APT using Synaptic$/ do
     ) do
       !$vm.has_process?("/usr/lib/apt/methods/tor+http")
     end
-    assert_raise(RuntimeError) do
+    assert_raise(Dogtail::ScriptFailure) do
       @synaptic.child(roleName: 'dialog', recursive: false)
         .child('Error', roleName: 'icon', retry: false)
     end
