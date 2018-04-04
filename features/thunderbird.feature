@@ -8,17 +8,18 @@ Feature: Thunderbird email client
     Given I have started Tails from DVD and logged in and the network is connected
     And I have not configured an email account
     When I start Thunderbird
-    Then I am prompted to setup an email account
+    Then I see the "Mail Account Setup" frame
 
   Scenario: Only the expected addons are installed
-    Given I cancel setting up an email account
-    When I open Thunderbird's Add-ons Manager
-    And I click the extensions tab
+    Given I click the "Cancel" button
+    When I click the "AppMenu" button
+    And I click the "Add-ons" menu item
+    And I click the "Extensions" list item
     Then I see that only the Enigmail and TorBirdy addons are enabled in Thunderbird
 
   Scenario: Torbirdy is configured to use Tor
-    Given I cancel setting up an email account
-    Then I see that Torbirdy is configured to use Tor
+    Given I click the "Cancel" button
+    Then I see the "TorBirdy Enabled:    Tor" label
 
   #11890
   @fragile
@@ -42,7 +43,7 @@ Feature: Thunderbird email client
   Scenario: Thunderbird can download the inbox with POP3
     When I enter my email credentials into the autoconfiguration wizard
     Then the autoconfiguration wizard's choice for the incoming server is secure IMAP
-    When I select the autoconfiguration wizard's POP3 choice
+    When I click the "POP3 (keep mail on your computer)" radio button
     Then the autoconfiguration wizard's choice for the incoming server is secure POP3
     When I accept the autoconfiguration wizard's configuration
     And I fetch my email

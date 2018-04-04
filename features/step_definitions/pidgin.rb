@@ -518,7 +518,7 @@ end
 
 When /^I click on the Tails roadmap URL$/ do
   @screen.click('PidginTailsRoadmapUrl.png')
-  try(timeout: 60) { @torbrowser = Dogtail::Application.new('Firefox') }
+  step 'the Tor Browser has started'
 end
 
 Then /^Pidgin's D-Bus interface is not available$/ do

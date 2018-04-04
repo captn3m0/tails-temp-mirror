@@ -21,18 +21,18 @@ Feature: Electrum Bitcoin client
     Then persistence for "electrum" is enabled
     When I start Electrum through the GNOME menu
     But a bitcoin wallet is not present
-    Then Electrum starts
+    Then application "electrum" starts
     And I am prompted to configure Electrum
     When I follow the Electrum wizard to create a new bitcoin wallet
     Then a bitcoin wallet is present
-    And I see the main Electrum client window
+    #And I see a frame in application "electrum"
     And Electrum successfully connects to the network
     Then I shutdown Tails and wait for the computer to power off
     Given I start Tails from USB drive "__internal" and I login with persistence enabled
     When I start Electrum through the GNOME menu
     But a bitcoin wallet is present
-    Then Electrum starts
+    Then application "electrum" starts
     And I am prompted to enter my Electrum wallet password
     When I enter my Electrum wallet password
-    Then I see the main Electrum client window
+    #And I see a frame in application "electrum"
     And Electrum successfully connects to the network

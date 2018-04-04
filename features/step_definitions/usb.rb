@@ -155,12 +155,6 @@ When /^I am told by Tails Installer that.*"([^"]+)".*$/ do |status|
   end
 end
 
-Then /^a suitable USB device is (?:still )?not found$/ do
-  @installer.child(
-    'No device suitable to install Tails could be found', roleName: 'label'
-  )
-end
-
 Then /^(no|the "([^"]+)") USB drive is selected$/ do |mode, name|
   try_for_success(timeout: 30) do
     if mode == 'no'

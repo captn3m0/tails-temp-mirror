@@ -14,12 +14,6 @@ Then /^I start Electrum through the GNOME menu$/ do
   step "I start \"Electrum Bitcoin Wallet\" via GNOME Activities Overview"
 end
 
-Then /^Electrum (?:has started|starts)$/ do
-  try(timeout: 60) do
-    electrum_app
-  end
-end
-
 When /^a bitcoin wallet is (|not )present$/ do |existing|
   wallet = "/home/#{LIVE_USER}/.electrum/wallets/default_wallet"
   case existing
@@ -84,10 +78,6 @@ end
 When /^I enter my Electrum wallet password$/ do
   electrum_wizard.child(roleName: 'password text').typeText(@electrum_password)
   electrum_wizard.button('Next').click
-end
-
-Then /^I see the main Electrum client window$/ do
-  electrum_main
 end
 
 Then /^Electrum successfully connects to the network$/ do

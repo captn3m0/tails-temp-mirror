@@ -10,7 +10,7 @@ Feature: Installing Tails to a USB drive
     Given I have started Tails from DVD without network and logged in
     And I temporarily create a 4500 MiB disk named "too-small-device"
     And I start Tails Installer
-    But a suitable USB device is not found
+    But I see the "No device suitable to install Tails could be found" label
     And no USB drive is selected
     When I plug USB drive "too-small-device"
     Then I am told by Tails Installer that the destination device "is too small"
@@ -32,11 +32,11 @@ Feature: Installing Tails to a USB drive
     Given I have started Tails from DVD without network and logged in
     And I temporarily create a 7200 MiB disk named "temp"
     And I start Tails Installer
-    But a suitable USB device is not found
+    But I see the "No device suitable to install Tails could be found" label
     When I plug USB drive "temp"
     Then the "temp" USB drive is selected
     When I unplug USB drive "temp"
-    Then a suitable USB device is not found
+    Then I see the "No device suitable to install Tails could be found" label
 
   Scenario: Installing Tails to a used USB drive
     Given I have started Tails from DVD without network and logged in
