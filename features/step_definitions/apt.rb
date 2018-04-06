@@ -140,7 +140,7 @@ When /^I update APT using Synaptic$/ do
   end
   try_tor(recovery_proc) do
     @synaptic.button('Reload').click
-    sleep 10 # It might take some time before APT starts downloading
+    @synaptic.child('Downloading Package Information', roleName: 'frame')
     try_for_success(
       timeout: 15*60,
       message: "Took too much time to download the APT data"
