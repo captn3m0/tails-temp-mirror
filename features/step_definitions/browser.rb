@@ -237,8 +237,10 @@ end
 Then /^the Tor Browser shows the "([^"]+)" error$/ do |error|
   page = @torbrowser.child("Problem loading page - Tor Browser", roleName: "frame")
   headers = page.children(roleName: "heading")
-  found = headers.any? { |heading| heading.text == error }
-  raise "Could not find the '#{error}' error in the Tor Browser" unless found
+  assert(
+    headers.any? { |heading| heading.text == error },
+    "Could not find the '#{error}' error in the Tor Browser"
+  )
 end
 
 Then /^I can listen to an Ogg audio track in Tor Browser$/ do
