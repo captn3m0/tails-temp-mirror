@@ -11,12 +11,30 @@ case "$1" in
     ;;
 esac
 
-RANDOM_SEED_PATH="$rootmnt/lib/live/mount/medium/utils/linux/random-seed"
+MIN_BLOCK_SIZE_BYTES=512
+RANDOM_SEED_SECTOR=35
+
+RANDOM_SEED_SYSTEMD="$rootmnt/var/lib/systemd/random-seed"
+RANDOM_SEED_URANDOM="$rootmnt/var/lib/urandom/random-seed"
+
+MAGIC_NUMER_OFFSET=$(($RANDOM_SEED_SECTOR*$MIN_BLOCK_SIZE_BYTES-4))
+SEED_OFFSET=$(($RANDOM_SEED_SECTOR*$MIN_BLOCK_SIZE_BYTES))
+
+MAGIC_NUMBER=$(dd if=$root skip=$MAGIC_NUMER_OFFSET ibs=1 count=4 \
+               status=none | xxd -r -ps)
 
 . /scripts/functions
-if [ -e  $RANDOM_SEED_PATH ]; then
-    log_begin_msg "Copying random seed file"
-    /bin/cp "$RANDOM_SEED_PATH" "$rootmnt/var/lib/systemd/random-seed"
+if [ "$MAGIC_NUMBER" == "seed" ]; then
+    log_begin_msg "Initializing random number generator..."
+    # Carry a random seed from start-up to start-up
+    # Load and then save the whole entropy pool
+    # cat $random_seed >/dev/urandom
+    dd bs=512 if=$root of=/dev/urandom skip=$SEED_OFFSET count=1
+    touch $RANDOM_SEED_URANDOM
+    dd if=/dev/urandom of=$RANDOM_SEED_URANDOM count=1 bs=512
+    chmod 600 $RANDOM_SEED_URANDOM
+    dd if=/dev/urandom of=$RANDOM_SEED_SYSTEMD count=1 bs=512
+    dd bs=512 if=/dev/urandom of=$root skip=$SEED_OFFSET count=1
     log_end_msg
 fi
 
