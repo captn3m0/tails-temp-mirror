@@ -125,28 +125,21 @@ Tails installer can be used on Debian and Ubuntu, and is the tool people
 running OSX or Windows are told to use to install their final Tails
 USB stick with, by using an intermediary Tails to create the final USB.
 
-Tails installer will create and store a seed in the FAT filesystem of the system
-partition. That creates a workaround for the first boot problem not handled by the
-persistence option. Tails will copy this file on booting by a initramfs-tools boot
-script, before the systemd random-seed service reads that file:
+Tails installer will create and store a seed after the GPT table in an empty and unused
+device sector, before the first actual Tails partition. That creates a workaround for the
+first boot problem not handled by the persistence option. Tails will copy
+this random seed on booting by a initramfs-tools boot script, before the systemd
+random-seed service reads that file and initializing the urandom service:
 
 * [[!tails_gitweb config/chroot_local-includes/etc/initramfs-tools/scripts/init-bottom/seed]]
 
 According to the systemd random seed service [11] the seed file is read when the
 service starts, and immediately it is overwritten with new random data. This value
-remains unchanged until the next boot. Tails will copy back that file to the FAT
-filesystem on shuting down by a initramfs script hook, which provides a solution
-to the seed persistence problem:
-
-* [[!tails_gitweb config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook]]
-
-This will mean remount this partition, write the new random seed, then unmount it
-and start the shutdown of the system. We can do this only in normal shutdown process,
-and will have to avoid it in emergency shutdown mode.
-
-A remaining question is if this solves or complements the Persist entropy pool seeds
-solution. One related drawback: using the FAT filesystem would break the ability to
-verify this system partition with a simple shasum operation.
+remains unchanged until the next boot. The same initramfs script will copy a new
+random seed to the described sector after the GPT, which provides a solution
+to the seed persistence problem. This way we don't have to remount any partition,
+and we create a new seed even if the system crashes and a the shutdown script is not
+executed.
 
 ### Use stronger/more entropy collectors [[!tails_ticket 5650]]
 

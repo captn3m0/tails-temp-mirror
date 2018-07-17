@@ -38,10 +38,6 @@ mount --move \
       /oldroot/lib/live/mount/medium \
       /mnt/live/medium
 
-mount -o remount,rw /mnt/live/medium
-/bin/cp /oldroot/var/lib/systemd/random-seed \
-        /mnt/live/medium/utils/linux/random-seed
-
 # Finally, really unmount relevant filesystems
 umount /oldroot
 rm -rf /mnt/live/overlay/.w* /mnt/live/overlay/*
