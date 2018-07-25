@@ -65,3 +65,7 @@ systemctl mask apt-daily.timer
 
 # Do not let pppd-dns manage /etc/resolv.conf
 systemctl mask pppd-dns.service
+
+# We seed the entropy pool ourselves in initramfs, so we don't need the
+# systemd-random-seed.service. We disable it to avoid confusion.
+systemctl disable systemd-random-seed.service
