@@ -1,4 +1,7 @@
-#!/bin/sh -e
+#!/bin/sh
+
+set -u
+set -e
 
 PREREQS=""
 
@@ -15,6 +18,11 @@ esac
 [ -n "$debug" ] && set -x
 
 . /scripts/functions
+
+# We can't find the system partition if $FSUUID is not set
+if [ -z "${FSUUID}" ]; then
+  exit 1
+fi
 
 # Wait for system partition
 log_begin_msg "Waiting for system partition to become available"
@@ -40,16 +48,16 @@ fi
 # Get parent device
 # XXX: We assume here that the parent device is also ready if the
 #      system partition is.
-SYSTEM_PARTITION=$(readlink -f /dev/disk/by-uuid/${FSUUID})
-PARENT_PATH=$(udevadm info --query=property --name=${SYSTEM_PARTITION} \
-	| grep ID_PATH= | sed s/ID_PATH=//)
-PARENT_DEVICE=$(readlink -f /dev/disk/by-path/${PARENT_PATH})
+SYSTEM_PARTITION=$(readlink -f "/dev/disk/by-uuid/${FSUUID}")
+PARENT_PATH=$(udevadm info --query=property --name="${SYSTEM_PARTITION}" \
+	| grep ^ID_PATH= | sed s/ID_PATH=//)
+PARENT_DEVICE=$(readlink -f "/dev/disk/by-path/${PARENT_PATH}")
 
 
 log_begin_msg "Restoring random seed from LBA 34"
-dd bs=512 skip=34 count=1 if=${PARENT_DEVICE} of=/dev/urandom
+dd bs=512 skip=34 count=1 if="${PARENT_DEVICE}" of=/dev/urandom
 # Refresh seed
-dd bs=512 seek=34 count=1 if=/dev/urandom of=${PARENT_DEVICE}
+dd bs=512 seek=34 count=1 if=/dev/urandom of="${PARENT_DEVICE}"
 log_end_msg
 
 exit 0
