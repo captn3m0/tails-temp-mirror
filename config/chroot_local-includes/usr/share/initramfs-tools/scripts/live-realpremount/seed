@@ -21,7 +21,7 @@ esac
 
 # We can't find the system partition if $FSUUID is not set
 if [ -z "${FSUUID}" ]; then
-  exit 1
+  exit 0
 fi
 
 # Wait for system partition
@@ -41,7 +41,7 @@ if [ -n "$success" ]; then
   log_end_msg
 else
   log_failure_msg "Reached timeout waiting for system partition. Skipping restoring random seed."
-  exit 1
+  exit 0
 fi
 
 
