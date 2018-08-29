@@ -1,0 +1,17 @@
+<p>It is possible that your Wi-Fi adapter will not be working. Or, it might
+not be working properly.</p>
+
+<p>For example, you might not be able to authenticate to Wi-Fi networks.  Or,
+your connection might sometimes disconnect.</p>
+
+<p>If you experience problems with your Wi-Fi adapter, you might be able to
+fix them by using an external Wi-Fi adapter or by using a
+<a href="http://us.dlink.com/resource-centre/how-to-guides/how-to-extend-your-network-with-a-wireless-bridge/">wireless
+bridge</a>.</p>
+
+<p>Tails has been reported to work properly with the following external Wi-Fi
+adapters:</p>
+<ul>
+  <li>TP-Link TL-WN722N (version 1.x)</li>
+  <li>XXX: Add more adapters</li>
+</ul>
