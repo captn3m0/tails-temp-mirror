@@ -223,6 +223,11 @@ Click <span class="button">Start Tails</span>.
 
    [[!img install/inc/screenshots/desktop.png link="no" alt="Tails desktop"]]
 
+
+<div class="note debian">
+  [[!inline pages="install/inc/steps/wifi_broken.inline" raw="yes" sort="age"]]
+</div>
+
 <div class="trophy windows linux mac">
 
 <p class="usb">The most difficult part is over!

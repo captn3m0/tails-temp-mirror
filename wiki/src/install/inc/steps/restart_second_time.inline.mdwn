@@ -68,3 +68,7 @@ keyboard layout in the <span class="guilabel">Language & Region</span> section.
 Click <span class="button">Start Tails</span>.
 
 1. After 15&ndash;30 seconds, the Tails desktop appears.
+
+<div class="note">
+  [[!inline pages="install/inc/steps/wifi_broken.inline" raw="yes" sort="age"]]
+</div>
