@@ -132,13 +132,42 @@ p+p, table+p {
     margin-top: 18px;
 }
 
+/* Tables */
+
 table {
-    border: solid 1px #AAAAAA;
+  border-collapse: collapse;
 }
 
-tbody th, tbody td, tfoot th, tfoot td {
-    border-top: solid 1px #AAAAAA;
+th.w30 {
+  width: 30%;
 }
+
+th, td {
+  border: 1px solid black;
+  padding: 0.5em 1em;
+}
+
+th {
+  background: #a173d2;
+}
+
+tr:nth-child(odd) {
+  background: #eee;
+}
+
+td.check, td.cross {
+  padding-left: 42px;
+}
+
+td.check {
+  background: url(lib/check.png) no-repeat 10px 8px;
+}
+
+td.cross {
+  background: url(lib/cross.png) no-repeat 10px 6px;
+}
+
+/* Images */
 
 img.img { /* overwrite style.css */
   margin: 0em;
@@ -147,6 +176,8 @@ img.img { /* overwrite style.css */
 img.margin { /* overwrite style.css */
   margin: 2em 4em 2em 0em;
 }
+
+/* Images with caption */
 
 table.img, table.img td {
   border: none;
@@ -158,13 +189,6 @@ table.img caption {
 }
 
 /* Forms */
-
-input[type="text"], input[type="password"], input[type="select"],
-input[type="search"], #editcontent {
-    font-size: 1em;
-    width: 65%;
-    display: block;
-}
 
 form.donation label {
     margin-left: 0.5em;
@@ -202,6 +226,12 @@ ol, ul {
     clear: both;
     display: block;
     width: 100%;
+}
+
+#editcontent {
+    width: auto;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 /* Layout */
@@ -499,11 +529,6 @@ div.inlinepage {
 
 #pageinfo {
     border-top: 0;
-}
-
-/* avoid printing search results below sidebar */
-form {
-    max-width: 45em;
 }
 
 .searchform {
@@ -1331,6 +1356,10 @@ div#highlight p {
     margin-right: 2em;
     margin-top: 1em;
     float: left;
+}
+
+#pagebody .currentpartner {
+    margin-left: 120px;
 }
 
 #pagebody .pastpartner {
