@@ -69,6 +69,4 @@ Click <span class="button">Start Tails</span>.
 
 1. After 15&ndash;30 seconds, the Tails desktop appears.
 
-<div class="note">
-  [[!inline pages="install/inc/steps/broken_wifi.inline" raw="yes" sort="age"]]
-</div>
+[[!inline pages="install/inc/steps/broken_wifi.inline" raw="yes" sort="age"]]
