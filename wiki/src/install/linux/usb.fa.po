@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-10 16:24+0000\n"
+"POT-Creation-Date: 2018-09-10 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,16 +106,17 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
+msgid "<div class=\"step-image\">[[!img install/inc/infography/install-tails.png link=\"no\" alt=\"\"]]</div>\n"
+msgstr ""
+
+#. type: Plain text
+#, no-wrap
 msgid "[[!inline pages=\"install/inc/steps/install_with_gnome_disks.inline\" raw=\"yes\" sort=\"age\"]]\n"
 msgstr ""
 
 #. type: Plain text
 #, no-wrap
 msgid "[[!inline pages=\"install/inc/steps/restart_first_time.inline\" raw=\"yes\" sort=\"age\"]]\n"
-msgstr ""
-
-#. type: Plain text
-msgid "XXX Step incorrectly numbered"
 msgstr ""
 
 #. type: Plain text
