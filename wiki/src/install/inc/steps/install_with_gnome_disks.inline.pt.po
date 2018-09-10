@@ -26,7 +26,8 @@ msgstr ""
 #, no-wrap
 msgid ""
 "   <div class=\"linux\">\n"
-"     For example, you can press the <span class=\"keycap\">Super</span> key,\n"
+"     For example, you can press the <span class=\"keycap\">Super</span> "
+"key,\n"
 "     then type <span class=\"command\">disks</span>, then type\n"
 "     <span class=\"keycap\">Enter</span>.\n"
 "   </div>\n"
@@ -56,19 +57,23 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img install/inc/screenshots/gnome_disks_drive.png link=\"no\" alt=\"\"]]\n"
+msgid ""
+"   [[!img install/inc/screenshots/gnome_disks_drive.png link=\"no\" "
+"alt=\"\"]]\n"
 msgstr ""
 
 #. type: Bullet: '1. '
 msgid ""
-"Click on the [[!img lib/open-menu.png alt=\"Menu\" class=\"symbolic\" link="
-"\"no\"]] button in the titlebar and choose <span class=\"guimenuitem"
-"\">Restore Disk Image&hellip;</span>."
+"Click on the [[!img lib/open-menu.png alt=\"Menu\" class=\"symbolic\" "
+"link=\"no\"]] button in the titlebar and choose <span "
+"class=\"guimenuitem\">Restore Disk Image&hellip;</span>."
 msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img install/inc/screenshots/gnome_disks_menu.png link=\"no\" alt=\"\"]]\n"
+msgid ""
+"   [[!img install/inc/screenshots/gnome_disks_menu.png link=\"no\" "
+"alt=\"\"]]\n"
 msgstr ""
 
 #. type: Plain text
@@ -80,7 +85,9 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img lib/emblem-system.png alt=\"System\" class=\"symbolic\" link=\"no\"]]\n"
+msgid ""
+"   [[!img lib/emblem-system.png alt=\"System\" class=\"symbolic\" "
+"link=\"no\"]]\n"
 msgstr ""
 
 #. type: Plain text
@@ -97,7 +104,9 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img install/inc/screenshots/gnome_disks_system.png link=\"no\" alt=\"\"]]\n"
+msgid ""
+"   [[!img install/inc/screenshots/gnome_disks_system.png link=\"no\" "
+"alt=\"\"]]\n"
 msgstr ""
 
 #. type: Bullet: '1. '
@@ -108,8 +117,7 @@ msgid ""
 msgstr ""
 
 #. type: Bullet: '1. '
-msgid ""
-"Click on the <span class=\"button\">Start Restoring&hellip;</span> button."
+msgid "Click on the <span class=\"button\">Start Restoring&hellip;</span> button."
 msgstr ""
 
 #. type: Bullet: '1. '

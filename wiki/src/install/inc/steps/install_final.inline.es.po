@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-01 13:56+0200\n"
+"POT-Creation-Date: 2018-09-10 16:24+0000\n"
 "PO-Revision-Date: 2018-04-09 12:14+0000\n"
 "Last-Translator: Tails translators <amnesia@boum.org>\n"
 "Language-Team: Spanish <http://translate.tails.boum.org/projects/tails/"
@@ -52,14 +52,22 @@ msgstr ""
 "  <span class=\"application\">Tails Installer</span>.</p>\n"
 
 #. type: Plain text
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "<p class=\"upgrade\">\n"
+#| "  In this step, you will upgrade your Tails from the\n"
+#| "  <span class=\"upgrade-clone\">other</span>\n"
+#| "  <span class=\"upgrade-tails\">intermediary</span>\n"
+#| "  Tails using\n"
+#| "  <span class=\"application\">Tails Installer</span><span class=\"upgrade-tails\"> one last time</span>.\n"
+#| "</p>\n"
 msgid ""
 "<p class=\"upgrade\">\n"
 "  In this step, you will upgrade your Tails from the\n"
 "  <span class=\"upgrade-clone\">other</span>\n"
 "  <span class=\"upgrade-tails\">intermediary</span>\n"
 "  Tails using\n"
-"  <span class=\"application\">Tails Installer</span><span class=\"upgrade-tails\"> one last time</span>.\n"
+"  <span class=\"application\">Tails Installer</span>.\n"
 "</p>\n"
 msgstr ""
 "<p class=\"upgrade\">\n"
@@ -107,11 +115,6 @@ msgstr "<div class=\"step-image\">\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!img install/inc/infography/plug-usb.png link=\"no\" class=\"debian\" alt=\"USB stick plugged on the right\"]]\n"
-msgstr "[[!img install/inc/infography/plug-usb.png link=\"no\" class=\"debian\" alt=\"Memoria USB conectada a la derecha\"]]\n"
-
-#. type: Plain text
-#, no-wrap
 msgid "[[!img install/inc/infography/plug-second-usb.png link=\"no\" class=\"windows linux mac-usb clone\" alt=\"Second USB stick plugged on the right\"]]\n"
 msgstr "[[!img install/inc/infography/plug-second-usb.png link=\"no\" class=\"windows linux mac-usb clone\" alt=\"Segunda memoria USB conectada a la derecha\"]]\n"
 
@@ -129,13 +132,13 @@ msgstr "[[!img install/inc/infography/plug-upgraded-usb.png link=\"no\" class=\"
 msgid ""
 "Plug <span class=\"windows linux mac-usb\">the second</span> <span class="
 "\"install-clone mac-clone\">the new</span> <span class=\"upgrade\">your "
-"Tails</span> <span class=\"expert mac-dvd\">the</span> USB stick in "
-"the computer."
+"Tails</span> <span class=\"expert mac-dvd\">the</span> USB stick in the "
+"computer."
 msgstr ""
 "Conecta <span class=\"windows linux mac-usb\">la segunda</span> <span class="
 "\"install-clone mac-clone\">la nueva</span> <span class=\"upgrade\">tu "
-"Tails</span> <span class=\"expert mac-dvd\">the</span> memoria USB en "
-"la computadora."
+"Tails</span> <span class=\"expert mac-dvd\">the</span> memoria USB en la "
+"computadora."
 
 #. type: Plain text
 #, no-wrap
@@ -169,12 +172,6 @@ msgstr "   <div class=\"expert\">\n"
 #, no-wrap
 msgid "   <p>Start <span class=\"application\">Tails Installer</span>:</p>\n"
 msgstr "   <p>Inicia el <span class=\"application\">Tails Installer</span>:</p>\n"
-
-#. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "   [[!img install/inc/icons/tails-installer.png link=\"no\" class=\"debian\" alt=\"Tails Installer\"]]\n"
-msgid "   [[!img install/inc/icons/tails-installer.png link=\"no\" class=\"debian\" alt=\"\"]]\n"
-msgstr "   [[!img install/inc/icons/tails-installer.png link=\"no\" class=\"debian\" alt=\"Tails Installer\"]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -214,11 +211,6 @@ msgstr "   <div class=\"step-image\">\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img install/inc/infography/install-tails.png link=\"no\" class=\"debian\" alt=\"ISO image installed on USB stick on the right\"]]\n"
-msgstr "   [[!img install/inc/infography/install-tails.png link=\"no\" class=\"debian\" alt=\"Imagen ISO instalada en una memoria USB a la derecha\"]]\n"
-
-#. type: Plain text
-#, no-wrap
 msgid "   [[!img install/inc/infography/clone-intermediary-tails.png link=\"no\" class=\"windows linux mac-usb clone upgrade-tails\" alt=\"Tails installed on USB stick on the right\"]]\n"
 msgstr "   [[!img install/inc/infography/clone-intermediary-tails.png link=\"no\" class=\"windows linux mac-usb clone upgrade-tails\" alt=\"Tails instalado en una memoria USB a la derecha\"]]\n"
 
@@ -230,15 +222,15 @@ msgstr "   [[!img install/inc/infography/clone-dvd.png link=\"no\" class=\"mac-d
 #. type: Bullet: '1. '
 #, fuzzy
 #| msgid ""
-#| "<p class=\"expert\">Click <span class=\"button\">Browse</span> and "
-#| "choose the ISO image that you downloaded earlier.</p>"
+#| "<p class=\"expert\">Click <span class=\"button\">Browse</span> and choose "
+#| "the ISO image that you downloaded earlier.</p>"
 msgid ""
-"<p class=\"expert\">Click <span class=\"button\">(None) [[!img lib/"
-"document-open.png alt=\"Menu\" class=symbolic link=\"no\"]]</span> and "
-"choose the ISO image that you downloaded earlier.</p>"
+"<p class=\"expert\">Click <span class=\"button\">(None) [[!img lib/document-"
+"open.png alt=\"Menu\" class=symbolic link=\"no\"]]</span> and choose the ISO "
+"image that you downloaded earlier.</p>"
 msgstr ""
-"<p class=\"expert\">Haz click en <span class=\"button\">Explorar</"
-"span> y elige la imagen ISO que descargaste previamente.</p>"
+"<p class=\"expert\">Haz click en <span class=\"button\">Explorar</span> y "
+"elige la imagen ISO que descargaste previamente.</p>"
 
 #. type: Plain text
 #, no-wrap
@@ -326,15 +318,6 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid ""
-"   <span class=\"debian\">At the end of the installation, you are asked\n"
-"   for your administration password twice.</span>\n"
-msgstr ""
-"   <span class=\"debian\">Al final de la instalación, se te pregunta\n"
-"   por tu contraseña de administrador dos veces.</span>\n"
-
-#. type: Plain text
-#, no-wrap
-msgid ""
 "   <div class=\"bug\">\n"
 "   <p>The progress bar usually freezes for some time\n"
 "   while synchronizing data on disk.</p>\n"
@@ -373,11 +356,28 @@ msgstr "<p>Terminaste de actualizar Tails. Ya puedes apagar y reiniciar en tu me
 msgid "<p>Thank you for staying safe!</p>\n"
 msgstr "<p>¡Gracias por mantenerte seguro!</p>\n"
 
+#~ msgid "[[!img install/inc/infography/plug-usb.png link=\"no\" class=\"debian\" alt=\"USB stick plugged on the right\"]]\n"
+#~ msgstr "[[!img install/inc/infography/plug-usb.png link=\"no\" class=\"debian\" alt=\"Memoria USB conectada a la derecha\"]]\n"
+
+#, fuzzy
+#~| msgid "   [[!img install/inc/icons/tails-installer.png link=\"no\" class=\"debian\" alt=\"Tails Installer\"]]\n"
+#~ msgid "   [[!img install/inc/icons/tails-installer.png link=\"no\" class=\"debian\" alt=\"\"]]\n"
+#~ msgstr "   [[!img install/inc/icons/tails-installer.png link=\"no\" class=\"debian\" alt=\"Tails Installer\"]]\n"
+
+#~ msgid "   [[!img install/inc/infography/install-tails.png link=\"no\" class=\"debian\" alt=\"ISO image installed on USB stick on the right\"]]\n"
+#~ msgstr "   [[!img install/inc/infography/install-tails.png link=\"no\" class=\"debian\" alt=\"Imagen ISO instalada en una memoria USB a la derecha\"]]\n"
+
+#~ msgid ""
+#~ "   <span class=\"debian\">At the end of the installation, you are asked\n"
+#~ "   for your administration password twice.</span>\n"
+#~ msgstr ""
+#~ "   <span class=\"debian\">Al final de la instalación, se te pregunta\n"
+#~ "   por tu contraseña de administrador dos veces.</span>\n"
+
 #~ msgid ""
 #~ "Click on the <span class=\"button windows linux mac install-clone"
-#~ "\">Install by cloning</span> <span class=\"button expert"
-#~ "\">Install</span> <span class=\"button upgrade\">Upgrade by cloning</"
-#~ "span> button."
+#~ "\">Install by cloning</span> <span class=\"button expert\">Install</span> "
+#~ "<span class=\"button upgrade\">Upgrade by cloning</span> button."
 #~ msgstr ""
 #~ "Haz click en el botón <span class=\"button windows linux mac install-clone"
 #~ "\">Instalación por clonación</span> <span class=\"button expert"

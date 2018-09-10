@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-08-20 14:06+0000\n"
+"POT-Creation-Date: 2018-09-10 16:24+0000\n"
 "PO-Revision-Date: 2018-03-29 10:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,11 +34,11 @@ msgstr "Téléchargement direct"
 
 #. type: Content of: <div><div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>1</span>Download Tails"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>1</span>Download Tails"
 msgstr ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>1</span>Télécharger Tails"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>1</span>Télécharger Tails"
 
 #. type: Content of: <div><div><div><div><div>
 #, fuzzy
@@ -117,12 +117,12 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>2</span>Verify your download using your browser"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>2</span>Verify your download using your browser"
 msgstr ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>2</span>Vérifiez votre téléchargement en "
-"utilisant votre navigateur"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>2</span>Vérifiez votre téléchargement en utilisant "
+"votre navigateur"
 
 #. type: Content of: <div><div><div><div><p><b>
 msgid "<b>For your security,"
@@ -398,33 +398,40 @@ msgstr ""
 #. type: Content of: <div><div><div><div><h3>
 #, fuzzy
 #| msgid ""
-#| "<span class=\"step-number\"><span class=\"windows linux mac-usb "
-#| "mac-dvd upgrade-tails\">1.</span>3</span>Continue <span class=\""
-#| "windows linux mac-usb mac-dvd\">installing</span> <span class=\"upgrade-"
-#| "tails\">upgrading</span> <span class=\"download-only\">installing or "
-#| "upgrading</span>"
+#| "<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+#| "upgrade-tails\">1.</span>3</span>Continue <span class=\"windows linux mac-"
+#| "usb mac-dvd\">installing</span> <span class=\"upgrade-tails\">upgrading</"
+#| "span> <span class=\"download-only\">installing or upgrading</span>"
 msgid ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>3</span>Continue <span class=\"windows "
-"linux mac-usb mac-dvd\">installing</span> <span class=\"upgrade-tails"
-"\">upgrading</span> <span class=\"download-only-img download-only-iso"
-"\">installing or upgrading</span>"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>3</span>Continue <span class=\"windows linux mac-"
+"usb mac-dvd\">installing</span> <span class=\"upgrade-tails\">upgrading</"
+"span> <span class=\"download-only-img download-only-iso\">installing or "
+"upgrading</span>"
 msgstr ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>3</span>Continuer <span class=\"windows "
-"linux mac-usb mac-dvd\">l'installation</span> <span class=\"upgrade-tails"
-"\">la mise à jour</span> <span class=\"download-only\">l'installation ou la "
-"mise à jour</span>"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>3</span>Continuer <span class=\"windows linux mac-"
+"usb mac-dvd\">l'installation</span> <span class=\"upgrade-tails\">la mise à "
+"jour</span> <span class=\"download-only\">l'installation ou la mise à jour</"
+"span>"
 
 #. type: Content of: <div><div><div><div>
+#, fuzzy
+#| msgid ""
+#| "<span class=\"debian\">[[Skip download|debian/usb]]</span> <span class="
+#| "\"windows\">[[Skip download|win/usb]]</span> <span class=\"linux\">[[Skip "
+#| "download|linux/usb]]</span> <span class=\"mac-usb\">[[Skip download|mac/"
+#| "usb]]</span> <span class=\"mac-dvd\">[[Skip download|mac/dvd]]</span> "
+#| "<span class=\"dvd\">[[Skip download|dvd]]</span> <span class=\"vm"
+#| "\">[[Skip download|doc/advanced_topics/virtualization]]</span> <span "
+#| "class=\"upgrade-tails\">[[Skip download|upgrade/tails]]</span>"
 msgid ""
-"<span class=\"debian\">[[Skip download|debian/usb]]</span> <span class="
-"\"windows\">[[Skip download|win/usb]]</span> <span class=\"linux\">[[Skip "
-"download|linux/usb]]</span> <span class=\"mac-usb\">[[Skip download|mac/"
-"usb]]</span> <span class=\"mac-dvd\">[[Skip download|mac/dvd]]</span> <span "
-"class=\"dvd\">[[Skip download|dvd]]</span> <span class=\"vm\">[[Skip "
-"download|doc/advanced_topics/virtualization]]</span> <span class=\"upgrade-"
-"tails\">[[Skip download|upgrade/tails]]</span>"
+"<span class=\"windows\">[[Skip download|win/usb]]</span> <span class=\"linux"
+"\">[[Skip download|linux/usb]]</span> <span class=\"mac-usb\">[[Skip "
+"download|mac/usb]]</span> <span class=\"mac-dvd\">[[Skip download|mac/dvd]]</"
+"span> <span class=\"dvd\">[[Skip download|dvd]]</span> <span class=\"vm"
+"\">[[Skip download|doc/advanced_topics/virtualization]]</span> <span class="
+"\"upgrade-tails\">[[Skip download|upgrade/tails]]</span>"
 msgstr ""
 "<span class=\"debian\">[[Passer le téléchargement|debian/usb]]</span> <span "
 "class=\"windows\">[[Passer le téléchargement|win/usb]]</span> <span class="
@@ -434,10 +441,6 @@ msgstr ""
 "le téléchargement|dvd]]</span> <span class=\"vm\">[[Passer le téléchargement|"
 "doc/advanced_topics/virtualization]]</span> <span class=\"upgrade-tails"
 "\">[[Passer le téléchargement|upgrade/tails]]</span>"
-
-#. type: Content of: <div><div><div><div><div><div>
-msgid "[[Skip verification!|debian/usb]]"
-msgstr "[[Ignorer la vérification !|debian/usb]]"
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid "[[Skip verification!|win/usb]]"
@@ -470,17 +473,6 @@ msgstr "[[Ignorer la vérification !|upgrade/tails]]"
 #. type: Content of: <div><div><div><div><div>
 msgid "[["
 msgstr "[["
-
-#. type: Content of: <div><div><div><div><div><div>
-msgid ""
-"Next: Install <em>Tails Installer</em> (<span class=\"next-counter\"></span>)"
-msgstr ""
-"Ensuite : installer l'<em>Installeur de Tails</em> (<span class=\"next-"
-"counter\"></span>)"
-
-#. type: Content of: <div><div><div><div><div>
-msgid "|debian/usb]]"
-msgstr "|debian/usb]]"
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid ""
@@ -534,12 +526,10 @@ msgid "[[Install from Windows|install/win/usb]]"
 msgstr "[[Installer depuis Windows|install/win/usb]]"
 
 #. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Install from Debian, Ubuntu, or Mint|install/debian/usb]]"
-msgstr "[[Installer depuis Debian, Ubuntu ou Mint|install/debian/usb]]"
-
-#. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Install from other Linux distributions|install/linux/usb]]"
-msgstr "[[Installer depuis d'autres distributions Linux|install/linux/usb]]"
+#, fuzzy
+#| msgid "[[Install from Windows|install/win/usb]]"
+msgid "[[Install from Linux|install/linux/usb]]"
+msgstr "[[Installer depuis Windows|install/win/usb]]"
 
 #. type: Content of: <div><div><div><div><ul><li>
 msgid "[[Install from macOS by burning a DVD first|install/mac/dvd]]"
@@ -630,11 +620,6 @@ msgid "Copy and paste this link in Firefox, Chrome, or Tor Browser:"
 msgstr "Copier et coller ce lien dans Firefox, Chrome ou le Navigateur Tor :"
 
 #. type: Content of: <div><div><div><p>
-msgid "<code>https://tails.boum.org/install/debian/usb-download/</code>"
-msgstr ""
-"<code>https://tails.boum.org/install/debian/usb-download/index.fr.html</code>"
-
-#. type: Content of: <div><div><div><p>
 msgid "<code>https://tails.boum.org/install/win/usb-download/</code>"
 msgstr ""
 "<code>https://tails.boum.org/install/win/usb-download/index.fr.html</code>"
@@ -718,11 +703,11 @@ msgstr "BitTorrent ne fonctionne pas à travers Tor ou dans Tails."
 
 #. type: Content of: <div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>1</span>Download Tails (Torrent file)"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>1</span>Download Tails (Torrent file)"
 msgstr ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>1</span>Télécharger Tails (fichier Torrent)"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>1</span>Télécharger Tails (fichier Torrent)"
 
 #. type: Content of: <div><div><div><div>
 #, fuzzy
@@ -762,12 +747,12 @@ msgstr ""
 
 #. type: Content of: <div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>2</span>Verify your download using BitTorrent"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>2</span>Verify your download using BitTorrent"
 msgstr ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>2</span>Vérifiez votre téléchargement en "
-"utilisant BitTorrent"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>2</span>Vérifiez votre téléchargement en utilisant "
+"BitTorrent"
 
 #. type: Content of: <div><div><div><p>
 msgid ""
@@ -780,23 +765,22 @@ msgstr ""
 #. type: Content of: <div><div><div><h3>
 #, fuzzy
 #| msgid ""
-#| "<span class=\"step-number\"><span class=\"windows linux mac-usb "
-#| "mac-dvd upgrade-tails\">1.</span>3</span>Continue <span class=\""
-#| "windows linux mac-usb mac-dvd\">installing</span> <span class=\"upgrade-"
-#| "tails\">upgrading</span> <span class=\"download-only\">installing or "
-#| "upgrading</span>"
+#| "<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+#| "upgrade-tails\">1.</span>3</span>Continue <span class=\"windows linux mac-"
+#| "usb mac-dvd\">installing</span> <span class=\"upgrade-tails\">upgrading</"
+#| "span> <span class=\"download-only\">installing or upgrading</span>"
 msgid ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd dvd vm upgrade-tails\">1.</span>3</span>Continue <span class=\""
-"windows linux mac-usb mac-dvd\">installing</span> <span class=\"upgrade-tails"
-"\">upgrading</span> <span class=\"download-only-img download-only-iso"
-"\">installing or upgrading</span>"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd dvd "
+"vm upgrade-tails\">1.</span>3</span>Continue <span class=\"windows linux mac-"
+"usb mac-dvd\">installing</span> <span class=\"upgrade-tails\">upgrading</"
+"span> <span class=\"download-only-img download-only-iso\">installing or "
+"upgrading</span>"
 msgstr ""
-"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>3</span>Continuer <span class=\"windows "
-"linux mac-usb mac-dvd\">l'installation</span> <span class=\"upgrade-tails"
-"\">la mise à jour</span> <span class=\"download-only\">l'installation ou la "
-"mise à jour</span>"
+"<span class=\"step-number\"><span class=\"windows linux mac-usb mac-dvd "
+"upgrade-tails\">1.</span>3</span>Continuer <span class=\"windows linux mac-"
+"usb mac-dvd\">l'installation</span> <span class=\"upgrade-tails\">la mise à "
+"jour</span> <span class=\"download-only\">l'installation ou la mise à jour</"
+"span>"
 
 #. type: Content of: <div><div><div><p>
 #, fuzzy
@@ -807,9 +791,8 @@ msgstr ""
 msgid ""
 "Open and download the Torrent file with your BitTorrent client. It contains "
 "the Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" sort=\"age"
-"\"]] <span class=\"windows linux mac-usb mac-dvd upgrade-tails\">USB</"
-"span> <span class=\"windows linux mac-usb mac-dvd upgrade-tails"
-"\">ISO</span> image that you will use in the next step."
+"\"]] <span class=\"windows linux mac-usb upgrade-tails\">USB</span> <span "
+"class=\"mac-dvd dvd vm\">ISO</span> image that you will use in the next step."
 msgstr ""
 "Ouvrez et télécharger le fichier Torrent avec votre client BitTorrent. Il "
 "contient l'image ISO de Tails [[!inline pages=\"inc/stable_amd64_version\" "
@@ -840,8 +823,8 @@ msgstr "Téléchargement de la [[clé de signature Tails|tails-signing.key]]."
 #| "stable_amd64_version\" raw=\"yes\" sort=\"age\"]] OpenPGP signature</a> "
 #| "and save it to the same folder where you saved the ISO image."
 msgid ""
-"Download the <a class=\"windows linux mac-usb upgrade-tails\" "
-"href='[[!inline pages=\"inc/stable_amd64_img_sig_url\" raw=\"yes\" sort=\"age"
+"Download the <a class=\"windows linux mac-usb upgrade-tails\" href='[[!"
+"inline pages=\"inc/stable_amd64_img_sig_url\" raw=\"yes\" sort=\"age"
 "\"]]'>OpenPGP signature for the Tails [[!inline pages=\"inc/"
 "stable_amd64_version\" raw=\"yes\" sort=\"age\"]] USB image</a> <a class="
 "\"mac-dvd dvd vm\" href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" "
@@ -1369,6 +1352,30 @@ msgstr ""
 "Après avoir construit un chemin de confiance, vous pouvez certifier la clé "
 "de signature Tails en la signant avec votre propre clé pour vous débarrasser "
 "des avertissements durant le processus de vérification."
+
+#~ msgid "[[Skip verification!|debian/usb]]"
+#~ msgstr "[[Ignorer la vérification !|debian/usb]]"
+
+#~ msgid ""
+#~ "Next: Install <em>Tails Installer</em> (<span class=\"next-counter\"></"
+#~ "span>)"
+#~ msgstr ""
+#~ "Ensuite : installer l'<em>Installeur de Tails</em> (<span class=\"next-"
+#~ "counter\"></span>)"
+
+#~ msgid "|debian/usb]]"
+#~ msgstr "|debian/usb]]"
+
+#~ msgid "[[Install from Debian, Ubuntu, or Mint|install/debian/usb]]"
+#~ msgstr "[[Installer depuis Debian, Ubuntu ou Mint|install/debian/usb]]"
+
+#~ msgid "[[Install from other Linux distributions|install/linux/usb]]"
+#~ msgstr "[[Installer depuis d'autres distributions Linux|install/linux/usb]]"
+
+#~ msgid "<code>https://tails.boum.org/install/debian/usb-download/</code>"
+#~ msgstr ""
+#~ "<code>https://tails.boum.org/install/debian/usb-download/index.fr.html</"
+#~ "code>"
 
 #~ msgid ""
 #~ "[[!img install/inc/screenshots/notification_in_tails.png link=\"no\"]]"
