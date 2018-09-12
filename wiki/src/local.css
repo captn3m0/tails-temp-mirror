@@ -231,6 +231,8 @@ ol, ul {
 
 #editcontent {
     width: auto;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 /* Layout */
@@ -1359,6 +1361,10 @@ div#highlight p {
     margin-right: 2em;
     margin-top: 1em;
     float: left;
+}
+
+#pagebody .currentpartner {
+    margin-left: 120px;
 }
 
 #pagebody .pastpartner {
