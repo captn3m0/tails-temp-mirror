@@ -289,6 +289,7 @@ def handle_installed_packages(packages):
                 setup_additional_packages()
                 add_additional_packages(packages, search_new_persistence=True)
             except Exception as e:
+                logging.exception(e)
                 _notify_failure(_("The configuration of your additional "
                                   "software failed."))
                 raise e
@@ -317,6 +318,7 @@ def handle_installed_packages(packages):
             try:
                 create_persistence_and_setup_additional_packages(packages)
             except Exception as e:
+                logging.exception(e)
                 _notify_failure(_("The configuration of your additional "
                                   "software failed."),
                                 _("Creating your persistent storage "
@@ -352,6 +354,7 @@ def handle_removed_packages(packages):
         try:
             remove_additional_packages(packages, search_new_persistence=True)
         except Exception as e:
+            logging.exception(e)
             _notify_failure(_("The configuration of your additional "
                               "software failed."))
             raise e
