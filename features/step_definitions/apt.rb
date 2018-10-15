@@ -38,18 +38,6 @@ EOF
   )
 end
 
-When /^I make my current APT sources persistent$/ do
-  $vm.execute("install -d -m 755 /live/persistence/TailsData_unlocked/apt-sources.list.d")
-  $vm.file_append(
-    '/live/persistence/TailsData_unlocked/persistence.conf',
-    "/etc/apt/sources.list.d  source=apt-sources.list.d,link\n"
-  )
-  $vm.file_overwrite(
-    '/live/persistence/TailsData_unlocked/apt-sources.list.d/persistent.list',
-    $vm.file_content($vm.file_glob('/etc/apt/{,*/}*.list'))
-  )
-end
-
 When /^I update APT using apt$/ do
   recovery_proc = Proc.new do
     step 'I kill the process "apt"'
@@ -63,21 +51,60 @@ When /^I update APT using apt$/ do
   end
 end
 
-Then /^I install "(.+)" using apt$/ do |package_name|
-  recovery_proc = Proc.new do
-    step 'I kill the process "apt"'
-    $vm.execute("apt purge #{package_name}")
-  end
-  retry_tor(recovery_proc) do
-    Timeout::timeout(2*60) do
-      $vm.execute("echo #{@sudo_password} | " +
-                               "sudo -S DEBIAN_PRIORITY=critical apt -y install #{package_name}",
-                               :user => LIVE_USER,
-                               :spawn => true)
-      try_for(60) do
-        $vm.execute_successfully("dpkg -s '#{package_name}' 2>/dev/null | grep -qs '^Status:.*installed$'")
+Then /^I (un)?install "(.+)" using apt$/ do |removal, package|
+  if removal
+    $vm.execute("echo #{@sudo_password} | " +
+                                 "sudo -S DEBIAN_PRIORITY=critical apt -y remove #{package}",
+                                 :user => LIVE_USER,
+                                 :spawn => true)
+    try_for(60) do
+      $vm.execute_successfully("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*deinstall.*$'")
+    end
+  else
+    recovery_proc = Proc.new do
+      step 'I kill the process "apt"'
+      $vm.execute("apt purge #{package}")
+    end
+    retry_tor(recovery_proc) do
+      Timeout::timeout(2*60) do
+        $vm.execute("echo #{@sudo_password} | " +
+                                 "sudo -S DEBIAN_PRIORITY=critical apt -y install #{package}",
+                                 :user => LIVE_USER,
+                                 :spawn => true)
+        try_for(60) do
+          $vm.execute_successfully("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*installed$'")
+        end
       end
     end
+  end
+end
+
+When /^I configure APT with a custom source for the old version of cowsay$/ do
+  apt_source = 'deb tor+http://deb.tails.boum.org/ asp-test-upgrade-cowsay main'
+  apt_pref = 'Package: cowsay
+Pin: release o=Tails,a=asp-test-upgrade-cowsay
+Pin-Priority: 999'
+  $vm.file_overwrite('/etc/apt/sources.list.d/asp-test-upgrade-cowsay.list', apt_source)
+  $vm.file_overwrite('/etc/apt/preferences.d/asp-test-upgrade-cowsay', apt_pref)
+end
+
+When /^I install an old version "([^"]*)" of the cowsay package using apt$/ do |version|
+  step 'I configure APT with a custom source for the old version of cowsay'
+  step 'I update APT using apt'
+  step 'I install "cowsay" using apt'
+  step "the package \"cowsay\" installed version is \"#{version}\""
+end
+
+When /^I remove the custom APT source for the old cowsay version$/ do
+  $vm.execute('rm -f /etc/apt/sources.list.d/asp-test-upgrade-cowsay.list /etc/apt/preferences.d/asp-test-upgrade-cowsay')
+end
+
+When /^the package "([^"]*)" installed version is( newer than)? "([^"]*)"$/ do |package, newer_than, version|
+  current_version = $vm.execute("dpkg-query -W -f='${Version}' #{package}").stdout
+  if newer_than
+    $vm.execute_successfully("dpkg --compare-versions #{version} lt #{current_version}")
+  else
+    assert_equal(current_version, version)
   end
 end
 
