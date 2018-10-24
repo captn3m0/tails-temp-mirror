@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PREREQS=""
+
+prereqs() { echo "$PREREQS"; }
+
+case "$1" in
+    prereqs)
+    prereqs
+    exit 0
+    ;;
+esac
+
+set -u
+set -e
+
+# Print executed commands for debugging
+[ -n "$debug" ] && set -x
+
+. /scripts/functions
+
+log_begin_msg "Writing new random seed to bootloader config"
+SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
+sed -E -i \
+    "s/(\s+)append(\s+)(randomseed=\S+\s)?/\1append\2randomseed=${SEED} /g" \
+	"${rootmnt}/lib/live/mount/medium/syslinux/live64.cfg" \
+	"${rootmnt}/lib/live/mount/medium/EFI/BOOT/live64.cfg"
+log_end_msg
+
+exit 0
