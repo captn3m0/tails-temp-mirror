@@ -1,8 +1,5 @@
 #!/bin/sh
 
-set -u
-set -e
-
 PREREQS=""
 
 prereqs() { echo "$PREREQS"; }
@@ -13,6 +10,9 @@ case "$1" in
     exit 0
     ;;
 esac
+
+set -u
+set -e
 
 # Print executed commands for debugging
 [ -n "$debug" ] && set -x
