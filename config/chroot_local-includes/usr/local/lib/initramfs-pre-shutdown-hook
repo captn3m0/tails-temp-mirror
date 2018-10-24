@@ -12,18 +12,11 @@ set -x
 
 set -u -e
 
-# Get parent device
-FSUUID=$(sed -E 's/.*FSUUID=([a-zA-Z0-9-]+).*/\1/' /proc/cmdline)
-
-if [ -n "${FSUUID}" ]; then
-    SYSTEM_PARTITION=$(readlink -f "/dev/disk/by-uuid/${FSUUID}")
-    PARENT_PATH=$(udevadm info --query=property --name="${SYSTEM_PARTITION}" \
-        | grep ^ID_PATH= | sed s/ID_PATH=//)
-    PARENT_DEVICE=$(readlink -f "/dev/disk/by-path/${PARENT_PATH}")
-
-    # Store random seed in LBA 34
-    dd bs=512 seek=34 count=1 if=/dev/urandom of="${PARENT_DEVICE}"
-fi
+SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
+sed -E -i \
+    "s/(\s+)append(\s+)(randomseed=\S+\s)?/\1append\2randomseed=${SEED} /g" \
+    "/oldroot/lib/live/mount/medium/syslinux/live64.cfg" \
+    "/oldroot/lib/live/mount/medium/EFI/BOOT/live64.cfg"
 
 set +u +e
 
