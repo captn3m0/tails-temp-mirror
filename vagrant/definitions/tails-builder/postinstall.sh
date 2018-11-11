@@ -100,7 +100,6 @@ apt-get -y install \
         perlmagick \
         policykit-1 \
         psmisc \
-        python3 \
         python3-gi \
         rsync \
         ruby \
