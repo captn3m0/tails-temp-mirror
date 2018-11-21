@@ -242,10 +242,10 @@ Given /^I enable all persistence presets$/ do
       debug_log("setting already enabled, skipping")
     end
   end
-  step "I save and exit from the Persistence Wizard"
+  save_and_exit_the_persistence_wizard
 end
 
-When /^I save and exit from the Persistence Wizard$/ do
+def save_and_exit_the_persistence_wizard
   @screen.type(Sikuli::Key.ENTER) # Press the Save button
   @screen.wait('PersistenceWizardDone.png', 60)
   @screen.type(Sikuli::Key.F4, Sikuli::KeyModifier.ALT)
@@ -262,6 +262,9 @@ When /^I disable the first persistence preset$/ do
 end
 
 Given /^I create a persistent partition( for Additional Software)?$/ do |asp|
+  if not asp
+    step 'I start "Configure persistent volume" via GNOME Activities Overview'
+  end
   @screen.wait('PersistenceWizardStart.png', 60)
   @screen.type(@persistence_password + "\t" + @persistence_password + Sikuli::Key.ENTER)
   @screen.wait('PersistenceWizardPresets.png', 300)
@@ -536,7 +539,7 @@ Then /^all persistence configuration files have safe access rights$/ do
       assert_equal("tails-persistence-setup", file_owner)
       assert_equal("tails-persistence-setup", file_group)
       case f
-      when /.*live-additional-software.conf$/
+      when /.*\/live-additional-software.conf$/
         assert_equal("644", file_perms)
       else
         assert_equal("600", file_perms)

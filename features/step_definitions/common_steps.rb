@@ -56,14 +56,16 @@ Given /^the computer is set to boot from (.+?) drive "(.+?)"$/ do |type, name|
   $vm.set_disk_boot(name, type.downcase)
 end
 
-Given /^I (temporarily )?create an? (\d+) ([[:alpha:]]+) disk named "([^"]+)"$/ do |temporary, size, unit, name|
+Given /^I (temporarily )?create an? (\d+) ([[:alpha:]]+) (?:([[:alpha:]]+) )?disk named "([^"]+)"$/ do |temporary, size, unit, type, name|
+  type ||= "qcow2"
   $vm.storage.create_new_disk(name, {:size => size, :unit => unit,
-                                     :type => "qcow2"})
+                                     :type => type})
   add_after_scenario_hook { $vm.storage.delete_volume(name) } if temporary
 end
 
 Given /^I plug (.+) drive "([^"]+)"$/ do |bus, name|
   $vm.plug_drive(name, bus.downcase)
+  sleep 1
   if $vm.is_running?
     step "drive \"#{name}\" is detected by Tails"
   end
@@ -71,7 +73,7 @@ end
 
 Then /^drive "([^"]+)" is detected by Tails$/ do |name|
   raise "Tails is not running" unless $vm.is_running?
-  try_for(10, :msg => "Drive '#{name}' is not detected by Tails") do
+  try_for(20, :msg => "Drive '#{name}' is not detected by Tails") do
     $vm.disk_detected?(name)
   end
 end
@@ -138,7 +140,7 @@ Given /^I start Tails( from DVD)?( with network unplugged)?( and genuine APT sou
   end
 end
 
-Given /^I start Tails from (.+?) drive "(.+?)"( with network unplugged)?( and I login( with persistence enabled)?( (and|with) an administration password)?)?$/ do |drive_type, drive_name, network_unplugged, do_login, persistence_on, and_or_with, admin_password|
+Given /^I start Tails from (.+?) drive "(.+?)"( with network unplugged)?( and I login( with persistence enabled)?( (?:and|with) an administration password)?)?$/ do |drive_type, drive_name, network_unplugged, do_login, persistence_on, admin_password|
   step "the computer is set to boot from #{drive_type} drive \"#{drive_name}\""
   if network_unplugged
     step "the network is unplugged"
@@ -151,7 +153,7 @@ Given /^I start Tails from (.+?) drive "(.+?)"( with network unplugged)?( and I 
     step "I enable persistence" if persistence_on
     step "I set an administration password" if admin_password
     step "I log in to a new session"
-    step "the additional software package installation service has started"
+    step "the Additional Software installation service has started"
     if network_unplugged
       step "all notifications have disappeared"
     else
@@ -160,6 +162,16 @@ Given /^I start Tails from (.+?) drive "(.+?)"( with network unplugged)?( and I 
       step "available upgrades have been checked"
     end
   end
+end
+
+Given /^I start Tails from a freshly installed USB drive with an administration password and the network is plugged and I login$/ do
+  step "I have started Tails without network from a USB drive without a persistent partition and stopped at Tails Greeter's login screen"
+  step "I set an administration password"
+  step "I log in to a new session"
+  step "the network is plugged"
+  step "Tor is ready"
+  step "all notifications have disappeared"
+  step "available upgrades have been checked"
 end
 
 When /^I power off the computer$/ do
@@ -359,7 +371,7 @@ Given /^Tor is ready$/ do
   # When we test for ASP upgrade failure the following tests would fail,
   # so let's skip them in this case.
   if !$vm.file_exist?('/run/live-additional-software/doomed_to_fail')
-    step "the additional software package upgrade service has started"
+    step "the Additional Software upgrade service has started"
     begin
       try_for(30) { $vm.execute('systemctl is-system-running').success? }
     rescue Timeout::Error
@@ -576,13 +588,14 @@ When /^I request a reboot using the emergency shutdown applet$/ do
   @screen.wait_and_click('TailsEmergencyShutdownReboot.png', 10)
 end
 
-Given /^the package "([^"]+)" is( not)? installed$/ do |package, uninstalled|
-  if uninstalled
-    assert(!$vm.execute("dpkg -s '#{package}' 2>/dev/null").success?,
-           "Package '#{package}' is present in dpkg database")
+Given /^the package "([^"]+)" is( not)? installed( after Additional Software has been started)?$/ do |package, absent, asp|
+  if absent
+    is_not_installed?(package)
   else
-    assert($vm.execute("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*installed$'").success?,
-           "Package '#{package}' is not installed")
+    if asp
+      step 'the Additional Software installation service has started'
+    end
+    is_installed?(package)
   end
 end
 
@@ -692,7 +705,13 @@ Given /^I start "([^"]+)" via GNOME Activities Overview$/ do |app_name|
   @screen.wait('GnomeApplicationsMenu.png', 10)
   $vm.execute_successfully('xdotool key Super', user: LIVE_USER)
   @screen.wait('GnomeActivitiesOverview.png', 10)
-  @screen.type(app_name)
+  # Trigger startup of search providers
+  @screen.type(app_name[0])
+  # Give search providers some time to start (#13469#note-5) otherwise
+  # our search sometimes returns no results at all.
+  sleep 1
+  # Type the rest of the search query
+  @screen.type(app_name[1..-1])
   @screen.type(Sikuli::Key.ENTER, Sikuli::KeyModifier.CTRL)
 end
 
@@ -946,8 +965,8 @@ def share_host_files(files)
   files = [files] if files.class == String
   assert_equal(Array, files.class)
   disk_size = files.map { |f| File.new(f).size } .inject(0, :+)
-  # Let's add some extra space for filesysten overhead etc.
-  disk_size += [convert_to_bytes(1, 'MiB'), (disk_size * 0.10).ceil].max
+  # Let's add some extra space for filesystem overhead etc.
+  disk_size += [convert_to_bytes(1, 'MiB'), (disk_size * 0.15).ceil].max
   disk = random_alpha_string(10)
   step "I temporarily create an #{disk_size} bytes disk named \"#{disk}\""
   step "I create a gpt partition labeled \"#{disk}\" with an ext4 " +

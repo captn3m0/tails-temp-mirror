@@ -51,35 +51,44 @@ When /^I update APT using apt$/ do
   end
 end
 
-Then /^I (un)?install "(.+)" using apt$/ do |removal, package|
-  if removal
-    $vm.execute("echo #{@sudo_password} | " +
-                                 "sudo -S DEBIAN_PRIORITY=critical apt -y remove #{package}",
-                                 :user => LIVE_USER,
-                                 :spawn => true)
-    try_for(60) do
-      $vm.execute_successfully("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*deinstall.*$'")
-    end
-  else
-    recovery_proc = Proc.new do
-      step 'I kill the process "apt"'
-      $vm.execute("apt purge #{package}")
-    end
-    retry_tor(recovery_proc) do
-      Timeout::timeout(2*60) do
-        $vm.execute("echo #{@sudo_password} | " +
-                                 "sudo -S DEBIAN_PRIORITY=critical apt -y install #{package}",
-                                 :user => LIVE_USER,
-                                 :spawn => true)
-        try_for(60) do
-          $vm.execute_successfully("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*installed$'")
-        end
-      end
+def is_installed?(package)
+  try_for(2*60) do
+    $vm.execute_successfully("dpkg -s '#{package}' 2>/dev/null | grep -qs '^Status:.*installed$'")
+  end
+end
+
+Then /^I install "(.+)" using apt$/ do |package|
+  recovery_proc = Proc.new do
+    step 'I kill the process "apt"'
+    $vm.execute("apt purge #{package}")
+  end
+  retry_tor(recovery_proc) do
+    Timeout::timeout(3*60) do
+      $vm.execute("echo #{@sudo_password} | " +
+                               "sudo -S DEBIAN_PRIORITY=critical apt -y install #{package}",
+                               :user => LIVE_USER,
+                               :spawn => true)
+      is_installed?(package)
     end
   end
 end
 
-When /^I add a APT source which has the old version of cowsay$/ do
+def is_not_installed?(package)
+  try_for(3*60) do
+    state = $vm.execute("apt-cache policy #{package}").stdout.split("\n")[1]
+    /^\s{2}Installed:\s\(none\)$/.match(state) != nil
+  end
+end
+
+Then /^I uninstall "(.+)" using apt$/ do |package|
+  $vm.execute("echo #{@sudo_password} | " +
+                               "sudo -S apt -y remove #{package}",
+                               :user => LIVE_USER,
+                               :spawn => true)
+  is_not_installed?(package)
+end
+
+When /^I configure APT to prefer an old version of cowsay$/ do
   apt_source = 'deb tor+http://deb.tails.boum.org/ asp-test-upgrade-cowsay main'
   apt_pref = 'Package: cowsay
 Pin: release o=Tails,a=asp-test-upgrade-cowsay
@@ -89,20 +98,22 @@ Pin-Priority: 999'
 end
 
 When /^I install an old version "([^"]*)" of the cowsay package using apt$/ do |version|
-  step 'I add a APT source which has the old version of cowsay'
   step 'I update APT using apt'
   step 'I install "cowsay" using apt'
   step "the package \"cowsay\" installed version is \"#{version}\""
 end
 
-When /^I remove the custom APT source for the old cowsay version$/ do
+When /^I revert the APT tweaks that made it prefer an old version of cowsay$/ do
   $vm.execute('rm -f /etc/apt/sources.list.d/asp-test-upgrade-cowsay.list /etc/apt/preferences.d/asp-test-upgrade-cowsay')
 end
 
-When /^the package "([^"]*)" installed version is( newer than)? "([^"]*)"$/ do |package, newer_than, version|
+When /^the package "([^"]*)" installed version is( newer than)? "([^"]*)"( after Additional Software has been started)?$/ do |package, newer_than, version, asp|
+  if asp
+    step 'the Additional Software installation service has started'
+  end
   current_version = $vm.execute("dpkg-query -W -f='${Version}' #{package}").stdout
   if newer_than
-    $vm.execute_successfully("dpkg --compare-versions #{version} lt #{current_version}")
+    cmd_helper("dpkg --compare-versions '#{version}' lt '#{current_version}'")
   else
     assert_equal(current_version, version)
   end
@@ -163,5 +174,6 @@ Then /^I install "(.+)" using Synaptic$/ do |package_name|
       @synaptic.child('Changes applied', roleName: 'frame', recursive: false)
       true
     end
+    step 'I kill the process "synaptic"'
   end
 end
