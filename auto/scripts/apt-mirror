@@ -62,11 +62,5 @@ then
        output_time_based_snapshot "$ARCHIVE" "$RESOLVED_SERIAL"
     fi
 else
-    if [ "$BASE_BRANCH" = devel ] || [ "$CURRENT_BRANCH" = feature/buster ]; then
-        if [ "$SERIAL" != latest ]; then
-            fatal "APT snapshots are frozen, which should happen neither on" \
-                  "feature/buster nor on a branch based on the devel one"
-        fi
-    fi
     output_time_based_snapshot "$ARCHIVE" "$RESOLVED_SERIAL"
 fi
