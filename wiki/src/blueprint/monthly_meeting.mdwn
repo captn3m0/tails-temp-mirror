@@ -23,16 +23,35 @@ Discussions
 [[Prepare a discussion|contribute/meetings#preparing-a-discussion]]
 and add your topic here:
 
+- FOSDEM. Aybody attending? Booth?
+
+<!-- I'll miss the November meeting as well...
+
 - [[!tails_ticket 15895 desc="#15895: Remove some of our predefined bookmarks"]]
 
   sajolida: I'll be at Tor meeting on October 3, so please postpone this
   discussion if I'm not at the meeting.
+-->
 
 Roles
 =====
 
 For each meeting, we need a notetaker and a facilitator. They should
 designate themselves beforehand.
+
+2019:
+
+| Month          | Notetaker      | Facilitator |
+| -------------- | -------------- |------------ |
+| January 2019   |                |             |
+| February 2019  |                |             |
+| March 2019     |                |             |
+| April 2019     |                |             |
+| May 2019       |                |             |
+| June 2019      |                |             |
+
+
+2018:
 
 | Month          | Notetaker      | Facilitator  |
 | -------------- | -------------- | ------------ |
@@ -45,6 +64,6 @@ designate themselves beforehand.
 | July 2018      | sajolida       | u            |
 | August 2018    | sajolida       | segfault     |
 | September 2018 | muri           | intrigeri    |
-| October 2018   | muri           | segfault     |
-| November 2018  | intrigeri      |              |
-| December 2018  | u              |              |
+| October 2018   |                | u            |
+| November 2018  | canceled       | canceled     |
+| December 2018  | muri           | intrigeri    |

@@ -25,7 +25,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "[[!pagetemplate template=\"news.tmpl\"]]\n"
-msgstr ""
+msgstr "[[!pagetemplate template=\"news.tmpl\"]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -47,7 +47,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "[[!img mediapart.png link=\"no\"]]\n"
-msgstr ""
+msgstr "[[!img mediapart.png link=\"no\"]]\n"
 
 #. type: Plain text
 msgid ""

@@ -4,6 +4,7 @@
 #
 # Translators:
 # Dvir Rosen <ndvnis@gmail.com>, 2014
+# Emma Peel, 2018
 # GenghisKhan <genghiskhan@gmx.ca>, 2013
 # ION, 2017-2018
 # Johnny Diralenzo, 2015
@@ -11,10 +12,10 @@
 # Ruben <drarbib@gmail.com>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: The Tor Project\n"
+"Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-15 14:47+0200\n"
-"PO-Revision-Date: 2018-09-04 11:44+0200\n"
+"POT-Creation-Date: 2018-12-07 10:24+0100\n"
+"PO-Revision-Date: 2018-10-17 12:24+0000\n"
 "Last-Translator: ION\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/torproject/language/"
 "he/)\n"
@@ -83,8 +84,8 @@ msgid ""
 "\">APT on the command line</a>."
 msgstr ""
 "כדי להוסיף עוד, התקן תוכנות כלשהן ע\"י שימוש ב<a href=\"synaptic.desktop"
-"\">מנהל חבילות סינפטיות</a> או <a href=\"org.gnome.Terminal.desktop\">APT על "
-"שורת הפקודה</a>."
+"\">מנהל חבילות סינפטיות</a> או ב-<a href=\"org.gnome.Terminal.desktop\">APT "
+"על שורת הפקודה</a>."
 
 #: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:151
 msgid "_Create persistent storage"
@@ -174,8 +175,9 @@ msgstr ""
 msgid "not available"
 msgstr "בלתי זמין"
 
-#. Translators: Don't translate {details}, it's a placeholder and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:144
+#. Translators: Don't translate {details}, it's a placeholder and will
+#. be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:147
 #, python-brace-format
 msgid ""
 "{details} Please check your list of additional software or read the system "
@@ -184,7 +186,7 @@ msgstr ""
 "{details} אנא בדוק את הרשימה של התוכנה הנוספת שלך או קרא את יומן האירועים של "
 "המערכת כדי להבין את הבעיה."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:149
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:152
 msgid ""
 "Please check your list of additional software or read the system log to "
 "understand the problem."
@@ -192,52 +194,54 @@ msgstr ""
 "אנא בדוק את הרשימה של תוכנה נוספת שלך או קרא את יומן האירועים של המערכת כדי "
 "להבין את הבעיה."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:153
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:156
 msgid "Show Log"
 msgstr "הצג יומן"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:153
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:156
 msgid "Configure"
-msgstr "הגדר"
+msgstr "תצר"
 
-#. Translators: Don't translate {beginning} or {last}, they are placeholders and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:218
+#. Translators: Don't translate {beginning} or {last}, they are
+#. placeholders and will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:222
 #, python-brace-format
 msgid "{beginning} and {last}"
 msgstr "{beginning} ו {last}"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:219
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:223
 msgid ", "
 msgstr ", "
 
-#. Translators: Don't translate {packages}, it's a placeholder and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:284
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:313
+#. Translators: Don't translate {packages}, it's a placeholder and will
+#. be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:289
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:319
 #, python-brace-format
 msgid "Add {packages} to your additional software?"
 msgstr "להוסיף את {packages} לתוכנה הנוספת שלך?"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:286
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:291
 msgid ""
 "To install it automatically from your persistent storage when starting Tails."
 msgstr "כדי להתקין זאת באופן אוטומטי מהאחסון המתמיד שלך בעת התחלת Tails."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:288
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:293
 msgid "Install Every Time"
 msgstr "התקן בכל פעם"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:289
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:319
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:325
 msgid "Install Only Once"
 msgstr "התקן פעם אחת בלבד"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:295
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:324
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:362
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:300
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:330
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:371
 msgid "The configuration of your additional software failed."
 msgstr "התצורה של התוכנה הנוספת שלך נכשלה."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:315
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:321
 msgid ""
 "To install it automatically when starting Tails, you can create a persistent "
 "storage and activate the <b>Additional Software</b> feature."
@@ -245,21 +249,22 @@ msgstr ""
 "כדי להתקין זאת באופן אוטומטי בעת התחלת Tails, אתה יכול ליצור אחסון מתמיד "
 "ולשפעל את המאפיין <b>תוכנה נוספת</b>."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:318
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:324
 msgid "Create Persistent Storage"
 msgstr "צור אחסון מתמיד"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:326
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:332
 msgid "Creating your persistent storage failed."
 msgstr "יצירת האחסון המתמיד שלך נכשלה."
 
-#. Translators: Don't translate {packages}, it's a placeholder and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:334
+#. Translators: Don't translate {packages}, it's a placeholder and
+#. will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:341
 #, python-brace-format
 msgid "You could install {packages} automatically when starting Tails"
 msgstr "אתה יכול להתקין {packages} באופן אוטומטי בעת התחלת Tails"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:337
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:344
 msgid ""
 "To do so, you need to run Tails from a USB stick installed using <i>Tails "
 "Installer</i>."
@@ -267,50 +272,52 @@ msgstr ""
 "כדי לעשות זאת, אתה צריך להריץ את Tails מתוך החסן USB ע\"י שימוש ב<i>מתקין "
 "Tails</i>."
 
-#. Translators: Don't translate {packages}, it's a placeholder and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:351
+#. Translators: Don't translate {packages}, it's a placeholder and will be
+#. replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:359
 #, python-brace-format
 msgid "Remove {packages} from your additional software?"
 msgstr "האם להסיר את {packages} מהתוכנה הנוספת שלך?"
 
-#. Translators: Don't translate {packages}, it's a placeholder and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:354
+#. Translators: Don't translate {packages}, it's a placeholder
+#. and will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:363
 #, python-brace-format
 msgid "This will stop installing {packages} automatically."
 msgstr "זה יפסיק להתקין את {packages} באופן אוטומטי."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:356
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:365
 msgid "Remove"
 msgstr "הסר"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:357
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
 #: config/chroot_local-includes/usr/local/bin/tails-screen-locker:118
 #: config/chroot_local-includes/usr/local/bin/tor-browser:46
 msgid "Cancel"
 msgstr "ביטול"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:531
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:544
 msgid "Installing your additional software from persistent storage..."
 msgstr "מתקין את התוכנה הנוספת שלך מאחסון מתמיד..."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:533
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:546
 msgid "This can take several minutes."
 msgstr "זה עשוי לקחת מספר דקות."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:545
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:559
 msgid "The installation of your additional software failed"
 msgstr "ההתקנה של התוכנה הנוספת שלך נכשלה"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:560
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:574
 msgid "Additional software installed successfully"
 msgstr "תוכנה נוספת הותקנה בהצלחה"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:580
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:594
 msgid "The check for upgrades of your additional software failed"
 msgstr "הבדיקה אחר שדרוגים של התוכנה הנוספת שלך נכשלה"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:582
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:590
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:596
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:604
 msgid ""
 "Please check your network connection, restart Tails, or read the system log "
 "to understand the problem."
@@ -318,7 +325,7 @@ msgstr ""
 "אנא בדוק את חיבור הרשת שלך, הפעל מחדש את Tails או קרא את יומן האירועים של "
 "המערכת כדי להבין את הבעיה."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:589
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:603
 msgid "The upgrade of your additional software failed"
 msgstr "השדרוג של התוכנה הנוספת שלך נכשל"
 
@@ -353,43 +360,42 @@ msgid "Stop installing {package} automatically"
 msgstr "הפסק להתקין את {package} באופן אוטומטי"
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:179
-#, fuzzy
 msgid ""
 "To do so, install some software using <a href=\"synaptic.desktop\">Synaptic "
 "Package Manager</a> or <a href=\"org.gnome.Terminal.desktop\">APT on the "
 "command line</a>."
 msgstr ""
-"כדי להוסיף עוד, התקן תוכנות כלשהן ע\"י שימוש ב<a href=\"synaptic.desktop"
-"\">מנהל חבילות סינפטיות</a> או <a href=\"org.gnome.Terminal.desktop\">APT על "
-"שורת הפקודה</a>."
+"כדי לעשות זאת, התקן תוכנה כלשהי ע\"י שימוש ב<a href=\"synaptic.desktop"
+"\">מנהל חבילות סינפטיות</a> או ב-<a href=\"org.gnome.Terminal.desktop\">APT "
+"על שורת הפקודה</a>."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:188
-#, fuzzy
 msgid ""
 "To do so, unlock your persistent storage when starting Tails and install "
 "some software using <a href=\"synaptic.desktop\">Synaptic Package Manager</"
 "a> or <a href=\"org.gnome.Terminal.desktop\">APT on the command line</a>."
 msgstr ""
-"כדי להוסיף עוד, התקן תוכנות כלשהן ע\"י שימוש ב<a href=\"synaptic.desktop"
-"\">מנהל חבילות סינפטיות</a> או <a href=\"org.gnome.Terminal.desktop\">APT על "
-"שורת הפקודה</a>."
+"כדי לעשות זאת, בטל נעילת אחסון מתמיד שלך בעת התחלת Tails והתקן תוכנה כלשהי ע"
+"\"י שימוש ב<a href=\"synaptic.desktop\">מנהל חבילות סינפטיות</a> או ב-<a "
+"href=\"org.gnome.Terminal.desktop\">APT על שורת הפקודה</a>."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:198
-#, fuzzy
 msgid ""
 "To do so, create a persistent storage and install some software using <a "
 "href=\"synaptic.desktop\">Synaptic Package Manager</a> or <a href=\"org."
 "gnome.Terminal.desktop\">APT on the command line</a>."
 msgstr ""
-"כדי להוסיף עוד, התקן תוכנות כלשהן ע\"י שימוש ב<a href=\"synaptic.desktop"
-"\">מנהל חבילות סינפטיות</a> או <a href=\"org.gnome.Terminal.desktop\">APT על "
-"שורת הפקודה</a>."
+"כדי לעשות זאת, צור אחסון מתמיד והתקן תוכנה כלשהי ע\"י שימוש ב<a href="
+"\"synaptic.desktop\">מנהל חבילות סינפטיות</a> או ב-<a href=\"org.gnome."
+"Terminal.desktop\">APT על שורת הפקודה</a>."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:206
 msgid ""
 "To do so, install Tails on a USB stick using <a href=\"tails-installer."
 "desktop\">Tails Installer</a> and create a persistent storage."
 msgstr ""
+"כדי לעשות זאת, התקן את Tails על החסן USB ע\"י שימוש ב<a href=\"tails-"
+"installer.desktop\">מתקין Tails</a> וצור אחסון מתמיד."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:253
 msgid "[package not available]"
@@ -504,18 +510,11 @@ msgstr "שגיאה"
 msgid "Warning: virtual machine detected!"
 msgstr "אזהרה: מכשיר מדומה התגלה!"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:73
-msgid ""
-"Both the host operating system and the virtualization software are able to "
-"monitor what you are doing in Tails."
-msgstr ""
-"גם מערכת ההפעלה של המארח וגם תוכנת ההדמיה מסוגלות לנטר מה אתה עושה ב-Tails."
-
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:76
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:74
 msgid "Warning: non-free virtual machine detected!"
 msgstr "אזהרה: מכשיר מדומה בלתי־חינמי התגלה!"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:78
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
 msgid ""
 "Both the host operating system and the virtualization software are able to "
 "monitor what you are doing in Tails. Only free software can be considered "
@@ -526,7 +525,7 @@ msgstr ""
 "רק תוכנה חופשית יכולה להיות מצונזרת בצורה אמינה, עבור מערכת ההפעלה של המארח "
 "ועבור תוכנת ההדמיה."
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:83
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:81
 msgid "Learn more"
 msgstr "למד עוד"
 
@@ -605,13 +604,13 @@ msgstr "נכשל בהתקנת chroot."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:104
 msgid "Failed to configure browser."
-msgstr "נכשל בהגדרת הדפדפן."
+msgstr "נכשל בתיצור הדפדפן."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:110
 msgid ""
 "No DNS server was obtained through DHCP or manually configured in "
 "NetworkManager."
-msgstr "לא הושג שרת DNS דרך DHCP או שהוא לא הוגדר באופן ידני במנהל הרשתות."
+msgstr "לא הושג שרת DNS דרך DHCP או שהוא לא תוצר באופן ידני במנהל הרשתות."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:121
 msgid "Failed to run browser."
@@ -677,12 +676,11 @@ msgstr "{volume_name} – {drive_name}"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:222
 msgid "Wrong passphrase or parameters"
-msgstr ""
+msgstr "ביטוי סיסמה שגוי או פרמטרים שגויים"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:224
-#, fuzzy
 msgid "Error unlocking volume"
-msgstr "שגיאה בפתיחת קובץ"
+msgstr "שגיאה בביטול נעילת כרך"
 
 #. Translators: Don't translate {volume_name} or {error_message},
 #. they are placeholder and will be replaced.
@@ -692,6 +690,8 @@ msgid ""
 "Couldn't unlock volume {volume_name}:\n"
 "{error_message}"
 msgstr ""
+"לא היה ניתן לבטל נעילת כרך {volume_name}:\n"
+"{error_message}"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:83
 msgid "No file containers added"
@@ -806,7 +806,7 @@ msgstr "תוכנה נוספת"
 msgid ""
 "Configure the additional software installed from your persistent storage "
 "when starting Tails"
-msgstr "הגדר את התוכנה הנוספת המותקנת מתוך האחסון המתמיד שלך בעת התחלת Tails"
+msgstr "תצר את התוכנה הנוספת המותקנת מתוך האחסון המתמיד שלך בעת התחלת Tails"
 
 #: ../config/chroot_local-includes/usr/share/desktop-directories/Tails.directory.in.h:2
 msgid "Tails specific tools"
@@ -846,7 +846,7 @@ msgstr "מחיצות וכוננים"
 msgid ""
 "This application is not affiliated with or endorsed by the VeraCrypt project "
 "or IDRIX."
-msgstr ""
+msgstr "יישום זה אינו מסונף עם או מאושר ע\"י מיזם VeraCrypt או IDRIX."
 
 #: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/volume.ui.in:38
 msgid "Lock this volume"
@@ -859,3 +859,10 @@ msgstr "נתק כרך זה"
 #: ../config/chroot_local-includes/usr/local/share/mime/packages/unlock-veracrypt-volumes.xml.in.h:1
 msgid "TrueCrypt/VeraCrypt container"
 msgstr "מֵכַל TrueCrypt/VeraCrypt"
+
+#~ msgid ""
+#~ "Both the host operating system and the virtualization software are able "
+#~ "to monitor what you are doing in Tails."
+#~ msgstr ""
+#~ "גם מערכת ההפעלה של המארח וגם תוכנת ההדמיה מסוגלות לנטר מה אתה עושה ב-"
+#~ "Tails."
