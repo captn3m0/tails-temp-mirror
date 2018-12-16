@@ -175,14 +175,12 @@ class ASPConfigApplicationWindow(Gtk.ApplicationWindow):
                   'command line</a>.'))
         else:
             self.stack.set_visible_child(self.no_package_page)
-            self.install_label.set_markup(
-                _('To do so, install some software using '
-                  '<a href="synaptic.desktop">Synaptic Package Manager</a> '
-                  'or <a href="org.gnome.Terminal.desktop">APT on the '
-                  'command line</a>.'))
             if has_unlocked_persistence(search_new_persistence=True):
-                # The label from the UI file is good unmodified
-                pass
+                self.install_label.set_markup(
+                    _('To do so, install some software using '
+                      '<a href="synaptic.desktop">Synaptic Package Manager</a> '
+                      'or <a href="org.gnome.Terminal.desktop">APT on the '
+                      'command line</a>.'))
             elif has_persistence():
                 self.install_label.set_markup(
                     _('To do so, unlock your persistent storage '
