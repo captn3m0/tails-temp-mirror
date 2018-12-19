@@ -591,19 +591,11 @@ def upgrade_additional_packages():
     apt_get_returncode = _launch_apt_get(["update"])
     if apt_get_returncode:
         logging.warning("Warning: the update failed.")
-        _notify_failure(_("The check for upgrades of your additional software "
-                          "failed"),
-                        _("Please check your network connection, "
-                          "restart Tails, or read the system log to "
-                          "understand the problem."))
         return False
     if install_additional_packages(upgrade_mode=True):
         logging.info("The upgrade was successful.")
     else:
-        _notify_failure(_("The upgrade of your additional software failed"),
-                        _("Please check your network connection, "
-                          "restart Tails, or read the system log to "
-                          "understand the problem."))
+        logging.warning("Warning: the upgrade failed.")
         return False
 
     # We now know that the APT packages cache is up-to-date wrt. the APT lists,
@@ -672,7 +664,12 @@ if __name__ == "__main__":
             sys.exit(150)
     elif sys.argv[1] == "upgrade":
         if not upgrade_additional_packages():
-            sys.exit(151)
+            _spawn_daemon(_notify_failure,
+                          _("The upgrade of your additional software failed"),
+                          _("Please check your network connection, "
+                            "restart Tails, or read the system log to "
+                            "understand the problem."))
+                          retrncode=151)
     elif sys.argv[1] == "apt-pre":
         apt_hook_pre()
     elif sys.argv[1] == "apt-post":
