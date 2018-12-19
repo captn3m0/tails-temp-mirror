@@ -176,8 +176,8 @@ def _close_notification(notification_id):
             stdout=subprocess.DEVNULL)
 
 
-def _spawn_daemon(func):
-    """Spawn func after double-forking.
+def _spawn_daemon(func, args*):
+    """Spawn func with args after double-forking.
 
     Do the UNIX double-fork magic, see Stevens' "Advanced
     Programming in the UNIX Environment" for details (ISBN 0201563177).
@@ -207,7 +207,7 @@ def _spawn_daemon(func):
         sys.exit(1)
 
     # do stuff
-    func()
+    func(*args)
 
 
 def _format_iterable(iterable):
