@@ -664,6 +664,9 @@ if __name__ == "__main__":
     if sys.argv[1] == "install":
         if not install_additional_packages():
             sys.exit(150)
+    elif sys.argv[1] == "update-post":
+        if not install_additional_packages(upgrade_mode=True):
+            sys.exit(150)
     elif sys.argv[1] == "upgrade":
         if not upgrade_additional_packages():
             sys.exit(151)

@@ -2,4 +2,5 @@
 # end of the build by /config/chroot_local-hooks/99-zz-install-ASP-DPKG-hooks
 DPkg::Pre-Install-Pkgs { "/usr/local/sbin/tails-additional-software apt-pre"; };
 DPkg::Post-Invoke { "/usr/local/sbin/tails-additional-software apt-post"; };
+APT::Update::Post-Invoke { "/usr/local/sbin/tails-additional-software update-post" };
 DPkg::Tools::Options::/usr/local/sbin/tails-additional-software::Version "3";
