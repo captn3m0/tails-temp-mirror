@@ -176,8 +176,10 @@ def _close_notification(notification_id):
             stdout=subprocess.DEVNULL)
 
 
-def _spawn_daemon(func, args*):
+def _spawn_daemon(func, args*, returncode=0):
     """Spawn func with args after double-forking.
+
+    The parent returns with returncode.
 
     Do the UNIX double-fork magic, see Stevens' "Advanced
     Programming in the UNIX Environment" for details (ISBN 0201563177).
@@ -189,7 +191,7 @@ def _spawn_daemon(func, args*):
         pid = os.fork()
         if pid > 0:
             # parent process, return and keep running
-            return
+            sys.exit(returncode)
     except OSError as e:
         logging.error("fork #1 failed: %d (%s)" % (e.errno, e.strerror))
         sys.exit(1)
