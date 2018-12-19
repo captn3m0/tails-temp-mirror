@@ -558,8 +558,6 @@ def install_additional_packages(upgrade_mode=False):
                         % " ".join(packages))
         if not upgrade_mode:
             _close_notification(installing_notification_id)
-            _notify_failure(_("The installation of your additional software "
-                              "failed"))
         return False
     else:
         logging.info("Installation completed successfully.")
@@ -665,7 +663,10 @@ if __name__ == "__main__":
 
     if sys.argv[1] == "install":
         if not install_additional_packages():
-            sys.exit(150)
+            _spawn_daemon(_notify_failure,
+                          _("The installation of your additional software "
+                            "failed"),
+                          retrncode=150)
     elif sys.argv[1] == "update-post":
         if not install_additional_packages(upgrade_mode=True):
             sys.exit(150)
