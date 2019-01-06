@@ -249,7 +249,7 @@ end
 
 Given /^the computer (re)?boots Tails$/ do |reboot|
   step "Tails is at the boot menu's cmdline" + (reboot ? ' after rebooting' : '')
-  @screen.type(" autotest_never_use_this_option blacklist=psmouse #{@boot_options}" +
+  @screen.type(" autotest_never_use_this_option blacklist=psmouse rootpw=root #{@boot_options}" +
                Sikuli::Key.ENTER)
   @screen.wait('TailsGreeter.png', 5*60)
   $vm.wait_until_remote_shell_is_up
