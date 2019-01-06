@@ -102,10 +102,14 @@ def debug_file(user, filename):
 
     # This check is not sufficient, see the comment at the top of the file
     # for the complete requirements required for security
-    owner = getpwuid(os.stat(filename).st_uid).pw_name
+    owner = getpwuid(os.stat(filename, follow_symlinks=False).st_uid).pw_name
     if owner != user:
         return {'key': filename, 'content': '''WARNING: not opening file {}, because it is '''
                 '''owned by {} instead of {}'''.format(filename, owner, user)}
+    target_owner = getpwuid(os.stat(filename, follow_symlinks=True).st_uid).pw_name
+    if target_owner != user:
+        return {'key': filename, 'content': '''WARNING: not opening file {}, because it is '''
+                '''a symlink owned by {} instead of {}'''.format(filename, target_owner, user)}
 
     file_content = []
     with open(filename) as f:
