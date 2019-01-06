@@ -170,7 +170,7 @@ start_vnc_server() {
 
 start_vnc_viewer() {
     check_dependencies tigervnc-viewer
-    xtigervncviewer -nojpeg -viewonly localhost:${VNC_SERVER_PORT} 1>/dev/null 2>&1 &
+    xtigervncviewer -nojpeg localhost:${VNC_SERVER_PORT} 1>/dev/null 2>&1 &
 }
 
 capture_session() {
