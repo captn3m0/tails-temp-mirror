@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-10-31 11:23+0100\n"
+"POT-Creation-Date: 2019-02-09 19:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -327,6 +327,7 @@ msgstr ""
 msgid ""
 "<!--\n"
 "Ticket: #12219\n"
+"Ticket: #16224\n"
 "-->\n"
 msgstr ""
 
@@ -345,8 +346,24 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Adding `xorg-driver=intel` to the [[startup options|/doc/first_steps/"
-"startup_options#boot_loader_menu]] might fix the issue."
+"Try adding to the [[startup options|/doc/first_steps/"
+"startup_options#boot_loader_menu]], one after the other:"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`xorg-driver=intel`"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`nomodeset`"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`nomodeset xorg-driver=vesa`"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`xorg-driver=modesetting`"
 msgstr ""
 
 #. type: Plain text
@@ -608,7 +625,7 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Starting in *Troubleshooting Mode* works, as well as adding the `modeprobe."
+"Starting in *Troubleshooting Mode* works, as well as adding the `modprobe."
 "blacklist=nouveau` to the [[startup options|doc/first_steps/"
 "startup_options#boot_loader_menu]]."
 msgstr ""
@@ -681,6 +698,6 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "To improve support of Tails running inside a virtual machine with *VMware*, "
-"[[install|doc/advanced_topics/additional_software]] the `open-vm-tools-"
-"desktop` software package in Tails."
+"[[install|doc/first_steps/additional_software]] the `open-vm-tools-desktop` "
+"software package in Tails."
 msgstr ""
