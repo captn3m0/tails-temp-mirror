@@ -176,7 +176,7 @@ def _close_notification(notification_id):
             stdout=subprocess.DEVNULL)
 
 
-def _spawn_daemon(func, args*, returncode=0):
+def _spawn_daemon(func, *args, returncode=0):
     """Spawn func with args after double-forking.
 
     The parent returns with returncode.
