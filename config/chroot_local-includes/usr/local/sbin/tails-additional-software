@@ -658,7 +658,7 @@ if __name__ == "__main__":
             _spawn_daemon(_notify_failure,
                           _("The installation of your additional software "
                             "failed"),
-                          retrncode=150)
+                          returncode=150)
     elif sys.argv[1] == "update-post":
         if not install_additional_packages(upgrade_mode=True):
             sys.exit(150)
