@@ -668,8 +668,8 @@ if __name__ == "__main__":
                           _("The upgrade of your additional software failed"),
                           _("Please check your network connection, "
                             "restart Tails, or read the system log to "
-                            "understand the problem."))
-                          retrncode=151)
+                            "understand the problem."),
+                          returncode=151)
     elif sys.argv[1] == "apt-pre":
         apt_hook_pre()
     elif sys.argv[1] == "apt-post":
