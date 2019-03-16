@@ -560,7 +560,8 @@ def install_additional_packages(upgrade_mode=False):
         if not upgrade_mode:
             _close_notification(installing_notification_id)
             _notify_failure(_("The installation of your additional software "
-                              "failed"))
+                              "failed. This may be solved by connecting to "
+                              "Internet."))
         return False
     else:
         logging.info("Installation completed successfully.")
