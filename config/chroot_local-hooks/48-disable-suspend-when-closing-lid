@@ -6,3 +6,6 @@ echo "Disabling suspend when closing lid"
 
 sed -i --regexp-extended 's/^#?HandleLidSwitch=.*/HandleLidSwitch=ignore/' \
 	/etc/systemd/logind.conf
+
+# Check if the option was actually set
+grep -q ^HandleLidSwitch=ignore$ /etc/systemd/logind.conf
