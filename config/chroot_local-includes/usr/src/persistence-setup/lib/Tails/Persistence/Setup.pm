@@ -581,6 +581,7 @@ method create_persistent_encrypted_filesystem (
     my $fsoptions = {
         %{$self->persistence_filesystem_options},
         'encrypt.passphrase' => $opts->{passphrase},
+        'encrypt.type'       => 'luks2',
     };
 
     $self->udisks_service->get_object($self->persistence_partition)
