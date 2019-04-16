@@ -188,22 +188,6 @@ tor_cert_lifetime_invalid() {
 	    ${TOR_LOG}
 }
 
-# This check is blocking until Tor reaches either of two states:
-# 1. Tor completes a handshake with an authority (or bridge).
-# 2. Tor fails the handshake with all authorities (or bridges).
-# Since 2 essentially is the negation of 1, one of them will happen,
-# so it won't block forever. Hence we shouldn't need a timeout.
-is_clock_way_off() {
-	log "Checking if system clock is way off"
-	until [ "$(tor_bootstrap_progress)" -gt 10 ]; do
-		if tor_cert_lifetime_invalid; then
-			return 0
-		fi
-		sleep 1
-	done
-	return 1
-}
-
 start_notification_helper() {
 	export_gnome_env
 	exec /bin/su -c /usr/local/lib/tails-htp-notify-user "$LIVE_USERNAME" &
@@ -218,15 +202,6 @@ start_notification_helper
 if tor_is_working; then
 	log "Tor has already opened a circuit"
 else
-	# Since Tor 0.2.3.x Tor doesn't download a consensus for
-	# clocks that are more than 30 days in the past or 2 days in
-	# the future.  For such clock skews we set the time to the
-	# authority's cert's valid-after date.
-	if is_clock_way_off; then
-		log "The clock is so badly off that Tor cannot download a consensus. Setting system time to the authority's cert's valid-after date and trying to fetch a consensus again..."
-		date --set="$(tor_cert_valid_after)" > /dev/null
-		systemctl reload tor@default.service
-	fi
 	wait_for_tor_consensus
 	maybe_set_time_from_tor_consensus
 fi
