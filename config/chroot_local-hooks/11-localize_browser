@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 echo "Localize each supported browser locale"
 
@@ -67,7 +68,7 @@ while IFS=: read MOZILLA_LOCALE LOCATION; do
     mkdir -p "${LOCALE_PROFILES_DIR}"
     LOCALE_PROFILE_FILE="${LOCALE_PROFILES_DIR}/${MOZILLA_LOCALE}.js"
     TBB_DICTIONARIES_DIR="${TBB_INSTALL}/dictionaries"
-    unset SPELLCHECKER_LOCALE
+    # unset SPELLCHECKER_LOCALE
     for LOCALE in "${NORMAL_LOCALE}" "${LANG_CODE}"; do
         if [ -e "${TBB_DICTIONARIES_DIR}/${LOCALE}.dic" ]; then
             SPELLCHECKER_LOCALE="${LOCALE}"

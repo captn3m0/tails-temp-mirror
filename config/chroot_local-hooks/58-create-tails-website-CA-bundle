@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 echo "Creating CA bundle for authenticating https://tails.boum.org/"
 

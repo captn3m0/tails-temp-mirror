@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+set -u
 
 case "$1" in
     pre)

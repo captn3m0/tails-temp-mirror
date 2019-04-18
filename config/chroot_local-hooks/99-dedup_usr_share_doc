@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 echo "Deduplicating files in /usr/share/doc"
 

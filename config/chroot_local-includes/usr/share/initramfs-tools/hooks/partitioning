@@ -4,12 +4,14 @@ PREREQS=""
 
 prereqs() { echo "$PREREQS"; }
 
-case "$1" in
-    prereqs)
-    prereqs
-    exit 0
-    ;;
-esac
+if [ ! -z ${1+x} ]; then
+    case "$1" in
+        prereqs)
+        prereqs
+        exit 0
+        ;;
+    esac
+fi
 
 . /usr/share/initramfs-tools/hook-functions
 

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 # Run only when the interface is not "lo":
 if [ -z "$1" ] || [ "$1" = "lo" ]; then

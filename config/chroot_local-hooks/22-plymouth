@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 # Install Plymouth (in lb 2.x, the "standard" packages list pulls
 # console-common in, which plymouth conflicts with, so we have to deal

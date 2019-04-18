@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 # Disable ssh-agent in /etc/X11/Xsession.options
 # (seahorse / gnome-keyring are more user-friendly)

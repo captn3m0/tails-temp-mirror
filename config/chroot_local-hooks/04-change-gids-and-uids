@@ -15,6 +15,7 @@
 # We may get rid of this script with the switch to overlayfs (#8415, #15689).
 
 set -e
+set -u
 
 echo "Set fixed GIDs and UIDs"
 

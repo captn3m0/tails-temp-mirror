@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 # Make IUKs smaller
 echo "Setting mtime on large files whose content generally do not change"

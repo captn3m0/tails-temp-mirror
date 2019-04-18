@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 echo 'Adapting syslinux 6.x packaging to play well with live-build 2.x'
 

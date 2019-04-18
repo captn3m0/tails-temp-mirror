@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -u
 
 # Append some version information to /etc/amnesia/version
 
