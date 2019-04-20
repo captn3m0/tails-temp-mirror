@@ -1,4 +1,5 @@
 #!/bin/sh
+
 set -e
 set -u
 
@@ -13,6 +14,10 @@ dpkg-divert --add --rename --divert /usr/lib/wget/wget /usr/bin/wget
 # We don't want users or other applications using wget directly:
 cat > /usr/bin/wget << 'EOF'
 #!/bin/sh
+
+set -e
+set -u
+
 unset http_proxy
 unset HTTP_PROXY
 unset https_proxy

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 TOR_RC_DEFAULTS=/usr/share/tor/tor-service-defaults-torrc
 TOR_RC=/etc/tor/torrc
 TOR_LOG=/var/log/tor/log

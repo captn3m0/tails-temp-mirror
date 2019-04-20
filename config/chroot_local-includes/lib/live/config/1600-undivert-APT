@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 echo "- undiverting APT"
 
 if [ -f /usr/bin/apt-get.real ]; then

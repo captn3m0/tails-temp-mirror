@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 Remount_Proc_Fs ()
 {
 	mount -o remount /proc

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # We need laxer permissions than the default (tails-persistence-setup:root,
 # 0700) here so that a newly created persistent volume is accessible
 # to the amnesia user, that runs the tails-additional-software-config

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 echo "- configuring APT sources"
 
 sed -i 's,^\(\#\?\s*deb\(-src\)\?\s\+\)http://,\1tor+http://,' \

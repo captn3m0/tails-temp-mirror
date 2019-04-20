@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # Note: must run after /lib/live/config/0020-hostname since it
 # otherwise will overwrite any hosts file generated at build time with
 # a bloated one that also include the IPv6 host `::1 localhost`, which

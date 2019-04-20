@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # We don't start Tor automatically so *this* is the time
 # when it is supposed to start.
 

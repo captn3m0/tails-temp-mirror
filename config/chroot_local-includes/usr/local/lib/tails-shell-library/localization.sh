@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # Extracts the language part of a given locale, e.g. "en_US.UTF-8"
 # yields "en". Often $LANG will be passed as the argument.
 language_code_from_locale () {

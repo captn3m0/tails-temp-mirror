@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # This file is needed by the Unsafe Browser, and Tor while in bridge
 # mode.
 

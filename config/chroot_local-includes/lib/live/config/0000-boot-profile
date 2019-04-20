@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 Boot_profile ()
 {
 	# Only start profiler when "profile" appears on kernel command line

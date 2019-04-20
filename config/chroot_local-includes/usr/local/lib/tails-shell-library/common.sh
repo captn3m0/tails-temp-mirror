@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # Get monotonic time in seconds. See clock_gettime(2) for details.
 # Note: we limit ourselves to seconds simply because floating point
 # arithmetic is a PITA in the shell.

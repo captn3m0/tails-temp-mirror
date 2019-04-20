@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 Set_root_password ()
 {
 	echo "- setting root password"

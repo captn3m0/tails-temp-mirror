@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # Import is_package_installed
 . /usr/local/lib/tails-shell-library/common.sh
 

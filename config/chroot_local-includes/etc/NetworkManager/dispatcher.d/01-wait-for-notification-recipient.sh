@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # When a non-loopback interface comes up, wait for the Live user's GNOME Shell
 # to come up. Wait 120 times one second maximum.
 

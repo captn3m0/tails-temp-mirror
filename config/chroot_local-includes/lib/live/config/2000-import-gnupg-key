@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 Import_GnuPG_key ()
 {
 	echo "- importing Tails' GnuPG keys into the ${LIVE_USERNAME}'s keyring"

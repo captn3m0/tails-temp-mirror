@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # This shell library is meant to be used with `set -e`.
 
 if [ "$(whoami)" != "root" ]; then

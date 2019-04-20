@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 warn() {
     echo "$*" >&2
 }

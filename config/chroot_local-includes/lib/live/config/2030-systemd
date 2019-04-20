@@ -1,4 +1,8 @@
 #!/bin/sh
+
+set -e
+set -u
+
 #
 # Recreate files (eg. /var/lib/systemd/catalog/database, /etc/machine-id, etc.)
 # at boot-time as we remove them to ensure a deterministic build.

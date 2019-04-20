@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 TBB_INSTALL=/usr/local/lib/tor-browser
 TBB_PROFILE=/etc/tor-browser/profile
 TBB_EXT=/usr/local/share/tor-browser-extensions

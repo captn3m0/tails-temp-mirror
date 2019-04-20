@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 echo "- making sure the system clock is sane"
 
 # If the system clock is before the source date, then we know it's

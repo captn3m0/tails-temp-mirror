@@ -1,6 +1,7 @@
 #!/bin/sh
 
-set -eu
+set -e
+set -u
 
 echo "Wrapping gdm-x-session to limit the number of allowed failures"
 

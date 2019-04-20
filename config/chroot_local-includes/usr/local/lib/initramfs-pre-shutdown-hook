@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 # This script is installed by /usr/share/initramfs-tools/hooks/shutdown
 # into the initramfs, as /lib/systemd/system-shutdown/tails. It's run by the
 # copy of systemd-shutdown that runs (as /shutdown) from inside

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 PERSISTENCE_STATE='/var/lib/live/config/tails.persistence'
 PHYSICAL_SECURITY_SETTINGS='/var/lib/live/config/tails.physical_security'
 

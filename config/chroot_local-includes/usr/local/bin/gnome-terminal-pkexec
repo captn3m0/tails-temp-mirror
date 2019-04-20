@@ -1,2 +1,6 @@
 #!/bin/sh
+
+set -e
+set -u
+
 pkexec /usr/bin/gnome-terminal "${@}"

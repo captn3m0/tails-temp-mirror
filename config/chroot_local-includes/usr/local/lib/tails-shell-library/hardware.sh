@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 get_all_ethernet_nics() {
     for i in /sys/class/net/*; do
         # type = 1 means ethernet (ARPHDR_ETHER, see Linux' sources,
