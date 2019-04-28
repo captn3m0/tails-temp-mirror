@@ -1,3 +1,0 @@
-# <target name> <source device>         <key file>      <options>
-TailsData_unlocked /dev/disk/by-partlabel/TailsData none noauto
-
