@@ -1,6 +1,5 @@
 #!/bin/sh
 
-PERSISTENCE_STATE='/var/lib/live/config/tails.persistence'
 PHYSICAL_SECURITY_SETTINGS='/var/lib/live/config/tails.physical_security'
 
 _get_tg_setting() {
@@ -11,7 +10,7 @@ _get_tg_setting() {
 }
 
 persistence_is_enabled() {
-    [ "$(_get_tg_setting "${PERSISTENCE_STATE}" TAILS_PERSISTENCE_ENABLED)" = true ]
+	systemctl --user is-active tails-persistence-is-enabled.target
 }
 
 persistence_is_enabled_for() {
