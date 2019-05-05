@@ -1,3 +1,8 @@
 [Unit]
 Description=Tails persistence is enabled
 Documentation=https://tails.boum.org/contribute/design/persistence
+After=tails-check-if-persistence-enabled.service
+BindsTo=tails-check-if-persistence-enabled.service
+
+[Install]
+WantedBy=tails-check-if-persistence-enabled.service

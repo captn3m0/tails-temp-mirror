@@ -495,6 +495,11 @@ activate_volumes ()
 			echo "  - ${vol}"
 		done
 	fi
+
+    # If persistence was successfully set up, start systemd services which
+    # depend on persistence (if they were not started before).
+	systemctl start tails-check-if-persistence-enabled.service
+
 	exit ${ret}
 }
 
