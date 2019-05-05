@@ -10,25 +10,28 @@ systemctl enable memlockd.service
 # Enable our own systemd unit files
 systemctl enable initramfs-shutdown.service
 systemctl enable onion-grater.service
-systemctl enable tails-synchronize-data-to-new-persistent-volume-on-shutdown.service
+systemctl enable tails-add-persistence-gtk-bookmarks.service
 systemctl enable tails-autotest-broken-Xorg.service
 systemctl enable tails-autotest-remote-shell.service
+systemctl enable tails-check-if-persistence-enabled.service
+systemctl enable tails-create-persistent-tor-browser-directory.service
+systemctl enable tails-persistence-is-enabled.target
 systemctl enable tails-set-wireless-devices-state.service
 systemctl enable tails-shutdown-on-media-removal.service
+systemctl enable tails-synchronize-data-to-new-persistent-volume-on-shutdown.service
 systemctl enable tails-tor-has-bootstrapped.target
-systemctl enable tails-wait-until-tor-has-bootstrapped.service
 systemctl enable tails-tor-has-bootstrapped-flag-file.service
+systemctl enable tails-wait-until-tor-has-bootstrapped.service
 systemctl enable run-initramfs.mount
 systemctl enable var-tmp.mount
 
 # Enable our own systemd user unit files
-systemctl --global enable tails-add-GNOME-bookmarks.service
 systemctl --global enable tails-additional-software-install.service
-systemctl --global enable tails-check-if-persistence-enabled.service
+systemctl --global enable tails-add-gtk-bookmarks.service
 systemctl --global enable tails-configure-keyboard.service
-systemctl --global enable tails-create-tor-browser-directories.service
-systemctl --global enable tails-persistence-is-enabled.target
+systemctl --global enable tails-create-tor-browser-directory.service
 systemctl --global enable tails-security-check.service
+systemctl --global enable tails-trust-desktop-launchers.service
 systemctl --global enable tails-upgrade-frontend.service
 systemctl --global enable tails-virt-notify-user.service
 systemctl --global enable tails-wait-until-tor-has-bootstrapped.service

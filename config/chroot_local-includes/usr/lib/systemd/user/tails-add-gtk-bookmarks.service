@@ -4,8 +4,8 @@ Documentation=https://tails.boum.org/contribute/design/application_isolation/
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/lib/add-GNOME-bookmarks
+ExecStart=/usr/local/lib/add-gtk-bookmarks
 RemainAfterExit=yes
 
 [Install]
-WantedBy=tails-persistence-is-enabled.target
+WantedBy=basic.target

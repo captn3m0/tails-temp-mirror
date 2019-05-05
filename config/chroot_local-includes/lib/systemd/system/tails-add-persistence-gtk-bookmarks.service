@@ -1,0 +1,13 @@
+[Unit]
+Description=Add GTK bookmarks to some directories
+Documentation=https://tails.boum.org/contribute/design/application_isolation/
+After=tails-persistence-is-enabled.target
+
+[Service]
+Type=oneshot
+User=amnesia
+ExecStart=/usr/local/lib/add-persistence-gtk-bookmarks
+RemainAfterExit=yes
+
+[Install]
+WantedBy=tails-persistence-is-enabled.target

@@ -10,7 +10,7 @@ _get_tg_setting() {
 }
 
 persistence_is_enabled() {
-	systemctl --user is-active tails-persistence-is-enabled.target
+    systemctl is-active tails-persistence-is-enabled.target
 }
 
 persistence_is_enabled_for() {

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+set -u
+
+# We're a no-op unless running as the default desktop user
+[ "$(/usr/bin/id -u)" = 1000 ] || exit 0
+
+. /usr/local/lib/tails-shell-library/tails-greeter.sh
+. /usr/local/lib/tails-shell-library/gtk.sh
+
+if persistence_is_enabled_for "${HOME}/Persistent" ; then
+    add_gtk_bookmark_for "${HOME}/Persistent"
+    add_gtk_bookmark_for "${HOME}/Persistent/Tor Browser" \
+                             "Tor Browser (persistent)"
+fi

@@ -1,0 +1,13 @@
+[Unit]
+Description=Create the Tor Browser persistent directory
+Documentation=https://tails.boum.org/contribute/design/application_isolation/
+After=tails-persistence-is-enabled.target
+
+[Service]
+Type=oneshot
+User=amnesia
+ExecStart=/usr/local/lib/create-persistent-tor-browser-directory
+RemainAfterExit=yes
+
+[Install]
+WantedBy=tails-persistence-is-enabled.target

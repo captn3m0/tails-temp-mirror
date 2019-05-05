@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+set -u
+
+# We're a no-op unless running as the default desktop user
+[ "$(/usr/bin/id -u)" = 1000 ] || exit 0
+
+for launcher in Report_an_error tails-documentation ; do
+    gio set "${HOME}/Desktop/${launcher}.desktop" metadata::trusted yes
+done

@@ -1,0 +1,11 @@
+[Unit]
+Description=Set gio metadata::trusted on our desktop launchers
+Documentation=https://tails.boum.org/contribute/design/
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/tails-trust-desktop-launchers
+RemainAfterExit=yes
+
+[Install]
+WantedBy=basic.target

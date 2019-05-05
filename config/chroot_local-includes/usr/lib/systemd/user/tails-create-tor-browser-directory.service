@@ -1,0 +1,11 @@
+[Unit]
+Description=Create the Tor Browser amnesiac directory
+Documentation=https://tails.boum.org/contribute/design/application_isolation/
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/create-tor-browser-directory
+RemainAfterExit=yes
+
+[Install]
+WantedBy=basic.target
