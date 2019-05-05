@@ -12,11 +12,14 @@ add_gtk_bookmark_for() {
    local target
    target=$(echo "$1" | sed 's, ,%20,g')
 
+   # Ensure the directory exists
+   mkdir -p "${HOME}/.config/gtk-3.0"
+
    if [ $# -ge 2 ]; then
       title="$2"
-      echo "file://$target $title" >> "${HOME}/.gtk-bookmarks"
+      echo "file://$target $title" >> "${HOME}/.config/gtk-3.0/bookmarks"
    else
-       echo "file://$target" >> "${HOME}/.gtk-bookmarks"
+       echo "file://$target" >> "${HOME}/.config/gtk-3.0/bookmarks"
    fi
 }
 
