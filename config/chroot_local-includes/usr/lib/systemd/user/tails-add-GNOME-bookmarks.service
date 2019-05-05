@@ -8,4 +8,4 @@ ExecStart=/usr/local/lib/add-GNOME-bookmarks
 RemainAfterExit=yes
 
 [Install]
-WantedBy=basic.target
+WantedBy=tails-persistence-is-enabled.target

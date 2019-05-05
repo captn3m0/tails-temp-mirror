@@ -8,4 +8,4 @@ ExecStart=/usr/local/lib/create-tor-browser-directories
 RemainAfterExit=yes
 
 [Install]
-WantedBy=basic.target
+WantedBy=tails-persistence-is-enabled.target
