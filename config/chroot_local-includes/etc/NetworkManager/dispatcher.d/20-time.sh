@@ -172,22 +172,6 @@ maybe_set_time_from_tor_consensus() {
 	systemctl restart tor@default.service
 }
 
-tor_cert_valid_after() {
-	# Only print the last = freshest match
-	sed -n 's/^.*certificate lifetime runs from \(.*\) through.*$/\1/p' \
-	    ${TOR_LOG} | tail -n 1
-}
-
-tor_cert_lifetime_invalid() {
-	# To be sure that we only grep relevant information, we
-	# should delete the log when Tor is started, which we do
-	# in 10-tor.sh.
-	# The log severity will be "warn" if bootstrapping with
-	# authorities and "info" with bridges.
-	grep -q "\[\(warn\|info\)\] Certificate \(not yet valid\|already expired\)\." \
-	    ${TOR_LOG}
-}
-
 start_notification_helper() {
 	export_gnome_env
 	exec /bin/su -c /usr/local/lib/tails-htp-notify-user "$LIVE_USERNAME" &
