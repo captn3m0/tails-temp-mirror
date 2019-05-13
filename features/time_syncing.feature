@@ -10,6 +10,20 @@ Feature: Time syncing
     And Tor is ready
     Then Tails clock is less than 5 minutes incorrect
 
+  Scenario: Clock is 2 days in the future and tor syncs the clock
+    Given I have started Tails from DVD without network and logged in
+    When I bump the system time with "+2 day"
+    And the network is plugged
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  Scenario: Clock is 2 days in past and tor syncs the clock
+    Given I have started Tails from DVD without network and logged in
+    When I bump the system time with "-2 day"
+    And the network is plugged
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
   #11589
   @fragile
   Scenario: Clock with host's time in bridge mode
