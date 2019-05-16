@@ -323,7 +323,13 @@ activate_volumes ()
 	done
 
 	custom_mounts="$(mktemp /tmp/custom_mounts-XXXXXX.list)"
+
+	OLD_UMASK="$(umask)"
+	# Have get_custom_mounts create the /live/persistence/TailsData_unlocked
+	# mountpoint with mode 755 (#11529)
+	umask 0022
 	get_custom_mounts ${custom_mounts} ${open_volumes}
+	umask "$OLD_UMASK"
 	# ... and now the persistent volumes should be mounted.
 
 	# Enable the acl mount option on all persistent filesystems.
@@ -421,6 +427,7 @@ activate_volumes ()
 
 	# Load the new persistence.conf.
 	custom_mounts="$(mktemp /tmp/custom_mounts-XXXXXX.list)"
+
 	get_custom_mounts ${custom_mounts} ${open_volumes}
 
 	if [ -s "${custom_mounts}" ]
