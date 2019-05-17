@@ -1,0 +1,142 @@
+diff --git a/usr/share/perl5/Tails/Persistence/Setup.pm b/usr/share/perl5/Tails/Persistence/Setup.pm
+index 0a83c5a..fce20c9 100644
+--- a/usr/share/perl5/Tails/Persistence/Setup.pm
++++ b/usr/share/perl5/Tails/Persistence/Setup.pm
+@@ -596,12 +596,7 @@ method delete_persistence_partition (HashRef $opts = {}) {
+     # lock the device if it is unlocked
+     my $luksholder = $self->luks_holder($self->persistence_partition);
+     if ($luksholder) {
+-        if ($self->persistence_filesystem_is_mounted) {
+-            $self->udisks_service
+-                ->get_object($luksholder)
+-                ->as_interface("org.freedesktop.UDisks2.Filesystem")
+-                ->Unmount({})
+-        }
++        self->unmount_persistence_partition();
+         $obj->as_interface('org.freedesktop.UDisks2.Encrypted')->Lock({});
+     }
+ 
+@@ -623,6 +618,21 @@ method mount_persistence_partition () {
+          ->Mount(dbus_call_sync, {});
+ }
+ 
++method unmount_persistence_partition () {
++    $self->debug(sprintf("Unmounting partition %s", $self->persistence_partition_device_file));
++
++    my $luks_holder = $self->luks_holder($self->persistence_partition);
++
++    if (!$luks_holder || !$self->persistence_filesystem_is_mounted) {
++        return;
++    }
++
++    $self->udisks_service
++        ->get_object($luks_holder)
++        ->as_interface("org.freedesktop.UDisks2.Filesystem")
++        ->Unmount({})
++}
++
+ method empty_main_window () {
+     my $child = $self->main_window->get_child;
+     $self->main_window->remove($child) if defined($child);
+@@ -712,6 +722,9 @@ method step_object_from_name (Str $name) {
+             mount_persistence_partition_cb => sub {
+                 $self->mount_persistence_partition
+             },
++            unmount_persistence_partition_cb => sub {
++                $self->unmount_persistence_partition
++            },
+             create_configuration_cb        => sub {
+                 $self->save_configuration;
+                 my $asp_config_file = path(
+@@ -740,6 +753,9 @@ method step_object_from_name (Str $name) {
+             persistence_partition      => $self->persistence_partition,
+             persistence_partition_device_file => $self->persistence_partition_device_file,
+             persistence_partition_size => $self->persistence_partition_size,
++            unmount_persistence_partition_cb => sub {
++                $self->unmount_persistence_partition
++            },
+         );
+     }
+ 
+diff --git a/usr/share/perl5/Tails/Persistence/Step/Bootstrap.pm b/usr/share/perl5/Tails/Persistence/Step/Bootstrap.pm
+index 3236887..389f344 100644
+--- a/usr/share/perl5/Tails/Persistence/Step/Bootstrap.pm
++++ b/usr/share/perl5/Tails/Persistence/Step/Bootstrap.pm
+@@ -288,6 +288,18 @@ method operation_finished (HashRef $replies) {
+         say STDERR "created ${created_device}.";
+         $self->working(0);
+ 
++        $self->subtitle->set_text($self->encoding->decode(gettext(
++            q{Renaming the persistent volume.}
++        )));
++        $self->description->set_text($self->encoding->decode(gettext(
++            q{The name of the persistent volume will be changed to TailsData_unlocked.}
++        )));
++        $self->working(1);
++        systemx(qw{/sbin/udevadm settle});
++        systemx(qw{sudo -n /usr/bin/tails-rename-persistent-volume});
++        $self->working(0);
++        say STDERR "renamed persistent volume.";
++
+         $self->subtitle->set_text($self->encoding->decode(gettext(
+             q{Mounting Tails persistence partition.}
+         )));
+diff --git a/usr/share/perl5/Tails/Persistence/Step/Configure.pm b/usr/share/perl5/Tails/Persistence/Step/Configure.pm
+index 4b74948..0aebc30 100644
+--- a/usr/share/perl5/Tails/Persistence/Step/Configure.pm
++++ b/usr/share/perl5/Tails/Persistence/Step/Configure.pm
+@@ -9,6 +9,7 @@ package Tails::Persistence::Step::Configure;
+ use 5.10.1;
+ use strictures 2;
+ 
++use IPC::System::Simple qw{systemx};
+ use Carp::Assert::More;
+ use Function::Parameters;
+ use Glib qw{TRUE FALSE};
+@@ -72,6 +73,11 @@ has 'settings' => (
+     },
+ );
+ 
++has 'unmount_persistence_partition_cb' => (
++    required => 1,
++    is       => 'ro',
++    isa      => 'CodeRef',
++);
+ 
+ =head1 CONSTRUCTORS
+ 
+@@ -184,6 +190,19 @@ method operation_finished ($error = undef) {
+     else {
+         say STDERR "done.";
+         $self->working(0);
++
++        $self->subtitle->set_text($self->encoding->decode(gettext(
++            q{Activating persistence configuration.}
++        )));
++        $self->description->set_text($self->encoding->decode(gettext(
++            q{The persistence configuration will be activated.}
++        )));
++        $self->working(1);
++        $self->unmount_persistence_partition_cb->();
++        systemx(qw{sudo -n /usr/local/sbin/live-persist activate /dev/mapper/TailsData_unlocked});
++        $self->working(0);
++        say STDERR "activated persistence configuration.";
++
+         $self->success_callback->();
+     }
+ }
+diff --git a/usr/bin/tails-rename-persistent-volume b/usr/bin/tails-rename-persistent-volume
+new file mode 100755
+index 0000000..1c691bf
+--- /dev/null
++++ b/usr/bin/tails-rename-persistent-volume
+@@ -0,0 +1,9 @@
++#!/bin/sh
++
++set -e
++set -u
++
++OLD_DMNAME=$(udevadm info --query=property --name=/dev/disk/by-label/TailsData | \
++             sed -n '/^DM_NAME=/ s/^DM_NAME=// p')
++NEW_DMNAME="TailsData_unlocked"
++dmsetup rename "${OLD_DMNAME}" "${NEW_DMNAME}"
