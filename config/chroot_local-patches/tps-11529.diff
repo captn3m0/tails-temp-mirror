@@ -125,18 +125,3 @@ index 4b74948..0aebc30 100644
          $self->success_callback->();
      }
  }
-diff --git a/usr/bin/tails-rename-persistent-volume b/usr/bin/tails-rename-persistent-volume
-new file mode 100755
-index 0000000..1c691bf
---- /dev/null
-+++ b/usr/bin/tails-rename-persistent-volume
-@@ -0,0 +1,9 @@
-+#!/bin/sh
-+
-+set -e
-+set -u
-+
-+OLD_DMNAME=$(udevadm info --query=property --name=/dev/disk/by-label/TailsData | \
-+             sed -n '/^DM_NAME=/ s/^DM_NAME=// p')
-+NEW_DMNAME="TailsData_unlocked"
-+dmsetup rename "${OLD_DMNAME}" "${NEW_DMNAME}"

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+set -u
+
+OLD_DMNAME=$(udevadm info --query=property --name=/dev/disk/by-label/TailsData | \
+             sed -n '/^DM_NAME=/ s/^DM_NAME=// p')
+NEW_DMNAME="TailsData_unlocked"
+dmsetup rename "${OLD_DMNAME}" "${NEW_DMNAME}"
