@@ -26,12 +26,6 @@ In short this is how time syncing is performed when Tails starts:
 0. Start Tor. If Tor is already working, skip to HTP step.
 0. Let Tor fetch a consensus (wait up to 150 seconds twice, restarting Tor
    in between).
-0. If the time is too badly off, the authority certificate may not be
-   valid, so we set the system time to the `valid-after` of the unverified
-   consensus Tor fetched for us, which will guarantee that the certificate
-   and consensus are all valid. Then we restart Tor (since it behaves badly
-   with time jumps during the early bootstrap stages) and wait until it
-   accepts the consensus and finishes the bootstrap.
 0. Run HTP (see below) through Tor to get a more correct system time.
 
 A notification is shown while the whole process is running,
@@ -54,11 +48,8 @@ file contains such information:
 
 A consensus is valid for three hours. If the system time is in the
 [valid-after, valid-after + 2.5 hours] range, `tordate` exits.
-Else, it sets the system time to the middle of the [valid-after,
-fresh-until] range and restarts Tor.
 
-The system time is then ensured to be correct enough to enable Tor to
-successfully open a circuit, and HTP can then be used to more
+After successfully open a circuit, and HTP can then be used to more
 accurately set time *via Tor*. The whole idea is that while Tor does
 not manage to open a circuit if the system time is too incorrect, it
 still is able to retrieve its consensus file as soon as Internet
