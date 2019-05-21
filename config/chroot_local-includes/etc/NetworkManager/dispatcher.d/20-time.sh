@@ -109,69 +109,6 @@ wait_for_working_tor() {
 	log "Tor is now working."
 }
 
-date_points_are_sane() {
-	local vstart="$1"
-	local vend="$2"
-
-	vendchk=$(date -ud "${vstart} -0300" +'%F %T')
-	[ "${vend}" = "${vendchk}" ]
-}
-
-time_is_in_valid_tor_range() {
-	local curdate="$1"
-	local vstart="$2"
-
-	vendcons=$(date -ud "${vstart} -0230" +'%F %T')
-	order="${vstart}
-${curdate}
-${vendcons}"
-	ordersrt=$(echo "${order}" | sort)
-
-	[ "${order}" = "${ordersrt}" ]
-}
-
-maybe_set_time_from_tor_consensus() {
-	local consensus=${TOR_CONSENSUS}
-
-	if has_only_unverified_consensus \
-	   && ln -f ${TOR_UNVERIFIED_CONSENSUS} ${TOR_UNVERIFIED_CONSENSUS_HARDLINK}; then
-		consensus=${TOR_UNVERIFIED_CONSENSUS_HARDLINK}
-		log "We do not have a Tor verified consensus, let's use the unverified one."
-	fi
-
-	log "Waiting for the chosen Tor consensus file to contain a valid time interval..."
-	while ! has_consensus ${consensus}; do
-		inotifywait -q -t ${INOTIFY_TIMEOUT} -e close_write -e moved_to ${TOR_DIR} || log "timeout"
-	done
-	log "The chosen Tor consensus now contains a valid time interval, let's use it."
-
-
-	# Get various date points in Tor's format, and do some sanity checks
-	vstart=$(sed -n "/^valid-after \(${DATE_RE}\)"'$/s//\1/p; t q; b; :q q' ${consensus})
-	vend=$(sed -n "/^valid-until \(${DATE_RE}\)"'$/s//\1/p; t q; b; :q q' ${consensus})
-	vmid=$(date -ud "${vstart} -0130" +'%F %T')
-	log "Tor: valid-after=${vstart} | valid-until=${vend}"
-
-	if ! date_points_are_sane "${vstart}" "${vend}"; then
-		log "Unexpected valid-until: [${vend}] is not [${vstart} + 3h]"
-		return
-	fi
-
-	curdate=$(date -u +'%F %T')
-	log "Current time is ${curdate}"
-
-	if time_is_in_valid_tor_range "${curdate}" "${vstart}"; then
-		log "Current time is in valid Tor range"
-		return
-	fi
-
-	log "Current time is not in valid Tor range, setting to middle of this range: [${vmid}]"
-	date -us "${vmid}" 1>/dev/null
-
-	# Tor is unreliable with picking a circuit after time change
-	systemctl restart tor@default.service
-}
-
 start_notification_helper() {
 	export_gnome_env
 	exec /bin/su -c /usr/local/lib/tails-htp-notify-user "$LIVE_USERNAME" &
@@ -187,7 +124,6 @@ if tor_is_working; then
 	log "Tor has already opened a circuit"
 else
 	wait_for_tor_consensus
-	maybe_set_time_from_tor_consensus
 fi
 
 wait_for_working_tor
