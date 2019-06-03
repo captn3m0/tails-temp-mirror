@@ -25,7 +25,6 @@ TORDATE_DIR=/run/tordate
 TORDATE_DONE_FILE=${TORDATE_DIR}/done
 TOR_CONSENSUS=${TOR_DIR}/cached-microdesc-consensus
 TOR_UNVERIFIED_CONSENSUS=${TOR_DIR}/unverified-microdesc-consensus
-TOR_UNVERIFIED_CONSENSUS_HARDLINK=${TOR_UNVERIFIED_CONSENSUS}.bak
 INOTIFY_TIMEOUT=60
 DATE_RE='[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]'
 
@@ -60,10 +59,6 @@ has_consensus() {
 		files="$@"
 	fi
 	grep -qs "^valid-until ${DATE_RE}"'$' ${files}
-}
-
-has_only_unverified_consensus() {
-	[ ! -e ${TOR_CONSENSUS} ] && has_consensus ${TOR_UNVERIFIED_CONSENSUS}
 }
 
 wait_for_tor_consensus_helper() {
