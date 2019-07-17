@@ -25,6 +25,13 @@ if [ -z "${FSUUID}" ]; then
    exit 0
 fi
 
+BOOT="${rootmnt}/lib/live/mount/medium"
+
+# Temporarily mount the system partition read-write, to be able to
+# update the random seed.
+trap "mount --remount,ro \"${BOOT}\"" EXIT HUP INT QUIT TERM
+mount --remount,rw "${BOOT}"
+
 log_begin_msg "Writing new random seed to bootloader config"
 SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
 sed -E -i \
