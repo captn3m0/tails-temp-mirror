@@ -8,18 +8,6 @@
 
 set -x
 
-### Store random seed
-
-set -u -e
-
-SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
-sed -E -i \
-    "s/(\s+)append(\s+)(randomseed=\S+\s)?/\1append\2randomseed=${SEED} /g" \
-    "/oldroot/lib/live/mount/medium/syslinux/live64.cfg" \
-    "/oldroot/lib/live/mount/medium/EFI/BOOT/live64.cfg"
-
-set +u +e
-
 ### Unmount relevant filesystems
 
 # Debugging
@@ -35,6 +23,21 @@ mount -o remount,rw /
 # Otherwise aufs pseudo-links can't be removed while unmounting /oldroot,
 # and we can't clean up the content of /mnt/live/overlay.
 mount -o remount,rw /oldroot/lib/live/mount/overlay
+
+# Otherwise we can't update the random seed
+mount -o remount,rw /oldroot/lib/live/mount/medium
+
+### Store random seed
+
+set -u -e
+
+SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
+sed -E -i \
+    "s/(\s+)append(\s+)(randomseed=\S+\s)?/\1append\2randomseed=${SEED} /g" \
+    "/oldroot/lib/live/mount/medium/syslinux/live64.cfg" \
+    "/oldroot/lib/live/mount/medium/EFI/BOOT/live64.cfg"
+
+set +u +e
 
 # Move /oldroot/* mountpoints out of the way
 mkdir -p /mnt/live/overlay
