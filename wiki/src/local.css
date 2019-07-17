@@ -37,9 +37,6 @@ Table of Content:
 /* Load RTL stylesheet */
 @import url("local.rtl.css");
 
-/* Load stylesheet for donation campaign */
-@import url("donate-banner.css");
-
 /* Fonts */
 
 @font-face { font-family: "Source Sans Pro Regular"; src: url("lib/SourceSansPro-Regular.ttf"); }
@@ -85,7 +82,7 @@ body {
 
 /* The bottom margin of all elements is fixed to a multiple of λ so that they
  * don't brake the rythm when they overlap. We set all top margin to 0. */
-p {
+p, table {
     margin: 0 0 1.5em 0; /* 14×1.5=21px=λ */
 }
 
@@ -117,7 +114,7 @@ h3 {
 }
 
 /* avoid super-long lines */
-#content #donate-button,
+.donate-button,
 p, ul, ol, h1, h2, h3, h4, h5, h6 {
     max-width: 45em;
 }
@@ -182,8 +179,13 @@ img.img { /* overwrite style.css */
   margin: 0em;
 }
 
-img.margin { /* overwrite style.css */
-  margin: 2em 4em 2em 0em;
+img.top-margin { /* overwrite style.css */
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+img.right-margin { /* overwrite style.css */
+  margin-right: 4em;
 }
 
 /* Images with caption */
@@ -359,6 +361,7 @@ div.header span.date {
 @media all and (max-width: 480px) {
     .sidebar {
         width: auto;
+        margin-left: 0;
     }
 }
 
@@ -464,6 +467,10 @@ div.header span.date {
     font-size: 1.857em; /* 14×1.857=26px */
     padding-left: 70px;
     line-height: 1em;
+}
+
+html[data-hide-sidebar-donate="true"] .sidebar .donate {
+  display: none;
 }
 
 /* Links */
@@ -621,6 +628,12 @@ input#searchbox {
     background: none;
 }
 
+@media all and (max-width: 480px) {
+    #content {
+        padding-left: 0;
+    }
+}
+
 .toc {
     border-top:thin solid dimgray;
     border-left:thin solid dimgray;
@@ -648,6 +661,11 @@ input#searchbox {
 }
 #pagebody a:hover {
     text-decoration: none;
+}
+
+#pagebody a:visited {
+    color: #276426;
+    border-color: #276426;
 }
 
 /* test inside and outside links */
@@ -1106,7 +1124,7 @@ div.bug, div.caution, div.next, div.note, div.tip, div.trophy {
   min-height: 48px;
   padding-left: 66px;
   margin: 0 0 1.5em 0;
-  max-width: 38em;
+  max-width: 45em;
 }
 div.bug {
   background-image: url(lib/admon-bug.png);
@@ -1128,13 +1146,14 @@ div.trophy {
 }
 
 div.bug pre, div.caution pre, div.next pre, div.note pre, div.tip pre, div.trophy pre {
-  max-width: 34em;
+  max-width: 30em;
 }
 
 /* Command lines */
 
 p.command, p.command-example, p.command-output {
     margin: 0px;
+    margin-bottom: 1.5em;
 }
 
 p.command::before, p.command-example::before {
@@ -1157,12 +1176,11 @@ span.command-placeholder {
 
 /* Inlined icons */
 
-img.symbolic, img.symbolic-22 {
+img.symbolic {
   display: inline-block;
   position: relative;
+  top: 4px;
 }
-img.symbolic { top: 1px; } /* Default: 16 × 16 px */
-img.symbolic-22 { top: 4px; } /* 22 × 22 px */
 
 /* Trail */
 
@@ -1223,8 +1241,8 @@ pre.list-key {
     }
 }
 
-#tor_check a[href="https://check.torproject.org/"] {
-    background: #53b351;
+#tor_check a {
+    background: #53b351 !important;
     -moz-border-radius: 0.5em;
     -webkit-border-radius: 0.5em;
     border-radius: 0.5em;
@@ -1298,9 +1316,9 @@ div#highlight p {
   margin: 0.5em 0;
 }
 
-/* Donation button */
+/* Donate buttons outside of sidebar */
 
-#donate-button a {
+.donate-button a {
   border-bottom: none;
   width: 100%;
   display: block;
@@ -1327,17 +1345,10 @@ div#highlight p {
     font-weight: bold;
     color: #bbb;
     overflow: hidden;
-    width: 100px;
     text-align: left;
-    clear: left;
     line-height: 1.4em;
     margin-right: 2em;
     margin-top: 1em;
-    float: left;
-}
-
-#pagebody .currentpartner {
-    margin-left: 120px;
 }
 
 #pagebody .pastpartner {
@@ -1369,10 +1380,9 @@ div#highlight p {
     -moz-transition-duration: 0.6s;
     -webkit-transition-duration: 0.6s;
     transition-duration: 0.6s;
-    height: 85px;
-    width: auto;
+    max-width: 100%;
+    height: auto;
 }
-
 #pagebody .partner:hover img {
     opacity: 0.8;
 }
@@ -1390,4 +1400,14 @@ div#highlight p {
     -webkit-filter: none;
     filter: none;
     opacity: 1;
+}
+@media all and (min-width: 600px) {
+    #pagebody .amount-range {
+        float: left;
+        clear: left;
+        width: 120px;
+    }
+    #pagebody .currentpartner {
+        margin-left: 120px;
+    }
 }

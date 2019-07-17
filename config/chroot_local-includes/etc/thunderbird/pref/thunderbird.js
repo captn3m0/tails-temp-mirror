@@ -47,8 +47,11 @@ pref("toolkit.telemetry.enabled", false);
 // Only allow SSL channels when fetching from the ISP.
 pref("mailnews.auto_config.fetchFromISP.ssl_only", true);
 // Only allow Thunderbird's automatic configuration wizard to use and
-// configure secure (SSL/TLS) protocols. This is the Thunderbird default
-// but let's be extra sure!
+// configure secure (SSL/TLS) protocols.
+pref("mailnews.auto_config.ssl_only_mail_servers", true);
+// Old name for mailnews.auto_config.ssl_only_mail_servers, to make
+// this configuration still work in case we have to revert to a previous
+// version of the #6156 patchset.
 pref("mailnews.auto_config.account_constraints.ssl_only", true);
 // Drop auto-fetched configurations using Oauth2 -- they do not work
 // together with Torbirdy since it disables needed functionality (like
@@ -60,7 +63,17 @@ pref("mailnews.auto_config.guess.timeout", 30);
 // We disable Memory Hole for encrypted email until support is more
 // mature and widely spread (#15201).
 pref("extensions.enigmail.protectedHeaders", 0);
+// This setting is a good guess - but not used at the moment
 pref("extensions.torbirdy.custom.extensions.enigmail.protectedHeaders", 0);
+
+// Those settings are useless at the moment, just needed to display
+// the correct checkmark in torbirdy (#13649#note-31).
+pref("extensions.enigmail.protectHeaders", false);
+pref("extensions.torbirdy.custom.extensions.enigmail.protectHeaders", false);
+
+// Disable Autocrypt by default for new accounts (#16222).
+// This does not change anything for accounts that were created before.
+pref("mail.server.default.enableAutocrypt", false);
 
 // Don't decrypt subordinate message parts that otherwise might reveal
 // decrypted content to the attacker, i.e. the optional part of the fixes

@@ -164,6 +164,7 @@ Intel
 
 <!--
 Ticket: #12219
+Ticket: #16224
 -->
 
 ### Affected graphics cards
@@ -181,9 +182,14 @@ Various Intel graphics card.
 
 ### Workaround
 
-Adding `xorg-driver=intel` to the
-[[startup options|/doc/first_steps/startup_options#boot_loader_menu]]
-might fix the issue.
+Try adding to the [[startup
+options|/doc/first_steps/startup_options#boot_loader_menu]],
+one after the other:
+
+* `xorg-driver=intel`
+* `nomodeset`
+* `nomodeset xorg-driver=vesa`
+* `xorg-driver=modesetting`
 
 Otherwise, try starting in the *Troubleshooting Mode*.
 
@@ -288,8 +294,6 @@ We need more test results from users: [[!tails_ticket 15116]]
 Other issues
 ============
 
-<a id="sg-black-screen"></a>
-
 Black screen with switchable graphics computers
 -----------------------------------------------
 
@@ -343,7 +347,7 @@ to start the GNOME session and keeps returning to [[Tails
 Greeter|doc/first_steps/startup_options#greeter]].
 
 Starting in *Troubleshooting Mode* works, as well as adding the
-`modeprobe.blacklist=nouveau` to the [[startup
+`modprobe.blacklist=nouveau` to the [[startup
 options|doc/first_steps/startup_options#boot_loader_menu]].
 
 <a id="intel-gm965"></a>
@@ -386,5 +390,5 @@ Virtual machines with *VMware*
 ------------------------------
 
 To improve support of Tails running inside a virtual machine with
-*VMware*, [[install|doc/advanced_topics/additional_software]] the
+*VMware*, [[install|doc/first_steps/additional_software]] the
 `open-vm-tools-desktop` software package in Tails.

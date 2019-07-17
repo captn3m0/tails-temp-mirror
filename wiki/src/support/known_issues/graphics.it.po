@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-10-31 11:23+0100\n"
+"POT-Creation-Date: 2019-05-20 14:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,7 +153,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "<!--\n"
-msgstr ""
+msgstr "<!--\n"
 
 #. type: Title =
 #, no-wrap
@@ -325,12 +325,20 @@ msgid "Intel\n"
 msgstr ""
 
 #. type: Plain text
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "<!--\n"
+#| "Tickets: #11095 #12482\n"
+#| "-->\n"
 msgid ""
 "<!--\n"
 "Ticket: #12219\n"
+"Ticket: #16224\n"
 "-->\n"
 msgstr ""
+"<!--\n"
+"Tickets: #11095 #12482\n"
+"-->\n"
 
 #. type: Plain text
 msgid "Various Intel graphics card."
@@ -347,8 +355,24 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Adding `xorg-driver=intel` to the [[startup options|/doc/first_steps/"
-"startup_options#boot_loader_menu]] might fix the issue."
+"Try adding to the [[startup options|/doc/first_steps/"
+"startup_options#boot_loader_menu]], one after the other:"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`xorg-driver=intel`"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`nomodeset`"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`nomodeset xorg-driver=vesa`"
+msgstr ""
+
+#. type: Bullet: '* '
+msgid "`xorg-driver=modesetting`"
 msgstr ""
 
 #. type: Plain text
@@ -503,11 +527,6 @@ msgstr ""
 msgid "Other issues\n"
 msgstr ""
 
-#. type: Plain text
-#, no-wrap
-msgid "<a id=\"sg-black-screen\"></a>\n"
-msgstr ""
-
 #. type: Title -
 #, no-wrap
 msgid "Black screen with switchable graphics computers\n"
@@ -610,7 +629,7 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Starting in *Troubleshooting Mode* works, as well as adding the `modeprobe."
+"Starting in *Troubleshooting Mode* works, as well as adding the `modprobe."
 "blacklist=nouveau` to the [[startup options|doc/first_steps/"
 "startup_options#boot_loader_menu]]."
 msgstr ""
@@ -683,6 +702,11 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "To improve support of Tails running inside a virtual machine with *VMware*, "
-"[[install|doc/advanced_topics/additional_software]] the `open-vm-tools-"
-"desktop` software package in Tails."
+"[[install|doc/first_steps/additional_software]] the `open-vm-tools-desktop` "
+"software package in Tails."
 msgstr ""
+
+#, fuzzy
+#~| msgid "<a id=\"intel\"></a>\n"
+#~ msgid "<a id=\"lockup\"></a>\n"
+#~ msgstr "<a id=\"intel\"></a>\n"

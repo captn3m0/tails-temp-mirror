@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2018-11-15 12:31+0000\n"
+"POT-Creation-Date: 2019-06-05 16:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. type: Content of: <div>
-msgid "1.0"
+msgid "2.4"
 msgstr ""
 
 #. type: Content of: <div>
@@ -30,6 +30,8 @@ msgid ""
 "Download Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" sort="
 "\"age\"]]"
 msgstr ""
+"Scaricate Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" "
+"sort=\"age\"]]"
 
 #. type: Content of: <div><div><h2>
 msgid "Direct download"
@@ -37,18 +39,50 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"debian windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>1</span>Download Tails"
+"<span class=\"step-number\"><span class=\"windows linux mac upgrade-tails"
+"\">1.</span>1</span>Download Tails"
 msgstr ""
 
-#. type: Content of: <div><div><div><div>
+#. type: Content of: <div><div><div><div><div>
 #, fuzzy
 #| msgid ""
-#| "Download the <a href='[[!inline pages=\"inc/stable_amd64_iso_url\" raw="
-#| "\"yes\" sort=\"age\"]]' class=\"use-mirror-pool\"> Tails [[!inline pages="
-#| "\"inc/stable_amd64_version\" raw=\"yes\" sort=\"age\"]] ISO image</a> "
-#| "(<span class=\"remove-extra-space\">[[!inline pages=\"inc/"
-#| "stable_amd64_iso_size\" raw=\"yes\" sort=\"age\"]]</span>)."
+#| "<a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes\" sort="
+#| "\"age\"]]\" id=\"download-iso\" class=\"use-mirror-pool btn btn-primary "
+#| "inline-block indent\">Download Tails [[!inline pages=\"inc/"
+#| "stable_amd64_version\" raw=\"yes\" sort=\"age\"]] ISO image (<span class="
+#| "\"remove-extra-space\">[[!inline pages=\"inc/stable_amd64_iso_size\" raw="
+#| "\"yes\" sort=\"age\"]]</span>)</a> <a href=\"[[!inline pages=\"inc/"
+#| "stable_amd64_iso_url\" raw=\"yes\" sort=\"age\"]]\" id=\"download-iso\" "
+#| "class=\"use-mirror-pool-on-retry btn btn-primary inline-block indent"
+#| "\">Download Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes"
+#| "\" sort=\"age\"]] ISO image (<span class=\"remove-extra-space\">[[!inline "
+#| "pages=\"inc/stable_amd64_iso_size\" raw=\"yes\" sort=\"age\"]]</span>)</a>"
+msgid ""
+"<a href=\"[[!inline pages=\"inc/stable_amd64_img_url\" raw=\"yes\" sort=\"age"
+"\"]]\" id=\"download-img\" class=\"use-mirror-pool btn btn-primary inline-"
+"block indent\">Download Tails [[!inline pages=\"inc/stable_amd64_version\" "
+"raw=\"yes\" sort=\"age\"]] USB image (<span class=\"remove-extra-space\">[[!"
+"inline pages=\"inc/stable_amd64_img_size\" raw=\"yes\" sort=\"age\"]]</"
+"span>)</a> <a href=\"[[!inline pages=\"inc/stable_amd64_img_url\" raw=\"yes"
+"\" sort=\"age\"]]\" id=\"download-img\" class=\"use-mirror-pool-on-retry btn "
+"btn-primary inline-block indent\">Download Tails [[!inline pages=\"inc/"
+"stable_amd64_version\" raw=\"yes\" sort=\"age\"]] USB image (<span class="
+"\"remove-extra-space\">[[!inline pages=\"inc/stable_amd64_img_size\" raw="
+"\"yes\" sort=\"age\"]]</span>)</a>"
+msgstr ""
+"<a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes\" sort=\"age"
+"\"]]\" id=\"download-iso\" class=\"use-mirror-pool btn btn-primary inline-"
+"block indent\">Scarica Tails [[!inline pages=\"inc/stable_amd64_version\" "
+"raw=\"yes\" sort=\"age\"]] ISO image (<span class=\"remove-extra-space\">[[!"
+"inline pages=\"inc/stable_amd64_iso_size\" raw=\"yes\" sort=\"age\"]]</"
+"span>)</a> <a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes"
+"\" sort=\"age\"]]\" id=\"download-iso\" class=\"use-mirror-pool-on-retry btn "
+"btn-primary inline-block indent\">Scarica Tails [[!inline pages=\"inc/"
+"stable_amd64_version\" raw=\"yes\" sort=\"age\"]] ISO image (<span class="
+"\"remove-extra-space\">[[!inline pages=\"inc/stable_amd64_iso_size\" raw="
+"\"yes\" sort=\"age\"]]</span>)</a>"
+
+#. type: Content of: <div><div><div><div><div>
 msgid ""
 "<a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes\" sort=\"age"
 "\"]]\" id=\"download-iso\" class=\"use-mirror-pool btn btn-primary inline-"
@@ -62,27 +96,31 @@ msgid ""
 "\"remove-extra-space\">[[!inline pages=\"inc/stable_amd64_iso_size\" raw="
 "\"yes\" sort=\"age\"]]</span>)</a>"
 msgstr ""
-"Scarica la <a href='[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes"
-"\"]]' class=\"use-mirror-pool\"> Tails [[!inline pages=\"inc/"
-"stable_amd64_version\" raw=\"yes\"]] immagine ISO </a> (<span class=\"remove-"
-"extra-space\">[[!inline pages=\"inc/stable_amd64_iso_size\" raw=\"yes\" sort="
-"\"age\"]]</span>)."
+"<a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes\" sort=\"age"
+"\"]]\" id=\"download-iso\" class=\"use-mirror-pool btn btn-primary inline-"
+"block indent\">Scarica Tails [[!inline pages=\"inc/stable_amd64_version\" "
+"raw=\"yes\" sort=\"age\"]] ISO image (<span class=\"remove-extra-space\">[[!"
+"inline pages=\"inc/stable_amd64_iso_size\" raw=\"yes\" sort=\"age\"]]</"
+"span>)</a> <a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes"
+"\" sort=\"age\"]]\" id=\"download-iso\" class=\"use-mirror-pool-on-retry btn "
+"btn-primary inline-block indent\">Scarica Tails [[!inline pages=\"inc/"
+"stable_amd64_version\" raw=\"yes\" sort=\"age\"]] ISO image (<span class="
+"\"remove-extra-space\">[[!inline pages=\"inc/stable_amd64_iso_size\" raw="
+"\"yes\" sort=\"age\"]]</span>)</a>"
 
 #. type: Content of: <div><div><div><div><p>
-#, fuzzy
-#| msgid ""
-#| "[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
 msgid ""
 "<a>I already downloaded Tails <span class=\"remove-extra-space\">&nbsp;[[!"
 "inline pages=\"inc/stable_amd64_version\" raw=\"yes\" sort=\"age\"]]</span>."
 "</a>"
 msgstr ""
-"[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
+"<a>Ho già scaricato Tails <span class=\"remove-extra-space\">&nbsp;[[!inline "
+"pages=\"inc/stable_amd64_version\" raw=\"yes\" sort=\"age\"]]</span>.</a>"
 
 #. type: Content of: <div><div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"debian windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>2</span>Verify your download using your browser"
+"<span class=\"step-number\"><span class=\"windows linux mac upgrade-tails"
+"\">1.</span>2</span>Verify your download using your browser"
 msgstr ""
 
 #. type: Content of: <div><div><div><div><p><b>
@@ -95,13 +133,15 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><div><p>
 msgid "[[!toggle id=\"why-verify-supported\" text=\"Why?\"]]"
-msgstr ""
+msgstr "[[!toggle id=\"why-verify-supported\" text=\"Perché?\"]]"
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid ""
 "[[!toggleable id=\"why-verify-supported\" text=\"\"\" [[!toggle id=\"why-"
 "verify-supported\" text=\"X\"]]"
 msgstr ""
+"[[!toggleable id=\"why-verify-supported\" text=\"\"\" [[!toggle id=\"why-"
+"verify-supported\" text=\"X\"]]"
 
 #. type: Content of: <div><div><div><div><div><p>
 msgid "With an unverified download, you might:"
@@ -144,7 +184,7 @@ msgstr ""
 
 #. type: Content of: <div>
 msgid "\"\"\"]]"
-msgstr ""
+msgstr "\"\"\"]]"
 
 #. type: Content of: <div><div><div><div><div><p>
 msgid "Our browser extension makes it quick and easy."
@@ -190,16 +230,18 @@ msgid "<u>Tails Verification</u> extension installed!"
 msgstr ""
 
 #. type: Content of: <div><div><div><div><div>
-#, fuzzy
-#| msgid ""
-#| "[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
 msgid ""
 "<label id=\"verify-download-wrapper\" class=\"btn btn-primary inline-block"
 "\"> Verify Tails <span class=\"remove-extra-space\">&nbsp;[[!inline pages="
 "\"inc/stable_amd64_version\" raw=\"yes\" sort=\"age\"]]</span>&hellip; "
 "<input id=\"verify-download\" type=\"file\"/> </label>"
 msgstr ""
-"[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
+"<label id=\"verify-download-wrapper\" class=\"btn btn-primary inline-block"
+"\">Verificare Tails\n"
+"<span class=\"remove-extra-space\">&nbsp;[[!inline pages=\"inc/"
+"stable_amd64_version\" raw=\"yes\" sort=\"age\"]]</span>&hellip;<input id="
+"\"verify-download\" type=\"file\"/>\n"
+"</label>"
 
 #. type: Content of: <div><div><div><div><div><div><p>
 msgid "Verifying <span id=\"filename\">$FILENAME</span>&hellip;"
@@ -215,13 +257,15 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><div><div><p>
 msgid "[[!toggle id=\"why-failed\" text=\"Why?\"]]"
-msgstr ""
+msgstr "[[!toggle id=\"why-failed\" text=\"Perché?\"]]"
 
 #. type: Content of: <div><div><div><div><div><div><div>
 msgid ""
 "[[!toggleable id=\"why-failed\" text=\"\"\" [[!toggle id=\"why-failed\" text="
 "\"X\"]]"
 msgstr ""
+"[[!toggleable id=\"why-failed\" text=\"\"\" [[!toggle id=\"why-failed\" text="
+"\"X\"]]"
 
 #. type: Content of: <div><div><div><div><div><div><div><p>
 msgid ""
@@ -260,6 +304,24 @@ msgstr ""
 #| "of the latest Tails ISO image and save it to the same folder where you "
 #| "saved the ISO image."
 msgid ""
+"<a href=\"[[!inline pages=\"inc/stable_amd64_img_url\" raw=\"yes\" sort=\"age"
+"\"]]\" id=\"download-img-again\" class=\"use-mirror-pool-on-retry\">Please "
+"try to download again&hellip;</a>"
+msgstr ""
+"Scarica la <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" raw="
+"\"yes\"]]'> Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" "
+"sort=\"age\"]] firma OpenPGP</a> dell'ultima immagine ISO Tails e salvala "
+"nella stessa cartella in cui hai savato l'immagine ISO."
+
+#. type: Content of: <div><div><div><div><div><div><p>
+#, fuzzy
+#| msgid ""
+#| "Download the <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" "
+#| "raw=\"yes\" sort=\"age\"]]'> Tails [[!inline pages=\"inc/"
+#| "stable_amd64_version\" raw=\"yes\" sort=\"age\"]] OpenPGP signature</a> "
+#| "of the latest Tails ISO image and save it to the same folder where you "
+#| "saved the ISO image."
+msgid ""
 "<a href=\"[[!inline pages=\"inc/stable_amd64_iso_url\" raw=\"yes\" sort=\"age"
 "\"]]\" id=\"download-iso-again\" class=\"use-mirror-pool-on-retry\">Please "
 "try to download again&hellip;</a>"
@@ -275,13 +337,15 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><div><div><p>
 msgid "[[!toggle id=\"why-failed-again\" text=\"Why?\"]]"
-msgstr ""
+msgstr "[[!toggle id=\"why-failed-again\" text=\"Perché?\"]]"
 
 #. type: Content of: <div><div><div><div><div><div><div>
 msgid ""
 "[[!toggleable id=\"why-failed-again\" text=\"\"\" [[!toggle id=\"why-failed-"
 "again\" text=\"X\"]]"
 msgstr ""
+"[[!toggleable id=\"why-failed-again\" text=\"\"\" [[!toggle id=\"why-failed-"
+"again\" text=\"X\"]]"
 
 #. type: Content of: <div><div><div><div><div><div><div><p>
 msgid "The verification might have failed again because of:"
@@ -311,28 +375,21 @@ msgid ""
 "computer&hellip;"
 msgstr ""
 
-#. type: Content of: <div><div><div><h3>
+#. type: Content of: <div><div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"debian windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>3</span>Continue <span class=\"debian windows "
-"linux mac-usb mac-dvd\">installing</span> <span class=\"upgrade-tails"
-"\">upgrading</span> <span class=\"download-only\">installing or upgrading</"
-"span>"
+"<span class=\"step-number\"><span class=\"windows linux mac upgrade-tails"
+"\">1.</span>3</span>Continue <span class=\"windows linux mac\">installing</"
+"span> <span class=\"upgrade-tails\">upgrading</span> <span class=\"download-"
+"only-img download-only-iso\">installing or upgrading</span>"
 msgstr ""
 
 #. type: Content of: <div><div><div><div>
 msgid ""
-"<span class=\"debian\">[[Skip download|debian/usb]]</span> <span class="
-"\"windows\">[[Skip download|win/usb]]</span> <span class=\"linux\">[[Skip "
-"download|linux/usb]]</span> <span class=\"mac-usb\">[[Skip download|mac/"
-"usb]]</span> <span class=\"mac-dvd\">[[Skip download|mac/dvd]]</span> <span "
-"class=\"dvd\">[[Skip download|dvd]]</span> <span class=\"vm\">[[Skip "
-"download|doc/advanced_topics/virtualization]]</span> <span class=\"upgrade-"
-"tails\">[[Skip download|upgrade/tails]]</span>"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div><div>
-msgid "[[Skip verification!|debian/usb]]"
+"<span class=\"windows\">[[Skip download|win/usb]]</span> <span class=\"linux"
+"\">[[Skip download|linux/usb]]</span> <span class=\"mac\">[[Skip download|"
+"mac/usb]]</span> <span class=\"dvd\">[[Skip download|dvd]]</span> <span "
+"class=\"vm\">[[Skip download|doc/advanced_topics/virtualization]]</span> "
+"<span class=\"upgrade-tails\">[[Skip download|upgrade/tails]]</span>"
 msgstr ""
 
 #. type: Content of: <div><div><div><div><div><div>
@@ -345,10 +402,6 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid "[[Skip verification!|mac/usb]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div><div>
-msgid "[[Skip verification!|mac/dvd]]"
 msgstr ""
 
 #. type: Content of: <div><div><div><div><div><div>
@@ -368,13 +421,20 @@ msgid "[["
 msgstr "[["
 
 #. type: Content of: <div><div><div><div><div><div>
-msgid ""
-"Next: Install <em>Tails Installer</em> (<span class=\"next-counter\"></span>)"
+msgid "Next: Install Tails (<span class=\"next-counter\"></span>)"
 msgstr ""
 
 #. type: Content of: <div><div><div><div><div>
-msgid "|debian/usb]]"
-msgstr ""
+msgid "|win/usb]]"
+msgstr "|win/usb]]"
+
+#. type: Content of: <div><div><div><div><div>
+msgid "|linux/usb]]"
+msgstr "|linux/usb]]"
+
+#. type: Content of: <div><div><div><div><div>
+msgid "|mac/usb]]"
+msgstr "|mac/usb]]"
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid ""
@@ -382,28 +442,8 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <div><div><div><div><div>
-msgid "|win/usb]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div>
-msgid "|linux/usb]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div>
-msgid "|mac/usb]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div><div>
-msgid "Next: Burn a Tails DVD (<span class=\"next-counter\"></span>)"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div>
-msgid "|mac/dvd]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><div>
 msgid "|upgrade/tails]]"
-msgstr ""
+msgstr "|upgrade/tails]]"
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid "Next: Burning Tails on a DVD"
@@ -411,7 +451,7 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><div>
 msgid "|dvd]]"
-msgstr ""
+msgstr "|dvd]]"
 
 #. type: Content of: <div><div><div><div><div><div>
 msgid "Next: Virtualization"
@@ -419,26 +459,30 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><div>
 msgid "|doc/advanced_topics/virtualization]]"
+msgstr "|doc/advanced_topics/virtualization]]"
+
+#. type: Content of: <div><div><div><div><div><p>
+msgid "Upgrade your Tails USB stick and keep your persistent storage:"
 msgstr ""
 
-#. type: Content of: <div><div><div><div><ul><li>
+#. type: Content of: <div><div><div><div><div><ul><li>
+msgid "[[Upgrade inside Tails|upgrade/tails]]"
+msgstr ""
+
+#. type: Content of: <div><div><div><div><div><p>
+msgid "Install a new USB stick:"
+msgstr ""
+
+#. type: Content of: <div><div><div><div><div><ul><li>
 msgid "[[Install from Windows|install/win/usb]]"
 msgstr ""
 
-#. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Install from Debian, Ubuntu, or Mint|install/debian/usb]]"
+#. type: Content of: <div><div><div><div><div><ul><li>
+msgid "[[Install from macOS|install/mac/usb]]"
 msgstr ""
 
-#. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Install from other Linux distributions|install/linux/usb]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Install from macOS by burning a DVD first|install/mac/dvd]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Install from macOS and the command line|install/mac/usb]]"
+#. type: Content of: <div><div><div><div><div><ul><li>
+msgid "[[Install from Linux|install/linux/usb]]"
 msgstr ""
 
 #. type: Content of: <div><div><div><div><ul><li>
@@ -447,10 +491,6 @@ msgstr ""
 
 #. type: Content of: <div><div><div><div><ul><li>
 msgid "[[Run in a virtual machine|doc/advanced_topics/virtualization]]"
-msgstr ""
-
-#. type: Content of: <div><div><div><div><ul><li>
-msgid "[[Upgrade inside Tails|upgrade/tails]]"
 msgstr ""
 
 #. type: Content of: <div><div><div><p>
@@ -507,10 +547,6 @@ msgid "Copy and paste this link in Firefox, Chrome, or Tor Browser:"
 msgstr ""
 
 #. type: Content of: <div><div><div><p>
-msgid "<code>https://tails.boum.org/install/debian/usb-download/</code>"
-msgstr ""
-
-#. type: Content of: <div><div><div><p>
 msgid "<code>https://tails.boum.org/install/win/usb-download/</code>"
 msgstr ""
 
@@ -520,10 +556,6 @@ msgstr ""
 
 #. type: Content of: <div><div><div><p>
 msgid "<code>https://tails.boum.org/install/mac/usb-download/</code>"
-msgstr ""
-
-#. type: Content of: <div><div><div><p>
-msgid "<code>https://tails.boum.org/install/mac/dvd-download/</code>"
 msgstr ""
 
 #. type: Content of: <div><div><div><p>
@@ -540,7 +572,13 @@ msgstr ""
 
 #. type: Content of: <div><div><div><p>
 msgid "<code>https://tails.boum.org/install/download/</code>"
-msgstr ""
+msgstr "<code>https://tails.boum.org/install/download/</code>"
+
+#. type: Content of: <div><div><div><p>
+#, fuzzy
+#| msgid "<code>https://tails.boum.org/install/download/</code>"
+msgid "<code>https://tails.boum.org/install/download-iso/</code>"
+msgstr "<code>https://tails.boum.org/install/download/</code>"
 
 #. type: Content of: <div><div><h2>
 msgid "BitTorrent download"
@@ -548,13 +586,15 @@ msgstr ""
 
 #. type: Content of: <div><div><p>
 msgid "[[!toggle id=\"what-is-bittorrent\" text=\"What is BitTorrent?\"]]"
-msgstr ""
+msgstr "[[!toggle id=\"what-is-bittorrent\" text=\"Cos'è BitTorrent?\"]]"
 
 #. type: Content of: <div><div><div>
 msgid ""
 "[[!toggleable id=\"what-is-bittorrent\" text=\"\"\" [[!toggle id=\"what-is-"
 "bittorrent\" text=\"X\"]]"
 msgstr ""
+"[[!toggleable id=\"what-is-bittorrent\" text=\"\"\" [[!toggle id=\"what-is-"
+"bittorrent\" text=\"X\"]]"
 
 #. type: Content of: <div><div><div><p>
 msgid ""
@@ -575,11 +615,11 @@ msgstr ""
 
 #. type: Content of: <div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"debian windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>1</span>Download Tails (Torrent file)"
+"<span class=\"step-number\"><span class=\"windows linux mac upgrade-tails"
+"\">1.</span>1</span>Download Tails (Torrent file)"
 msgstr ""
 
-#. type: Content of: <div><div><div>
+#. type: Content of: <div><div><div><div>
 #, fuzzy
 #| msgid ""
 #| "Download the <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" "
@@ -588,10 +628,29 @@ msgstr ""
 #| "of the latest Tails ISO image and save it to the same folder where you "
 #| "saved the ISO image."
 msgid ""
-"<a href=\"[[!inline pages=\"inc/stable_amd64_torrent_url\" raw=\"yes\" sort="
-"\"age\"]]\" id=\"download-torrent\" class=\"btn btn-primary inline-block "
-"indent\">Download Tails [[!inline pages=\"inc/stable_amd64_version\" raw="
-"\"yes\" sort=\"age\"]] Torrent file</a>"
+"<a href=\"[[!inline pages=\"inc/stable_amd64_img_torrent_url\" raw=\"yes\" "
+"sort=\"age\"]]\" id=\"download-img-torrent\" class=\"btn btn-primary inline-"
+"block indent\">Download Tails [[!inline pages=\"inc/stable_amd64_version\" "
+"raw=\"yes\" sort=\"age\"]] Torrent file for USB image</a>"
+msgstr ""
+"Scarica la <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" raw="
+"\"yes\"]]'> Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" "
+"sort=\"age\"]] firma OpenPGP</a> dell'ultima immagine ISO Tails e salvala "
+"nella stessa cartella in cui hai savato l'immagine ISO."
+
+#. type: Content of: <div><div><div><div>
+#, fuzzy
+#| msgid ""
+#| "Download the <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" "
+#| "raw=\"yes\" sort=\"age\"]]'> Tails [[!inline pages=\"inc/"
+#| "stable_amd64_version\" raw=\"yes\" sort=\"age\"]] OpenPGP signature</a> "
+#| "of the latest Tails ISO image and save it to the same folder where you "
+#| "saved the ISO image."
+msgid ""
+"<a href=\"[[!inline pages=\"inc/stable_amd64_iso_torrent_url\" raw=\"yes\" "
+"sort=\"age\"]]\" id=\"download-iso-torrent\" class=\"btn btn-primary inline-"
+"block indent\">Download Tails [[!inline pages=\"inc/stable_amd64_version\" "
+"raw=\"yes\" sort=\"age\"]] Torrent file for ISO image</a>"
 msgstr ""
 "Scarica la <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" raw="
 "\"yes\"]]'> Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" "
@@ -600,8 +659,8 @@ msgstr ""
 
 #. type: Content of: <div><div><div><h3>
 msgid ""
-"<span class=\"step-number\"><span class=\"debian windows linux mac-usb mac-"
-"dvd upgrade-tails\">1.</span>2</span>Verify your download using BitTorrent"
+"<span class=\"step-number\"><span class=\"windows linux mac upgrade-tails"
+"\">1.</span>2</span>Verify your download using BitTorrent"
 msgstr ""
 
 #. type: Content of: <div><div><div><p>
@@ -610,11 +669,20 @@ msgid ""
 "complete."
 msgstr ""
 
+#. type: Content of: <div><div><div><h3>
+msgid ""
+"<span class=\"step-number\"><span class=\"windows linux mac dvd vm upgrade-"
+"tails\">1.</span>3</span>Continue <span class=\"windows linux mac"
+"\">installing</span> <span class=\"upgrade-tails\">upgrading</span> <span "
+"class=\"download-only-img download-only-iso\">installing or upgrading</span>"
+msgstr ""
+
 #. type: Content of: <div><div><div><p>
 msgid ""
 "Open and download the Torrent file with your BitTorrent client. It contains "
 "the Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" sort=\"age"
-"\"]] ISO image that you will use in the next step."
+"\"]] <span class=\"windows linux mac upgrade-tails\">USB</span> <span class="
+"\"dvd vm\">ISO</span> image that you will use in the next step."
 msgstr ""
 
 #. type: Content of: <div><h2>
@@ -628,7 +696,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <div><ol><li><p>
-msgid "Download the [[Tails signing key|tails-signing.key]]."
+msgid "Download and import the [[Tails signing key|tails-signing.key]]."
 msgstr ""
 
 #. type: Content of: <div><ol><li><p>
@@ -640,10 +708,15 @@ msgstr ""
 #| "of the latest Tails ISO image and save it to the same folder where you "
 #| "saved the ISO image."
 msgid ""
-"Download the <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" raw="
-"\"yes\" sort=\"age\"]]'> Tails [[!inline pages=\"inc/stable_amd64_version\" "
-"raw=\"yes\" sort=\"age\"]] OpenPGP signature</a> and save it to the same "
-"folder where you saved the ISO image."
+"Download the <a class=\"windows linux mac upgrade-tails download-only-img\" "
+"href=\"[[!inline pages=\"inc/stable_amd64_img_sig_url\" raw=\"yes\" sort="
+"\"age\"]]\">OpenPGP signature for the Tails [[!inline pages=\"inc/"
+"stable_amd64_version\" raw=\"yes\" sort=\"age\"]] USB image</a> <a class="
+"\"dvd vm download-only-iso\" href=\"[[!inline pages=\"inc/"
+"stable_amd64_iso_sig_url\" raw=\"yes\" sort=\"age\"]]\">OpenPGP signature "
+"for the Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" sort="
+"\"age\"]] ISO image</a> and save it to the same folder where you saved the "
+"image."
 msgstr ""
 "Scarica la <a href='[[!inline pages=\"inc/stable_amd64_iso_sig_url\" raw="
 "\"yes\"]]'> Tails [[!inline pages=\"inc/stable_amd64_version\" raw=\"yes\" "
@@ -733,8 +806,13 @@ msgstr ""
 "The validity of the signature cannot be verified.\n"
 
 #. type: Content of: <div><ol><li><p>
+#, fuzzy
+#| msgid ""
+#| "Then the ISO image is still correct according to the signing key that you "
+#| "downloaded. To remove this warning you need to <a href=\"#wot"
+#| "\">authenticate the signing key through the OpenPGP Web of Trust</a>."
 msgid ""
-"Then the ISO image is still correct according to the signing key that you "
+"Then the image is still correct according to the signing key that you "
 "downloaded. To remove this warning you need to <a href=\"#wot\">authenticate "
 "the signing key through the OpenPGP Web of Trust</a>."
 msgstr ""
@@ -751,16 +829,25 @@ msgid "In macOS using <span class=\"application\">GPGTools</span>"
 msgstr "In macOS usando <span class=\"application\">GPGTools</span>"
 
 #. type: Content of: <div><ol><li>
+#, fuzzy
+#| msgid ""
+#| "Open <span class=\"application\">Finder</span> and navigate to the folder "
+#| "where you saved the ISO image and the signature."
 msgid ""
 "Open <span class=\"application\">Finder</span> and navigate to the folder "
-"where you saved the ISO image and the signature."
+"where you saved the image and the signature."
 msgstr ""
 "Apri il <span class=\"application\">Finder</span> e naviga nella cartella "
 "dove hai salvato l'immagine ISO e la firma."
 
 #. type: Content of: <div><ol><li>
+#, fuzzy
+#| msgid ""
+#| "Right-click on the ISO image and choose <span class=\"guimenuchoice\"> "
+#| "<span class=\"guisubmenu\">Services</span> ▸ <span class=\"guimenuitem"
+#| "\">OpenPGP: Verify Signature of File</span></span>."
 msgid ""
-"Right-click on the ISO image and choose <span class=\"guimenuchoice\"> <span "
+"Right-click on the image and choose <span class=\"guimenuchoice\"> <span "
 "class=\"guisubmenu\">Services</span> ▸ <span class=\"guimenuitem\">OpenPGP: "
 "Verify Signature of File</span></span>."
 msgstr ""
@@ -777,9 +864,13 @@ msgid "In Tails"
 msgstr "Su Tails"
 
 #. type: Content of: <div><ol><li>
+#, fuzzy
+#| msgid ""
+#| "Open the file browser and navigate to the folder where you saved the ISO "
+#| "image and the signature."
 msgid ""
-"Open the file browser and navigate to the folder where you saved the ISO "
-"image and the signature."
+"Open the file browser and navigate to the folder where you saved the image "
+"and the signature."
 msgstr ""
 "Apri il navigatore di file e arriva nella cartella dove hai salvato "
 "l'immagine ISO e la firma."
@@ -793,12 +884,14 @@ msgstr ""
 "\">Open With Verify Signature</span>."
 
 #. type: Content of: <div><ol><li>
-msgid "The verification of the ISO image starts automatically:"
+#, fuzzy
+#| msgid "The verification of the ISO image starts automatically:"
+msgid "The verification of the image starts automatically:"
 msgstr "La verifica dell'immagine ISO inizierà automaticamente:"
 
 #. type: Content of: <div><ol><li><p>
 msgid "[[!img install/inc/screenshots/verifying_in_tails.png link=\"no\"]]"
-msgstr "[[!img install/inc/screenshots/notification_in_tails.png link=\"no\"]]"
+msgstr "[[!img install/inc/screenshots/verifying_in_tails.png link=\"no\"]]"
 
 #. type: Content of: <div><ol><li>
 msgid ""
@@ -807,7 +900,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <div><ol><li><p>
-msgid "[[!img install/inc/screenshots/notification_in_tails.png link=\"no\"]]"
+#, fuzzy
+#| msgid "[[!img install/inc/screenshots/verifying_in_tails.png link=\"no\"]]"
+msgid ""
+"[[!img install/inc/screenshots/verifying_in_tails_img_notification.png link="
+"\"no\"]]"
+msgstr "[[!img install/inc/screenshots/notification_in_tails.png link=\"no\"]]"
+
+#. type: Content of: <div><ol><li><p>
+#, fuzzy
+#| msgid "[[!img install/inc/screenshots/verifying_in_tails.png link=\"no\"]]"
+msgid ""
+"[[!img install/inc/screenshots/verifying_in_tails_iso_notification.png link="
+"\"no\"]]"
 msgstr "[[!img install/inc/screenshots/notification_in_tails.png link=\"no\"]]"
 
 #. type: Content of: <div>
@@ -819,9 +924,13 @@ msgid "Using the command line"
 msgstr "Usare la riga di comando"
 
 #. type: Content of: <div><ol><li>
+#, fuzzy
+#| msgid ""
+#| "Open a terminal and navigate to the folder where you saved the ISO image "
+#| "and the signature."
 msgid ""
-"Open a terminal and navigate to the folder where you saved the ISO image and "
-"the signature."
+"Open a terminal and navigate to the folder where you saved the image and the "
+"signature."
 msgstr ""
 "Apri un terminale e naviga nella cartella dove hai salvato l'immagine ISO e "
 "la firma."
@@ -831,8 +940,22 @@ msgid "Execute:"
 msgstr "Esegui:"
 
 #. type: Content of: <div><ol><li><p>
+#, fuzzy
+#| msgid ""
+#| "[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
 msgid ""
+"[[!inline pages=\"inc/stable_amd64_img_gpg_verify\" raw=\"yes\" sort=\"age"
+"\"]]"
+msgstr ""
 "[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
+
+#. type: Content of: <div><ol><li><p>
+#, fuzzy
+#| msgid ""
+#| "[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
+msgid ""
+"[[!inline pages=\"inc/stable_amd64_iso_gpg_verify\" raw=\"yes\" sort=\"age"
+"\"]]"
 msgstr ""
 "[[!inline pages=\"inc/stable_amd64_gpg_verify\" raw=\"yes\" sort=\"age\"]]"
 
@@ -841,9 +964,25 @@ msgid "The output of this command should be the following:"
 msgstr "L'output di questo comando dovrebbe essere il seguente:"
 
 #. type: Content of: <div><ol><li><p>
+#, fuzzy
+#| msgid ""
+#| "[[!inline pages=\"inc/stable_amd64_gpg_signature_output\" raw=\"yes\" "
+#| "sort=\"age\"]]"
 msgid ""
+"[[!inline pages=\"inc/stable_amd64_img_gpg_signature_output\" raw=\"yes\" "
+"sort=\"age\"]]"
+msgstr ""
 "[[!inline pages=\"inc/stable_amd64_gpg_signature_output\" raw=\"yes\" sort="
 "\"age\"]]"
+
+#. type: Content of: <div><ol><li><p>
+#, fuzzy
+#| msgid ""
+#| "[[!inline pages=\"inc/stable_amd64_gpg_signature_output\" raw=\"yes\" "
+#| "sort=\"age\"]]"
+msgid ""
+"[[!inline pages=\"inc/stable_amd64_iso_gpg_signature_output\" raw=\"yes\" "
+"sort=\"age\"]]"
 msgstr ""
 "[[!inline pages=\"inc/stable_amd64_gpg_signature_output\" raw=\"yes\" sort="
 "\"age\"]]"
@@ -862,10 +1001,8 @@ msgstr ""
 "gpg:          There is no indication that the signature belongs to the owner."
 
 #. type: Content of: <div>
-#, fuzzy
-#| msgid "<a id=\"wot\"></a>"
 msgid "\"\"\"]] <a id=\"wot\"></a>"
-msgstr "<a id=\"wot\"></a>"
+msgstr "\"\"\"]] <a id=\"wot\"></a>"
 
 #. type: Content of: <div><h3>
 msgid "Authenticate the signing key through the OpenPGP Web of Trust"
@@ -948,10 +1085,10 @@ msgstr ""
 #| "Tails. You can trust this signing key as much as you are trusting your "
 #| "Tails installation already because you are not downloading it."
 msgid ""
-"If you are verifying an ISO image from inside Tails, for example, to do a "
-"manual upgrade, then you already have the Tails signing key.  You can trust "
-"this signing key as much as you already trust your Tails installation since "
-"this signing key is included in your Tails installation."
+"If you are verifying an image from inside Tails, for example, to do a manual "
+"upgrade, then you already have the Tails signing key.  You can trust this "
+"signing key as much as you already trust your Tails installation since this "
+"signing key is included in your Tails installation."
 msgstr ""
 "Se stai verificando un'immagine ISO essendo già in Tails, per esempio per "
 "fare un aggiornamento manuale, allora la chiave di firma Tails è già inclusa "
@@ -1129,189 +1266,3 @@ msgstr ""
 "Una volta che hai stabilito un sentiero di fiducia, puoi certificare la "
 "chiave di firma di Tails firmandola con la tua stessa chiave per liberarti "
 "di alcuni degli avvertimenti duranta il processo di verifica."
-
-#~ msgid ""
-#~ "Verify the date of the signature to make sure that you downloaded the "
-#~ "latest version."
-#~ msgstr ""
-#~ "Verifica la data della firma per essere certa che hai scaricato l'ultima "
-#~ "versione."
-
-#~ msgid ""
-#~ "The OpenPGP verification is the only technique that allows you to verify "
-#~ "the ISO image even better by also authenticating the Tails signing key "
-#~ "through the OpenPGP Web of Trust. Relying on the OpenPGP Web of Trust is "
-#~ "the only way to completely protect you from malicious downloads."
-#~ msgstr ""
-#~ "La verifica OpenPGP è l'unica tecnica che ti consente di verificare "
-#~ "l'immagine ISO ancora meglio attraverso l'autenticazione della chiave di "
-#~ "firma Tails tramite la Web of Trust OpenPGP. Affidarsi alla Web of Trust "
-#~ "OpenPGP è l'unico modo per proteggerti completamente da download malevoli."
-
-#~ msgid ""
-#~ "After the verification finishes, click on the notification counter in the "
-#~ "bottom-right corner and on the notification with a transparent background "
-#~ "on the right of the notification area:"
-#~ msgstr ""
-#~ "Quando la verifica è completata, clicca sul contatore di notifiche "
-#~ "nell'angolo in basso a destra e sulla notifica con uno sfondo trasparente "
-#~ "sulla destra dell'area di notifica:"
-
-#~ msgid "Download and verify using OpenPGP"
-#~ msgstr "Scarica e verifica usando OpenPGP"
-
-#~ msgid ""
-#~ "These instructions are for people who are already familiar with basic "
-#~ "usage of OpenPGP and have <em>GPG</em> installed but might need guidance "
-#~ "on performing the verification."
-#~ msgstr ""
-#~ "Queste istruzioni sono per persone che sono già familiari con un uso base "
-#~ "di OpenPGP e hanno <em>GPG</em> installato, ma potrebbero avere necessità "
-#~ "di una guida per effettuare la verifica."
-
-#~ msgid ""
-#~ "If you are doing the verification for the first time, download the "
-#~ "[[Tails signing key|tails-signing.key]] and import it in your keyring.  "
-#~ "If you are working from Tails, the signing key is already included."
-#~ msgstr ""
-#~ "Se stai facendo la verifica per la prima volta, scarica la  [[chiave di "
-#~ "firma Tails|tails-signing.key]] e importala nel tuo portachiavi. Se stai "
-#~ "lavorando da Tails, la chiave di firma è già inclusa."
-
-#~ msgid ""
-#~ "All our ISO images are signed with the same signing key, so you only have "
-#~ "to import it once. Still, you have to verify the ISO image every time you "
-#~ "download a new one."
-#~ msgstr ""
-#~ "Tutte le immagini ISO sono firmate con la stessa chiave, quindi devi "
-#~ "importarla solo una volta. In ogni caso, devi verificare l'immagine ISO "
-#~ "ogni volta in cui ne scarichi una nuova."
-
-#~ msgid ""
-#~ "This download of the Tails signing key is protected using HTTPS.  But you "
-#~ "could still download a malicious signing key if our website is "
-#~ "compromised or if you are victim of a [[man-in-the-middle attack|doc/"
-#~ "about/warning#man-in-the-middle]]."
-#~ msgstr ""
-#~ "Questo download della chiave di firma Tails è protetto usato HTTPS. Ma "
-#~ "potresti comunque scaricare una chiave di firma maligna se il tuo sito "
-#~ "compromesso o se sei vittima di un [[attacco man-in-the-middle|doc/about/"
-#~ "warning#man-in-the-middle]]."
-
-#~ msgid ""
-#~ "For additional verification, you can <a href=\"#wot\">authenticate the "
-#~ "signing key through the OpenPGP Web of Trust</a>."
-#~ msgstr ""
-#~ "Per verifiche aggiuntive, puoi <a href=\"#wot\">autenticare la chiave di "
-#~ "firma attraverso la Web of Trust di OpenPGP</a>."
-
-#~ msgid "Verify the ISO image"
-#~ msgstr "Verificare l'immagine ISO"
-
-#~ msgid ""
-#~ "As explained above in step 3, this simple OpenPGP verification provides a "
-#~ "level of verification equivalent to HTTPS, like the [[Firefox extension "
-#~ "or BitTorrent|install/download]], unless you also <a href=\"#wot"
-#~ "\">authenticate the signing key through the OpenPGP Web of Trust</a>."
-#~ msgstr ""
-#~ "Come spiegato precedentemente al passaggio 3, questa semplice verica "
-#~ "OpenPGP fornisce un livello di verifica equivalente all'HTTPS, come "
-#~ "un'[[estensione Firefox o BitTorrent|install/download]], a meno che tu "
-#~ "non <a href=\"#wot\">autentichi la chiave di firma utilizzando la Web of "
-#~ "Trust OpenPGP</a>."
-
-#~ msgid "Further reading on OpenPGP"
-#~ msgstr "Altre letture su OpenPGP"
-
-#~ msgid "[[!wikipedia GnuPG desc=\"Wikipedia: %s\"]], a free OpenPGP software"
-#~ msgstr ""
-#~ "[[!wikipedia GnuPG desc=\"Wikipedia: %s\"]], un software OpenPGP free"
-
-#~ msgid "[[Apache: How To OpenPGP|http://www.apache.org/dev/openpgp.html]]"
-#~ msgstr "[[Apache: How To OpenPGP|http://www.apache.org/dev/openpgp.html]]"
-
-#~ msgid ""
-#~ "[[Debian: Keysigning|http://www.debian.org/events/keysigning]], a "
-#~ "tutorial on signing keys of other people"
-#~ msgstr ""
-#~ "[[Debian: Keysigning|http://www.debian.org/events/keysigning]], un "
-#~ "tutorial sulle chiavi di firma delle altre persone"
-
-#~ msgid ""
-#~ "[[rubin.ch: Explanation of the web of trust of PGP|http://www.rubin.ch/"
-#~ "pgp/weboftrust.en.html]]"
-#~ msgstr ""
-#~ "[[rubin.ch: Explanation of the web of trust of PGP|http://www.rubin.ch/"
-#~ "pgp/weboftrust.en.html]]"
-
-#~ msgid ""
-#~ "[[Gpg4win: Certificate inspection|http://www.gpg4win.org/doc/en/gpg4win-"
-#~ "compendium_16.html]], instructions to manage key trust with Gpg4win"
-#~ msgstr ""
-#~ "[[Gpg4win: Certificate inspection|http://www.gpg4win.org/doc/en/gpg4win-"
-#~ "compendium_16.html]], istruzioni su come gestire la fiducia nelle chiavi "
-#~ "con Gpg4win"
-
-#, fuzzy
-#~| msgid ""
-#~| "Verify the date of the signature to make sure that you downloaded the "
-#~| "latest version."
-#~ msgid ""
-#~ "Verify the date of the signature to make sure that you downloaded the "
-#~ "latest version.  If the output also includes:"
-#~ msgstr ""
-#~ "Verifica la data della firma per essere certa che hai scaricato l'ultima "
-#~ "versione."
-
-#, fuzzy
-#~| msgid ""
-#~| "   [[!img install/inc/screenshots/verifying_in_tails.png link=\"no\"]]\n"
-#~ msgid ""
-#~ "The verification of the ISO image starts automatically: [[!img install/"
-#~ "inc/screenshots/verifying_in_tails.png link=\"no\"]]"
-#~ msgstr ""
-#~ "   [[!img install/inc/screenshots/verifying_in_tails.png link=\"no\"]]\n"
-
-#~ msgid "<div class=\"caution\">\n"
-#~ msgstr "<div class=\"caution\">\n"
-
-#~ msgid "</div>\n"
-#~ msgstr "</div>\n"
-
-#~ msgid ""
-#~ "   Verify the date of the signature to make sure that you downloaded the "
-#~ "latest version.\n"
-#~ msgstr ""
-#~ "   Verifica la data della firma per assicurarti di aver scaricato "
-#~ "l'ultima versione.\n"
-
-#~ msgid ""
-#~ "   Then the ISO image is still correct according to the signing key that "
-#~ "you\n"
-#~ "   downloaded. To remove this warning you need to <a href=\"#wot"
-#~ "\">authenticate\n"
-#~ "   the signing key through the OpenPGP Web of Trust</a>.\n"
-#~ msgstr ""
-#~ "   L'immagine ISO è ancora corretta secondo la chiave di firma che hai\n"
-#~ "   scaricato. Per rimuovere questo avviso devi  <a href=\"#wot"
-#~ "\">autenticare\n"
-#~ "   la chiave di firma attraverso la Web of Trust OpenPGP</a>.\n"
-
-#~ msgid "<div class=\"note\">\n"
-#~ msgstr "<div class=\"note\">\n"
-
-#~ msgid "<div class=\"tip\">\n"
-#~ msgstr "<div class=\"tip\">\n"
-
-#~ msgid ""
-#~ "<p>Tails [[transitioned to a new signing\n"
-#~ "key|news/signing_key_transition]] in March 2015.\n"
-#~ "If you had the previous signing key, make sure\n"
-#~ "to [[import and verify the new signing\n"
-#~ "key|news/signing_key_transition#index1h1]].</p>\n"
-#~ msgstr ""
-#~ "<p>Tails [[è passato a una nuova chiave\n"
-#~ "di firma|news/signing_key_transition]] nel marzo 2015.\n"
-#~ "Se avevi la chiave di firma precedente, assicurati\n"
-#~ "di [[importare e verificare la nuova chiave\n"
-#~ "di firma|news/signing_key_transition#index1h1]].</p>\n"

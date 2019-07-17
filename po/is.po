@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Sveinn í Felli <sv1@fellsnet.is>, 2016-2018
+# Sveinn í Felli <sv1@fellsnet.is>, 2016-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 16:04+0100\n"
-"PO-Revision-Date: 2018-10-04 08:07+0000\n"
+"POT-Creation-Date: 2019-06-30 18:53+0200\n"
+"PO-Revision-Date: 2019-05-23 08:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/otf/torproject/language/"
 "is/)\n"
@@ -78,8 +78,8 @@ msgstr ""
 "Eftirfarandi viðbótarhugbúnaður verður settur upp sjálfvirkt úr varanlegu "
 "gagnageymslunni þinni við ræsingu Tails."
 
-#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:132
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:172
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:135
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:173
 msgid ""
 "To add more, install some software using <a href=\"synaptic.desktop"
 "\">Synaptic Package Manager</a> or <a href=\"org.gnome.Terminal.desktop"
@@ -89,7 +89,7 @@ msgstr ""
 "\"synaptic.desktop\">Synaptic pakkastjóranum</a> eða með <a href=\"org.gnome."
 "Terminal.desktop\">APT á skipanalínu</a>."
 
-#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:151
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:154
 msgid "_Create persistent storage"
 msgstr "Út_búa varanlega gagnageymslu"
 
@@ -112,43 +112,61 @@ msgid "Do you want to start Electrum anyway?"
 msgstr "Viltu samt ræsa Electrum?"
 
 #: config/chroot_local-includes/usr/local/bin/electrum:63
-#: config/chroot_local-includes/usr/local/bin/liferea:33
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:41
 msgid "_Launch"
 msgstr "_Ræsa"
 
 #: config/chroot_local-includes/usr/local/bin/electrum:64
-#: config/chroot_local-includes/usr/local/bin/liferea:32
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:42
 msgid "_Exit"
 msgstr "_Hætta"
 
-#: config/chroot_local-includes/usr/local/bin/liferea:18
-msgid "Liferea is deprecated"
-msgstr "Liferea hugbúnaðurinn er úreltur"
-
-#: config/chroot_local-includes/usr/local/bin/liferea:19
-msgid "Do you wish to start Liferea anyway?"
-msgstr "Viltu samt ræsa Liferea?"
-
-#: config/chroot_local-includes/usr/local/bin/liferea:21
+#: config/chroot_local-includes/usr/local/bin/keepassx:17
+#, sh-format
 msgid ""
-"Due to security concerns the Liferea feed reader will be removed from Tails "
-"by the end of 2018. Please migrate your feeds to Thunderbird."
+"<b><big>Do you want to rename your <i>KeePassX</i> database?</big></b>\n"
+"\n"
+"You have a <i>KeePassX</i> database in your <i>Persistent</i> folder:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Renaming it to <i>keepassx.kdbx</i> would allow <i>KeePassX</i> to open it "
+"automatically in the future."
 msgstr ""
-"Vegna öryggistakmarkana verður Liferea fréttastraumalesarinn fjarlægður úr "
-"Tails í árslok 2018. Endilega yfirfærðu fréttastreymin þín yfir í "
-"Thunderbird."
+"<b><big>Viltu endurnefna <i>KeePassX</i> gagnagrunninn þinn?</big></b>\n"
+"\n"
+"Þú ert með <i>KeePassX</i> gagnagrunn í <i>varanlegu</i> möppunni þinni:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Ef þú endurnefnir það sem <i>keepassx.kdbx</i> þá mun <i>KeePassX</i> geta "
+"framvegis opnað það sjálfkrafa."
+
+#: config/chroot_local-includes/usr/local/bin/keepassx:25
+msgid "Rename"
+msgstr "Endurnefna"
+
+#: config/chroot_local-includes/usr/local/bin/keepassx:26
+msgid "Keep current name"
+msgstr "Halda fyrirliggjandi nafni"
+
+#: config/chroot_local-includes/usr/local/bin/replace-su-with-sudo:21
+msgid "su is disabled. Please use sudo instead."
+msgstr "su er óvirkt. Notaðu frekar sudo."
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:75
-msgid "Restart"
-msgstr "Endurræsa"
-
-#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:78
 msgid "Lock screen"
 msgstr "Læsa skjá"
 
-#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:81
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:79
+msgid "Suspend"
+msgstr "Fresta"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:83
+msgid "Restart"
+msgstr "Endurræsa"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:87
 msgid "Power Off"
 msgstr "Slökkva"
 
@@ -181,7 +199,7 @@ msgstr "ekki tiltækt"
 
 #. Translators: Don't translate {details}, it's a placeholder and will
 #. be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:147
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:150
 #, python-brace-format
 msgid ""
 "{details} Please check your list of additional software or read the system "
@@ -190,7 +208,7 @@ msgstr ""
 "{details} Athugaðu listann yfir viðbótarhugbúnaðinn eða lestu kerfisannálana "
 "svo þú getir skilið betur hvað er í gangi."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:152
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:155
 msgid ""
 "Please check your list of additional software or read the system log to "
 "understand the problem."
@@ -198,56 +216,56 @@ msgstr ""
 "Athugaðu listann yfir viðbótarhugbúnaðinn eða lestu kerfisannálana svo þú "
 "getir skilið betur hvað er í gangi."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:156
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:159
 msgid "Show Log"
 msgstr "Birta atvikaskrá"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:156
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:159
 msgid "Configure"
 msgstr "Stilla"
 
 #. Translators: Don't translate {beginning} or {last}, they are
 #. placeholders and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:222
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:225
 #, python-brace-format
 msgid "{beginning} and {last}"
 msgstr "{beginning} og {last}"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:223
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:226
 msgid ", "
 msgstr ", "
 
 #. Translators: Don't translate {packages}, it's a placeholder and will
 #. be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:289
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:319
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:292
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:322
 #, python-brace-format
 msgid "Add {packages} to your additional software?"
 msgstr "Bæta {packages} í viðbótarhugbúnaðinn þinn?"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:291
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
 msgid ""
 "To install it automatically from your persistent storage when starting Tails."
 msgstr ""
 "Til að setja þetta sjálfvirkt upp úr varanlegri gagnageymslu við ræsingu "
 "Tails."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:293
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:296
 msgid "Install Every Time"
 msgstr "Setja upp í hvert skipti"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:325
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:297
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:328
 msgid "Install Only Once"
 msgstr "Setja upp aðeins einu sinni"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:300
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:330
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:371
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:303
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:333
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:374
 msgid "The configuration of your additional software failed."
 msgstr "Stillingar á viðbótarhugbúnaðnum þínum mistókst."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:321
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:324
 msgid ""
 "To install it automatically when starting Tails, you can create a persistent "
 "storage and activate the <b>Additional Software</b> feature."
@@ -255,22 +273,22 @@ msgstr ""
 "Til að setja þetta sjálfvirkt upp við ræsingu Tails, geturðu útbúið úr "
 "varanlega gagnageymslu og virkjað eiginleikann <b>Viðbótarhugbúnaður</b>."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:324
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:327
 msgid "Create Persistent Storage"
 msgstr "Útbúa varanlega gagnageymslu"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:332
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:335
 msgid "Creating your persistent storage failed."
 msgstr "Mistókst að útbúa varanlega gagnageymslu."
 
 #. Translators: Don't translate {packages}, it's a placeholder and
 #. will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:341
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:344
 #, python-brace-format
 msgid "You could install {packages} automatically when starting Tails"
 msgstr "Þú getur sett upp {packages} sjálfvirkt við ræsingu Tails"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:344
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:347
 msgid ""
 "To do so, you need to run Tails from a USB stick installed using <i>Tails "
 "Installer</i>."
@@ -280,50 +298,51 @@ msgstr ""
 
 #. Translators: Don't translate {packages}, it's a placeholder and will be
 #. replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:359
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:362
 #, python-brace-format
 msgid "Remove {packages} from your additional software?"
 msgstr "Fjarlægja {packages} úr viðbótarhugbúnaðnum þínum?"
 
 #. Translators: Don't translate {packages}, it's a placeholder
 #. and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:363
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
 #, python-brace-format
 msgid "This will stop installing {packages} automatically."
 msgstr "Þetta mun hætta að setja upp {packages} sjálfvirkt."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:365
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:368
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:156
 msgid "Remove"
 msgstr "Fjarlægja"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:118
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:369
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:119
 #: config/chroot_local-includes/usr/local/bin/tor-browser:46
 msgid "Cancel"
 msgstr "Hætta við"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:544
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:547
 msgid "Installing your additional software from persistent storage..."
 msgstr "Set sjálfvirkt upp viðbótarhugbúnað úr varanlegri gagnageymslu..."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:546
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:549
 msgid "This can take several minutes."
 msgstr "Þetta gæti tekið nokkrar mínútur."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:559
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:562
 msgid "The installation of your additional software failed"
 msgstr "Uppsetning á viðbótarhugbúnaðnum þínum mistókst"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:574
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:577
 msgid "Additional software installed successfully"
 msgstr "Það tókst að setja upp viðbótarhugbúnað"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:594
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:597
 msgid "The check for upgrades of your additional software failed"
 msgstr "Athugun á uppfærslum á viðbótarhugbúnaðnum þínum mistókst"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:596
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:604
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:599
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:607
 msgid ""
 "Please check your network connection, restart Tails, or read the system log "
 "to understand the problem."
@@ -331,11 +350,11 @@ msgstr ""
 "Athugaðu nettenginguna þína, endurræstu Tails eða lestu kerfisannálana svo "
 "þú getir skilið betur hvað er í gangi."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:603
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:606
 msgid "The upgrade of your additional software failed"
 msgstr "Uppfærsla á viðbótarhugbúnaðnum þínum mistókst"
 
-#: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:37
+#: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:39
 msgid "Documentation"
 msgstr "Hjálparskjöl"
 
@@ -365,7 +384,7 @@ msgstr "Mistókst að lesa uppsetningu viðbótarhugbúnaðar"
 msgid "Stop installing {package} automatically"
 msgstr "Hætta að setja upp {package} sjálfvirkt"
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:179
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:180
 msgid ""
 "To do so, install some software using <a href=\"synaptic.desktop\">Synaptic "
 "Package Manager</a> or <a href=\"org.gnome.Terminal.desktop\">APT on the "
@@ -375,7 +394,7 @@ msgstr ""
 "desktop\">Synaptic pakkastjóranum</a> eða með <a href=\"org.gnome.Terminal."
 "desktop\">APT á skipanalínu</a>."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:188
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:189
 msgid ""
 "To do so, unlock your persistent storage when starting Tails and install "
 "some software using <a href=\"synaptic.desktop\">Synaptic Package Manager</"
@@ -386,7 +405,7 @@ msgstr ""
 "\">Synaptic pakkastjóranum</a> eða með <a href=\"org.gnome.Terminal.desktop"
 "\">APT á skipanalínu</a>."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:198
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:199
 msgid ""
 "To do so, create a persistent storage and install some software using <a "
 "href=\"synaptic.desktop\">Synaptic Package Manager</a> or <a href=\"org."
@@ -396,7 +415,7 @@ msgstr ""
 "einhvern hugbúnað með <a href=\"synaptic.desktop\">Synaptic pakkastjóranum</"
 "a> eða með <a href=\"org.gnome.Terminal.desktop\">APT á skipanalínu</a>."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:206
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:207
 msgid ""
 "To do so, install Tails on a USB stick using <a href=\"tails-installer."
 "desktop\">Tails Installer</a> and create a persistent storage."
@@ -405,7 +424,7 @@ msgstr ""
 "installer.desktop\">Tails-uppsetningarforritinu</a> og útbúðu varanlega "
 "gagnageymslu."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:253
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:254
 msgid "[package not available]"
 msgstr "[pakki ekki tiltækur]"
 
@@ -465,23 +484,23 @@ msgstr ""
 "óvirk.\n"
 "Þú gætir viljað endurræsa Tails og gera dulbúning MAC-vistfangs óvirkan."
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:109
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:110
 msgid "Lock Screen"
 msgstr "Læsa skjá"
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:124
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:125
 msgid "Screen Locker"
 msgstr "Skjálæsing"
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:130
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:131
 msgid "Set up a password to unlock the screen."
 msgstr "Settu upp lykilorð til að aflæsa skjánum."
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:135
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:149
 msgid "Password"
 msgstr "Lykilorð"
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:141
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:150
 msgid "Confirm"
 msgstr "Staðfesta"
 
@@ -521,19 +540,11 @@ msgstr "Villa"
 msgid "Warning: virtual machine detected!"
 msgstr "Aðvörun: sýndarvél fannst!"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:73
-msgid ""
-"Both the host operating system and the virtualization software are able to "
-"monitor what you are doing in Tails."
-msgstr ""
-"Bæði hýsilstýrikerfið og sýndarvélarhugbúnaðurinn geta fylgst með hvað þú "
-"ert að gera í Tails."
-
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:76
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:74
 msgid "Warning: non-free virtual machine detected!"
 msgstr "Aðvörun: ófrjáls sýndarvél fannst!"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:78
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
 msgid ""
 "Both the host operating system and the virtualization software are able to "
 "monitor what you are doing in Tails. Only free software can be considered "
@@ -545,7 +556,7 @@ msgstr ""
 "treysta frjálsum og opnum hugbúnaði, bæði hvað varðar hýsilstýrikerfið og "
 "sýndarvélarhugbúnaðinn."
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:83
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:81
 msgid "Learn more"
 msgstr "Fræðast frekar"
 
@@ -659,7 +670,7 @@ msgstr "{partition_name} ({partition_size})"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:68
 #, python-brace-format
 msgid "{volume_size} Volume"
-msgstr "{volume_size} gagnarými"
+msgstr "{volume_size} gagnageymsla"
 
 #. Translators: Don't translate {volume_name}, it's a placeholder and
 #. will be replaced.
@@ -700,12 +711,11 @@ msgstr "{volume_name} – {drive_name}"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:222
 msgid "Wrong passphrase or parameters"
-msgstr ""
+msgstr "Rangt aðgangsorð eða viðföng"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:224
-#, fuzzy
 msgid "Error unlocking volume"
-msgstr "Villa við að opna skrá"
+msgstr "Villa við að aflæsa gagnageymslu"
 
 #. Translators: Don't translate {volume_name} or {error_message},
 #. they are placeholder and will be replaced.
@@ -715,6 +725,24 @@ msgid ""
 "Couldn't unlock volume {volume_name}:\n"
 "{error_message}"
 msgstr ""
+"Gat ekki aflæst gagnageymslu {volume_name}:\n"
+"{error_message}"
+
+#. Translators: Don't translate {volume_name} or {error_message},
+#. they are placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:330
+#, fuzzy, python-brace-format
+msgid ""
+"Couldn't lock volume {volume_name}:\n"
+"{error_message}"
+msgstr ""
+"Gat ekki aflæst gagnageymslu {volume_name}:\n"
+"{error_message}"
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:332
+#, fuzzy
+msgid "Error locking volume"
+msgstr "Villa við að aflæsa gagnageymslu"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:83
 msgid "No file containers added"
@@ -723,6 +751,11 @@ msgstr "Engum skráagámum bætt við"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:98
 msgid "No VeraCrypt devices detected"
 msgstr "Engin VeraCrypt-tæki fundust"
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:40
+#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
+msgid "Unlock VeraCrypt Volumes"
+msgstr "Aflæsa VeraCrypt gagnageymslum"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:114
 msgid "Container already added"
@@ -770,11 +803,12 @@ msgstr "Tókst ekki að bæta við skráagámi"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:164
 #, python-format
 msgid ""
-"Could not add file container %s: Timeout while waiting for loop setup.Please "
-"try using the <i>Disks</i> application instead."
+"Could not add file container %s: Timeout while waiting for loop setup.\n"
+"Please try using the <i>Disks</i> application instead."
 msgstr ""
 "Gat ekki bætt við skráagámnum %s: Rann út á tíma meðan beðið var eftir "
-"uppsetningu á hringbeiningu. Notaðu frekar <i>Diskar</i> forritið."
+"uppsetningu á hringbeiningu.\n"
+"Notaðu frekar <i>Diskar</i> forritið."
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:209
 msgid "Choose File Container"
@@ -813,10 +847,6 @@ msgstr "Vafra um veraldarvefinn án nafnleysis"
 msgid "Unsafe Web Browser"
 msgstr "Óöruggur netvafri"
 
-#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
-msgid "Unlock VeraCrypt Volumes"
-msgstr "Aflæsa VeraCrypt gagnarýmum"
-
 #: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:2
 msgid "Mount VeraCrypt encrypted file containers and devices"
 msgstr "Tengja dulritaða VeraCrypt skráagáma og tæki í skrárkerfi"
@@ -854,35 +884,43 @@ msgstr ""
 "Auðkenningar er krafist til að fjarlægja pakka úr viðbótarhugbúnaðnum þínum "
 "($(command_line))"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:61
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:61
 msgid "File Containers"
 msgstr "Skráagámar"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:80
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:80
 msgid "_Add"
 msgstr "_Bæta við"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:86
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:86
 msgid "Add a file container"
 msgstr "Bæta við skráagámi"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:103
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:103
 msgid "Partitions and Drives"
 msgstr "Diskhlutar og drif"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:121
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:121
 msgid ""
 "This application is not affiliated with or endorsed by the VeraCrypt project "
 "or IDRIX."
 msgstr "Þetta forrit tengist hvorki VeraCrypt verkefninu né IDRIX."
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/volume.ui.in:38
-msgid "Lock this volume"
-msgstr "Læsa þessu gagnarými"
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:29
+msgid "_Open"
+msgstr "_Opna"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/volume.ui.in:61
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:38
+msgid "Lock this volume"
+msgstr "Læsa þessari gagnageymslu"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:52
+msgid "_Unlock"
+msgstr "_Aflæsa"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:61
 msgid "Detach this volume"
-msgstr "Aftengja þetta gagnarými"
+msgstr "Aftengja þessa gagnageymslu"
 
 #: ../config/chroot_local-includes/usr/local/share/mime/packages/unlock-veracrypt-volumes.xml.in.h:1
 msgid "TrueCrypt/VeraCrypt container"

@@ -9,31 +9,37 @@
 # Andrey, 2017
 # Антон Толмачев <a.tolmachev@richart-consalt.ru>, 2016
 # Denis Denis <stereodenis@gmail.com>, 2014
+# Dmitry Schneider <adamred280@live.ru>, 2019
+# Emma Peel, 2018
 # Eugene, 2013
 # Иван Лапенков, 2015
 # joshua ridney, 2015
 # jujjer <jujjer@gmail.com>, 2013
 # Julia Liberman <gangsta_b@rambler.ru>, 2015
+# JZDLin, 2019
 # Legenden Rifk <rekytcsgo@gmail.com>, 2018
 # mendov, 2013
 # Misha Dyachuk <Wikia@scryptmail.com>, 2016
 # Oul Gocke <beandonlybe@yandex.ru>, 2013-2014
 # Sergey Briskin, 2015
 # Sergey Lapshov <sfinx641@gmail.com>, 2018
+# solokot <solokot@gmail.com>, 2019
 # tetyana muirhead, 2015
-# Timofey Lisunov <solokot@gmail.com>, 2017
+# solokot <solokot@gmail.com>, 2017
 # Valid Olov, 2013
+# Viktor Kutcevich <architector4@tilde.team>, 2019
 # Wagan <wagan.sarukhanov@gmail.com>, 2015
 # Uho Lot <yavinav@gmail.com>, 2016
-# Виктор Ерухин <folkraft@rambler.ru>, 2018
+# Виктор Ерухин <official159ru@mail.ru>, 2018
 # Руслан <nasretdinov.r.r@ya.ru>, 2014
+# Тимур Нагорских <timnagorskikh2k18@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 16:04+0100\n"
-"PO-Revision-Date: 2018-10-16 13:51+0000\n"
-"Last-Translator: Legenden Rifk <rekytcsgo@gmail.com>\n"
+"POT-Creation-Date: 2019-06-30 18:53+0200\n"
+"PO-Revision-Date: 2019-07-02 14:14+0000\n"
+"Last-Translator: solokot <solokot@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/torproject/language/"
 "ru/)\n"
 "Language: ru\n"
@@ -102,8 +108,8 @@ msgstr ""
 "Следующее программное обеспечение автоматически устанавливается из вашего "
 "постоянного хранилища при запуске Tails."
 
-#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:132
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:172
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:135
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:173
 msgid ""
 "To add more, install some software using <a href=\"synaptic.desktop"
 "\">Synaptic Package Manager</a> or <a href=\"org.gnome.Terminal.desktop"
@@ -113,7 +119,7 @@ msgstr ""
 "\"synaptic.desktop\">диспетчера пакетов Synaptic</a> или <a href=\"org.gnome."
 "Terminal.desktop\">APT в командной строке</a>."
 
-#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:151
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:154
 msgid "_Create persistent storage"
 msgstr "Создать постоянное хранилище"
 
@@ -136,42 +142,61 @@ msgid "Do you want to start Electrum anyway?"
 msgstr "Вы хотите запустить Electrum  в любом случае?"
 
 #: config/chroot_local-includes/usr/local/bin/electrum:63
-#: config/chroot_local-includes/usr/local/bin/liferea:33
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:41
 msgid "_Launch"
 msgstr "_Launch"
 
 #: config/chroot_local-includes/usr/local/bin/electrum:64
-#: config/chroot_local-includes/usr/local/bin/liferea:32
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:42
 msgid "_Exit"
 msgstr "_Exit"
 
-#: config/chroot_local-includes/usr/local/bin/liferea:18
-msgid "Liferea is deprecated"
-msgstr "Liferea устарела"
-
-#: config/chroot_local-includes/usr/local/bin/liferea:19
-msgid "Do you wish to start Liferea anyway?"
-msgstr "Вы все равно хотите запустить Liferea?"
-
-#: config/chroot_local-includes/usr/local/bin/liferea:21
+#: config/chroot_local-includes/usr/local/bin/keepassx:17
+#, sh-format
 msgid ""
-"Due to security concerns the Liferea feed reader will be removed from Tails "
-"by the end of 2018. Please migrate your feeds to Thunderbird."
+"<b><big>Do you want to rename your <i>KeePassX</i> database?</big></b>\n"
+"\n"
+"You have a <i>KeePassX</i> database in your <i>Persistent</i> folder:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Renaming it to <i>keepassx.kdbx</i> would allow <i>KeePassX</i> to open it "
+"automatically in the future."
 msgstr ""
-"Из-за проблем безопасности устройство чтения Liferea будет удалено из Tails "
-"к концу 2018 года. Проведите миграцию ваших каналов в Thunderbird."
+"<b><big>Хотите переименовать вашу базу данных <i>KeePassX</i>?</big></b>\n"
+"\n"
+"У вас имеется база данных <i>KeePassX</i> в <i>Постоянной</i> папке:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Переименование БД в <i>keepassx.kdbx</i> позволит <i>KeePassX</i> открывать "
+"ее в дальнейшем автоматически."
+
+#: config/chroot_local-includes/usr/local/bin/keepassx:25
+msgid "Rename"
+msgstr "Переименовать"
+
+#: config/chroot_local-includes/usr/local/bin/keepassx:26
+msgid "Keep current name"
+msgstr "Оставить без изменений"
+
+#: config/chroot_local-includes/usr/local/bin/replace-su-with-sudo:21
+msgid "su is disabled. Please use sudo instead."
+msgstr "Использование su отключено. Используйте sudo."
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:75
-msgid "Restart"
-msgstr "Перезапуск"
-
-#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:78
 msgid "Lock screen"
 msgstr "Блокировка экрана"
 
-#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:81
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:79
+msgid "Suspend"
+msgstr "Приостановить"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:83
+msgid "Restart"
+msgstr "Перезапуск"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:87
 msgid "Power Off"
 msgstr "Выключение"
 
@@ -204,7 +229,7 @@ msgstr "не найдено"
 
 #. Translators: Don't translate {details}, it's a placeholder and will
 #. be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:147
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:150
 #, python-brace-format
 msgid ""
 "{details} Please check your list of additional software or read the system "
@@ -213,7 +238,7 @@ msgstr ""
 "{details} Пожалуйста, просмотрите список дополнительных программ или "
 "прочитайте системный журнал, чтобы понять проблему."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:152
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:155
 msgid ""
 "Please check your list of additional software or read the system log to "
 "understand the problem."
@@ -221,58 +246,58 @@ msgstr ""
 "Пожалуйста, просмотрите список дополнительных программ или прочитайте "
 "системный журнал, чтобы понять проблему."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:156
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:159
 msgid "Show Log"
 msgstr "Показать журнал"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:156
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:159
 msgid "Configure"
 msgstr "Настроить"
 
 #. Translators: Don't translate {beginning} or {last}, they are
 #. placeholders and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:222
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:225
 #, python-brace-format
 msgid "{beginning} and {last}"
 msgstr "{beginning} и {last}"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:223
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:226
 msgid ", "
 msgstr ", "
 
 #. Translators: Don't translate {packages}, it's a placeholder and will
 #. be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:289
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:319
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:292
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:322
 #, python-brace-format
 msgid "Add {packages} to your additional software?"
 msgstr "Добавить {packages} в ваше дополнительное программное обеспечение?"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:291
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
 msgid ""
 "To install it automatically from your persistent storage when starting Tails."
 msgstr ""
 "Чтобы автоматически установить его из постоянного хранилища при запуске "
 "Tails."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:293
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:296
 msgid "Install Every Time"
 msgstr "установить Every Time"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:325
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:297
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:328
 msgid "Install Only Once"
 msgstr "установить Only Once"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:300
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:330
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:371
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:303
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:333
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:374
 msgid "The configuration of your additional software failed."
 msgstr ""
 "Не удалось выполнить конфигурацию вашего дополнительного программного "
 "обеспечения."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:321
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:324
 msgid ""
 "To install it automatically when starting Tails, you can create a persistent "
 "storage and activate the <b>Additional Software</b> feature."
@@ -281,22 +306,22 @@ msgstr ""
 "постоянное хранилище и активировать <b>функцию дополнительного программного "
 "обеспечения</b>."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:324
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:327
 msgid "Create Persistent Storage"
 msgstr "Создание постоянного хранилища"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:332
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:335
 msgid "Creating your persistent storage failed."
 msgstr "Не удалось создать постоянное хранилище."
 
 #. Translators: Don't translate {packages}, it's a placeholder and
 #. will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:341
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:344
 #, python-brace-format
 msgid "You could install {packages} automatically when starting Tails"
 msgstr "Вы можете установить {packages} автоматически при запуске Tails"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:344
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:347
 msgid ""
 "To do so, you need to run Tails from a USB stick installed using <i>Tails "
 "Installer</i>."
@@ -306,53 +331,54 @@ msgstr ""
 
 #. Translators: Don't translate {packages}, it's a placeholder and will be
 #. replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:359
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:362
 #, python-brace-format
 msgid "Remove {packages} from your additional software?"
 msgstr "Удалить {packages} из вашего дополнительного программного обеспечения?"
 
 #. Translators: Don't translate {packages}, it's a placeholder
 #. and will be replaced.
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:363
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
 #, python-brace-format
 msgid "This will stop installing {packages} automatically."
 msgstr "Это автоматически прекратит установку {packages}."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:365
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:368
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:156
 msgid "Remove"
 msgstr "Убрать"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:118
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:369
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:119
 #: config/chroot_local-includes/usr/local/bin/tor-browser:46
 msgid "Cancel"
 msgstr "Отмена"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:544
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:547
 msgid "Installing your additional software from persistent storage..."
 msgstr ""
 "Установка дополнительного программного обеспечения из постоянного "
 "хранилища ..."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:546
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:549
 msgid "This can take several minutes."
 msgstr "Это может занять несколько минут."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:559
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:562
 msgid "The installation of your additional software failed"
 msgstr "Не удалось установить дополнительное программное обеспечение"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:574
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:577
 msgid "Additional software installed successfully"
 msgstr "Дополнительное программное обеспечение установлено успешно"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:594
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:597
 msgid "The check for upgrades of your additional software failed"
 msgstr ""
 "Ошибка проверки обновлений вашего дополнительного программного обеспечения"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:596
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:604
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:599
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:607
 msgid ""
 "Please check your network connection, restart Tails, or read the system log "
 "to understand the problem."
@@ -360,11 +386,11 @@ msgstr ""
 "Пожалуйста, проверьте сетевое подключение, перезапустите Tails или "
 "прочитайте системный журнал, чтобы понять проблему."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:603
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:606
 msgid "The upgrade of your additional software failed"
 msgstr "Не удалось обновить дополнительное программное обеспечение"
 
-#: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:37
+#: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:39
 msgid "Documentation"
 msgstr "Документация"
 
@@ -395,7 +421,7 @@ msgstr ""
 msgid "Stop installing {package} automatically"
 msgstr "Прекратить установку {package} автоматически"
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:179
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:180
 msgid ""
 "To do so, install some software using <a href=\"synaptic.desktop\">Synaptic "
 "Package Manager</a> or <a href=\"org.gnome.Terminal.desktop\">APT on the "
@@ -405,7 +431,7 @@ msgstr ""
 "desktop\">Synaptic Package Manager</a> или <a href=\"org.gnome.Terminal."
 "desktop\">APT в командной строке</a>."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:188
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:189
 msgid ""
 "To do so, unlock your persistent storage when starting Tails and install "
 "some software using <a href=\"synaptic.desktop\">Synaptic Package Manager</"
@@ -416,7 +442,7 @@ msgstr ""
 "\">Synaptic Package Manager</a> или <a href=\"org.gnome.Terminal.desktop"
 "\">APT в командной строке</a>."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:198
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:199
 msgid ""
 "To do so, create a persistent storage and install some software using <a "
 "href=\"synaptic.desktop\">Synaptic Package Manager</a> or <a href=\"org."
@@ -426,7 +452,7 @@ msgstr ""
 "программное обеспечение при помощи Synaptic Package Manager или APT в "
 "командной строке."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:206
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:207
 msgid ""
 "To do so, install Tails on a USB stick using <a href=\"tails-installer."
 "desktop\">Tails Installer</a> and create a persistent storage."
@@ -434,7 +460,7 @@ msgstr ""
 "Для этого установите Tails на USB-диск при помощи <a href=\"tails-installer."
 "desktop\">Tails Installer</a>и создайте постоянное хранилище."
 
-#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:253
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:254
 msgid "[package not available]"
 msgstr "[package not available]"
 
@@ -495,23 +521,23 @@ msgstr ""
 "Возможно, вам придется перезагрузить Tails и отключить режим подмены MAC-"
 "адреса. "
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:109
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:110
 msgid "Lock Screen"
 msgstr "Экран блокировки"
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:124
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:125
 msgid "Screen Locker"
 msgstr "Экранный блокировщик"
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:130
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:131
 msgid "Set up a password to unlock the screen."
 msgstr "Настройте пароль для разблокировки экрана."
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:135
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:149
 msgid "Password"
 msgstr "Пароль"
 
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:141
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:150
 msgid "Confirm"
 msgstr "Подтвердить"
 
@@ -551,19 +577,11 @@ msgstr "Ошибка"
 msgid "Warning: virtual machine detected!"
 msgstr "Внимание: обнаружена виртуальная машина!"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:73
-msgid ""
-"Both the host operating system and the virtualization software are able to "
-"monitor what you are doing in Tails."
-msgstr ""
-"Как операционная система хост-машины, так и ПО, создающее виртуальную "
-"машину, могут отслеживать вашу работу в Tails."
-
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:76
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:74
 msgid "Warning: non-free virtual machine detected!"
 msgstr "Внимание: обнаружена виртуальная машина!"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:78
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
 msgid ""
 "Both the host operating system and the virtualization software are able to "
 "monitor what you are doing in Tails. Only free software can be considered "
@@ -575,7 +593,7 @@ msgstr ""
 "обеспечение можно считать надежным, как для принимающей операционной "
 "системы, тaк и программного обеспечения для виртуализации."
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:83
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:81
 msgid "Learn more"
 msgstr "Подробнее "
 
@@ -748,6 +766,21 @@ msgstr ""
 "Не удалось разблокировать том {volume_name}:\n"
 "{error_message}"
 
+#. Translators: Don't translate {volume_name} or {error_message},
+#. they are placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:330
+#, python-brace-format
+msgid ""
+"Couldn't lock volume {volume_name}:\n"
+"{error_message}"
+msgstr ""
+"Невозможно заблокировать раздел {volume_name}:\n"
+"{error_message}"
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:332
+msgid "Error locking volume"
+msgstr "Ошибка блокировки раздела"
+
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:83
 msgid "No file containers added"
 msgstr "Контейнеры файлов не добавлены"
@@ -755,6 +788,11 @@ msgstr "Контейнеры файлов не добавлены"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:98
 msgid "No VeraCrypt devices detected"
 msgstr "Не обнаружены устройства VeraCrypt"
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:40
+#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
+msgid "Unlock VeraCrypt Volumes"
+msgstr "Разблокировать тома VeraCrypt"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:114
 msgid "Container already added"
@@ -803,11 +841,11 @@ msgstr "Ошибка в добавлении контейнера"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:164
 #, python-format
 msgid ""
-"Could not add file container %s: Timeout while waiting for loop setup.Please "
-"try using the <i>Disks</i> application instead."
+"Could not add file container %s: Timeout while waiting for loop setup.\n"
+"Please try using the <i>Disks</i> application instead."
 msgstr ""
-"Не удалось добавить контейнер файлов%s: Тайм-аут при ожидании установки "
-"цикла. Попробуйте вместо этого использовать приложение <i>«Диски»</i>."
+"Не удалось добавить файловый контейнер %s: Превышено время ожидания "
+"установки цикла. Пожалуйста, попробуйте использовать приложение <i>Disks</i>."
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:209
 msgid "Choose File Container"
@@ -846,10 +884,6 @@ msgstr "Работа в интернете без соблюдения анон�
 msgid "Unsafe Web Browser"
 msgstr "Небезопасный браузер"
 
-#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
-msgid "Unlock VeraCrypt Volumes"
-msgstr "Разблокировать тома VeraCrypt"
-
 #: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:2
 msgid "Mount VeraCrypt encrypted file containers and devices"
 msgstr "Зашифрованные контейнеры файлов и устройства Mount VeraCrypt"
@@ -886,33 +920,41 @@ msgstr ""
 "Для удаления пакета из вашего дополнительного ПО требуется аутентификация ($ "
 "(command_line))"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:61
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:61
 msgid "File Containers"
 msgstr "Контейнеры файлов"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:80
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:80
 msgid "_Add"
 msgstr "_Add"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:86
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:86
 msgid "Add a file container"
 msgstr "Добавить контейнер файлов"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:103
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:103
 msgid "Partitions and Drives"
 msgstr "Разделы и Диски"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/main.ui.in:121
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:121
 msgid ""
 "This application is not affiliated with or endorsed by the VeraCrypt project "
 "or IDRIX."
 msgstr "Это приложение не связано / не одобрено проектом VeraCrypt или IDRIX."
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/volume.ui.in:38
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:29
+msgid "_Open"
+msgstr "_Открыть"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:38
 msgid "Lock this volume"
 msgstr "Заблокировать этот том"
 
-#: ../config/chroot_local-includes/usr/share/unlock-veracrypt-volumes/ui/volume.ui.in:61
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:52
+msgid "_Unlock"
+msgstr "_Разблокировать"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:61
 msgid "Detach this volume"
 msgstr "Отвязать этот том"
 
