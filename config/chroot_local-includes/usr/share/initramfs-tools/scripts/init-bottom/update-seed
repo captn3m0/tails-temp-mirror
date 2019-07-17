@@ -28,7 +28,7 @@ fi
 log_begin_msg "Writing new random seed to bootloader config"
 SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
 sed -E -i \
-    "s/(\s+)append(\s+)(randomseed=\S+\s)?/\1append\2randomseed=${SEED} /g" \
+    "s/(\s+append\s+)(randomseed=\S+\s)?/\1randomseed=${SEED} /g" \
     "${rootmnt}/lib/live/mount/medium/syslinux/live64.cfg" \
     "${rootmnt}/lib/live/mount/medium/EFI/BOOT/live64.cfg"
 log_end_msg
