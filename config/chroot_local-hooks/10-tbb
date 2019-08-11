@@ -128,7 +128,7 @@ EOF
                      '"/usr/bin/obfs4proxy"'
     set_mozilla_pref /etc/xul-ext/tor-launcher.js \
                      extensions.torlauncher.default_bridge_recommended_type \
-                     '"meek_lite"'
+                     '"obfs4"'
 
     mv "${prep}" "${destination}"
 
