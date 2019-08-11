@@ -71,3 +71,9 @@ systemctl mask pppd-dns.service
 # We seed the entropy pool ourselves in initramfs, so we don't need the
 # systemd-random-seed.service. We disable it to avoid confusion.
 systemctl disable systemd-random-seed.service
+
+# Conflicts with our custom shutdown procedure
+systemctl mask live-tools.service
+
+# "Daily man-db regeneration" is not needed in Tails (#16631)
+systemctl mask man-db.timer
