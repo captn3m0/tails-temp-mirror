@@ -122,6 +122,7 @@ EOF
     # Otherwise the "General" section in the preferences is not displayed.
     install -d -m 0755 "${prep}"/TorBrowser/UpdateInfo
 
+    # Needed for Moat
     set_mozilla_pref /etc/xul-ext/tor-launcher.js \
                      extensions.torlauncher.transportproxy_path \
                      '"/usr/bin/obfs4proxy"'
