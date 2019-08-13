@@ -44,7 +44,7 @@ mount -o remount,rw /oldroot/lib/live/mount/medium
 
 ### Update kernel command-line random seed
 
-SEED="$(hexdump -n 512 -e '"%02X"' /dev/urandom)"
+SEED="$(hexdump -n 32 -e '"%02X"' /dev/urandom)"
 sed -E -i \
     "s/(\s+)append(\s+)(randomseed=\S+\s)?/\1append\2randomseed=${SEED} /g" \
     "/oldroot/lib/live/mount/medium/syslinux/live64.cfg" \
