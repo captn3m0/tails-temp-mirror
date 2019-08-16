@@ -29,8 +29,8 @@ BOOT="${rootmnt}/lib/live/mount/medium"
 
 # Temporarily mount the system partition read-write, to be able to
 # update the random seed.
-trap "mount --remount,ro \"${BOOT}\"" EXIT HUP INT QUIT TERM
-mount --remount,rw "${BOOT}"
+trap "mount -o remount,ro \"${BOOT}\"" EXIT HUP INT QUIT TERM
+mount -o remount,rw "${BOOT}"
 
 log_begin_msg "Writing new random seed to bootloader config"
 SEED="$(hexdump -n 32 -e '"%02X"' /dev/urandom)"
