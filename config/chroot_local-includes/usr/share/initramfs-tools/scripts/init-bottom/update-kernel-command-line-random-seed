@@ -6,23 +6,23 @@ prereqs() { echo "$PREREQS"; }
 
 case "$1" in
     prereqs)
-    prereqs
-    exit 0
-    ;;
+        prereqs
+        exit 0
+        ;;
 esac
 
 set -u
 set -e
 
 # Print executed commands for debugging
-[ -n "$debug" ] && set -x
+[ -n "${debug}" ] && set -x
 
 . /scripts/functions
 
-if [ -z "${FSUUID}" ]; then
-   echo "\$FSUUID is unset, probably because the boot medium is an ISO." \
-        "Skipping update-seed."
-   exit 0
+if [ -z "${FSUUID:-}" ]; then
+    echo "\$FSUUID is unset, probably because the boot medium is an ISO." \
+        "Not updating kernel command-line random seed."
+    exit 0
 fi
 
 BOOT="${rootmnt}/lib/live/mount/medium"

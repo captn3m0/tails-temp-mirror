@@ -11,13 +11,13 @@ set -x
 ### Update random seed sector
 
 # Get parent device
-FSUUID=$(sed -E 's/.*FSUUID=([a-zA-Z0-9-]+).*/\1/' /proc/cmdline)
+FSUUID="$(sed -E 's/.*FSUUID=([a-zA-Z0-9-]+).*/\1/' /proc/cmdline)"
 
 if [ -n "${FSUUID}" ]; then
-    SYSTEM_PARTITION=$(readlink -f "/dev/disk/by-uuid/${FSUUID}")
-    PARENT_PATH=$(udevadm info --query=property --name="${SYSTEM_PARTITION}" \
-        | grep ^ID_PATH= | sed s/ID_PATH=//)
-    PARENT_DEVICE=$(readlink -f "/dev/disk/by-path/${PARENT_PATH}")
+    SYSTEM_PARTITION="$(readlink -f "/dev/disk/by-uuid/${FSUUID}")"
+    PARENT_PATH="$(udevadm info --query=property --name="${SYSTEM_PARTITION}" |
+        grep ^ID_PATH= | sed s/ID_PATH=//)"
+    PARENT_DEVICE="$(readlink -f "/dev/disk/by-path/${PARENT_PATH}")"
 
     # Store random seed in LBA 34
     dd bs=512 seek=34 count=1 if=/dev/urandom of="${PARENT_DEVICE}"
