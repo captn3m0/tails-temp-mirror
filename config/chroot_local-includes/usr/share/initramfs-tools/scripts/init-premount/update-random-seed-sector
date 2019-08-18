@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PREREQS=""
+PREREQS="plymouth"
 
 prereqs() { echo "$PREREQS"; }
 
