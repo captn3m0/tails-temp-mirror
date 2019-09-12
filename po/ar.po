@@ -31,9 +31,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 11:57+0200\n"
-"PO-Revision-Date: 2019-07-17 18:19+0000\n"
-"Last-Translator: Ahmed IB <mee.tbhole@gmail.com>\n"
+"POT-Creation-Date: 2019-08-14 14:11+0200\n"
+"PO-Revision-Date: 2019-08-24 02:11+0000\n"
+"Last-Translator: Martus Translations <translations@martus.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/torproject/language/"
 "ar/)\n"
 "Language: ar\n"
@@ -45,11 +45,11 @@ msgstr ""
 
 #: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready.sh:39
 msgid "Tor is ready"
-msgstr "تور جاهز للإقلاع"
+msgstr ""
 
 #: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready.sh:40
 msgid "You can now access the Internet."
-msgstr "يمكنك الآن تصفح الإنترنت."
+msgstr ""
 
 #: config/chroot_local-includes/etc/whisperback/config.py:69
 #, python-format
@@ -69,36 +69,23 @@ msgid ""
 "confirm that you are using Tails.\n"
 "</p>\n"
 msgstr ""
-"<h1>ساعدنا لإصلاح المشكلة!</h1>\n"
-"<p>اقرأ <a href=\"%s\">الإرشادات الخاصة بالتبليغ عن الأخطاء</a>.</p>\n"
-"<p><strong>لحماية خصوصيتك، املأ البيانات المطلوبة فقط لا غير!</strong></p>\n"
-"<h2>توضيح حول إعطائنا عنوان بريدك الإلكتروني</h2>\n"
-"<p>\n"
-"سنستخدم بريدك الإلكتروني للتواصل معك لاستيضاح المشكلة بشكل أفضل، وهو مطلوب "
-"لأغلب تقارير الأخطاء حيث أنه من غير الممكن متابعة تقارير الأخطاء التي ترسل "
-"من دون أية معلومات اتصال.\n"
-"من ناحية أخرى، يجب التنويه بأن تضمين البريد الإلكتروني يسمح للمتنصتين، كمزود "
-"خدمة البريد الإلكتروني أو مزود خدمة الإنترنت، التأكد من استخدامك لـتيلز . \n"
-"</p>\n"
 
 #: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:8
 #: ../config/chroot_local-includes/usr/share/applications/org.boum.tails.additional-software-config.desktop.in.h:1
 msgid "Additional Software"
-msgstr "برامج إضافية"
+msgstr ""
 
 #: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:51
 msgid ""
 "You can install additional software automatically from your persistent "
 "storage when starting Tails."
 msgstr ""
-"يمكنك تنصيب برمجيات إضافية تلقائيا من مساحة التخزين الدائم عند استخدامك تيلز."
 
 #: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:77
 msgid ""
 "The following software is installed automatically from your persistent "
 "storage when starting Tails."
 msgstr ""
-"نصبت البرمجيات التالية تلقائيا من مساحة التخزين الدائم عند بدأ تشغيل تيلز."
 
 #: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:135
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:171
@@ -107,17 +94,14 @@ msgid ""
 "\">Synaptic Package Manager</a> or <a href=\"org.gnome.Terminal.desktop"
 "\">APT on the command line</a>."
 msgstr ""
-"لإضافة المزيد، نصّب بعض البرمجيات باستخدام <a href=\"synaptic.desktop\">مدير "
-"الحزم سينابتك</a> أو <a href=\"org.gnome.Terminal.desktop\">APT من سطر "
-"الأوامر</a>."
 
 #: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:154
 msgid "_Create persistent storage"
-msgstr "أ_نشئ مساحة تخزين دائمة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/electrum:57
 msgid "Persistence is disabled for Electrum"
-msgstr "ميزة التخزين الدائم معطلة في إلكترم"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/electrum:59
 msgid ""
@@ -125,13 +109,10 @@ msgid ""
 "Bitcoin wallet. It is strongly recommended to only run Electrum when its "
 "persistence feature is activated."
 msgstr ""
-"عندما تعيد تشغيل تيلز، سيتم فقدان جميع بيانات إلكتروم، بما في ذلك محفظة "
-"بيتكوين الخاصة بك. وينصح بشدة تشغيل إلكتروم فقط عندما يتم تنشيط ميزة "
-"المثابرة الخاصة بها."
 
 #: config/chroot_local-includes/usr/local/bin/electrum:60
 msgid "Do you want to start Electrum anyway?"
-msgstr "هل تريد تشغيل  ELECTRUM على أية حال؟"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/electrum:63
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:41
@@ -143,8 +124,323 @@ msgstr "_Launch"
 msgid "_Exit"
 msgstr "_Exit"
 
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:386
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1687
+msgid "Direct (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:392
+msgid "Bridge & Proxy"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:398
+msgid "Offline"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:479
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:529
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1080
+msgid "Unlock"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:482
+msgid "Failed to relock persistent storage."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:500
+msgid "Unlocking…"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:533
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:419
+msgid "Cannot unlock encrypted storage with this passphrase."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:595
+msgid "Additional Settings"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:603
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:367
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:119
+#: config/chroot_local-includes/usr/local/bin/tor-browser:46
+msgid "Cancel"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:609
+msgid "Add"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:617
+msgid "Back"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:731
+msgid "Shutdown"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/gui.py:736
+msgid "_Start Tails"
+msgstr ""
+
+#. Translators: please do not translate this string (it is read from
+#. Gtk translation)
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/language.py:139
+msgid "default:LTR"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/persistence.py:91
+#, python-brace-format
+msgid ""
+"live-persist failed with return code {returncode}:\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/persistence.py:124
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/persistence.py:141
+#, python-brace-format
+msgid ""
+"cryptsetup failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/persistence.py:158
+#, python-brace-format
+msgid ""
+"live-persist failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/persistence.py:172
+#, python-brace-format
+msgid ""
+"umount failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:18
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:56
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1887
+msgid "Administration Password"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:34
+msgid ""
+"Set up an administration password if you need to perform administrative "
+"tasks. Otherwise, the administration password is disabled for better "
+"security."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:69
+msgid "Enter an administration password"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:95
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:150
+msgid "Confirm"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:109
+msgid "Confirm your administration password"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:129
+msgid "Disable"
+msgstr ""
+
+#. This string will never be displayed in the 1st version of the greeter.
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:160
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1899
+msgid "Windows Camouflage"
+msgstr ""
+
+#. This string will never be displayed in the 1st version of the greeter.
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:176
+msgid ""
+"This option makes Tails look like Microsoft Windows 10. This can be useful "
+"to avoid attracting suspicion in public places."
+msgstr ""
+
+#. This string will never be displayed in the 1st version of the greeter.
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:198
+msgid "Microsoft Windows 10 camouflage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:239
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1891
+msgid "MAC Address Spoofing"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:255
+msgid ""
+"MAC address spoofing hides the serial number of your network interface (Wi-"
+"Fi or wired) to the local network. Spoofing MAC addresses is generally safer "
+"as it helps you hide your geographical location. But it might also create "
+"connectivity problems or look suspicious."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:298
+msgid "Spoof all MAC addresses (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:344
+msgid "Don't spoof MAC addresses"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:479
+msgid ""
+"You will configure the Tor bridge and local proxy later on after connecting "
+"to a network."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:531
+msgid "Welcome to Tails!"
+msgstr ""
+
+#. This string will never be displayed in the 1st version of the greeter.
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:546
+msgctxt ""
+"\"Take a Tour\" would be an assistant to guide the user through the "
+"available settings."
+msgid ""
+"To get guided through Tails' settings, click on <b>Take a Tour</b> above"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:581
+msgid "Language & Region"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:617
+msgid "Default Settings"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:630
+msgid "Save Language & Region Settings"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:691
+msgid "_Language"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:748
+msgid "_Keyboard Layout"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:806
+msgid "_Formats"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:863
+msgid "_Time Zone"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:924
+msgid "Encrypted _Persistent Storage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:965
+msgid "Show Passphrase"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1037
+msgid "Configure Persistent Storage"
+msgstr ""
+
+#. The label for this placeholder text is not very big, so keep this string short.
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1065
+msgid "Enter your passphrase to unlock the persistent storage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1111
+msgid "Relock Persistent Storage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1126
+msgid "Your persistent storage is unlocked. Restart Tails to lock it again."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1164
+msgid "_Additional Settings"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1204
+msgid "Save Additional Settings"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1262
+msgid "Add an additional setting"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1317
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1895
+msgid "Network Configuration"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1333
+msgid ""
+"If your Internet connection is censored, filtered, or proxied you can "
+"configure a Tor bridge or a local proxy. To work completely offline, you can "
+"disable all networking."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1375
+msgid "Connect directly to the Tor network (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1421
+msgid "Configure a Tor bridge or local proxy"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1465
+msgid "Disable all networking"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1512
+msgid ""
+"The default settings are safe in most situations. To add a custom setting, "
+"press the \"+\" button below."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1559
+msgid "_Administration Password"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1573
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1745
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/utils.py:45
+msgid "Off (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1616
+msgid "_MAC Address Spoofing"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1630
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/utils.py:43
+msgid "On (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1673
+msgid "_Network Connection"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails-greeter/greeter.ui:1731
+msgid "_Windows Camouflage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/utils.py:48
+msgid "On"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/python3/dist-packages/tailsgreeter/utils.py:50
+msgid "Off"
+msgstr ""
+
 #: config/chroot_local-includes/usr/local/bin/keepassxc:15
-#, fuzzy, sh-format
+#, sh-format
 msgid ""
 "<b><big>Do you want to rename your <i>KeePassXC</i> database?</big></b>\n"
 "\n"
@@ -155,39 +451,30 @@ msgid ""
 "Renaming it to <i>keepassx.kdbx</i> would allow <i>KeePassXC</i> to open it "
 "automatically in the future."
 msgstr ""
-"<b><big>هل تريد إعادة تسمية<i>قاعدة بيانات KeePassX</i> الخاصة بك؟</big></"
-"b>\n"
-"\n"
-"لديك<i>قاعدة بيانات KeePassX</i> في <i>مجلد Persistent</i> الخاص بك:\n"
-"\n"
-"<i>${filename}</i>\n"
-"\n"
-"إعادة تسميته إلى <i>keepassx.kdbx</i> سيسمح ل <i>KeePassX</i> بفتحه "
-"أتوماتيكيا في المستقبل."
 
 #: config/chroot_local-includes/usr/local/bin/keepassxc:23
 msgid "Rename"
-msgstr "إعادة التسمية"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/keepassxc:24
 msgid "Keep current name"
-msgstr "ثبت الإسم الحالي"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/replace-su-with-sudo:21
 msgid "su is disabled. Please use sudo instead."
-msgstr "su مُعطل. الرجاء استخدام sudo بدلا عنه"
+msgstr ""
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:75
 msgid "Lock screen"
-msgstr "أوصد الشاشة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:79
 msgid "Suspend"
-msgstr "تعليق"
+msgstr ""
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:83
 msgid "Restart"
-msgstr "أعد التشغيل"
+msgstr ""
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:87
 msgid "Power Off"
@@ -205,7 +492,7 @@ msgstr "عن تيلز"
 
 #: config/chroot_local-includes/usr/local/bin/tails-about:35
 msgid "The Amnesic Incognito Live System"
-msgstr "نظام التشغيل الحي ذو الذاكرة المعدومة والهوية المجهولة (TAILS)"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-about:36
 #, python-format
@@ -213,8 +500,6 @@ msgid ""
 "Build information:\n"
 "%s"
 msgstr ""
-"معلومات النسخة:\n"
-"%s"
 
 #: config/chroot_local-includes/usr/local/bin/tails-about:54
 msgid "not available"
@@ -228,35 +513,31 @@ msgid ""
 "{details} Please check your list of additional software or read the system "
 "log to understand the problem."
 msgstr ""
-"{details} الرجاء التأكد من قائمة البرامج الاضافية لديك او قراءة سجل النظام "
-"لفهم المشكلة."
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:153
 msgid ""
 "Please check your list of additional software or read the system log to "
 "understand the problem."
 msgstr ""
-"فشل التنصيب. رجاء راجع ضبط البرمجيات الإضافية، أو طالع سجل النظام لمعرفة "
-"المشكلة أفضل."
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:157
 msgid "Show Log"
-msgstr "استعرض السِّجِل"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:157
 msgid "Configure"
-msgstr "اضبط"
+msgstr ""
 
 #. Translators: Don't translate {beginning} or {last}, they are
 #. placeholders and will be replaced.
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:223
 #, python-brace-format
 msgid "{beginning} and {last}"
-msgstr "{beginning} و {last}"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:224
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #. Translators: Don't translate {packages}, it's a placeholder and will
 #. be replaced.
@@ -264,87 +545,77 @@ msgstr ", "
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:320
 #, python-brace-format
 msgid "Add {packages} to your additional software?"
-msgstr "اضافة {packages} الى برامجك الاضافية؟"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:292
 msgid ""
 "To install it automatically from your persistent storage when starting Tails."
-msgstr "لتثبيته تلقائيا من تخزينك الدائم عند بدء تيلز."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
 msgid "Install Every Time"
-msgstr "تثبيت كل مرة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:295
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:326
 msgid "Install Only Once"
-msgstr "تثبيت مرة واحدة فقط"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:301
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:331
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:372
 msgid "The configuration of your additional software failed."
-msgstr "لقد فشل ضبط برامجك الاضافية."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:322
 msgid ""
 "To install it automatically when starting Tails, you can create a persistent "
 "storage and activate the <b>Additional Software</b> feature."
 msgstr ""
-"لتثبيتها تلقائيا عند بدء تيلز, يمكنك انشاء تخزين دائم و تفعيل ميزة "
-"<b>البرامج الاضافية</b>."
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:325
 msgid "Create Persistent Storage"
-msgstr "انشاء تخزين دائم"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:333
 msgid "Creating your persistent storage failed."
-msgstr "لقد فشل انشاء التخزين الدائم الخاص بك."
+msgstr ""
 
 #. Translators: Don't translate {packages}, it's a placeholder and
 #. will be replaced.
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:342
 #, python-brace-format
 msgid "You could install {packages} automatically when starting Tails"
-msgstr "يمكنك تثبيت {packages} تلقائيا عند بدء تيلز"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:345
 msgid ""
 "To do so, you need to run Tails from a USB stick installed using <i>Tails "
 "Installer</i>."
 msgstr ""
-"للقيام بذلك, انت بحاجة لتشغيل تيلز من عصا USB مثبتة باستخدام <i>Tails "
-"Installer</i>"
 
 #. Translators: Don't translate {packages}, it's a placeholder and will be
 #. replaced.
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:360
 #, python-brace-format
 msgid "Remove {packages} from your additional software?"
-msgstr "ازالة {packages} من برامجك الاضافية؟"
+msgstr ""
 
 #. Translators: Don't translate {packages}, it's a placeholder
 #. and will be replaced.
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:364
 #, python-brace-format
 msgid "This will stop installing {packages} automatically."
-msgstr "هذا سيوقف تثبيت {packages} تلقائيا."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:154
 msgid "Remove"
-msgstr "‮أزِل"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:367
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:119
-#: config/chroot_local-includes/usr/local/bin/tor-browser:46
-msgid "Cancel"
-msgstr "إلغاء"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:545
 msgid "Installing your additional software from persistent storage..."
-msgstr "جار تثبيت برامجك الاضافية من التخزين الدائم..."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:547
 msgid "This can take several minutes."
@@ -352,15 +623,15 @@ msgstr "يمكن أن يستغرق هذا بعض الوقت..."
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:560
 msgid "The installation of your additional software failed"
-msgstr "لقد فشل تثبيت برامجك الاضافية"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:575
 msgid "Additional software installed successfully"
-msgstr "تم تثبيت البرامج الاضافية بنجاح"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:595
 msgid "The check for upgrades of your additional software failed"
-msgstr "فشل التحقق من توفر ترقيات للبرنامج الإضافية الخاصة بك"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:597
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:605
@@ -368,16 +639,14 @@ msgid ""
 "Please check your network connection, restart Tails, or read the system log "
 "to understand the problem."
 msgstr ""
-"الرجاء التحقق من اتصالك بالشبكة, اعد تشغيل تيلز, او اقرأ سجل النظام لفهم "
-"المشكلة."
 
 #: config/chroot_local-includes/usr/local/sbin/tails-additional-software:604
 msgid "The upgrade of your additional software failed"
-msgstr "فشل ترقية البرامج الاضافية الخاصة بك"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:37
 msgid "Documentation"
-msgstr "التوثيق"
+msgstr ""
 
 #. Translators: Don't translate {package}, it's a placeholder and will be replaced.
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:94
@@ -386,24 +655,22 @@ msgid ""
 "Remove {package} from your additional software? This will stop installing "
 "the package automatically."
 msgstr ""
-"ازالة {package} من البرامج الاضافية الخاصة بك؟ هذا سيؤدي لايقاف تثبيت الحزمة "
-"تلقائيا."
 
 #. Translators: Don't translate {pkg}, it's a placeholder and will be replaced.
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:105
 #, python-brace-format
 msgid "Failed to remove {pkg}"
-msgstr "فشل ازالة {pkg}"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:122
 msgid "Failed to read additional software configuration"
-msgstr "فشل قراءة اعدادات البرامج الاضافية"
+msgstr ""
 
 #. Translators: Don't translate {package}, it's a placeholder and will be replaced.
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:152
 #, python-brace-format
 msgid "Stop installing {package} automatically"
-msgstr "ايقاف تثبيت {package} تلقائيا"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:178
 msgid ""
@@ -411,9 +678,6 @@ msgid ""
 "Package Manager</a> or <a href=\"org.gnome.Terminal.desktop\">APT on the "
 "command line</a>."
 msgstr ""
-"للقيام بذلك, قم بتثبيت البرنامج باستخدام <a href=\"synaptic.desktop"
-"\">Synaptic Package Manager</a> ال <a href=\"org.gnome.Terminal.desktop"
-"\">APT على سطر الأوامر</a>."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:187
 msgid ""
@@ -421,9 +685,6 @@ msgid ""
 "some software using <a href=\"synaptic.desktop\">Synaptic Package Manager</"
 "a> or <a href=\"org.gnome.Terminal.desktop\">APT on the command line</a>."
 msgstr ""
-"للقيام بذلك, قم بفك قفل التخزين الدائم الخاص بك عند بدء تيلز و قم بتثبيت بعض "
-"البرامج باستخدام <a href=\"synaptic.desktop\">Synaptic Package Manager</a> "
-"او <a href=\"org.gnome.Terminal.desktop\">APT على سطر الأوامر</a>."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:197
 msgid ""
@@ -431,54 +692,46 @@ msgid ""
 "href=\"synaptic.desktop\">Synaptic Package Manager</a> or <a href=\"org."
 "gnome.Terminal.desktop\">APT on the command line</a>."
 msgstr ""
-"للقيام بذلك, قم بانشاء تخزين دائم و قم بتثبيت بعض البرامج باستخدام Synaptic "
-"Package Manager او APT على سطر الأوامر."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:205
 msgid ""
 "To do so, install Tails on a USB stick using <a href=\"tails-installer."
 "desktop\">Tails Installer</a> and create a persistent storage."
 msgstr ""
-"للقيام بذلك, قم بتثبيت تيلز على عصا USB باستخدام <a href=\"tails-installer."
-"desktop\">Tails Installer</a> و قك بانشاء تخزين دائم."
 
 #: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:252
 msgid "[package not available]"
-msgstr "[الحزمة غير متوفرة]"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:52
 msgid "Synchronizing the system's clock"
-msgstr "جاري مزامنة ساعة النظام."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:53
 msgid ""
 "Tor needs an accurate clock to work properly, especially for Hidden "
 "Services. Please wait..."
-msgstr "تور يحتاج ساعة دقيقة للعمل، خصوصاً للخدمات المخفية. يرجى الانتظار..."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:87
 msgid "Failed to synchronize the clock!"
-msgstr "فشل في تزامن ساعة النظام!"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-screen-locker:110
 msgid "Lock Screen"
-msgstr "أغلق الشاشة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-screen-locker:125
 msgid "Screen Locker"
-msgstr "مِقفَل الشاشة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-screen-locker:131
 msgid "Set up a password to unlock the screen."
-msgstr "قم باعداد كلمة مرور لالغاء قفل الشاشة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-screen-locker:149
 msgid "Password"
-msgstr "كلمة السر"
-
-#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:150
-msgid "Confirm"
-msgstr "تأكيد "
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-security-check:124
 msgid "This version of Tails has known security issues:"
@@ -486,12 +739,12 @@ msgstr "هذه النسخة من تيلز تحتوي مشاكل أمنية:"
 
 #: config/chroot_local-includes/usr/local/bin/tails-security-check:135
 msgid "Known security issues"
-msgstr "أعطال أمنية معروفة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:52
 #, sh-format
 msgid "Network card ${nic} disabled"
-msgstr "كرت الشبكة ${nic} معطّل"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:53
 #, sh-format
@@ -500,13 +753,10 @@ msgid ""
 "temporarily disabled.\n"
 "You might prefer to restart Tails and disable MAC spoofing."
 msgstr ""
-"فشلت عملية انتحال وحدة تحكم وصول الوسائط لبطاقة الشبكة ${nic_name} (${nic}) "
-"لذا فقد تم تعطيلها مؤقتا.\n"
-"ربما تفضل إعادة تشغيل Tails وتعطيل انتحال وحدة تحكم وصول الوسائط."
 
 #: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:62
 msgid "All networking disabled"
-msgstr "جميع الشبكات معطّلة"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:63
 #, sh-format
@@ -515,9 +765,6 @@ msgid ""
 "recovery also failed so all networking is disabled.\n"
 "You might prefer to restart Tails and disable MAC spoofing."
 msgstr ""
-"فشلت عملية انتحال وحدة تحكم وصول الوسائط لبطاقة الشبكة ${nic_name} (${nic}) "
-"لذا فقد تم تعطيلها مؤقتا.\n"
-"ربما تفضل إعادة تشغيل Tails وتعطيل انتحال وحدة تحكم وصول الوسائط."
 
 #: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:35
 msgid ""
@@ -531,15 +778,6 @@ msgid ""
 "Or do a manual upgrade.\n"
 "See https://tails.boum.org/doc/first_steps/upgrade#manual\""
 msgstr ""
-"</b>لا تتوفر ذاكرة كافية للتحقق من وجود ترقيات.</b>\n"
-"\n"
-"تأكد من أن هذا النظام يلبي متطلبات تشغيل تيلز.\n"
-"انظر file:///usr/share/doc/tails/website/doc/about/requirements.en.html\n"
-"\n"
-"حاول اعادة تشغيل تيلز للتحقق من وجود ترقيات مرة اخرى.\n"
-"\n"
-"او قم بالتحديث يدويا.\n"
-"انظر https://tails.boum.org/doc/first_steps/upgrade#manual"
 
 #: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:72
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:27
@@ -557,7 +795,7 @@ msgstr "تحذير: تم اكتشاف بيئة عمل افتراضية!"
 
 #: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:74
 msgid "Warning: non-free virtual machine detected!"
-msgstr "تحذير: تم الكشف على آلة افتراضيه غير حره"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
 msgid ""
@@ -566,25 +804,22 @@ msgid ""
 "trustworthy, for both the host operating system and the virtualization "
 "software."
 msgstr ""
-"كل من نظام التشغيل المضيف والبرنامج الافتراضي هي قادرة على رصد ما تقومون به "
-"في تيلز. البرامج الحرة فقط هي التي يمكن اعتبارها جديرة بالثقة، على كل من "
-"نظام التشغيل المضيف والبرنامج الافتراضي."
 
 #: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:81
 msgid "Learn more"
-msgstr "تعرف على المزيد"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tor-browser:43
 msgid "Tor is not ready"
-msgstr "تور غير جاهز"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tor-browser:44
 msgid "Tor is not ready. Start Tor Browser anyway?"
-msgstr "تور غير جاهز. بدء متصفح تور على أي حال؟"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tor-browser:45
 msgid "Start Tor Browser"
-msgstr "أبدأ متصفح تور"
+msgstr ""
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js:35
 msgid "Tor Status"
@@ -592,42 +827,42 @@ msgstr ""
 
 #: config/chroot_local-includes/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js:50
 msgid "Open Onion Circuits"
-msgstr "افتح دوائر البصلة"
+msgstr ""
 
 #. Translators: Don't translate {volume_label} or {volume_size},
 #. they are placeholders and will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:58
 #, python-brace-format
 msgid "{volume_label} ({volume_size})"
-msgstr "{volume_label} ({volume_size})"
+msgstr ""
 
 #. Translators: Don't translate {partition_name} or {partition_size},
 #. they are placeholders and will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:63
 #, python-brace-format
 msgid "{partition_name} ({partition_size})"
-msgstr "{partition_name} ({partition_size})"
+msgstr ""
 
 #. Translators: Don't translate {volume_size}, it's a placeholder
 #. and will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:68
 #, python-brace-format
 msgid "{volume_size} Volume"
-msgstr "{volume_size} حجم"
+msgstr ""
 
 #. Translators: Don't translate {volume_name}, it's a placeholder and
 #. will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:107
 #, python-brace-format
 msgid "{volume_name} (Read-Only)"
-msgstr "{volume_name}(للقراءة-فقط)"
+msgstr ""
 
 #. Translators: Don't translate {partition_name} and {container_path}, they
 #. are placeholders and will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:115
 #, python-brace-format
 msgid "{partition_name} in {container_path}"
-msgstr "{partition_name} في {container_path}"
+msgstr ""
 
 #. Translators: Don't translate {volume_name} and {path_to_file_container},
 #. they are placeholders and will be replaced. You should only have to translate
@@ -635,14 +870,14 @@ msgstr "{partition_name} في {container_path}"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:122
 #, python-brace-format
 msgid "{volume_name} – {path_to_file_container}"
-msgstr "{volume_name} – {path_to_file_container}"
+msgstr ""
 
 #. Translators: Don't translate {partition_name} and {drive_name}, they
 #. are placeholders and will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:128
 #, python-brace-format
 msgid "{partition_name} on {drive_name}"
-msgstr "{partition_name} على {drive_name}"
+msgstr ""
 
 #. Translators: Don't translate {volume_name} and {drive_name},
 #. they are placeholders and will be replaced. You should only have to translate
@@ -650,15 +885,15 @@ msgstr "{partition_name} على {drive_name}"
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:135
 #, python-brace-format
 msgid "{volume_name} – {drive_name}"
-msgstr "{volume_name} – {drive_name}"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:222
 msgid "Wrong passphrase or parameters"
-msgstr "خطأ في كلمة المرور او العوامل"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:224
 msgid "Error unlocking volume"
-msgstr "خطأ في فك قفل الحجم"
+msgstr ""
 
 #. Translators: Don't translate {volume_name} or {error_message},
 #. they are placeholder and will be replaced.
@@ -668,8 +903,6 @@ msgid ""
 "Couldn't unlock volume {volume_name}:\n"
 "{error_message}"
 msgstr ""
-"فشل فك قفل الحجم {volume_name}:\n"
-"{error_message}"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:330
 msgid "One or more applications are keeping the volume busy."
@@ -683,39 +916,36 @@ msgid ""
 "Couldn't lock volume {volume_name}:\n"
 "{error_message}"
 msgstr ""
-"لم يستطع قفل وحدة التخزين {volume_name}:\n"
-"{error_message}"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:338
-#, fuzzy
 msgid "Locking the volume failed"
-msgstr "قفل هذا الحجم"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:83
 msgid "No file containers added"
-msgstr "لم يتم اضافة اي مستوعب ملفات"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:98
 msgid "No VeraCrypt devices detected"
-msgstr "لم يتم اكتشاف اي اجهزة VeraCrypt"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:40
 #: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
 msgid "Unlock VeraCrypt Volumes"
-msgstr "فك قفل أحجام VeraCrypt"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:114
 msgid "Container already added"
-msgstr "المستوعب مضاف بالفعل"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:115
 #, python-format
 msgid "The file container %s should already be listed."
-msgstr "يجب ان يكون مستوعب الملفات %s مدرج بالفعل."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:131
 msgid "Container opened read-only"
-msgstr "تم فتح المستوعب للقراءة-فقط"
+msgstr ""
 
 #. Translators: Don't translate {path}, it's a placeholder  and will be replaced.
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:133
@@ -726,27 +956,23 @@ msgid ""
 "container.\n"
 "{error_message}"
 msgstr ""
-"فشل فتح مستوعب الملفات {path} مع امكانية الكتابة. لقد تم فتحه للقراءة-فقط "
-"بدلا من ذلك.\n"
-"لن يكون بامكانك تعديل محتويات المستوعب.\n"
-"{error_message}"
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:138
 msgid "Error opening file"
-msgstr "خطأ في فتح الملف"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:160
 msgid "Not a VeraCrypt container"
-msgstr "ليس مستوعب VeraCrypt"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:161
 #, python-format
 msgid "The file %s does not seem to be a VeraCrypt container."
-msgstr "يبدو ان الملف %s ليس مستوعب VeraCrypt"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:163
 msgid "Failed to add container"
-msgstr "فشل إضافة مستوعب"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:164
 #, python-format
@@ -754,16 +980,14 @@ msgid ""
 "Could not add file container %s: Timeout while waiting for loop setup.\n"
 "Please try using the <i>Disks</i> application instead."
 msgstr ""
-"غير قادر على إضافة حافظة ملف %s: انتهت المهلة أثناء انتظار إعداد الحلقة.\n"
-"الرجاء محاولة استخدام تطبيق ال<i>Disks</i> بدلا من ذلك."
 
 #: config/chroot_local-includes/usr/local/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:209
 msgid "Choose File Container"
-msgstr "اختر مستوعب ملفات"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:38
 msgid "Do you really want to launch the Unsafe Browser?"
-msgstr "هل حقاً تريد تشغيل المتصفح غير الآمن؟"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:40
 msgid ""
@@ -771,9 +995,6 @@ msgid ""
 "use the Unsafe Browser if necessary, for example\\nif you have to login or "
 "register to activate your Internet connection."
 msgstr ""
-"نشاط الشبكة داخل المتصفح غير الآمن هي <b>غير مجهول</b>.\\nإستخدم المتصفح غير "
-"الآمن فقط إذا كانت هناك ضرورة،مثلا\\nإذا كنت تحتاج لتسجيل الدخول أو التسجيل "
-"لتفعيل اتصالك بالإنترنت."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:51
 msgid "Starting the Unsafe Browser..."
@@ -792,8 +1013,6 @@ msgid ""
 "This may take a while, and you may not restart the Unsafe Browser until it "
 "is properly shut down."
 msgstr ""
-"هذه العملية قد تأخذ وقتاً طويلاً، وقد لا تتمكن من إعادة تشغيل المتصفح غير "
-"الآمن حتى يتم اغلاقه بشكل كامل."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:70
 msgid "Failed to restart Tor."
@@ -809,7 +1028,6 @@ msgid ""
 "Another Unsafe Browser is currently running, or being cleaned up. Please "
 "retry in a while."
 msgstr ""
-"توجد نسخة أخرى تعمل أو يتم تنظيفها من المتصفح غير الآمن. رجاءً حاول بعد قليل."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:99
 msgid "Failed to setup chroot."
@@ -817,19 +1035,17 @@ msgstr "فشلت محاولة تشغيل chroot."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:104
 msgid "Failed to configure browser."
-msgstr "خلل في تهيئة المتصفح."
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:110
 msgid ""
 "No DNS server was obtained through DHCP or manually configured in "
 "NetworkManager."
 msgstr ""
-"لم يتم الحصول على سيرفر DNS من خلال بروتوكول DHCP أو عن طريق الادخال اليدوي "
-"في NetworkManager."
 
 #: config/chroot_local-includes/usr/local/sbin/unsafe-browser:121
 msgid "Failed to run browser."
-msgstr "خلل في تشغيل المتصفح."
+msgstr ""
 
 #: ../config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in.h:1
 msgid "Report an error"
@@ -850,19 +1066,19 @@ msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:2
 msgid "Learn how to use Tails"
-msgstr "تعلم كيف تستخدم Tails"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:2
 msgid "Learn more about Tails"
-msgstr "إطلع أكثر حول Tails"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in.h:1
 msgid "Tor Browser"
-msgstr "متصفح تور"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in.h:2
 msgid "Anonymous Web Browser"
-msgstr "متصفح إنترنت مخفي"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:2
 msgid "Browse the World Wide Web without anonymity"
@@ -874,14 +1090,13 @@ msgstr "متصفح غير آمن"
 
 #: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:2
 msgid "Mount VeraCrypt encrypted file containers and devices"
-msgstr "ركب مستوعبات الملفات و الأجهزة المشفرة الخاصة ب VeraCrypt"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/org.boum.tails.additional-software-config.desktop.in.h:2
 msgid ""
 "Configure the additional software installed from your persistent storage "
 "when starting Tails"
 msgstr ""
-"قم بضبط البرامج الاضافية المثبتة من التخزين الدائم الخاص بك عند بدء تيلز"
 
 #: ../config/chroot_local-includes/usr/share/desktop-directories/Tails.directory.in.h:2
 msgid "Tails specific tools"
@@ -889,62 +1104,56 @@ msgstr "ادوات خاصة بتيلز"
 
 #: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.root-terminal.policy.in.h:1
 msgid "To start a Root Terminal, you need to authenticate."
-msgstr "يجب عليك المصادقة أولا قبل تشغيل الواجهة الطرفية كمدير."
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.additional-software.policy.in.h:1
 msgid "Remove an additional software package"
-msgstr "ازالة حزمة برامج اضافية"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.additional-software.policy.in.h:2
 msgid ""
 "Authentication is required to remove a package from your additional software "
 "($(command_line))"
-msgstr "التوثيق مطلوب لازالة حزمة من برامجك الاضافية ($(سطر_الأوامر))"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:61
 msgid "File Containers"
-msgstr "مستوعبات الملفات"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:80
 msgid "_Add"
-msgstr "إضافة"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:86
 msgid "Add a file container"
-msgstr "اضافة مستوعب ملفات"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:103
 msgid "Partitions and Drives"
-msgstr "أقسام و محركات"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:121
 msgid ""
 "This application is not affiliated with or endorsed by the VeraCrypt project "
 "or IDRIX."
-msgstr "هذا البرنامج لا ينتمي و ليس مؤيدا من قبل مشروع VeraCrypt أو IDRIX"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:29
 msgid "_Open"
-msgstr "_فتح"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:38
 msgid "Lock this volume"
-msgstr "قفل هذا الحجم"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:52
 msgid "_Unlock"
-msgstr "_إلغاء القفل"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:61
 msgid "Detach this volume"
-msgstr "فصل هذا الحجم"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/local/share/mime/packages/unlock-veracrypt-volumes.xml.in.h:1
 msgid "TrueCrypt/VeraCrypt container"
-msgstr "مستوعب TrueCrypt/VeraCrypt"
-
-#~ msgid "Error locking volume"
-#~ msgstr "خطأ في قفل وحدة التخزين"
-
-#~ msgid "Tor"
-#~ msgstr "تور"
+msgstr ""
