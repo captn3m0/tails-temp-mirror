@@ -10,6 +10,34 @@ Feature: Time syncing
     And Tor is ready
     Then Tails clock is less than 5 minutes incorrect
 
+  Scenario: Clock is 12 hours in the future
+    Given I have started Tails from DVD without network and logged in
+    When I bump the system time with "+12 hours"
+    And the network is plugged
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  Scenario: Clock is 12 hours in the past
+    Given I have started Tails from DVD without network and logged in
+    When I bump the system time with "-12 hours"
+    And the network is plugged
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  Scenario: Clock is 1 day in the future
+    Given I have started Tails from DVD without network and logged in
+    When I bump the system time with "+1 day"
+    And the network is plugged
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  Scenario: Clock is 1 day in the past
+    Given I have started Tails from DVD without network and logged in
+    When I bump the system time with "-1 day"
+    And the network is plugged
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
   Scenario: Clock is 2 days in the future
     Given I have started Tails from DVD without network and logged in
     When I bump the system time with "+2 days"
@@ -50,6 +78,27 @@ Feature: Time syncing
 
   #11589
   @fragile
+  Scenario: Clock is 12 hours in the future in bridge mode
+    Given I have started Tails from DVD without network and logged in with bridge mode enabled
+    When I bump the system time with "+12 hours"
+    And the network is plugged
+    And the Tor Launcher autostarts
+    And I configure some bridge pluggable transports in Tor Launcher
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  @fragile
+  Scenario: Clock is 12 hours in the past in bridge mode
+    Given I have started Tails from DVD without network and logged in with bridge mode enabled
+    When I bump the system time with "-12 hours"
+    And the network is plugged
+    And the Tor Launcher autostarts
+    And I configure some bridge pluggable transports in Tor Launcher
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  #11589
+  @fragile
   Scenario: Clock is one day in the future in bridge mode
     Given I have started Tails from DVD without network and logged in with bridge mode enabled
     When I bump the system time with "+1 day"
@@ -63,6 +112,27 @@ Feature: Time syncing
   Scenario: Clock is one day in the past in bridge mode
     Given I have started Tails from DVD without network and logged in with bridge mode enabled
     When I bump the system time with "-1 day"
+    And the network is plugged
+    And the Tor Launcher autostarts
+    And I configure some bridge pluggable transports in Tor Launcher
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  #11589
+  @fragile
+  Scenario: Clock is 2 days in the future in bridge mode
+    Given I have started Tails from DVD without network and logged in with bridge mode enabled
+    When I bump the system time with "+2 days"
+    And the network is plugged
+    And the Tor Launcher autostarts
+    And I configure some bridge pluggable transports in Tor Launcher
+    And Tor is ready
+    Then Tails clock is less than 5 minutes incorrect
+
+  @fragile
+  Scenario: Clock is 2 days in the past in bridge mode
+    Given I have started Tails from DVD without network and logged in with bridge mode enabled
+    When I bump the system time with "-2 days"
     And the network is plugged
     And the Tor Launcher autostarts
     And I configure some bridge pluggable transports in Tor Launcher
