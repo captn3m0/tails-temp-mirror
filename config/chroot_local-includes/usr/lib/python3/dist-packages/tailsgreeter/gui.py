@@ -354,6 +354,36 @@ class MACSpoofSetting(AdditionalSetting):
                 tailsgreeter.utils.get_on_off_string(macspoof, default=True))
 
 
+class UnsafeBrowserSetting(AdditionalSetting):
+    def __init__(self, greeter, builder):
+        super().__init__("unsafe_browser", greeter, builder)
+        self.accel_key = Gdk.KEY_u
+
+    def build_ui(self, builder):
+        super().build_ui(builder)
+        tailsgreeter.utils.import_builder_objects(self, builder, [
+                'image_unsafe_browser_off',
+                'image_unsafe_browser_on',
+                'label_unsafe_browser_value',
+                'listboxrow_unsafe_browser_off',
+                'listboxrow_unsafe_browser_on',
+                ])
+
+    def row_activated(self, row):
+        unsafe_browser = None
+        if row == self.listboxrow_unsafe_browser_on:
+            unsafe_browser = True
+            self.image_unsafe_browser_on.set_visible(True)
+            self.image_unsafe_browser_off.set_visible(False)
+        elif row == self.listboxrow_unsafe_browser_off:
+            unsafe_browser = False
+            self.image_unsafe_browser_off.set_visible(True)
+            self.image_unsafe_browser_on.set_visible(False)
+        self.greeter.physical_security.unsafe_browser = unsafe_browser
+        self.label_unsafe_browser_value.set_label(
+                tailsgreeter.utils.get_on_off_string(unsafe_browser, default=True))
+
+
 class NetworkSetting(AdditionalSetting):
     def __init__(self, greeter, builder):
         super().__init__("network", greeter, builder)
@@ -561,6 +591,7 @@ class GreeterSettingsCollection(object):
         # Additional settings views
         self.admin = AdminSetting(greeter, builder)
         self.macspoof = MACSpoofSetting(greeter, builder)
+        self.unsafe_browser = UnsafeBrowserSetting(greeter, builder)
         self.network = NetworkSetting(greeter, builder)
         self.camouflage = CamouflageSetting(greeter, builder)
 
@@ -583,12 +614,14 @@ class DialogAddSetting(Gtk.Dialog):
                 'box_camouflage_popover',
                 'box_macspoof_popover',
                 'box_network_popover',
+                'box_unsafe_browser_popover',
                 'entry_admin_password',
                 'listbox_add_setting',
                 'listboxrow_admin',
                 'listboxrow_camouflage',
                 'listboxrow_macspoof',
                 'listboxrow_network',
+                'listboxrow_unsafe_browser',
                 ])
 
         self.set_transient_for(self)
@@ -789,6 +822,7 @@ class GreeterMainWindow(Gtk.Window, TranslatableWindow):
                 'box_storage',
                 'box_storage_unlock',
                 'box_storage_unlocked',
+                'box_unsafe_browser_popover',
                 'button_storage_configure',
                 'checkbutton_language_save',
                 'checkbutton_settings_save',
@@ -807,6 +841,7 @@ class GreeterMainWindow(Gtk.Window, TranslatableWindow):
                 'listboxrow_network',
                 'listboxrow_text',
                 'listboxrow_tz',
+                'listboxrow_unsafe_browser',
                 'switch_camouflage',
                 'toolbutton_settings_add',
                 ])
@@ -1083,6 +1118,10 @@ class GreeterMainWindow(Gtk.Window, TranslatableWindow):
         setting_id = tailsgreeter.utils.setting_id_from_row(row)
         tailsgreeter.utils.popover_toggle(self.settings[setting_id].popover)
         return False
+
+    def cb_listbox_unsafe_browser_row_activated(self, listbox, row, user_data=None):
+        self.settings.unsafe_browser.row_activated(row)
+        self.settings.unsafe_browser.close_popover_if_any()
 
     def cb_switch_camouflage_active(self, switch, pspec, user_data=None):
         self.settings.camouflage.switch_active(switch)

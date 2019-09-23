@@ -36,6 +36,7 @@ class PhysicalSecuritySettings(object):
         # Whether to run macspoof
         self._netconf = self.NETCONF_DIRECT
         self._macspoof = True
+        self._unsafe_browser = True
         self.write_settings()
 
     def write_settings(self):
@@ -47,6 +48,8 @@ class PhysicalSecuritySettings(object):
                     pipes.quote(self.netconf)))
             f.write('TAILS_MACSPOOF_ENABLED={0}\n'.format(
                     pipes.quote(str(self.macspoof).lower())))
+            f.write('TAILS_UNSAFE_BROWSER_ENABLED={0}\n'.format(
+                    pipes.quote(str(self.unsafe_browser).lower())))
             logging.debug('physical security settings written to %s',
                           physical_security_settings_file)
 
@@ -58,6 +61,10 @@ class PhysicalSecuritySettings(object):
     def macspoof(self):
         return self._macspoof
 
+    @property
+    def unsafe_browser(self):
+        return self._unsafe_browser
+
     @netconf.setter
     def netconf(self, new_state):
         self._netconf = new_state
@@ -66,4 +73,9 @@ class PhysicalSecuritySettings(object):
     @macspoof.setter
     def macspoof(self, new_state):
         self._macspoof = new_state
+        self.write_settings()
+
+    @unsafe_browser.setter
+    def unsafe_browser(self, new_state):
+        self._unsafe_browser = new_state
         self.write_settings()

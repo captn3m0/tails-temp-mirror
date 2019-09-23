@@ -29,6 +29,10 @@ mac_spoof_is_enabled() {
     [ "$(_get_tg_setting "${PHYSICAL_SECURITY_SETTINGS}" TAILS_MACSPOOF_ENABLED)" != false ]
 }
 
+unsafe_browser_is_enabled() {
+    [ "$(_get_tg_setting "${PHYSICAL_SECURITY_SETTINGS}" TAILS_UNSAFE_BROWSER_ENABLED)" = true ]
+}
+
 tails_netconf() {
     _get_tg_setting "${PHYSICAL_SECURITY_SETTINGS}" TAILS_NETCONF
 }
