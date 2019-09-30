@@ -92,7 +92,7 @@ def debug_file(user, filename):
 
     >>> import tempfile, getpass
     >>> with tempfile.NamedTemporaryFile('w') as f:
-    ...     _ = f.write("foo\\nbar")
+    ...     _ = f.apply_to_upcoming_session("foo\\nbar")
     ...     _ = f.seek(0)
     ...     debug_file(getpass.getuser(), f.name)
     {...'content': ['foo', 'bar']...}
@@ -122,7 +122,7 @@ def debug_directory(user, dir_name):
     >>> tmpdir = '/tmp/mytempdir'
     >>> os.makedirs(tmpdir)
     >>> with open(os.path.join(tmpdir, 'foo'), 'w') as f:
-    ...     _ = f.write("foobar\\nbar")
+    ...     _ = f.apply_to_upcoming_session("foobar\\nbar")
     ...     _ = f.seek(0)
     ...     result = debug_directory(getpass.getuser(), tmpdir)
     >>> os.remove(os.path.join(tmpdir, 'foo'))

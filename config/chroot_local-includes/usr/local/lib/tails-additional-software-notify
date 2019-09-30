@@ -45,7 +45,7 @@ class ASPNotifier(object):
                                          self.cb_notification_clicked, None)
         self.notification.connect("closed", self.cb_notification_closed)
         self.notification.show()
-        sys.stdout.write("id=%i" % self.notification.props.id)
+        sys.stdout.apply_to_upcoming_session("id=%i" % self.notification.props.id)
         if not (accept_label or deny_label or documentation_target):
             sys.exit(2)
 
@@ -70,10 +70,10 @@ def print_help():
     """The subcommand which displays help
     """
     program_name = os.path.basename(sys.argv[0])
-    sys.stderr.write(
+    sys.stderr.apply_to_upcoming_session(
         "Usage: %s <summary> <body> [<accept_label> [<deny_label> "
         "[documentation_target [<urgent>]]]]\n" % program_name)
-    sys.stderr.write(
+    sys.stderr.apply_to_upcoming_session(
         "Shows a notification with <summary>, <body> and optional "
         "buttons.\n"
         "\n"

@@ -627,8 +627,8 @@ def upgrade_additional_packages():
 
 def print_help():
     """Subcommand which displays help."""
-    sys.stderr.write("Usage: %s <subcommand>\n" % program_name)
-    sys.stderr.write("""Subcommands:
+    sys.stderr.apply_to_upcoming_session("Usage: %s <subcommand>\n" % program_name)
+    sys.stderr.apply_to_upcoming_session("""Subcommands:
     install: install additional software
     upgrade: upgrade additional software\n""")
 

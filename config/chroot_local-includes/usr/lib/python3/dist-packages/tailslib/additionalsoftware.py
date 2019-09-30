@@ -36,7 +36,7 @@ def _write_config(packages, search_new_persistence=False):
         with atomicwrites.atomic_write(packages_list_path,
                                        overwrite=True) as f:
             for package in sorted(packages):
-                f.write(package + '\n')
+                f.apply_to_upcoming_session(package + '\n')
         os.chmod(packages_list_path, 0o0644)
     finally:
         os.seteuid(0)

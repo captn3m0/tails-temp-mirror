@@ -14,10 +14,10 @@ from gi.repository import Gio, GLib, GnomeDesktop, GObject, Gtk
 
 class KeyboardSetting(LocalizationSetting):
 
-    def __init__(self, settings_object):
-        super().__init__(settings_object)
+    def __init__(self):
+        super().__init__()
         self.xkbinfo = GnomeDesktop.XkbInfo()
-        super().set_value('us', is_default=True)
+        self.value = 'us'
 
     def get_tree(self, layout_codes=None):
         if not layout_codes:
@@ -27,9 +27,8 @@ class KeyboardSetting(LocalizationSetting):
                                   GObject.TYPE_STRING)  # name
         layouts = self._layouts_split_names(layout_codes)
         for group_name in sorted(layouts.keys()):
-            layout_codes = sorted(
-                    layouts[group_name],
-                    key=lambda x: self._layout_name(x).lower())
+            layout_codes = sorted(layouts[group_name],
+                                  key=lambda x: self._layout_name(x).lower())
             treeiter_group = treestore.append(parent=None)
             # we fill the title with the 1st layout of the group
             treestore.set(treeiter_group, 0, layout_codes[0])
@@ -38,8 +37,7 @@ class KeyboardSetting(LocalizationSetting):
                 for layout_code in layout_codes:
                     treeiter_layout = treestore.append(parent=treeiter_group)
                     treestore.set(treeiter_layout, 0, layout_code)
-                    treestore.set(treeiter_layout, 1,
-                                  self._layout_name(layout_code))
+                    treestore.set(treeiter_layout, 1, self._layout_name(layout_code))
         return treestore
 
     def get_name(self):
@@ -51,21 +49,9 @@ class KeyboardSetting(LocalizationSetting):
         """
         return self.xkbinfo.get_all_layouts()
 
-    def get_defaults(self):
-        """Return list of supported keyboard layouts for current language
-
-        """
-        lang_code = language_from_locale(self._settings.language.get_value())
-        layouts = self._layouts_for_language(lang_code)
-        if not layouts:
-            country_code = country_from_locale(self._settings.language.get_value())
-            layouts = self._layouts_for_country(country_code)
-        if not layouts:
-            layouts = ['us']
-        return layouts
-
-    def set_value(self, layout, is_default=False):
-        super().set_value(layout, is_default)
+    def set_value(self, layout, chosen_by_user=False):
+        super().set_value(layout)
+        self.value_changed_by_user = chosen_by_user
         self._apply_layout_to_current_screen()
 
     def _layout_name(self, layout_code):
@@ -86,8 +72,8 @@ class KeyboardSetting(LocalizationSetting):
                 layouts_names[country_name].add(layout_code)
         return layouts_names
 
-    def _layouts_for_language(self, lang_code):
-        """Return the list of available layouts for given language
+    def _layouts_for_language(self, lang_code) -> {str}:
+        """Return the set of available layouts for given language
         """
         try:
             t_code = ln_iso639_tri(lang_code)
@@ -111,10 +97,10 @@ class KeyboardSetting(LocalizationSetting):
             layouts = self.xkbinfo.get_layouts_for_language(b_code)
 
         logging.debug('got %d layouts for %s', len(layouts), lang_code)
-        return layouts
+        return set(layouts)
 
-    def _layouts_for_country(self, country):
-        """Return the list of available layouts for given country
+    def _layouts_for_country(self, country) -> {str}:
+        """Return the set of available layouts for given country
         """
         # XXX: it would be logical to use:
         #     self.__xklinfo.get_layouts_for_language(country)
@@ -122,8 +108,7 @@ class KeyboardSetting(LocalizationSetting):
         # country.
         def country_filter(layout):
             cc = country.lower()
-            return ((layout == cc)
-                    or ('+' in layout) and (layout.split('+')[0] == cc))
+            return (layout == cc) or ('+' in layout) and (layout.split('+')[0] == cc)
 
         layouts = list(filter(country_filter, self.get_all()))
 
@@ -168,35 +153,34 @@ class KeyboardSetting(LocalizationSetting):
                 layouts = filtered_layouts
         return layouts
 
-    def set_default(self):
-        """Sets the best default layout for the current locale
-        """
-        language = language_from_locale(self._settings.language.get_value())
-        country = country_from_locale(self._settings.language.get_value())
+    def on_language_changed(self, locale: str):
+        """Set the keyboard layout according to the new language"""
+
+        # Don't overwrite a user chosen value
+        if self.value_changed_by_user:
+            return
+
+        language = language_from_locale(locale)
+        country = country_from_locale(locale)
 
         # First, build a list of layouts to consider for the language
         language_layouts = self._layouts_for_language(language)
         logging.debug("Language %s layouts: %s", language, language_layouts)
         country_layouts = self._layouts_for_country(country)
         logging.debug("Country %s layouts: %s", country, country_layouts)
-        layouts = set(language_layouts).intersection(country_layouts)
+        layouts = language_layouts.intersection(country_layouts)
         logging.debug("Intersection of language %s and country %s: %s",
                       language, country, layouts)
-        if not len(layouts) > 0:
-            def country_filter(layout):
-                layout_name, layout_variant = self._split_variant(layout)
-                return layout_name == country.lower()
-            layouts = list(filter(country_filter, language_layouts))
+
+        if not layouts:
+            layouts = set(l for l in language_layouts if self._split_variant(l)[0] == country.lower)
             logging.debug("Empty intersection of language and country, filter "
                           "by country %s only: %s", country, layouts)
-        if not len(layouts) > 0:
-            def language_filter(layout):
-                layout_name, layout_variant = self._split_variant(layout)
-                return layout_name == language
-            layouts = list(filter(language_filter, language_layouts))
+        if not layouts:
+            layouts = set(l for l in language_layouts if self._split_variant(l)[0] == language)
             logging.debug("List still empty, filter by language %s only: %s",
                           language, layouts)
-        if not len(layouts) > 0:
+        if not layouts:
             layouts = language_layouts
             logging.debug("List still empty, use all language %s layouts: %s",
                           language, layouts)
@@ -220,7 +204,7 @@ class KeyboardSetting(LocalizationSetting):
         else:
             default_layout = 'us'
             logging.debug("Using us as fallback default layout")
-        self.set_value(default_layout, is_default=True)
+        self.set_value(default_layout)
 
     def _apply_layout_to_current_screen(self):
         layout = self.get_value()

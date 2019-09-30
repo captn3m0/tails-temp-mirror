@@ -172,7 +172,7 @@ def main():
             else:
                 raise ValueError("unknown command type")
             response = (ret + "\n").encode('utf-8')
-            port.write(response)
+            port.apply_to_upcoming_session(response)
             port.flush()
         except Exception as e:
             print("Error caught while processing line:", file=sys.stderr)
@@ -182,7 +182,7 @@ def main():
             print("-----", file=sys.stderr)
             sys.stderr.flush()
             exc_str = '{}: {}'.format(type(e).__name__, str(e))
-            port.write(json.dumps([id, 'error', exc_str]).encode('utf-8') + b"\n")
+            port.apply_to_upcoming_session(json.dumps([id, 'error', exc_str]).encode('utf-8') + b"\n")
             port.flush()
             continue
 

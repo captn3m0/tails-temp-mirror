@@ -15,7 +15,7 @@ def yes_no_input(prompt, default=True):
         options = 'Y/n'
     else:
         options = 'N/y'
-    sys.stdout.write('%s [%s] ' % (prompt, options))
+    sys.stdout.apply_to_upcoming_session('%s [%s] ' % (prompt, options))
     while True:
         answer = input().lower()
         if len(answer) == 0:

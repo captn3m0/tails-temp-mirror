@@ -30,7 +30,7 @@ from tailsgreeter.ui import _
 from tailsgreeter.ui.add_settings_dialog import AddSettingsDialog
 from tailsgreeter.ui.additional_settings import AdditionalSetting
 from tailsgreeter.ui.help_window import GreeterHelpWindow
-from tailsgreeter.ui.region_settings import RegionSetting, TextSetting
+from tailsgreeter.ui.region_settings import LocalizationSettingUI, LanguageSettingUI
 from tailsgreeter import TRANSLATION_DOMAIN
 from tailsgreeter.ui.persistent_storage import PersistentStorage
 
@@ -50,7 +50,7 @@ ICON_DIR = 'icons/'
 PREFERRED_WIDTH = 620
 PREFERRED_HEIGHT = 470
 
-locale.bindtextdomain(TRANSLATION_DOMAIN, tailsgreeter.config.locales_path)
+locale.bindtextdomain(TRANSLATION_DOMAIN, tailsgreeter.config.system_locale_dir)
 
 
 class GreeterMainWindow(Gtk.Window, TranslatableWindow):
@@ -366,7 +366,7 @@ class GreeterMainWindow(Gtk.Window, TranslatableWindow):
             setting.popover.open(self.on_region_setting_popover_closed, setting)
         return False
 
-    def on_region_setting_popover_closed(self, popover: Popover, setting: RegionSetting):
+    def on_region_setting_popover_closed(self, popover: Popover, setting: LocalizationSettingUI):
         # Unselect the listbox row
         self.listbox_region.unselect_all()
 
@@ -378,7 +378,7 @@ class GreeterMainWindow(Gtk.Window, TranslatableWindow):
         # If the language is changed, the values of the other region settings
         # are changed as well, so we have to update the value labels for all
         # region settings in that case.
-        if isinstance(setting, TextSetting):
+        if isinstance(setting, LanguageSettingUI):
             for s in self.settings.region_settings:
                 s.update_value_label()
         else:
