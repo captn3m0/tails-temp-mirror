@@ -241,3 +241,38 @@ figure {
 #key-help .key-dot { background-color: #b2912f; }
 #key-meetings .key-dot { background-color: #b276b2; }
 #key-ux .key-dot { background-color: #decf3f; }
+
+/* t-shirts */
+#temp-donation-reward {
+    border: 1px solid #eee;
+    background: #eee;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+}
+
+#temp-donation-reward .details h4 {
+    clear: both;
+}
+
+#temp-donation-reward > p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 0 4em;
+}
+
+#temp-donation-reward img {
+    float: left;
+    margin-right: 1em;
+    height: 60px;
+    width: auto;
+    margin-top: 0.25em;
+}
+
+#temp-donation-reward .details {
+    display: none;
+    padding-top: 1em;
+}
+
+#temp-donation-reward:hover .details {
+    display: block;
+}
