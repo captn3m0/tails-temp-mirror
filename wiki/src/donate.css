@@ -243,36 +243,64 @@ figure {
 #key-ux .key-dot { background-color: #decf3f; }
 
 /* t-shirts */
+
 #temp-donation-reward {
-    border: 1px solid #eee;
-    background: #eee;
     margin-bottom: 0.5em;
     padding: 0.5em;
 }
 
-#temp-donation-reward .details h4 {
+#temp-donation-reward-teaser {
+    overflow: hidden;
+    cursor: pointer;
+    background: #eee;
+    transition: all 0.2s linear;
+}
+
+#temp-donation-reward-teaser:hover {
+    background: #53b351;
+    color: #fff;
+}
+
+#temp-donation-reward-teaser p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 0.75em 4em 0;
+}
+
+#temp-donation-reward-teaser img {
+    float: left;
+    height: 60px;
+    width: auto;
+    margin: 0.5em;
+}
+
+#temp-donation-close {
+    cursor: pointer;
+    color: green;
+    float: right;
+    font-size: 2em;
+    margin-top: -1em;
+}
+
+#temp-donation-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 3em 10%;
+    box-sizing: border-box;
+    z-index: 10;
+    background: #fff;
+    overflow: auto;
+}
+
+#temp-donation-details h4 {
     clear: both;
 }
 
-#temp-donation-reward > p {
-    font-size: 1.2em;
-    text-align: center;
-    padding: 0 4em;
-}
-
-#temp-donation-reward img {
-    float: left;
+#temp-donation-details img {
+    display: inline-block;
     margin-right: 1em;
-    height: 60px;
-    width: auto;
-    margin-top: 0.25em;
-}
-
-#temp-donation-reward .details {
-    display: none;
-    padding-top: 1em;
-}
-
-#temp-donation-reward:hover .details {
-    display: block;
+    margin-bottom: 1em;
 }
