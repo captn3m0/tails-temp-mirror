@@ -124,4 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Toggle T-Shirt banner
+  hide(document.getElementById('temp-donation-details')); // hide this only if JS is enabled
+  document.getElementById("temp-donation-reward-teaser").onclick = function() {
+    show(document.getElementById('temp-donation-details'));
+  }
+  document.getElementById("temp-donation-close").onclick = function() {
+    hide(document.getElementById('temp-donation-details'));
+  }
+
 });
