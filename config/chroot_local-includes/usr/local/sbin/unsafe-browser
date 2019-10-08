@@ -23,6 +23,8 @@ export TEXTDOMAIN
 # and run_browser_in_chroot().
 . /usr/local/lib/tails-shell-library/chroot-browser.sh
 
+DISPLAY=":1"
+
 error () {
     local cli_text="${CMD}: `gettext \"error:\"` ${@}"
     local dialog_text="<b><big>`gettext \"Error\"`</big></b>
