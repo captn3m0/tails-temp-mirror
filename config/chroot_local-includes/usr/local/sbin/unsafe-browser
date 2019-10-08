@@ -37,14 +37,7 @@ ${@}"
 
 verify_start () {
     # Make sure the user really wants to start the browser
-    local dialog_msg="<b><big>`gettext \"Do you really want to launch the Unsafe Browser?\"`</big></b>
-
-`gettext \"Network activity within the Unsafe Browser is <b>not anonymous</b>.\\nOnly use the Unsafe Browser if necessary, for example\\nif you have to login or register to activate your Internet connection.\"`"
-    local launch="`gettext \"_Launch\"`"
-    local exit="`gettext \"_Exit\"`"
-    if ! sudo -u "${SUDO_USER}" \
-         zenity --question --ellipsize --title "" --text "${dialog_msg}" --default-cancel \
-         --ok-label "${launch}"  --cancel-label "${exit}"; then
+    if ! /usr/local/lib/tails-unsafe-browser-warning; then
         exit 0
     fi
 }

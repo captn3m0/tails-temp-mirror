@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+import gettext
+import gi
+import time
+import sys
+
+gi.require_version("GLib", "2.0")
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk, GLib
+
+# Initialize translations
+translation = gettext.translation("tails", fallback=True)
+_ = translation.gettext
+
+
+def process_mainloop_events():
+    context = GLib.MainLoop().get_context()
+    while context.pending():
+        context.iteration()
+
+
+class UnsafeBrowserWarningDialog(object):
+    def __init__(self):
+        title = _("Do you really want to launch the Unsafe Browser?")
+
+        # Translators: <b> and </b> are markup tags which make the text they surround bold
+        # Translators: \n\n are two newlines
+        msg = _("Network activity within the Unsafe Browser is <b>not anonymous</b>.\n\n"
+                "Only use the Unsafe Browser if necessary, for example if you have "
+                "to login or register to activate your Internet connection.")
+
+        self.dialog = Gtk.MessageDialog(message_type=Gtk.MessageType.WARNING, text=title)
+        self.dialog.format_secondary_markup(msg)
+        self.dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+        self.dialog.add_button(_("Launch"), Gtk.ResponseType.OK)
+        self.dialog.connect("response", self.on_response)
+
+        button = self.dialog.get_widget_for_response(Gtk.ResponseType.OK)
+        button.get_style_context().add_class("destructive-action")
+        button.set_sensitive(False)
+
+        self.dialog.connect("show", self.on_dialog_shown)
+
+    def run(self):
+        # We don't use self.dialog.run() here because it doesn't process
+        # responses sent during the time spent in the on_dialog_shown loop.
+        self.dialog.show()
+
+    @staticmethod
+    def on_dialog_shown(dialog: Gtk.MessageDialog):
+        button = dialog.get_widget_for_response(Gtk.ResponseType.OK)
+        seconds_to_wait = 5
+        start_time = time.perf_counter()
+        time_waited = time.perf_counter() - start_time
+
+        while time_waited < seconds_to_wait:
+            countdown = int(seconds_to_wait - time_waited) + 1
+            button.set_label(_("Launch (%s)" % str(countdown)))
+            process_mainloop_events()
+            time.sleep(0.1)
+            time_waited = time.perf_counter() - start_time
+
+        button.set_label(_("Launch"))
+        button.set_sensitive(True)
+
+    @staticmethod
+    def on_response(dialog: Gtk.MessageDialog, response: Gtk.ResponseType):
+        if response != Gtk.ResponseType.OK:
+            sys.exit(1)
+        sys.exit(0)
+
+
+def main():
+    UnsafeBrowserWarningDialog().run()
+    Gtk.main()
+
+
+if __name__ == "__main__":
+    main()
