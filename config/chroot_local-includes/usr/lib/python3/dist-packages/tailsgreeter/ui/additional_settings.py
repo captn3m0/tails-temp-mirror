@@ -6,7 +6,7 @@ import tailsgreeter.utils
 from tailsgreeter.ui import _
 from tailsgreeter.ui.setting import GreeterSetting
 from tailsgreeter.ui.popover import Popover
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
@@ -81,7 +81,7 @@ class AdminSettingUI(AdditionalSetting):
 
     def __init__(self, admin_setting: "AdminSetting"):
         self._admin_setting = admin_setting
-        self.password = None
+        self.password = None  # type: Union[None, str]
         super().__init__()
         self.accel_key = Gdk.KEY_a
 

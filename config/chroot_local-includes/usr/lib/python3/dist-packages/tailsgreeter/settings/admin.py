@@ -3,6 +3,7 @@ import os
 import os.path
 import logging
 import pipes
+from typing import Union
 
 import tailsgreeter.config
 
@@ -11,7 +12,7 @@ class AdminSetting(object):
     """Setting controlling the sudo password"""
 
     def __init__(self):
-        self.password = None
+        self.password = None  # type: Union[None, str]
 
     def apply_to_upcoming_session(self):
         setting_file = tailsgreeter.config.admin_password_output_path
