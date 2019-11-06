@@ -9,3 +9,4 @@ set -e
 echo "Creating the procfs group"
 
 addgroup --system --quiet --gid 151 procfs_priv
+adduser polkitd 151
