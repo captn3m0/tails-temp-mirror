@@ -1,12 +1,10 @@
 [[!meta title="Introduction to GNOME and the Tails desktop"]]
 
-The desktop environment used in Tails is [GNOME](https://www.gnome.org), version
-3.4 in [Fallback mode](https://help.gnome.org/users/gnome-help/3.4/fallback-mode.html.en).
-
+The desktop environment used in Tails is [GNOME](https://www.gnome.org).
 This page describes some important features of the desktop in the context of
 Tails.
 
-[[!toc levels=2]]
+[[!toc levels=3]]
 
 Top navigation bar
 ==================
@@ -16,28 +14,47 @@ In the upper left corner of the screen there are two menus:
   - the <span class="guimenu">Applications</span> menu
   - the <span class="guimenu">Places</span> menu
 
+<a id="applications"></a>
+
 Applications menu
 -----------------
 
 The <span class="guimenu">Applications</span> menu provides shortcuts to the
 [[included software|about/features]] and to GNOME configuration utilities.
 
-[[!img applications.png link=no alt="Applications menu"]]
+[[!img applications.png link=no alt=""]]
+
+<a id="help"></a>
 
 <div class="icon">
-[[!img help-browser.png link=no]]
+[[!img lib/help-browser.png link=no]]
 <div class="text">
-  <span class="guimenuitem">Help</span>: to access the GNOME Desktop Help choose
+  <span class="guimenuitem">Help</span>: to access the <span class="application">GNOME Desktop Help</span> choose
   <span class="menuchoice">
-    <span class="guisubmenu">Accessories</span>&nbsp;▸
+    <span class="guisubmenu">Utilities</span>&nbsp;▸
     <span class="guimenuitem">Help</span></span>
   </div>
 </div>
 
-### System Tools submenu
+<div class="icon">
+[[!img preferences-system.png link=no]]
+<div class="text">
+  <span class="guimenuitem">Settings</span>:
+  to change various system settings such as keyboard, mouse and touchpad,
+  or displays choose
+  <span class="menuchoice">
+    <span class="guisubmenu">System Tools</span>&nbsp;▸
+    <span class="guimenuitem">Settings</span></span>
+  </div>
+</div>
 
-The <span class="guisubmenu">System Tools</span> submenu allows you to customize
-the GNOME desktop or the system.
+<div class="tip">
+
+<p>To learn about the many keyboard shortcuts in GNOME,
+open the <span class="application">Settings</span> utility and choose
+<span class="guimenuitem">Keyboard</span>.</p>
+
+</div>
 
 <div class="next">
 
@@ -47,66 +64,26 @@ made persistent across separate working sessions.
 
 </div>
 
-Among other utilities, it includes:
-
-<div class="icon">
-[[!img preferences-system.png link=no]]
-<div class="text">
-  <span class="guimenuitem">System Settings</span>:
-  to change various system settings such as keyboard, mouse and touchpad,
-  or displays choose
-  <span class="menuchoice">
-    <span class="guisubmenu">System Tools</span>&nbsp;▸
-    <span class="guisubmenu">Preferences</span>&nbsp;▸
-    <span class="guimenuitem">System Settings</span></span>
-  </div>
-</div>
-
 <div class="icon">
 [[!img seahorse.png link=no]]
 <div class="text">
   <span class="guimenuitem">Seahorse</span>:
   to manage your OpenPGP keys choose
   <span class="menuchoice">
-    <span class="guisubmenu">System Tools</span>&nbsp;▸
-    <span class="guisubmenu">Preferences</span>&nbsp;▸
+    <span class="guisubmenu">Utilities</span>&nbsp;▸
     <span class="guimenuitem">Passwords and Keys</span></span>
   </div>
 </div>
 
-<div class="icon">
-[[!img synaptic.png link=no]]
-<div class="text">
-  <span class="guimenuitem">Synaptic Package Manager</span>:
-  to install, remove, and upgrade software packages choose
-  <span class="menuchoice">
-    <span class="guisubmenu">System Tools</span>&nbsp;▸
-    <span class="guisubmenu">Administration</span>&nbsp;▸
-    <span class="guimenuitem">Synaptic Package Manager</span></span>
-  </div>
-</div>
+<a id="favorites"></a>
 
-Places menu
------------
+### Favorites submenu
 
-The <span class="guimenu">Places</span> menu provides direct access to different
-storage media.
-
-[[!img places.png link=no alt="Places menu"]]
-
-To connect to a remote FTP or SFTP server choose
-<span class="menuchoice">
-  <span class="guimenu">Places</span>&nbsp;▸
-  <span class="guimenuitem">Connect to Server…</span></span>
-
-Applications shortcuts
-----------------------
-
-On the right of these two menu entries, a few shortcuts allow to
-launch the most frequently used applications.
+In the <span class="guisubmenu">Favorites</span> submenu, a few
+shortcuts allow you to launch the most frequently used applications:
 
 <div class="icon">
-[[!img tor-browser.png link=no]]
+[[!img anonymous_internet/Tor_Browser/tor-browser.png link=no]]
 <div class="text">
 <strong>Tor Browser</strong>: browse the World Wide Web<br/>
 [[See the corresponding documentation|anonymous_internet/Tor_Browser]]
@@ -114,8 +91,10 @@ launch the most frequently used applications.
 </div>
 
 <div class="icon">
-[[!img claws-mail.png link=no]]
-<div class="text"><strong>Claws Mail</strong>: email client</div>
+[[!img doc/first_steps/persistence/thunderbird.png link=no]]
+<div class="text"><strong>Thunderbird</strong>: email client<br />
+[[See the corresponding documentation|anonymous_internet/thunderbird]]
+</div>
 </div>
 
 <div class="icon">
@@ -127,126 +106,187 @@ launch the most frequently used applications.
 </div>
 
 <div class="icon">
-[[!img keepassx.png link=no]]
+[[!img keepassxc.png link=no]]
 <div class="text">
-<strong>KeePassX</strong>: password manager<br/>
+<strong>KeePassXC</strong>: password manager<br/>
 [[See the corresponding documentation|encryption_and_privacy/manage_passwords]]
+</div>
+</div>
+
+<div class="icon">
+[[!img files.png link=no alt=""]]
+<div class="text">
+<strong>Files</strong>: the <span class="application">Files</span> manager<br/>
+[[See the corresponding documentation|introduction_to_gnome_and_the_tails_desktop#files]]
 </div>
 </div>
 
 <a id="terminal"></a>
 
 <div class="icon">
-[[!img gnome-terminal.png link=no]]
+[[!img utilities-terminal.png link=no]]
 <div class="text"><strong>GNOME Terminal</strong>: use the command line</div>
 </div>
 
-Notification area
------------------
+<a id="places"></a>
 
-In the upper right corner you will find a couple of icons, each of which offers
-an interface for some system feature or running application. You are encouraged
-to check these icons out with the left and right mouse buttons.
+Places menu
+-----------
 
-<div class="icon">
-[[!img tor-on.png link=no]]
-[[!img tor-starting.png link=no]]
-[[!img tor-off.png link=no]]
-<div class="text">
-<strong>Vidalia</strong>: graphical controller for Tor<br/>
-[[See the corresponding documentation|anonymous_internet/vidalia]]
-</div>
+The <span class="guimenu">Places</span> menu provides direct access to different
+folders and storage media.
+
+[[!img places.png link=no alt=""]]
+
+<a id="tor-status"></a>
+
+Tor status and circuits
+-----------------------
+
+The Tor status icon and <span class="application">Onion
+Circuits</span> allow you to view the status of Tor.
+[[See the corresponding documentation.|anonymous_internet/tor_status]]
+
+[[!img tor-status.png link=no alt=""]]
+
+<a id="openpgp"></a>
+
+OpenPGP applet
+--------------
+
+Using the <span class="application">OpenPGP Applet</span> you can
+encrypt and decrypt the clipboard using OpenPGP.
+[[See the corresponding documentation.|encryption_and_privacy/gpgapplet]]
+
+[[!img openpgp_applet.png link=no alt=""]]
+
+<a id="accessibility"></a>
+
+Universal access
+----------------
+
+The universal access menu allows you to activate the screen reader,
+screen keyboard, large text display, and other accessibility technologies.
+[[See the corresponding documentation.|accessibility]]
+
+[[!img accessibility.png link=no alt=""]]
+
+<a id="keyboard"></a>
+
+Keyboard layouts
+----------------
+
+The keyboard layout menu allow you to change the keyboard layout and
+input method for non-Latin scripts.
+
+[[!img keyboard.png link=no alt=""]]
+
+<a id="system"></a>
+
+System menu
+-----------
+
+In the top-right corner of the top navigation bar, the system menu allows you to
+manage your settings, connect to a Wi-Fi network, and restart your computer.
+
+[[!img system.png link=no alt=""]]
+
+### Networking
+
+From the system menu, you can choose which Wi-Fi network to connect to.
+
+See also the documentation on [[connecting to a network|anonymous_internet/networkmanager]].
+
+### System settings
+
+Click on the [[!img lib/preferences-system.png alt="Settings" class="symbolic" link="no"]]
+button to edit your system settings.
+
+These settings will not be saved when you restart Tails.
+
+<a id="screen-locker"></a>
+
+### Screen locker
+
+Click on the [[!img lib/network-wireless-encrypted.png alt="Lock Screen" class="symbolic" link="no"]]
+button to lock your screen with a password.
+
+- If you set up an [[administration password|first_steps/startup_options/administration_password]]
+  when starting Tails, you can unlock your screen with your administration
+  password.
+
+  <div class="tip">
+  <p>Your screen will automatically lock after some time if you have set up an
+  administration password. To disable this behavior, execute the following
+  command:</p>
+
+  <p class="pre command">gsettings set org.gnome.desktop.screensaver lock-enabled false</p>
+
+  </div>
+
+- Otherwise, you can set up a password to unlock your screen when locking your
+  screen for the first time.
+
+  [[!img screen-locker.png alt="" link="no"]]
+
+### Suspend
+
+Click on the [[!img lib/media-playback-pause.png alt="Suspend" class="symbolic" link="no"]]
+button to suspend your computer.
+
+While suspended, your computer is not computing anymore but is still powered on,
+like if it was standing still but still alive.
+
+To resume from suspend and go back to the Tails desktop, push the power button
+of your computer.
+
+<div class="caution">
+
+<p>If you remove your Tails USB stick while suspended, your computer will not
+shut down immediately and will only shut down when resuming.</p>
+
+<p>An attacker with physical access to your computer and capable of finding
+your screen locker password or setting up a [[cold-boot
+attack|doc/advanced_topics/cold_boot_attacks]] can compromise your Tails while
+suspended.</p>
+
+<p>For more security, [[shut down Tails|doc/first_steps/shutdown]] entirely.</p>
+
 </div>
 
-<a id="florence"></a>
-<div class="icon">
-[[!img florence.png link=no]]
-<div class="text">
-<strong>Florence</strong>: virtual keyboard<br/>
-[[See the corresponding documentation|encryption_and_privacy/virtual_keyboard]]
-</div>
-</div>
+### Restart
 
-<div class="icon">
-[[!img gpgApplet-text.png link=no]]
-[[!img gpgApplet.png link=no]]
-[[!img gpgApplet-seal.png link=no]]
-<div class="text"><strong>Tails OpenPGP Applet</strong>: encryption and decrypt the
-clipboard using OpenPGP<br/> [[See the corresponding
-documentation|encryption_and_privacy/gpgapplet]]</div>
-</div>
+Click on the [[!img lib/view-refresh.png alt="Restart" class="symbolic" link="no"]]
+button to restart your computer.
 
-<a id="audio"></a>
-<div class="icon">
-[[!img sound.png link=no]]
-<div class="text"><strong>Audio Volume</strong>: control the audio
-volume</div>
-</div>
+### Shutdown
 
-<div class="icon">
-[[!img power.png link=no]]
-<div class="text">
-<strong>Power Manager</strong>: information about your battery, if you are using
-a laptop<br/>
-</div>
-</div>
+Click on the [[!img lib/system-shutdown.png alt="Power Off" class="symbolic" link="no"]]
+button to shut down your computer.
 
-<div class="icon">
-[[!img keyboard-en.png link=no]]
-[[!img keyboard-de.png link=no]]
-<div class="text">
-<strong>Keyboard Layout</strong>: current keyboard layout<br/>
-Right-click to configure a different keyboard layout.</div>
-</div>
+<a id="activities"></a>
 
-<div class="icon">
-[[!img network-idle.png link=no]]
-[[!img network-wired.png link=no]]
-[[!img network-wireless.png link=no]]
-<div class="text">
-<strong>Network Manager</strong>: handle your wireless or cabled network
-connection<br/>
-[[See the corresponding documentation|anonymous_internet/networkmanager]]
-</div>
-</div>
+Activities overview
+===================
 
-<a id="shutdown"></a>
-<div class="icon">
-[[!img shutdown.png link=no]]
-<div class="text"><strong>System Shutdown</strong>: shut down or restart the
-system</div>
-</div>
+To access your windows and applications you can either:
 
-Bottom panel
-============
+  - Choose <span class="menuchoice">
+      <span class="guisubmenu">Applications</span>&nbsp;▸
+      <span class="guimenuitem">Activities Overview</span></span>.
+  - Throw your mouse pointer to the top-left hot corner.
+  - Press the windows key on your keyboard.
 
-On the left of the bottom panel are displayed buttons for open windows.
+You can see your windows and applications in the overview. You can also
+start typing to search your applications, files, and folders.
 
-On the right of the bottom panel, a set of four similar rectangle icons gives
-access to four different workspaces.
+<a id="shortcuts"></a>
 
 Desktop shortcuts
 =================
 
 <div class="icon">
-[[!img computer.png link=no]]
-<div class="text"><strong>Computer</strong>: access storage media</div>
-</div>
-
-<div class="icon">
-[[!img user-home.png link=no]]
-<div class="text"><strong>amnesia's Home</strong>: shortcut to the default
-user's folder</div>
-</div>
-
-<div class="icon">
-[[!img emptytrash.png link=no]]
-<div class="text"><strong>Trash</strong>: where the "deleted" files are
-moved</div>
-</div>
-
-<div class="icon">
-[[!img system-help.png link=no]]
+[[!img tails-help.png link=no]]
 <div class="text"><strong>Tails documentation</strong>: open a local copy of
 Tails website and documentation</div>
 </div>
@@ -258,13 +298,61 @@ Tails website and documentation</div>
 </div>
 </div>
 
-Managing files with Nautilus
-============================
+<div class="icon">
+[[!img emptytrash.png link=no]]
+<div class="text"><strong>Trash</strong>: where the "deleted" files are
+moved</div>
+</div>
 
-Nautilus is GNOME's file manager, FTP, SFTP client and more.
+<a id="nautilus"></a>
+<a id="files"></a>
+
+The <span class="application">Files</span> browser
+==================================================
 
 [[!img nautilus.png link=no]]
 
-To manage local files, follow links on the desktop or from the **Places** menu
-at top right corner of the screen. To move files or folders, you can drag them
-from one window and drop them to another.
+To open the <span class="application">Files</span> browser, you can
+either:
+
+- Choose <span class="menuchoice">
+    <span class="guimenu">Applications</span>&nbsp;▸
+    <span class="guisubmenu">Accessories</span>&nbsp;▸
+    <span class="guimenuitem">Files</span></span>.
+
+- Open one of the shortcuts from the <span class="guimenu">Places</span>
+  menu.
+
+[[!img files.png link=no alt=""]]
+
+To connect to a remote SFTP (SSH File Transfer Protocol) server:
+
+1. Choose <span class="guilabel">Other Locations</span> in the sidebar
+   of the <span class="application">Files</span> browser.
+
+1. Specify an SFTP server in <span class="guilabel">Connect to
+   Server</span> at the bottom of the right pane. For example:
+
+   <p class="pre command">ssh://user@example.com/</p>
+
+1. Click <span class="button">Connect</span>.
+
+<a id="empty-trash"></a>
+
+Emptying the trash
+------------------
+
+1. Open the <span class="application">Files</span> browser.
+
+1. Click on the disk on which you want to empty the trash in the left
+   pane to open it.
+
+   To empty the trash of the persistent volume, open the
+   <span class="filename">Persistent</span> folder.
+
+1. Click on the <span class="guimenu">[[!img lib/pan-down.png alt="menu toggle"
+   class="symbolic" link="no"]]</span> button in the title bar and choose
+   <span class="guilabel">Show Hidden Files</span>.
+
+1. Delete the <span class="filename">.Trash-1000</span> folder or
+   similar.

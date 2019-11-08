@@ -5,21 +5,37 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-12 18:06+0100\n"
-"PO-Revision-Date: 2015-01-18 11:17-0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Tails\n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-09-29 19:58+0000\n"
+"PO-Revision-Date: 2019-10-01 16:45+0000\n"
+"Last-Translator: xin <xin@riseup.net>\n"
+"Language-Team: Tails translators <tails@boum.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.20\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "[[!meta title=\"Frequently asked questions\"]]\n"
 msgstr "[[!meta title=\"Foire aux questions\"]]\n"
+
+#. type: Plain text
+msgid ""
+"- For hardware compatibility issues, refer to our [[known issues|support/"
+"known_issues]].  - To learn what you can do with Tails, refer to our "
+"[[documentation|doc]].  - For questions related to Tor, see also to the [Tor "
+"support pages](https://support.torproject.org/)."
+msgstr ""
+"- Pour des problèmes de compatibilité matérielle, consultez notre [[liste "
+"des problèmes connus|support/known_issues]].\n"
+"- Pour découvrir ce que vous pouvez faire avec Tails, consultez notre "
+"[[documentation|doc]].\n"
+"- Pour des questions concernant Tor, consultez également les [pages "
+"d'assistance de Tor](https://support.torproject.org/fr/)."
 
 #. type: Plain text
 #, no-wrap
@@ -30,25 +46,6 @@ msgstr "[[!toc levels=2]]\n"
 #, no-wrap
 msgid "<a id=\"project\"></a>\n"
 msgstr "<a id=\"project\"></a>\n"
-
-#. type: Title =
-#, no-wrap
-msgid "Other useful resources\n"
-msgstr "Autres ressources utiles\n"
-
-#. type: Bullet: '  - '
-msgid "[The Tor Project: FAQ](https://www.torproject.org/docs/faq.html.en)"
-msgstr ""
-"[La foire aux questions sur le site du projet Tor](https://www.torproject."
-"org/docs/faq.html) (en anglais)"
-
-#. type: Bullet: '  - '
-msgid ""
-"[The Tor Project: Stack Exchange, question & answer site](https://tor."
-"stackexchange.com/)"
-msgstr ""
-"[Le projet Tor sur Stack Exchange, site de questions & réponses](https://tor."
-"stackexchange.com/)"
 
 #. type: Title =
 #, no-wrap
@@ -70,7 +67,7 @@ msgid ""
 "See our explanation about [[why does Tails use Tor|doc/about/"
 "tor#relationship]]."
 msgstr ""
-"Voir notre explication des raisons d'[[utiliser Tor dans Tails|doc/about/"
+"Voir notre explication de [[pourquoi Tails utilise Tor|doc/about/"
 "tor#relationship]]."
 
 #. type: Plain text
@@ -92,9 +89,9 @@ msgid ""
 "relationship_with_upstream]] for details."
 msgstr ""
 "Nous sommes profondément liés et impliqués dans Debian. Les amitiés, les "
-"relations, et l'expertise technique que nous avons au sein de Debian "
+"relations et l'expertise technique que nous avons au sein de Debian "
 "bénéficient grandement à Tails, et nous ne sommes pas prêt à construire la "
-"même relation avec Ubuntu, OpenBSD, ou une autre distribution. Voir notre "
+"même relation avec Ubuntu, OpenBSD ou une autre distribution. Voir notre "
 "déclaration à propos de notre [[relation avec les projets en amont|"
 "contribute/relationship_with_upstream]] pour plus de détails."
 
@@ -194,81 +191,68 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "<a id=\"website\"></a>\n"
-msgstr "<a id=\"website\"></a>\n"
-
-#. type: Title =
-#, no-wrap
-msgid "Tails website\n"
-msgstr "Site web de Tails\n"
-
-#. type: Plain text
-#, no-wrap
-msgid "<a id=\"ssl_certificate\"></a>\n"
-msgstr "<a id=\"ssl_certificate\"></a>\n"
+msgid "<a id=\"gnome\"></a>\n"
+msgstr "<a id=\"gnome\"></a>\n"
 
 #. type: Title -
 #, no-wrap
-msgid "Why does tails.boum.org rely on a commercial SSL certificate?\n"
-msgstr "Pourquoi tails.boum.org utilise un certificat SSL commercial ?\n"
+msgid "Why does Tails ship the GNOME Desktop?\n"
+msgstr "Pourquoi Tails intègre le bureau GNOME ?\n"
 
 #. type: Plain text
 msgid ""
-"HTTPS provides encryption and authentication on the web. The standard "
-"authentication mechanism through SSL certificates is centralized and based "
-"on commercial or institutional certificate authorities. This mechanism has "
-"proven to be susceptible to various methods of compromise. See our [[warning "
-"about man-in-the-middle attacks|doc/about/warning#man-in-the-middle]]."
+"We had users ask for LXDE, XFCE, MATE, KDE, and so on, but we are not going "
+"to change desktop. According to us, the main drawback of GNOME is that it "
+"requires quite a lot of resources to work properly, but it has many "
+"advantages.  The GNOME Desktop is:"
 msgstr ""
-"Le HTTPS fournit du chiffrement et de l'authentification sur le web. Le "
-"mécanisme standard d'authentification avec certificats SSL est centralisé et "
-"basé sur des autorités de certifications commerciales ou institutionnelles. "
-"Il a été démontré que ce mécanisme souffre de diverses méthodes de "
-"compromission. Voir notre [[avertissement à propos de l'attaque de l'homme-"
-"du-milieu|doc/about/warning#man-in-the-middle]]."
+"Des personnes nous ont demandé de livrer LXDE, XFCE, MATE, KDE et autres, "
+"mais nous ne changerons pas de bureau. Pour nous, l'inconvénient majeur de "
+"GNOME est qu'il nécessite beaucoup de ressources pour fonctionner "
+"correctement, mais il a beaucoup d'avantages. Le bureau GNOME est :"
+
+#. type: Bullet: '  - '
+msgid "Well integrated, especially for new Linux users."
+msgstr "Bien intégré, spécialement pour les nouveaux utilisateurs Linux."
+
+#. type: Bullet: '  - '
+msgid "Very well translated and documented."
+msgstr "Très bien traduit et documenté."
+
+#. type: Bullet: '  - '
+msgid "Doing relatively good regarding accessibility features."
+msgstr ""
+"Se comporte plutôt bien concernant les fonctionnalités d’accessibilité."
+
+#. type: Bullet: '  - '
+msgid "Actively developed."
+msgstr "Activement développé."
+
+#. type: Bullet: '  - '
+msgid ""
+"Well maintained in [[Debian|faq#debian]], where it is the default desktop "
+"environment."
+msgstr ""
+"Bien maintenu dans [[Debian|faq#debian]], où il est l'environnement de "
+"bureau par défaut."
 
 #. type: Plain text
 msgid ""
-"Still, we use HTTPS on our website and rely on a commercial certificate even "
-"if we acknowledge those security problems."
+"We invested quite some time in acquiring GNOME knowledge, and switching our "
+"desktop environment would require going through that process again."
 msgstr ""
-"Nous utilisons cependant le HTTPS sur notre site web et utilisons un "
-"certificat commercial même si nous sommes au courant de ces problèmes de "
-"sécurité."
-
-#. type: Bullet: '1. '
-msgid "Providing no HTTPS and no kind of encryption would be a worse option."
-msgstr ""
-"Ne pas fournir de HTTPS et aucune sorte de chiffrement serait une moins "
-"bonne option."
-
-#. type: Plain text
-#, no-wrap
-msgid ""
-"2. Providing a self-signed certificate or another marginally supported\n"
-"authentication mechanism would not work for the majority of users. Modern\n"
-"browsers display very strong warnings when facing a self-signed certificate, and\n"
-"many people would think the website is broken while it is not.\n"
-msgstr ""
-"2. Fournir un certificat auto-signé ou un autre mécanisme d'authentification\n"
-"marginalement prise en charge ne marcherait pas pour la plupart des utilisateurs.\n"
-"Les navigateurs modernes affichent de très gros avertissements lorsqu'ils rencontrent\n"
-"un certificat auto-signé, et de nombreuses personnes penseraient que le site web\n"
-"est mauvais alors qu'il ne l'est pas.\n"
+"Nous avons passé pas mal de temps à acquérir des connaissances concernant "
+"GNOME et passer à un autre environnement de bureau nécessiterait de passer "
+"par ce processus à nouveau."
 
 #. type: Plain text
 msgid ""
-"We prefer to provide weak security, using a commercial certificate, that "
-"still works for most people. At the same time, we make clear this security "
-"is limited and encourage stronger ways of verifying the authenticity of "
-"Tails once downloaded.  See our documentation on [[verifying the ISO|"
-"download#verify]]."
+"We are not proposing several desktop environments to choose from because we "
+"want to [[limit the amount of software included in Tails|faq#new_software]]."
 msgstr ""
-"Nous préférons fournir une sécurité plus faible, utilisant un certificat "
-"commercial, qui marche quand même pour la plupart des gens. En même temps, "
-"nous rendons clair que cette sécurité est limitée et encourageons l'usage de "
-"meilleures façons de vérifier l'authenticité de Tails une fois téléchargé. "
-"Voir notre documentation sur la [[vérification de l'ISO|download#verify]]."
+"Nous ne proposons pas de choisir entre différents environnements de bureau "
+"car nous voulons [[limiter le nombre de logiciels inclus dans Tails|"
+"faq#new_software]]."
 
 #. type: Plain text
 #, no-wrap
@@ -282,41 +266,24 @@ msgstr "Compatibilité matérielle\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "<a id=\"64-bit\"></a>\n"
-msgstr "<a id=\"64-bit\"></a>\n"
-
-#. type: Title -
-#, no-wrap
-msgid "Does Tails work with 64-bit processors?\n"
-msgstr "Tails fonctionne-t-il avec des processeurs 64-bit ?\n"
-
-#. type: Plain text
-msgid ""
-"Yes. Tails automatically detects the type of processor of the computer and "
-"loads a 32-bit or a 64-bit kernel accordingly."
-msgstr ""
-"Oui. Tails détecte automatiquement le type de processeur de l'ordinateur et "
-"charge le noyau 32-bit ou 64-bit en fonction."
-
-#. type: Plain text
-#, no-wrap
 msgid "<a id=\"arm\"></a>\n"
 msgstr "<a id=\"arm\"></a>\n"
 
 #. type: Title -
 #, no-wrap
-msgid "Does Tails work on ARM architecture, Raspberry Pi, or tablets?\n"
-msgstr "Tails fonctionne-t-il sur des architectures ARM, Raspberry Pi, ou des tablettes ?\n"
+msgid "Does Tails work on ARM architecture, Raspberry Pi, tablets, or phones?\n"
+msgstr "Tails fonctionne-t-il sur des architectures ARM, des Raspberry Pi, des tablettes ou des téléphones ?\n"
 
 #. type: Plain text
 msgid ""
-"For the moment, Tails is only available on the x86 and x86_64 "
-"architectures.  The Raspberry Pi and many tablets are based on the ARM "
-"architecture. Tails does not work on the ARM architecture so far."
+"For the moment, Tails is only available on the x86_64 architecture.  The "
+"Raspberry Pi and most tablets and phones are based on the ARM architecture. "
+"Tails does not work on the ARM architecture so far."
 msgstr ""
-"Pour le moment, Tails est seulement disponible pour les architectures x86 et "
-"x86_64. Le Raspberry Pi et de nombreuses tablettes sont basés sur des "
-"architectures ARM. Tails ne marche sur l'architecture ARM pour l'instant."
+"Pour le moment, Tails est seulement disponible pour l'architecture x86_64. "
+"Le Raspberry Pi et la plupart des tablettes et des téléphones sont basés sur "
+"l'architecture ARM. Tails ne marche pas sur l'architecture ARM pour "
+"l'instant."
 
 #. type: Plain text
 msgid ""
@@ -327,6 +294,14 @@ msgstr ""
 "Cherchez une tablette avec un processeur AMD ou Intel. Essayez de vérifier "
 "sa compatibilité avec Debian avant toute chose, par exemple vérifiez que "
 "l'interface Wi-Fi est prise en charge."
+
+#. type: Plain text
+msgid ""
+"To get more information about the progress of Tails on handheld devices, see "
+"[[!tails_ticket 6064]]."
+msgstr ""
+"Pour obtenir plus d'informations sur les progrès de Tails sur appareil "
+"mobile, voir [[!tails_ticket 6064]]."
 
 #. type: Plain text
 #, no-wrap
@@ -351,12 +326,12 @@ msgstr "Puis-je installer Tails de manière permanente sur mon disque dur ?\n"
 #. type: Plain text
 msgid ""
 "This is not possible using the recommended installation methods. Tails is "
-"designed to be a live system running from a removable media: DVD, USB stick "
-"or SD card."
+"designed to be a live system running from a removable media: USB stick or "
+"DVD."
 msgstr ""
 "Cela n'est pas possible en utilisant les méthodes d'installation "
 "recommandées. Tails est conçu pour être une système live fonctionnant depuis "
-"un support amovible : DVD, clé USB ou carte SD."
+"un support amovible : clé USB ou DVD."
 
 #. type: Plain text
 msgid ""
@@ -367,6 +342,155 @@ msgstr ""
 "C'est une décision consciente car ce mode opératoire est meilleur pour ce "
 "que nous voulons fournir aux utilisateurs de Tails : l'amnésie, le fait que "
 "Tails ne laisse aucune trace sur l'ordinateur après son utilisation."
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"unetbootin_etc\"></a>\n"
+msgstr "<a id=\"unetbootin_etc\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Can I install Tails with UNetbootin, YUMI, Rufus or my other favorite tool?\n"
+msgstr "Puis-je installer Tails avec UNetbootin, YUMI, Rufus ou mon autre outil favori ?\n"
+
+#. type: Plain text
+msgid ""
+"No. Those installation methods are unsupported. They might not work at all, "
+"or worse: they might seem to work, but produce a USB stick that does *not* "
+"behave like Tails should. Follow the [[download and installation "
+"documentation|install]] instead."
+msgstr ""
+"Non. Ces méthodes d'installation ne sont pas prises en charge. Elles peuvent "
+"ne pas marcher du tout, ou pire : elles peuvent sembler marcher, mais "
+"produire une clé USB qui ne se comporte *pas* comme Tails devrait le faire. "
+"Suivez la [[documentation de téléchargement et d'installation|install]] à la "
+"place."
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"upgrade\"></a>\n"
+msgstr "<a id=\"upgrade\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Should I update Tails using `apt upgrade` or <span class=\"application\">Synaptic</span>?\n"
+msgstr "Puis-je mettre à jour Tails en utilisant `apt upgrade` ou <span class=\"application\">Synaptic</span> ?\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"No. Tails provides upgrades every six weeks, that are thoroughly tested\n"
+"to make sure that no security feature or configuration gets broken.\n"
+"If you upgrade the system yourself using `apt` or <span class=\"application\">Synaptic</span>,\n"
+"you might break things. Upgrading when you get a notification from\n"
+"<span class=\"application\">[[Tails Upgrader|doc/upgrade]]</span> is enough.\n"
+msgstr ""
+"Non. Tails fournit des mises à jour toutes les six semaines, qui ont été\n"
+"convenablement testées pour être sûr qu'aucune fonctionnalité ou configuration\n"
+"de sécurité ne va être cassée. Si vous mettez vous-même le système à jour en utilisant `apt` ou <span class=\"application\">Synaptic</span>,\n"
+"vous risquez de casser des choses. Il suffit de mettre à jour quand vous avez une\n"
+"notification du <span class=\"application\">[[Tails Upgrader|doc/upgrade]]</span>.\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"preinstalled\"></a>\n"
+msgstr "<a id=\"preinstalled\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Can I buy a preinstalled Tails USB stick or DVD?\n"
+msgstr "Puis-je acheter une clé USB ou un DVD Tails pré-installé ?\n"
+
+#. type: Plain text
+msgid "No, we don't sell preinstalled Tails devices."
+msgstr "Non, nous ne vendons pas de périphérique pré-installé."
+
+#. type: Plain text
+msgid "Selling preinstalled devices would in fact be a pretty bad idea:"
+msgstr ""
+"Vendre des périphériques pré-installé serait en fait plutôt une mauvaise "
+"idée :"
+
+#. type: Bullet: '* '
+msgid ""
+"If burned on a DVD, then this DVD would be outdated on the next release. "
+"This means after 6 weeks at most."
+msgstr ""
+"Si gravé sur un DVD, alors le DVD serait obsolète à la mise à jour suivante. "
+"C'est à dire après 6 semaines au plus tard."
+
+#. type: Bullet: '* '
+msgid ""
+"If installed onto a USB stick, then it would be impossible to verify that "
+"the Tails on the USB stick is genuine. Trusting that a Tails USB stick is "
+"genuine should be based either on cryptographic verification or on personal "
+"trust (if you know someone you trust who can clone a Tails USB stick for "
+"you). But once Tails is installed on a USB stick it is not possible to use "
+"our cryptographic verification techniques anymore. Being able to trust your "
+"Tails USB stick is something that we really care about."
+msgstr ""
+"Si installé sur une clé USB, il serait alors impossible de vérifier que le "
+"Tails sur la clé USB est authentique. Croire qu'une clé USB Tails est "
+"authentique devrait être basé soit sur une vérification cryptographique soit "
+"sur de la confiance personnelle (si vous connaissez une personne de "
+"confiance qui peut cloner une clé USB Tails pour vous). Mais une fois Tails "
+"installé sur la clé USB il n'est plus possible d'utiliser les techniques de "
+"vérification cryptographique. Être en mesure de faire confiance à sa clé USB "
+"Tails est quelque chose qui nous importe beaucoup."
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"checksum\"></a>\n"
+msgstr "<a id=\"checksum\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Where can I find the checksum to verify my Tails download?\n"
+msgstr "Où puis-je trouver la somme de contrôle pour vérifier mon téléchargement de Tails ?\n"
+
+#. type: Plain text
+msgid ""
+"We do not provide a checksum (SHA hash or similar) to verify your Tails "
+"download."
+msgstr ""
+"Nous ne fournissons pas de somme de contrôle (hachage SHA ou similaire) pour "
+"vérifier le téléchargement de Tails."
+
+#. type: Plain text
+msgid ""
+"Verification using a checksum would be no better than verifying using one of "
+"the techniques documented on our download page: our browser extension, "
+"BitTorrent, or basic OpenPGP."
+msgstr ""
+"Faire la vérification avec une somme de contrôle ne serait pas meilleur que "
+"de la faire avec une des techniques documentées sur notre page de "
+"téléchargement : notre extension de navigateur, BitTorrent ou OpenPGP "
+"basique."
+
+#. type: Plain text
+msgid ""
+"These verification methods all rely on some information being securely "
+"downloaded from our website using HTTPS. Similarly, verification using a "
+"checksum would rely on the checksum being securely downloaded from our "
+"website."
+msgstr ""
+"Ces méthodes de vérification dépendent toutes du fait que les informations "
+"soient téléchargées de façon sécurisée depuis notre site web en utilisant "
+"HTTPS. Pareillement, vérifier avec une somme de contrôle reposerait sur le "
+"fait qu'elle soit téléchargée de façon sécurisée depuis notre site web."
+
+#. type: Plain text
+msgid ""
+"In order to verify your Tails download without having to rely on some "
+"information being securely downloaded from our website, you need to use "
+"[[OpenPGP and authenticate our signing key through the OpenPGP Web of Trust|"
+"install/download#openpgp]]."
+msgstr ""
+"Pour pouvoir vérifier votre téléchargement de Tails sans avoir à dépendre du "
+"fait que les informations soient téléchargées de manière sécurisée depuis "
+"notre site web, vous avez besoin d'utiliser [[OpenPGP et d'authentifier "
+"notre clé de signature via la toile de confiance OpenPGP|install/"
+"download#openpgp]]."
 
 #. type: Plain text
 #, no-wrap
@@ -386,7 +510,7 @@ msgstr "<a id=\"javascript\"></a>\n"
 #. type: Title -
 #, no-wrap
 msgid "Why is JavaScript enabled by default in <span class=\"application\">Tor Browser</span>?\n"
-msgstr "Pourquoi est-ce que JavaScript est autorisé par défaut dans le <span class=\"application\">navigateur Tor</span> ?\n"
+msgstr "Pourquoi est-ce que JavaScript est autorisé par défaut dans le <span class=\"application\">Navigateur Tor</span> ?\n"
 
 #. type: Plain text
 msgid ""
@@ -404,18 +528,20 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Tails also includes the [[NoScript|doc/anonymous_internet/"
+"Tor Browser also includes a [[security level|doc/anonymous_internet/"
+"Tor_browser#security_level]] and the [[NoScript|doc/anonymous_internet/"
 "Tor_browser#noscript]] extension to optionally disable more JavaScript. This "
 "might improve security in some cases. However, if you disable JavaScript, "
 "then the [[fingerprint|doc/about/fingerprint]] of your browser will differ "
 "from most Tor users. This might break your anonymity."
 msgstr ""
-"Tails inclut également l'extension [[NoScript|doc/anonymous_internet/"
-"Tor_browser#noscript]] pour éventuellement désactiver plus fortement "
-"JavaScript. Cela peut améliorer la sécurité dans certains cas. Cependant, si "
-"vous désactivez JavaScript, votre [[empreinte|doc/about/fingerprint]] sera "
-"alors différente de celle de la plupart des utilisateurs de Tor. Cela "
-"pourrait briser votre anonymat."
+"Le Navigateur Tor inclut également un [[niveau de sécurité|doc/"
+"anonymous_internet/Tor_browser#security_level]] ainsi que l'extension "
+"[[NoScript|doc/anonymous_internet/Tor_browser#noscript]] pour éventuellement "
+"désactiver plus fortement JavaScript. Cela peut améliorer la sécurité dans "
+"certains cas. Cependant, si vous désactivez JavaScript, l'[[empreinte|doc/"
+"about/fingerprint]] de votre navigateur sera alors différente de celle de la "
+"plupart des personnes utilisant Tor. Cela pourrait briser votre anonymat."
 
 #. type: Plain text
 msgid ""
@@ -433,12 +559,12 @@ msgstr "<a id=\"add-ons\"></a>\n"
 #. type: Title -
 #, no-wrap
 msgid "Can I install other add-ons in <span class=\"application\">Tor Browser</span>?\n"
-msgstr "Puis-je installer d'autres extensions dans le <span class=\"application\">navigateur Tor</span> ?\n"
+msgstr "Puis-je installer d'autres extensions dans le <span class=\"application\">Navigateur Tor</span> ?\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "Installing add-ons in <span class=\"application\">Tor Browser</span> might break the security built in Tails.\n"
-msgstr "Installer des extensions dans le <span class=\"application\">navigateur Tor</span> pourrait briser la sécurité de Tails.\n"
+msgstr "Installer des extensions dans le <span class=\"application\">Navigateur Tor</span> pourrait briser la sécurité de Tails.\n"
 
 #. type: Plain text
 msgid ""
@@ -513,7 +639,7 @@ msgstr ""
 "<div class=\"next\">\n"
 "  <ul>\n"
 "    <li>[[Avertissement à propos de la persistance|doc/first_steps/persistence/warnings#index3h1]]</li>\n"
-"    <li>[[Naviguer avec le <span class=\"application\">navigateur Tor</span>|doc/anonymous_internet/Tor_browser]]</li>\n"
+"    <li>[[Naviguer avec le <span class=\"application\">Navigateur Tor</span>|doc/anonymous_internet/Tor_browser]]</li>\n"
 "    <li>[[Est-ce que je peux cacher le fait que j'utilise Tails ?|doc/about/fingerprint/]]</li>\n"
 "  </ul>\n"
 "</div>\n"
@@ -526,6 +652,33 @@ msgid ""
 "XXX: Check https://www.torproject.org/torbutton/torbutton-faq.html.en#recommendedextensions\n"
 "-->\n"
 msgstr ""
+"<!--\n"
+"XXX: Push that information to the browser documentation?\n"
+"XXX: Check https://www.torproject.org/torbutton/torbutton-faq.html.en#recommendedextensions\n"
+"-->\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"add-ons_update\"></a>\n"
+msgstr "<a id=\"add-ons_update\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Should I manually update add-ons included in <span class=\"application\">Tor Browser</span>?\n"
+msgstr "Puis-je mettre à jour manuellement les extensions dans le <span class=\"application\">Navigateur Tor</span> ?\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"No. Tails provides upgrades every six weeks, that are thoroughly tested\n"
+"to make sure that no security feature or configuration gets broken.\n"
+"Updating add-ons in <span class=\"application\">Tor Browser</span> might\n"
+"break the security built in Tails.\n"
+msgstr ""
+"Non. Tails fournit des mises à jour toutes les six semaines, qui ont été\n"
+"convenablement testées pour être sûr qu'aucune fonctionnalité ou configuration\n"
+"de sécurité ne va être cassée. Mettre à jour les extensions du <span class=\"application\">Navigateur Tor</span> pourrait\n"
+"casser la sécurité mise en place dans Tails.\n"
 
 #. type: Plain text
 #, no-wrap
@@ -577,17 +730,18 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "We have considered including open-source alternative software to Adobe "
-"Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but it is not "
-"the case yet, see [[!tails_ticket 5363]]."
+"Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but rejected "
+"them since they are not mature enough and Flash is less and less used anyway."
 msgstr ""
 "Nous avons considéré l'ajout d'une alternative logiciel open-source à Adobe "
-"Flash, telle que [Gnash](http://www.gnu.org/software/gnash/), mais ce n'est "
-"pas encore le cas, voir [[!tails_ticket 5363]]."
+"Flash, telle que [Gnash](http://www.gnu.org/software/gnash/), mais nous "
+"l'avons exclu puisque qu'il n'est pas assez mature et que Flash est de moins "
+"en moins utilisé de toute façon."
 
 #. type: Plain text
 #, no-wrap
 msgid "But you can already watch HTML5 videos with <span class=\"application\">Tor Browser</span>.\n"
-msgstr "Mais vous pouvez déjà regarder les vidéos HTML5 avec le <span class=\"application\">navigateur Tor</span>.\n"
+msgstr "Mais vous pouvez déjà regarder les vidéos HTML5 avec le <span class=\"application\">Navigateur Tor</span>.\n"
 
 #. type: Plain text
 #, no-wrap
@@ -601,14 +755,13 @@ msgstr "Comment analyser les résultats des tests d'anonymat en ligne ?\n"
 
 #. type: Plain text
 msgid ""
-"Fingerprinting websites such as <https://panopticlick.eff.org/> or <https://"
-"ip-check.info/> try to retrieve as much information as possible from your "
-"browser to see if it can be used to identify you."
+"Fingerprinting websites, such as <https://panopticlick.eff.org/>, try to "
+"retrieve as much information as possible from your browser to see if it can "
+"be used to identify you."
 msgstr ""
-"Les sites web d'analyse d'empreinte tels que <https://panopticlick.eff.org/> "
-"ou <https://ip-check.info/> essayent de récupérer le plus d'information "
-"possible de votre navigateur pour voir si cela peut être utilisé pour vous "
-"identifier."
+"Les sites web d'analyse d'empreinte, tels que <https://panopticlick.eff.org/"
+">, essayent de récupérer le plus d'information possible de votre navigateur "
+"pour voir si cela peut être utilisé pour vous identifier."
 
 #. type: Plain text
 #, no-wrap
@@ -621,7 +774,7 @@ msgstr ""
 "Comme expliqué dans notre documentation à propos\n"
 "de l'[[empreinte|doc/about/fingerprint]], Tails fournit de l'anonymat sur le web en rendant\n"
 "difficile de distinguer un utilisateur parmi tous ceux qui utilisent le\n"
-"<span class=\"application\">navigateur Tor</span> (que ce soit dans Tails ou dans un autre système d'exploitation).\n"
+"<span class=\"application\">Navigateur Tor</span> (que ce soit dans Tails ou dans un autre système d'exploitation).\n"
 
 #. type: Plain text
 #, no-wrap
@@ -630,24 +783,22 @@ msgid ""
 "anonymity in itself, as long as it is the same for all users of <span class=\"application\">Tor Browser</span>.\n"
 msgstr ""
 "Donc, les informations récupérées par de tels sites web d'analyse d'empreinte ne sont\n"
-"pas dangereuses pour l'anonymat en soi, tant que ce sont les mêmes pour tous les utilisateurs du <span class=\"application\">navigateur Tor</span>.\n"
+"pas dangereuses pour l'anonymat en soi, tant que ce sont les mêmes pour tous les utilisateurs du <span class=\"application\">Navigateur Tor</span>.\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"For example, the user-agent property of the browser was set to `Mozilla/5.0\n"
-"(Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3`,\n"
-"as of Tails 0.21 and <span class=\"application\">Tor Browser</span> 2.3.25-13. This value preserves your anonymity even if\n"
-"the operating system installed on the computer is Windows NT and you usually run\n"
-"Firefox. On the other hand, changing this value makes you distinguishable from\n"
-"others users of <span class=\"application\">Tor Browser</span> and breaks your anonymity.\n"
+"For example, the user-agent string of <span class=\"application\">Tor Browser</span> includes\n"
+"<em>Windows NT</em> but this value preserves your anonymity even if\n"
+"you run Windows NT. On the other hand, changing this value makes you distinguishable from\n"
+"other users of <span class=\"application\">Tor Browser</span> and, as a\n"
+"consequence, weakens your anonymity.\n"
 msgstr ""
-"Par exemple, les propriétés du user-agent du navigateur sont fixées à `Mozilla/5.0\n"
-"(Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3`,\n"
-"comme dans Tails 0.21 et le <span class=\"application\">navigateur Tor</span> 2.3.25-13. Cette valeur préserve votre anonymat même si\n"
-"le système d'exploitation installé sur votre ordinateur est Windows NT et que vous utilisez habituellement\n"
-"Firefox. En revanche, changer cette valeur vous distingue des autres utilisateurs du\n"
-"<span class=\"application\">navigateur Tor</span> et brise votre anonymat.\n"
+"Par exemple, la chaîne user-agent du <span class=\"application\">Navigateur Tor</span> contient\n"
+"<em>Windows NT</em> mais cette valeur préserve votre anonymat même si\n"
+"vous utilisez Windows NT. En revanche, changer cette valeur vous distingue des\n"
+"autres personnes utilisant le <span class=\"application\">Navigateur Tor</span> et, en\n"
+"conséquence, affaiblit votre anonymat.\n"
 
 #. type: Plain text
 msgid ""
@@ -665,7 +816,7 @@ msgstr "<a id=\"java\"></a>\n"
 #. type: Title -
 #, no-wrap
 msgid "Is Java installed in the <span class=\"application\">Tor Browser</span>?\n"
-msgstr ""
+msgstr "Est-ce que Java est installé dans le <span class=\"application\">Navigateur Tor</span> ?\n"
 
 #. type: Plain text
 msgid ""
@@ -673,7 +824,7 @@ msgid ""
 "your anonymity."
 msgstr ""
 "Tails n'inclut pas de plugin Java dans le navigateur car cela pourrait "
-"briser l'anonymat."
+"compromettre votre anonymat."
 
 #. type: Plain text
 #, no-wrap
@@ -721,14 +872,14 @@ msgstr ""
 msgid ""
 "We are frequently requested to add new persistent features but we are "
 "usually busy working on other priorities. See our [open tickets](https://"
-"labs.riseup.net/code/projects/tails/issues?query_id=122)  about persistence. "
-"Any bit of help [[is welcome|contribute/how/code]]."
+"redmine.tails.boum.org/code/projects/tails/issues?query_id=122)  about "
+"persistence. Any bit of help [[is welcome|contribute/how/code]]."
 msgstr ""
 "On nous demande régulièrement d'ajouter de nouvelles options de persistance "
 "mais nous sommes souvent occupés par d'autres priorités. Voir nos [tickets "
-"ouverts](https://labs.riseup.net/code/projects/tails/issues?query_id=122) à "
-"propos de la persistance. Tout coup de main est [[le bienvenue|contribute/"
-"how/code]]."
+"ouverts](https://redmine.tails.boum.org/code/projects/tails/issues?"
+"query_id=122) à propos de la persistance. Tout coup de main est [[le "
+"bienvenue|contribute/how/code]]."
 
 #. type: Plain text
 #, no-wrap
@@ -753,7 +904,7 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "LUKS is a very popular standard for disk encryption in Linux. LUKS is the "
-"default technique for full-disk encryption proposed by many distribution, "
+"default technique for full-disk encryption proposed by many distributions, "
 "including Debian and Ubuntu, when installing a regular system."
 msgstr ""
 "LUKS est un standard de chiffrement de volume très populaire dans Linux. "
@@ -763,19 +914,19 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Currently the default cipher is `aes-cbc-essiv:sha256` with a key size of "
-"256 bits."
+"The persistent volume is created with the default LUKS parameters used by "
+"`udisks` and `cryptsetup`."
 msgstr ""
-"Actuellement le chiffrement par défaut est `aes-cbc-essiv:sha256` avec une "
-"clé de taille 256 bits."
+"Le volume persistant est créé avec les paramétres LUKS par défaut utilisés "
+"par `udisks` et `cryptsetup`."
 
 #. type: Plain text
 msgid ""
-"To understand better how persistence work, see our [[design document|"
+"To understand better how persistence works, see our [[design document|"
 "contribute/design/persistence]]."
 msgstr ""
 "Pour mieux comprendre comment fonctionne la persistance, voir notre "
-"[[documentation de conception|contribute/design/persistence]]."
+"[[document de conception|contribute/design/persistence]]."
 
 #. type: Plain text
 #, no-wrap
@@ -850,15 +1001,15 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "It is a very [[fundamental assumption of Tails|about#tor]] to force all "
-"outgoing traffic to anonymity networks such as Tor or I2P. VPN are not "
-"anonymity networks, because the administrators of the VPN can know both "
-"where you are connecting from and where you are connecting to. Tor provides "
-"anonymity by making it impossible for a single point in the network to know "
-"both the origin and the destination of a connection."
+"outgoing traffic to anonymity networks such as Tor. VPN are not anonymity "
+"networks, because the administrators of the VPN can know both where you are "
+"connecting from and where you are connecting to. Tor provides anonymity by "
+"making it impossible for a single point in the network to know both the "
+"origin and the destination of a connection."
 msgstr ""
 "C'est une [[condition fondamentale de Tails|about#tor]] de faire passer tout "
-"le trafic sortant vers un réseau d'anonymisation tel que Tor ou I2P. Les VPN "
-"ne sont pas des réseaux d'anonymisation, car les administrateurs des VPN "
+"le trafic sortant vers un réseau d'anonymisation tel que Tor. Les VPN ne "
+"sont pas des réseaux d'anonymisation car les personnes qui les administrent "
 "peuvent savoir à la fois d'où vous vous connectez et vers où vous vous "
 "connectez. Tor fournit de l'anonymat en rendant impossible pour un unique "
 "point du réseau de savoir à la fois l'origine et la destination d'une "
@@ -867,7 +1018,7 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "In some situations, you might be forced to use a VPN to connect to the "
-"Internet, for example by your ISP. This is currenlty not possible using "
+"Internet, for example by your ISP. This is currently not possible using "
 "Tails. See [[!tails_ticket 5858]]."
 msgstr ""
 "Dans certaines situations, vous pouvez être obligé d'utiliser un VPN pour "
@@ -883,7 +1034,7 @@ msgstr ""
 "également être utiles pour contourner les limitations imposées par votre FAI."
 
 #. type: Plain text
-msgid "In some situtations, it can be useful to connect to a VPN through Tor:"
+msgid "In some situations, it can be useful to connect to a VPN through Tor:"
 msgstr ""
 "Dans certains cas, il peut être utile de se connecter à un VPN via Tor :"
 
@@ -894,34 +1045,50 @@ msgstr ""
 
 #. type: Bullet: '  - '
 msgid ""
-"To access ressources only available inside a VPN, for example at your "
-"company or University."
+"To access resources only available inside a VPN, for example at your company "
+"or University."
 msgstr ""
 "Pour accéder à des ressources seulement disponibles dans un VPN, par exemple "
-"dans votre entreprise ou Université."
+"dans votre entreprise ou université."
 
 #. type: Plain text
-msgid "This is currenlty not possible easily using Tails."
+msgid "This is currently not possible easily using Tails."
 msgstr "Ce n'est actuellement pas possible facilement en utilisant Tails."
 
 #. type: Plain text
 #, no-wrap
-msgid "<a id=\"mac_address\"></a>\n"
-msgstr "<a id=\"mac_address\"></a>\n"
+msgid "<a id=\"torrc\"></a>\n"
+msgstr "<a id=\"torrc\"></a>\n"
 
 #. type: Title -
 #, no-wrap
-msgid "Does Tails change the MAC address of my network interfaces?\n"
-msgstr "Tails change-t-il l'adresse MAC de mes interfaces réseau ?\n"
+msgid "Can I choose the country of my exit nodes or further edit the `torrc`?\n"
+msgstr "Puis-je choisir le pays de mon nœud de sortie ou de manière générale éditer le fichier `torrc`?\n"
 
 #. type: Plain text
 msgid ""
-"Starting from Tails 0.23, [[MAC spoofing|doc/first_steps/startup_options/"
-"mac_spoofing]] is enabled by default on all interfaces."
+"It is possible to edit the Tor configuration file (`torrc`) with "
+"administration rights but you should not do so as it might break your "
+"anonymity."
 msgstr ""
-"Depuis Tails 0.23, [[l'usurpation d'adresse MAC|doc/first_steps/"
-"startup_options/mac_spoofing]] est activée par défaut pour toutes les "
-"interfaces."
+"Il est possible d'éditer le fichier de configuration de Tor (`torrc`) avec "
+"des droits d’administration mais vous ne devriez pas le faire car cela "
+"pourrait briser votre anonymat."
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"For example, as mentioned in the <span class=\"application\">Tor Browser</span>\n"
+"[FAQ](https://www.torproject.org/docs/faq.html.en#ChooseEntryExit),\n"
+"using `ExcludeExitNodes` is not recommended because \"overriding the\n"
+"exit nodes can mess up your anonymity in ways we don't\n"
+"understand\".\n"
+msgstr ""
+"Par exemple, comme mentionné dans la [FAQ](https://www.torproject.org/docs/faq.html.en#ChooseEntryExit)\n"
+"du <span class=\"application\">Navigateur Tor</span> (en anglais), utiliser\n"
+"`ExcludeExitNodes` n'est pas recommandé car \"passer outre les nœuds de sortie\n"
+"peut mettre en l'air votre anonymat d'une manière que nous ne\n"
+"comprenons pas\".\n"
 
 #. type: Plain text
 #, no-wrap
@@ -953,20 +1120,20 @@ msgstr "Pourquoi Tails se connecte-t-il automatiquement à de nombreux sites web
 
 #. type: Plain text
 msgid ""
-"Tor and I2P require the system clock to be well synchronized in order to "
-"work properly. When starting Tails, a notification is displayed while the "
-"clock is being synchronized."
+"Tor requires the system clock to be well synchronized in order to work "
+"properly. When starting Tails, a notification is displayed while the clock "
+"is being synchronized."
 msgstr ""
-"Tor et I2P requièrent que l'horloge système soit bien synchronisée afin de "
+"Tor requiert que l'horloge système soit bien synchronisée afin de "
 "fonctionner correctement. Au démarrage de Tails, une notification est "
 "affichée lorsque l'horloge se synchronise."
 
 #. type: Plain text
 msgid ""
-"This synchronization is made by sending HTTPS queries through Tor to "
-"severals websites and deducing a correct time from their answers. The list "
-"of websites that could be queried in this process can be found in `/etc/"
-"default/htpdate`."
+"This synchronization is made by sending HTTPS queries through Tor to several "
+"websites and deducing a correct time from their answers. The list of "
+"websites that could be queried in this process can be found in `/etc/default/"
+"htpdate`."
 msgstr ""
 "La synchronisation est faite par l'envoi de requêtes HTTPS à travers Tor "
 "vers nombre de sites web et l'heure correcte est déduite à partir de leurs "
@@ -989,13 +1156,68 @@ msgstr "<a id=\"relay\"></a>\n"
 #. type: Title -
 #, no-wrap
 msgid "Can I help the Tor network by running a relay or a bridge in Tails?\n"
+msgstr "Puis-je aider le réseau Tor en faisant tourner un relai ou un bridge dans Tails ?\n"
+
+#. type: Plain text
+msgid "It is currently impossible to run a Tor relay or bridge in Tails."
 msgstr ""
+"Il est actuellement impossible de faire tourner un relai ou un bridge Tor "
+"dans Tails."
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"<a id=\"onion_service\"></a>\n"
+"<a id=\"hidden_service\"></a>\n"
+msgstr ""
+"<a id=\"onion_service\"></a>\n"
+"<a id=\"hidden_service\"></a>\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"Can I run a Tor onion service on Tails?\n"
+"----------------------------------------\n"
+msgstr ""
+"Puis-je faire marcher un service oignon dans Tails ?\n"
+"---------------------------------------\n"
 
 #. type: Plain text
 msgid ""
-"It is currently impossible to run a Tor relay or bridge in Tails. See [[!"
-"tails_ticket 5418]]."
+"It is technically possible to use Tails to provide an onion service but it "
+"is complicated and not documented yet."
 msgstr ""
+"Il est techniquement possible d'utiliser Tails pour fournir un service "
+"oignon mais c'est compliqué et non documenté pour l'instant."
+
+#. type: Plain text
+msgid ""
+"For example, some people have been working on [[!tails_ticket 5688 desc="
+"\"self-hosted services behind Tails-powered onion services\"]]."
+msgstr ""
+"Par exemple, des personnes ont travaillé sur [[!tails_ticket 5688 desc="
+"\"l'auto-hébergement de services derrière des services onion dans Tails\"]]."
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"ping\"></a>\n"
+msgstr "<a id=\"ping\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Can I use <span class=\"command\">ping</span> in Tails?\n"
+msgstr "Puis-je utiliser <span class=\"command\">ping</span> dans Tails ?\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"It is impossible to use <span class=\"command\">ping</span> in Tails,\n"
+"because <span class=\"command\">ping</span> uses the ICMP protocol while Tor\n"
+"can only transport TCP connections.\n"
+msgstr ""
+"Il est impossible d'utiliser <span class=\"command\">ping</span> dans Tails\n"
+"car <span class=\"command\">ping</span> utilise le protocole ICMP alors que Tor\n"
+"peut uniquement transporter les connexions TCP.\n"
 
 #. type: Plain text
 #, no-wrap
@@ -1081,9 +1303,9 @@ msgstr ""
 "d'y être :"
 
 #. type: Bullet: '  - '
-msgid "We try to limit the growth of the ISO image and automatic upgrades."
+msgid "We try to limit the growth of the images and automatic upgrades."
 msgstr ""
-"Nous essayons de limiter la taille de l'image ISO et des mises à jour "
+"Nous essayons de limiter la taille des images et des mises à jour "
 "automatiques."
 
 #. type: Bullet: '  - '
@@ -1107,12 +1329,12 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "After considering all this, if you still think that this software is a good "
-"candidate to be included in Tails, please [[explain us|/contribute/talk]] "
-"your proposal."
+"candidate to be included in Tails, please explain us your proposal on "
+"[[tails-dev@boum.org|about/contact#tails-dev]]."
 msgstr ""
 "Après considération de cela, si vous pensez toujours que ce logiciel est un "
-"bon candidat pour être inclus dans Tails, veuillez [[nous expliquer|/"
-"contribute/talk]] votre proposition."
+"bon candidat pour être inclus dans Tails, veuillez nous expliquer votre "
+"proposition sur [[tails-dev@boum.org|about/contact#tails-dev]]."
 
 #. type: Plain text
 #, no-wrap
@@ -1127,7 +1349,7 @@ msgid ""
 "it automatically at the beginning of each working session."
 msgstr ""
 "Si un logiciel n'est pas dans Tails, mais dans Debian, vous pouvez utiliser "
-"l'option de [[logiciel additionnel|doc/first_steps/persistence/"
+"l'option de [[logiciels additionnels|doc/first_steps/persistence/"
 "configure#additional_software]] du volume persistant pour l'installer "
 "automatiquement au démarrage de chaque session."
 
@@ -1143,15 +1365,20 @@ msgstr ""
 
 #. type: Bullet: '  - '
 msgid "**bitmessage**: not in Debian"
-msgstr "**bitmessage**: pas dans Debian"
-
-#. type: Bullet: '  - '
-msgid "**torchat**: see [[!tails_ticket 5554]]"
-msgstr "**torchat**: voir [[!tails_ticket 5554]]"
+msgstr "**bitmessage** : pas dans Debian"
 
 #. type: Bullet: '  - '
 msgid "**retroshare**: not in Debian"
-msgstr "**retroshare**: pas dans Debian"
+msgstr "**retroshare** : pas dans Debian"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"  - **rar/unrar**: is not [[free software|doc/about/license]], but you can use the\n"
+"\t[[additional software|doc/first_steps/additional_software]] feature to install it\n"
+msgstr ""
+"  - **rar/unrar** : n'est pas [[libre|doc/about/license]], mais vous pouvez utiliser la fonctionnalité\n"
+"\t[[logiciels additionnels|doc/first_steps/additional_software]] pour l'installer\n"
 
 #. type: Plain text
 #, no-wrap
@@ -1194,11 +1421,56 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid ""
-"We have relatively vague [[!tails_ticket 5991 desc=\"plans to improve\n"
+"We had relatively vague [[!tails_ticket 9563 desc=\"plans to improve\n"
 "on this situation\"]].\n"
 msgstr ""
-"Nous avons de vagues [[!tails_ticket 5991 desc=\"plans pour améliorer\n"
+"Nous avions de vagues [[!tails_ticket 9563 desc=\"plans pour améliorer\n"
 "cette situation\"]].\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"youtube\"></a>\n"
+msgstr "<a id=\"youtube\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Can I download videos from websites?\n"
+msgstr "Puis-je télécharger des vidéos depuis des sites web ?\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"You can install <span class=\"code\">youtube-dl</span> as an [[additional\n"
+"package|doc/first_steps/additional_software]]. <span class=\"application\">youtube-dl</span>\n"
+"allows downloading videos from more than\n"
+"[700 websites](https://github.com/rg3/youtube-dl/blob/master/docs/supportedsites.md).\n"
+msgstr ""
+"Vous pouvez installer <span class=\"code\">youtube-dl</span> comme [[paquet\n"
+"additionnel|doc/first_steps/additional_software]]. <span class=\"application\">youtube-dl</span>\n"
+"permet de télécharger des vidéos depuis plus de\n"
+"[700 sites web](https://github.com/rg3/youtube-dl/blob/master/docs/supportedsites.md).\n"
+
+#. type: Plain text
+msgid ""
+"For example, to download a YouTube video, execute the following command in a "
+"terminal:"
+msgstr ""
+"Par exemple, pour télécharger une vidéo YouTube, exécutez la commande "
+"suivante dans un terminal :"
+
+#. type: Plain text
+#, no-wrap
+msgid "    torsocks youtube-dl \"https://www.youtube.com/watch?v=JWII85UlzKw\"\n"
+msgstr "    torsocks youtube-dl \"https://www.youtube.com/watch?v=Mnrn3y-Qbyk\"\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"For more information, refer to the [official\n"
+"<span class=\"application\">youtube-dl</span> documentation](https://rg3.github.io/youtube-dl/).\n"
+msgstr ""
+"Pour plus d'information, consultez la [documentation\n"
+"officielle de <span class=\"application\">youtube-dl</span>](https://rg3.github.io/youtube-dl/) (en anglais).\n"
 
 #. type: Plain text
 #, no-wrap
@@ -1223,13 +1495,13 @@ msgstr "Pourquoi l'heure est-elle mal configurée ?\n"
 #. type: Plain text
 msgid ""
 "When Tails starts, the system timezone is set to UTC (Greenwich time). So, "
-"this time might be a few hours in the future if you are West from the United "
-"Kingdom, or in the past if you are East from the UK. The minutes should be "
+"this time might be a few hours in the future if you are west of the United "
+"Kingdom, or in the past if you are east of the UK. The minutes should be "
 "accurate."
 msgstr ""
 "Lorsque Tails démarre, le fuseau horaire du système est réglé en UTC (heure "
 "de Greenwich). Ainsi, l'heure peut être quelques heures dans le futur si "
-"vous êtes à l'Ouest du Royaume-Uni, ou dans le passé si vous êtes à l'Est de "
+"vous êtes à l'ouest du Royaume-Uni, ou dans le passé si vous êtes à l'est de "
 "celui-ci. Les minutes devraient être les bonnes."
 
 #. type: Plain text
@@ -1291,18 +1563,33 @@ msgid ""
 msgstr ""
 "Tails fonctionne indépendamment du système d'exploitation installé sur "
 "l'ordinateur. Donc, si l'ordinateur à seulement été compromis par des "
-"logiciels, fonctionnant dans votre système d'exploitation régulier (virus, "
-"cheval de Troie, etc.), alors il est sûr d'utiliser Tails. Cela est vrai "
-"tant que Tails a été installé en utilisant un système de confiance."
+"logiciels (virus, cheval de Troie, etc.) fonctionnant dans votre système "
+"d'exploitation habituel, alors il est sûr d'utiliser Tails. Cela est vrai "
+"tant que Tails a été installé en utilisant un système d'exploitation de "
+"confiance."
 
 #. type: Plain text
 msgid ""
 "If the computer has been compromised by someone having physical access to it "
-"and who installed untrusted pieces of hardware, then it might not be safe to "
+"and who installed untrusted pieces of hardware, then it might be unsafe to "
 "use Tails."
 msgstr ""
 "Si l'ordinateur a été compromis par quelqu'un y ayant un accès physique et "
-"qui a y a modifié le matériel, alors il n'est pas sûr d'utiliser Tails."
+"qui y a modifié le matériel, alors il est possible qu'il ne soit pas sûr "
+"d'utiliser Tails."
+
+#. type: Plain text
+msgid ""
+"If the BIOS of the computer has been compromised, then it might also be "
+"unsafe to use Tails."
+msgstr ""
+"Si le BIOS de l'ordinateur a été compromis, alors il est également possible "
+"qu'il ne soit pas sûr d'utiliser Tails."
+
+#. type: Plain text
+msgid "See our [[warning page|doc/about/warning]] for more details."
+msgstr ""
+"Voir notre [[page d'avertissements|doc/about/warning]] pour plus de détails."
 
 #. type: Plain text
 #, no-wrap
@@ -1311,45 +1598,42 @@ msgstr "<a id=\"integrity\"></a>\n"
 
 #. type: Title -
 #, no-wrap
-msgid "Can I verify the integrity of a Tails device?\n"
-msgstr "Puis-je vérifier l'intégrité d'un périphérique Tails ?\n"
+msgid "Can I verify the integrity of a Tails USB stick or DVD?\n"
+msgstr "Puis-je vérifier l'intégrité d'une clé USB ou d'un DVD Tails ?\n"
 
 #. type: Plain text
 msgid ""
-"It is not possible to verify the integrity of a Tails device when running "
-"Tails from this same device. This would be like asking to someone whether "
-"she is a liar; the answer of a true liar would always be \"no\"."
+"It is not possible to verify the integrity of a Tails device, USB stick or "
+"DVD, when running Tails from this same device. This would be like asking to "
+"someone whether she is a liar; the answer of a true liar would always be \"no"
+"\"."
 msgstr ""
-"Il n'est pas possible de vérifier l'intégrité d'un périphérique Tails "
-"lorsque Tails fonctionne depuis ce même périphérique. Cela serait comme "
-"demander à quelqu'un si c'est un menteur ; la réponse d'un vrai menteur sera "
-"toujours \"non\"."
+"Il n'est pas possible de vérifier l'intégrité d'un périphérique Tails, clé "
+"USB ou DVD, lorsque Tails fonctionne depuis ce même périphérique. Cela "
+"serait comme demander à une personne si c'est une menteuse ; la réponse "
+"d'une vraie menteuse sera toujours \"non\"."
 
 #. type: Bullet: '- '
 msgid ""
 "To verify the integrity of a DVD from a separate trusted system, you can "
 "verify the signature of the ISO image as documented in [[verify the ISO "
-"image using the command line|doc/get/"
-"verify_the_iso_image_using_the_command_line]] against the DVD itself."
+"image using OpenPGP|install/download-iso#openpgp]] against the DVD itself."
 msgstr ""
 "Pour vérifier l'intégrité d'un DVD depuis un système de confiance séparé, "
 "vous pouvez vérifier la signature de l'image ISO comme documenté dans "
-"[[vérifier l'image ISO en utilisant les lignes de commande|doc/get/"
-"verify_the_iso_image_using_the_command_line]] par rapport à celle du DVD."
+"[[vérifier l'image ISO en utilisant OpenPGP|install/download-iso#openpgp]]."
 
 #. type: Bullet: '- '
 msgid ""
-"There is no documented method of verifying the integrity of a USB stick or "
-"SD card installed using <span class=\"application\">Tails Installer</span>. "
-"However, if you have another trusted Tails device, you can [[clone it onto "
-"the untrusted device|doc/first_steps/upgrade]] to reset it to a trusted "
-"state."
+"There is no documented method of verifying the integrity of a Tails USB "
+"stick.  However, if you have another trusted Tails USB stick, you can "
+"[[clone it onto the untrusted USB stick|doc/upgrade]] to reset it to a "
+"trusted state."
 msgstr ""
 "Il n'y a pas de méthode documentée pour vérifier l'intégrité d'une clé USB "
-"ou carte SD installée en utilisant l'<span class=\"application\">Installeur "
-"de Tails</span>. Cependant, si vous avez un autre périphérique Tails de "
-"confiance, vous pouvez [[le cloner sur le périphérique douteux|doc/"
-"first_steps/upgrade]] pour retrouver un périphérique digne de confiance."
+"Tails. Cependant, si vous avez une autre clé USB Tails de confiance, vous "
+"pouvez [[la cloner sur la clé USB douteuse|doc/upgrade]] pour retrouver un "
+"périphérique digne de confiance."
 
 #. type: Plain text
 #, no-wrap
@@ -1364,14 +1648,13 @@ msgstr "Puis-je utiliser la fonctionnalité d'effacement de mémoire sur un autr
 #. type: Plain text
 msgid ""
 "The memory wipe mechanism that Tails uses on shutdown to [[protect against "
-"cold boot attacks|doc/advanced_topics/cold_boot_attacks]] is not yet "
-"available in other Linux distributions. In the future, we would like to "
-"package it for Debian."
+"cold boot attacks|doc/advanced_topics/cold_boot_attacks]] should be reusable "
+"in other Linux distributions."
 msgstr ""
 "Le mécanisme d'effacement de mémoire que Tails utilise à l'extinction pour "
 "se [[protéger des attaques par démarrage à froid|doc/advanced_topics/"
-"cold_boot_attacks]] n'est pas encore disponible sur d'autres distributions "
-"Linux. À l'avenir, nous aimerions en fournir un paquet pour Debian."
+"cold_boot_attacks]] devrait être réutilisable dans d'autres distributions "
+"Linux."
 
 #. type: Plain text
 msgid ""
@@ -1389,87 +1672,47 @@ msgstr "<a id=\"new_identity\"></a>\n"
 
 #. type: Title -
 #, no-wrap
-msgid "Is it safe to use the new identity feature of Vidalia?\n"
-msgstr "Est-il sûr d'utiliser la fonction de nouvelle identité de Vidalia ?\n"
+msgid "Where is the <span class=\"guilabel\">New Identity</span> button?\n"
+msgstr "Où est le bouton <span class=\"guilabel\">Nouvelle identité</span> ?\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"In our [[warning page|doc/about/warning#identities]] we advice to restart Tails\n"
-"every time that you want to use a different contextual identity. The <span\n"
-"class=\"guilabel\">New Identity</span> feature of <span\n"
-"class=\"application\">Vidalia</span> forces Tor to use new circuits but only for\n"
-"new connections. The two main drawbacks of this technique are:\n"
-msgstr ""
-"Dans notre [[page d'avertissements|doc/about/warning#identities]] nous conseillons\n"
-"de redémarrer Tails à chaque fois que vous voulez utiliser différentes identités\n"
-"contextuelles. La fonction de <span class=\"guilabel\">Nouvelle identité</span> de\n"
-"<span class=\"application\">Vidalia</span> force Tor à utiliser de nouveaux circuits mais\n"
-"seulement pour de nouvelles connexions. Les deux inconvénients majeurs de cette technique\n"
-"sont :\n"
-
-#. type: Plain text
-msgid ""
-"- The circuits used by connections that remain open might not be changed: "
-"for example, a circuit used to connect to an open webpage or to an instant "
-"messaging server."
-msgstr ""
-"- Les circuits utilisés par des connexions qui restent ouvertes ne changent "
-"pas forcément : par exemple, un circuit utilisé pour se connecter à une page "
-"web ouverte ou à un serveur de messagerie instantanée."
+"There is no <span class=\"guilabel\">New Identity</span> button for Tails as a\n"
+"whole.\n"
+msgstr "Il n'y a pas de bouton <span class=\"guilabel\">Nouvelle identité</span> pour tout Tails.\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"- Each application might contain information that can identify you,\n"
-"independently of the Tor circuit that are used. For example, the browser might\n"
-"contain cookies from previous websites, <span\n"
-"class=\"application\">[[Pidgin|doc/anonymous_internet/pidgin]]</span> will reuse the\n"
-"same nickname by default, etc.\n"
+"The [[<span class=\"guilabel\">New Identity</span> feature of\n"
+"<span class=\"application\">Tor Browser</span>|doc/anonymous_internet/Tor_Browser#new_identity]]\n"
+"is limited to the browser.\n"
 msgstr ""
-"- Chaque application peut contenir des informations qui peuvent vous identifier,\n"
-"indépendamment du circuit Tor utilisé. Par exemple, le navigateur peut contenir\n"
-"des cookies de sites web précédents, <span\n"
-"class=\"application\">[[Pidgin|doc/anonymous_internet/pidgin]]</span> réutilisera\n"
-"le même pseudonyme par défaut, etc.\n"
-
-#. type: Plain text
-msgid ""
-"Tails is a full operating system, so a *new identity* should be thought on a "
-"broader level than only switching Tor circuits."
-msgstr ""
-"Tails est un système d'exploitation complet, donc une *nouvelle identité* "
-"devrait être pensée à un niveau plus large que seulement changer de circuit."
-
-#. type: Plain text
-#, no-wrap
-msgid "<a id=\"truecrypt\"></a>\n"
-msgstr "<a id=\"truecrypt\"></a>\n"
-
-#. type: Title -
-#, no-wrap
-msgid "Can I use TrueCrypt with Tails?\n"
-msgstr "Puis-je utiliser TrueCrypt avec Tails ?\n"
+"La fonctionnalité [[<span class=\"guilabel\">Nouvelle identité</span> du\n"
+"<span class=\"application\">Navigateur Tor</span>|doc/anonymous_internet/Tor_Browser#new_identity]]\n"
+"se limite au navigateur.\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"No, <span class=\"application\">TrueCrypt</span> was removed in Tails 1.2.1.\n"
-"But you can still [[open <span class=\"application\">TrueCrypt</span>\n"
-"volumes using <span class=\"code\">cryptsetup</span>|doc/encryption_and_privacy/truecrypt]].\n"
+"In the same way as the <span class=\"guilabel\">New Identity</span> button of\n"
+"<span class=\"application\">Tor Browser</span> restarts the browser, you have to\n"
+"restart Tails before using a different identity.\n"
 msgstr ""
+"De la même façon que le bouton <span class=\"guilabel\">Nouvelle identité</span> du\n"
+"<span class=\"application\">Navigateur Tor</span> redémarre le navigateur, vous devez\n"
+"redémarrer Tails avant d'utiliser une nouvelle identité.\n"
 
 #. type: Plain text
-msgid ""
-"Furthermore, [TrueCrypt is now discontinued](http://truecrypt.sourceforge."
-"net/)  and its development team recommends against using it. We recommend "
-"using other [[encryption tools|doc/encryption_and_privacy/"
-"encrypted_volumes]] such as [[LUKS|faq#luks]]."
-msgstr ""
-"De plus, [TrueCrypt n'est plus développé](http://truecrypt.sourceforge.net/) "
-"et l'équipe de développement ne recommande pas son usage. Nous recommandons "
-"l'usage d'autres [[outils de chiffrement|doc/encryption_and_privacy/"
-"encrypted_volumes]] tels que [[LUKS|faq#luks]]."
+#, no-wrap
+msgid "<div class=\"next\">\n"
+msgstr "<div class=\"next\">\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "<p>See also our [[warning about contextual identities|doc/about/warning#identities]].</p>\n"
+msgstr "<p>Voir également notre [[avertissement à propos des identités contextuelles|doc/about/warning#identities]].</p>\n"
 
 #. type: Plain text
 #, no-wrap
@@ -1503,13 +1746,13 @@ msgstr ""
 
 #. type: Bullet: '- '
 msgid ""
-"[[<span class=\"application\">Tails Upgrader</span>|doc/first_steps/"
-"upgrade]] checks for newer versions. The version of the running Tails is "
-"passed along with this request."
+"[[<span class=\"application\">Tails Upgrader</span>|doc/upgrade]] checks for "
+"newer versions. The version of the running Tails is passed along with this "
+"request."
 msgstr ""
-"Le [[<span class=\"application\">Tails Upgrader</span>|doc/first_steps/"
-"upgrade]] vérifie la disponibilité de nouvelles versions. La version de "
-"Tails utilisée est également envoyée avec cette requête."
+"Le [[<span class=\"application\">Tails Upgrader</span>|doc/upgrade]] vérifie "
+"la disponibilité de nouvelles versions. La version de Tails utilisée est "
+"également envoyée avec cette requête."
 
 #. type: Plain text
 msgid ""
@@ -1526,89 +1769,288 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid ""
-"<!--\n"
-"<rawmaterial>\n"
-msgstr ""
+msgid "<a id=\"antivirus\"></a>\n"
+msgstr "<a id=\"antivirus\"></a>\n"
 
 #. type: Title -
 #, no-wrap
-msgid "Proxy\n"
-msgstr ""
+msgid "Does Tails need an antivirus?\n"
+msgstr "Tails a-t-il besoin d'un antivirus ?\n"
 
 #. type: Plain text
 msgid ""
-"How_do_you_chain_a_proxy_after_TOR___63__ "
-"Next_Tails_version_should_have_proxychains_for_socks_after_exit_node "
-"alternative_way_to_connect_to_web featurerequest:_proxychains"
+"No, as other Linux systems, Tails doesn't require an antivirus to protect "
+"itself from most malwares, such as viruses, trojans, and worms. There are "
+"various reasons why Linux operating systems generally don't need antivirus "
+"softwares, including the permission design of Linux systems."
 msgstr ""
+"Non, comme les autres systèmes Linux, Tails ne nécessite pas d'antivirus "
+"pour se protéger de la plupart des logiciels malveillants, comme les virus, "
+"les chevaux de Troie et les vers. Il y a plusieurs raisons au fait que les "
+"systèmes d'exploitation Linux ne nécessitent généralement pas d'antivirus, "
+"notamment la conception des permissions dans les systèmes Linux."
 
 #. type: Plain text
 msgid ""
-"easy way to chain a SOCKS5 proxy after the hop off the exit node of TOR."
+"See the [[!wikipedia Linux_malware desc=\"Wikipedia page on Linux malware"
+"\"]] for further details."
 msgstr ""
+"Voir la [[!wikipedia_fr Liste des malwares Linux desc=\"page Wikipédia sur "
+"les malwares Linux\"]] pour plus de détails."
 
-#. type: Plain text
-msgid ""
-"I need to hide the fact that I'm coming from TOR, because many websites "
-"block tor."
-msgstr ""
+#~ msgid "Other useful resources\n"
+#~ msgstr "Autres ressources utiles\n"
 
-#. type: Plain text
-msgid ""
-"I have found some websites that explain how to create an SSH tunnel, but "
-"using the terminal is above my level of skills :)"
-msgstr ""
+#~ msgid "[The Tor Project: FAQ](https://www.torproject.org/docs/faq.html.en)"
+#~ msgstr ""
+#~ "[La foire aux questions sur le site du projet Tor](https://www.torproject."
+#~ "org/docs/faq.html) (en anglais)"
 
-#. type: Plain text
-msgid ""
-"It should be possible to use a program like Proxify to chain a proxy, but I "
-"don't know if this creates conflicts, and I don't know how to install a "
-"program that can run of the persistent volume."
-msgstr ""
+#~ msgid ""
+#~ "[The Tor Project: Stack Exchange, question & answer site](https://tor."
+#~ "stackexchange.com/)"
+#~ msgstr ""
+#~ "[Le projet Tor sur Stack Exchange, site de questions/réponses](https://"
+#~ "tor.stackexchange.com/)"
 
-#. type: Plain text
-msgid ""
-"Surely there is someone who can simply give us a paragraph of text to enter "
-"into the polipo config file ( where i add the ip address and port for the "
-"SOCKS5 i bought ) or give some other instructions."
-msgstr ""
+#~ msgid ""
+#~ "In our [[warning page|doc/about/warning#identities]] we advice to restart "
+#~ "Tails every time that you want to use a different contextual identity."
+#~ msgstr ""
+#~ "Dans notre [[page d'avertissements|doc/about/warning#identities]] nous "
+#~ "conseillons de redémarrer Tails chaque fois que vous voulez une identité "
+#~ "contextuelle différente."
 
-#. type: Plain text
-#, no-wrap
-msgid ""
-" * Use something like `ssh -D 1081`. See `DynamicFoward` in `ssh_config(5)`.                                        * Use `iptables` to allow connections to 1081 on localhost.\n"
-" * For websites, modify FoxyProxy settings to add a new proxy, before rules\n"
-"   for Tor, that contains the addresses that needs to be reached, and\n"
-"   which directs connections to 1081.\n"
-" * For other programs, draft a dedicated `tsocks.conf`. Use\n"
-"   `TSOCKS_CONF_FILE=tsocks-specific.conf tsocks ssh one.example.org`.\n"
-msgstr ""
+#~ msgid ""
+#~ "Tails used to provide a <span class=\"guilabel\">New Identity</span>\n"
+#~ "feature, but this feature was not a good solution to\n"
+#~ "[[separate contextual identities|doc/about/warning#identities]], as it\n"
+#~ "was dangerous:\n"
+#~ msgstr ""
+#~ "Tails fournissait une fonctionnalité <span class=\"guilabel\">Nouvelle "
+#~ "identité</span>\n"
+#~ "mais cette fonctionnalité n'est pas une bonne solution pour\n"
+#~ "[[séparer les identités contextuelles|doc/about/warning#identities]], de "
+#~ "plus\n"
+#~ "elle est dangereuse :\n"
 
-#. type: Plain text
-msgid ""
-"`proxychains` is in Debian, the package is called by the same name. This "
-"means it is straightforword to install it in Tails. There is no way in can "
-"be preconfigured for every Tails users, so it's hard to see why it should be "
-"included in the default package set."
-msgstr ""
+#~ msgid "Already existing connections could stay open."
+#~ msgstr "Des connexions déjà existantes pourraient rester ouvertes."
 
-#. type: Plain text
-#, no-wrap
-msgid "</rawmaterial>\n"
-msgstr ""
+#~ msgid ""
+#~ "Other sources of information could reveal your past activities, for "
+#~ "example the cookies stored in <span class=\"application\">Tor Browser</"
+#~ "span> or the random nick in <span class=\"application\">Pidgin</span>."
+#~ msgstr ""
+#~ "D'autres sources d'information pourraient dévoiler vos activités passées, "
+#~ "par exemple les cookies stockées dans le <span class=\"application"
+#~ "\">Navigateur Tor</span> ou le pseudonyme aléatoire dans <span class="
+#~ "\"application\">Pidgin</span>."
 
-#. type: Title -
-#, no-wrap
-msgid "Other topics\n"
-msgstr ""
+#~ msgid ""
+#~ "Tails is a full operating system, so a *new identity* should be thought "
+#~ "on a broader level. **Restart Tails instead**."
+#~ msgstr ""
+#~ "Tails est un système d'exploitation complet, donc une *nouvelle identité* "
+#~ "devrait être pensée à un niveau plus large. **Redémarrez plutôt Tails**."
 
-#. type: Plain text
-#, no-wrap
-msgid ""
-"- XXX_NICK_XXX in Pidgin might be caused by a lack of RAM\n"
-"-->\n"
-msgstr ""
+#~ msgid "Can I run a Tor onion service on Tails?"
+#~ msgstr "Puis-je faire tourner un service caché Tor sur Tails ?"
+
+#~ msgid ""
+#~ "Currently the default cipher is `aes-cbc-essiv:sha256` with a key size of "
+#~ "256 bits."
+#~ msgstr ""
+#~ "Actuellement le chiffrement par défaut est `aes-cbc-essiv:sha256` avec "
+#~ "une clé de taille 256 bits."
+
+#~ msgid ""
+#~ "**veracrypt**: can not be in Debian because of license issues, see [[!"
+#~ "debbug 814352]]"
+#~ msgstr ""
+#~ "**veracrypt** : ne peut être ajouté dans Debian à cause d'un problème de "
+#~ "licence, voir [[!debbug 814352]]"
+
+#~ msgid ""
+#~ "Furthermore, [TrueCrypt is now discontinued](http://truecrypt.sourceforge."
+#~ "net/)  and its development team recommends against using it. We recommend "
+#~ "using other [[encryption tools|doc/encryption_and_privacy/"
+#~ "encrypted_volumes]] such as [[LUKS|faq#luks]]."
+#~ msgstr ""
+#~ "De plus, [TrueCrypt n'est plus développé](http://truecrypt.sourceforge."
+#~ "net/) et l'équipe de développement ne recommande pas son usage. Nous "
+#~ "recommandons l'usage d'autres [[outils de chiffrement|doc/"
+#~ "encryption_and_privacy/encrypted_volumes]] tels que [[LUKS|faq#luks]]."
+
+#, fuzzy
+#~| msgid ""
+#~| "Should I update Tails using `apt` or <span class=\"application"
+#~| "\">Synaptic</span>?\n"
+#~ msgid ""
+#~ "Should I update Tails using `apt` or <span class=\"application"
+#~ "\">Synaptic</span>?\n"
+#~ "-----------------------------------------------------------------------------------\n"
+#~ msgstr ""
+#~ "Dois-je mettre à jour Tails en utilisant `apt` ou <span class="
+#~ "\"application\">Synaptic</span> ?\n"
+
+#~ msgid "Tails website\n"
+#~ msgstr "Site web de Tails\n"
+
+#~ msgid "Why does tails.boum.org rely on a commercial SSL certificate?\n"
+#~ msgstr "Pourquoi tails.boum.org utilise un certificat SSL commercial ?\n"
+
+#~ msgid ""
+#~ "HTTPS provides encryption and authentication on the web. The standard "
+#~ "authentication mechanism through SSL certificates is centralized and "
+#~ "based on commercial or institutional certificate authorities. This "
+#~ "mechanism has proven to be susceptible to various methods of compromise. "
+#~ "See our [[warning about man-in-the-middle attacks|doc/about/warning#man-"
+#~ "in-the-middle]]."
+#~ msgstr ""
+#~ "Le HTTPS fournit du chiffrement et de l'authentification sur le web. Le "
+#~ "mécanisme standard d'authentification avec certificats SSL est centralisé "
+#~ "et basé sur des autorités de certifications commerciales ou "
+#~ "institutionnelles. Il a été démontré que ce mécanisme souffre de diverses "
+#~ "méthodes de compromission. Voir notre [[avertissement à propos de "
+#~ "l'attaque de l'homme-du-milieu|doc/about/warning#man-in-the-middle]]."
+
+#~ msgid ""
+#~ "Still, we use HTTPS on our website and rely on a commercial certificate "
+#~ "even if we acknowledge those security problems."
+#~ msgstr ""
+#~ "Nous utilisons cependant le HTTPS sur notre site web et utilisons un "
+#~ "certificat commercial même si nous sommes au courant de ces problèmes de "
+#~ "sécurité."
+
+#~ msgid ""
+#~ "Providing no HTTPS and no kind of encryption would be a worse option."
+#~ msgstr ""
+#~ "Ne pas fournir de HTTPS et aucune sorte de chiffrement serait une moins "
+#~ "bonne option."
+
+#~ msgid ""
+#~ "2. Providing a self-signed certificate or another marginally supported\n"
+#~ "authentication mechanism would not work for the majority of users. "
+#~ "Modern\n"
+#~ "browsers display very strong warnings when facing a self-signed "
+#~ "certificate, and\n"
+#~ "many people would think the website is broken while it is not.\n"
+#~ msgstr ""
+#~ "2. Fournir un certificat auto-signé ou un autre mécanisme "
+#~ "d'authentification\n"
+#~ "marginalement prise en charge ne marcherait pas pour la plupart des "
+#~ "utilisateurs.\n"
+#~ "Les navigateurs modernes affichent de très gros avertissements lorsqu'ils "
+#~ "rencontrent\n"
+#~ "un certificat auto-signé, et de nombreuses personnes penseraient que le "
+#~ "site web\n"
+#~ "est mauvais alors qu'il ne l'est pas.\n"
+
+#~ msgid ""
+#~ "We prefer to provide weak security, using a commercial certificate, that "
+#~ "still works for most people. At the same time, we make clear this "
+#~ "security is limited and encourage stronger ways of verifying the "
+#~ "authenticity of Tails once downloaded. See our documentation on "
+#~ "[[verifying the ISO image using OpenPGP|install/download/openpgp]]."
+#~ msgstr ""
+#~ "Nous préférons fournir une sécurité plus faible, utilisant un certificat "
+#~ "commercial, qui marche quand même pour la plupart des personnes. Dans le "
+#~ "même temps, nous indiquons clairement que cette sécurité est limitée et "
+#~ "encourageons l'usage de meilleures façons de vérifier l'authenticité de "
+#~ "Tails une fois téléchargé. Voir notre documentation sur la [[vérification "
+#~ "de l'image ISO en utilisant OpenPGP|install/download/openpgp]]."
+
+#~ msgid "Does Tails work with 64-bit processors?\n"
+#~ msgstr "Tails fonctionne-t-il avec des processeurs 64-bit ?\n"
+
+#~ msgid ""
+#~ "Yes. Tails automatically detects the type of processor of the computer "
+#~ "and loads a 32-bit or a 64-bit kernel accordingly."
+#~ msgstr ""
+#~ "Oui. Tails détecte automatiquement le type de processeur de l'ordinateur "
+#~ "et charge le noyau 32-bit ou 64-bit en fonction."
+
+#~ msgid "Does Tails change the MAC address of my network interfaces?\n"
+#~ msgstr "Tails change-t-il l'adresse MAC de mes interfaces réseau ?\n"
+
+#~ msgid ""
+#~ "Starting from Tails 0.23, [[MAC spoofing|doc/first_steps/startup_options/"
+#~ "mac_spoofing]] is enabled by default on all interfaces."
+#~ msgstr ""
+#~ "Depuis Tails 0.23, [[l'usurpation d'adresse MAC|doc/first_steps/"
+#~ "startup_options/mac_spoofing]] est activée par défaut pour toutes les "
+#~ "interfaces."
+
+#~ msgid ""
+#~ "Is it safe to use the <span class=\"guilabel\">New Identity</span> "
+#~ "feature of <span class=\"application\">Vidalia</span> or <span class="
+#~ "\"application\">Tor Browser</span>?\n"
+#~ "---------------------------------------------------------------------\n"
+#~ msgstr ""
+#~ "Est-il sans danger d'utiliser la fonction <span class=\"guilabel"
+#~ "\">Nouvelle identité</span> de <span class=\"application\">Vidalia</span> "
+#~ "ou du <span class=\"application\">Tor Browser</span>?\n"
+#~ "---------------------------------------------------------------------\n"
+
+#~ msgid ""
+#~ "In our [[warning page|doc/about/warning#identities]] we advice to\n"
+#~ "restart Tails every time that you want to use a different contextual\n"
+#~ "identity. The\n"
+#~ "[[<span class=\"guilabel\">New Identity</span> feature of <span class="
+#~ "\"application\">Vidalia</span>|doc/anonymous_internet/"
+#~ "vidalia#new_identity]]\n"
+#~ "forces Tor to use new circuits but only for new connections and the\n"
+#~ "[[<span class=\"guilabel\">New Identity</span> of <span class="
+#~ "\"application\">Tor Browser</span>|doc/anonymous_internet/"
+#~ "Tor_Browser#new_identity]]\n"
+#~ "is limited to the browser.\n"
+#~ msgstr ""
+#~ "Dans notre [[page d'avertissements|doc/about/warning#identities]] nous "
+#~ "conseillons\n"
+#~ "de redémarrer Tails à chaque fois que vous voulez utiliser une identités\n"
+#~ "contextuelles différentes. La [[fonction <span class=\"guilabel"
+#~ "\">Nouvelle identité</span> de\n"
+#~ "<span class=\"application\">Vidalia</span>|doc/anonymous_internet/"
+#~ "vidalia#new_identity]] force\n"
+#~ "Tor à utiliser de nouveaux circuits mais seulement pour de nouvelles "
+#~ "connexions, et la fonction\n"
+#~ "[[<span class=\"guilabel\">Nouvelle identité</span> du\n"
+#~ "<span class=\"application\">Tor Browser</span>|doc/anonymous_internet/"
+#~ "Tor_Browser#new_identity]]\n"
+#~ "est limitée au navigateur internet.\n"
+
+#~ msgid "Is it safe to use the new identity feature of Vidalia?\n"
+#~ msgstr ""
+#~ "Est-il sûr d'utiliser la fonction de nouvelle identité de Vidalia ?\n"
+
+#~ msgid ""
+#~ "- The circuits used by connections that remain open might not be changed: "
+#~ "for example, a circuit used to connect to an open webpage or to an "
+#~ "instant messaging server."
+#~ msgstr ""
+#~ "- Les circuits utilisés par des connexions qui restent ouvertes ne "
+#~ "changent pas forcément : par exemple, un circuit utilisé pour se "
+#~ "connecter à une page web ouverte ou à un serveur de messagerie "
+#~ "instantanée."
+
+#~ msgid ""
+#~ "- Each application might contain information that can identify you,\n"
+#~ "independently of the Tor circuit that are used. For example, the browser "
+#~ "might\n"
+#~ "contain cookies from previous websites, <span\n"
+#~ "class=\"application\">[[Pidgin|doc/anonymous_internet/pidgin]]</span> "
+#~ "will reuse the\n"
+#~ "same nickname by default, etc.\n"
+#~ msgstr ""
+#~ "- Chaque application peut contenir des informations qui peuvent vous "
+#~ "identifier,\n"
+#~ "indépendamment du circuit Tor utilisé. Par exemple, le navigateur peut "
+#~ "contenir\n"
+#~ "des cookies de sites web précédents, <span\n"
+#~ "class=\"application\">[[Pidgin|doc/anonymous_internet/pidgin]]</span> "
+#~ "réutilisera\n"
+#~ "le même pseudonyme par défaut, etc.\n"
 
 #~ msgid "**bitcoin**, **electrum**: see [[!tails_ticket 6739]]"
 #~ msgstr "**bitcoin**, **electrum**: voir [[!tails_ticket 6739]]"
@@ -1644,13 +2086,6 @@ msgstr ""
 #~ "comme un navigateur web normal. En conséquence, les fichiers que vous "
 #~ "pourriez télécharger via le Navigateur Non-sécurisé ne sont pas "
 #~ "accessibles à l'utilisateur."
-
-#~ msgid ""
-#~ "Is Java installed in the Tor browser?\n"
-#~ "---------------------------------------\n"
-#~ msgstr ""
-#~ "Java est-il installé dans la navigateur Tor ?\n"
-#~ "---------------------------------------\n"
 
 #~ msgid ""
 #~ "Yes, but Truecrypt needs to be activated when starting Tails, see our "

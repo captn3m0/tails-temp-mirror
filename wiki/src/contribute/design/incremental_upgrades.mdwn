@@ -19,7 +19,7 @@ should provide an automated way of doing the upgrade.
 * **Incremental Upgrade Kit (IUK)**: a file that contains everything
   needed to upgrade from.
 * **full image**: a file that is sufficient to install and run Tails
-  (currently, that means an ISO image).
+  (currently, that means an ISO or USB image).
 * **target files**: the whole set of files included by reference into
   an upgrade; e.g. this may be an IUK or a full image.
 
@@ -38,7 +38,7 @@ The rest lives in the main Tails [[contribute/Git]] repository:
 
 * [[!tails_gitweb config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper]]
 * [[!tails_gitweb config/chroot_local-includes/etc/sudoers.d/zzz_upgrade]]
-* [[!tails_gitweb config/chroot_local-includes/usr/share/applications/tails-upgrader.desktop]]
+* [[!tails_gitweb config/chroot_local-includes/usr/lib/systemd/user/tails-upgrade-frontend.service]]
 
 # Scenarios
 
@@ -53,7 +53,7 @@ Test-BDD-Cucumber]], in the `features/frontend` directory of the `iuk`
 
 ## As a Tails developer
 
-### When I prepare a point-release
+### When I prepare a bugfix release
 
 #### I should prepare an IUK
 
@@ -208,11 +208,11 @@ of upgrade-description file files.
   *TailsHandheld* or whatever)
 * product version -- the currently running version to upgrade from,
   e.g. *0.11* or *0.11.1*
-* build-target (e.g. *i386*)
+* build-target (e.g. *amd64*)
 * channel (e.g. *stable* or *beta*)
 * `upgrade.yml`
 
-Example: <https://tails.boum.org/upgrade/v1/Tails/0.11/i386/beta/upgrades.yml>
+Example: <https://tails.boum.org/upgrade/v1/Tails/0.11/amd64/beta/upgrades.yml>
 
 Such a file shall be shipped along with its OpenPGP detached signature
 (`upgrades.yml.pgp`).
@@ -263,12 +263,12 @@ Every target file element has the following keys:
   will need to be specified when this happens.)
 
 Example that would be found at
-<https://tails.boum.org/upgrade/v1/Tails/0.11.1/i386/stable/upgrades.yml>:
+<https://tails.boum.org/upgrade/v1/Tails/0.11.1/amd64/stable/upgrades.yml>:
 
 	product-name: Tails
 	product-version: 0.11.1
 	channel: stable
-	build-target: i386
+	build-target: amd64
 	
 	upgrades:
 	  - version: 0.11.2
@@ -277,12 +277,12 @@ Example that would be found at
 	    upgrade-paths:
 	      - type: incremental
 	        target-files:
-	          - url: http://dl.amnesia.boum.org/tails/stable/iuk/Tails_i386_0.11.1_to_0.11.2.iuk
+	          - url: http://dl.amnesia.boum.org/tails/stable/iuk/Tails_amd64_0.11.1_to_0.11.2.iuk
 	            size: 37345648
 	            sha256: 5c5c47f6155e7807c971251fdad28d5f72ff78db446e43a41e4b900f29229a7d
 	      - type: full
 	        target-files:
-	          - url: http://dl.amnesia.boum.org/tails/stable/tails-i386-0.11.2/Tails-i386-0.11.2.iso
+	          - url: http://dl.amnesia.boum.org/tails/stable/tails-amd64-0.11.2/Tails-amd64-0.11.2.iso
 	            size: 762123456
 	            sha256: 1015e37e14c6daaecd528b4a841ef6ac2156a5790346d0fd036f9566ce5f641b
 
@@ -303,7 +303,7 @@ An IUK's file name is built from these underscore-separated elements,
 followed by the `.iuk` suffix:
 
 * product name (e.g. *Tails*)
-* build-target (e.g. *i386*)
+* build-target (e.g. *amd64*)
 * product version -- the currently running version to upgrade from,
   e.g. *0.11* or *0.11.1*
 * `to`
@@ -311,7 +311,7 @@ followed by the `.iuk` suffix:
   product after the upgrade is completed and the system restarted (e.g.
   *0.11.2*)
 
-Example: `Tails_i386_0.11.1_to_0.11.2.iuk`
+Example: `Tails_amd64_0.11.1_to_0.11.2.iuk`
 
 #### IUK URL
 
@@ -320,7 +320,7 @@ A given IUK is meant to be made available at the URL composed from:
 * `http://dl.amnesia.boum.org/tails/iuk/`
 * the IUK file basename
 
-Example: <http://dl.amnesia.boum.org/tails/iuk/Tails_i386_0.11.1_to_0.11.2.iuk>
+Example: <http://dl.amnesia.boum.org/tails/iuk/Tails_amd64_0.11.1_to_0.11.2.iuk>
 
 ## Client and user interface
 
@@ -360,6 +360,8 @@ Failure, at any of the above steps, must be reported to the caller.
 * Present such information to the user, let them decide if they want
   to perform the upgrade.
 * If an incremental upgrade path to the new version is available:
+  - transform target files' URL to pick one of our mirrors,
+    using code from [[!tails_gitweb_repo mirror-pool-dispatcher]]
   - securely create a tempdir in `tmpfs`, owned by
     `tails-iuk-get-target-file:tails-iuk-get-target-file`,
     with mode 0750
@@ -529,9 +531,11 @@ Given:
 As a consequence, the availability, freshness and content of target
 files is protected as well as it is in the old Tails upgrade system.
 
+<a id="security-discussion"></a>
+
 ## Discussion
 
-**Note**: the attack definitions bellow come straight from the [TUF
+**Note**: the attack definitions below come straight from the [TUF
 security
 documentation](https://www.updateframework.com/wiki/Docs/Security)
 (2012-05-04).
@@ -583,8 +587,8 @@ new releases in other ways:
 * one that does not rely on our website at all (Twitter);
 * one that does not rely on our website to be safe at the time Tails
   Upgrader checks for available upgrades, as long as it was safe at
-  the time the new release was published (<amnesia-news@boum.org>
-  announce mailing-list).
+  the time the new release was published ([[amnesia-news@boum.org|about/contact#amnesia-news]]
+  announce mailing list).
 
 The move to a secure upgrade system, such as TUF, would make this
 stronger, thanks to short-lived signatures on meta-data.
@@ -710,14 +714,12 @@ user, who itself:
   argument, using passwordless sudo, as the
   `tails-iuk-get-target-file` user;
 * is allowed to run `tails-iuk-mktemp-get-target-file`, using
-  passwordless sudo, as the `tails-iuk-get-target-file` user;
-* is allowed to run `tor-has-bootstrapped`, using passwordless sudo,
-  as the `debian-tor` user.
+  passwordless sudo, as the `tails-iuk-get-target-file` user.
 
 The `tails-install-iuk` user is allowed to run, using passwordless
-sudo, every command required by its task (currently: `chmod`, `cp`,
-`dd`, `mkdir`, `mktemp`, `mount`, `rm`, `tar` and
-`/lib/live/mount/medium/utils/linux/syslinux`) with any arguments.
+sudo, every command required by its task with any arguments.
+This includes e.g. `cp` so for all practical security purposes,
+it can effectively escalate to arbitrary code execution as root.
 It is a member of the `tails-iuk-get-target-file` group, which allows it to
 read the files downloaded by the `tails-iuk-get-target-file` program.
 

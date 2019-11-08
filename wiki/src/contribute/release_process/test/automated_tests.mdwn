@@ -1,13 +1,14 @@
 [[!meta title="Automated test suite"]]
 
-[[!toc levels=2]]
+[[!toc levels=3]]
 
 # Introduction
 
 The automated test suite is essentially a glue between:
 
-* [Sikuli](http://www.sikuli.org/), used for simulating user
-  interaction,
+* [Sikuli](http://www.sikuli.org/) and
+  [dogtail](https://fedorahosted.org/dogtail/), used for simulating
+  user interaction,
 * [libvirt](http://libvirt.org/), used for running a specific build of
   Tails in a virtual machine, and
 * [cucumber](http://cukes.info/), for defining features and scenarios
@@ -24,6 +25,10 @@ the Sikuli programmatic interface from our step definitions.
 ## Setup and usage
 
 See [[contribute/release_process/test/setup]] and [[contribute/release_process/test/usage]].
+
+For particularities of automated tests run on our Jenkins
+infrastructure, see
+[[contribute/working_together/roles/sysadmins/automated_tests_in_Jenkins]].
 
 ## Features
 
@@ -84,7 +89,7 @@ sets the correct environment up:
 
 This started out as a hack, and while it has evolved it largely
 remains so. A proper, reliable, established replacement would be
-welcome, but seems unlikely given the requirements:
+welcome, but seems unlikely given the requirements.
 
 Requirements on the host (the remote shell client):
 
@@ -101,6 +106,15 @@ Requirements on the guest (the remote shell server):
   firewall exceptions; actually we don't want any network traffic at
   all from it, but this kind of follows from the previous requirement
   any way)
+* must start before Tails Greeter. Since that's the first point of
+  user interaction in a Tails system (if we ignore the boot menu), it
+  seems like a good place to be able to assume that the remote shell
+  is running.
+
+Scripts:
+
+* [[!tails_gitweb config/chroot_local-includes/usr/local/lib/tails-autotest-remote-shell]]
+* [[!tails_gitweb config/chroot_local-includes/lib/systemd/system/tails-autotest-remote-shell.service]]
 
 # The art of writing new product test cases
 
@@ -116,6 +130,11 @@ to in the introduction:
 
  * [ruby-libvirt API](http://libvirt.org/ruby/api/index.html)
  * [sikuli API](http://doc.sikuli.org/toc.html)
+ * The `sniff` application, which is installed in Tails, is quite
+   useful to navigate the GUI element hierarchy. However, `accerciser`
+   (not installed) is even better, due to its ability to highlight
+   elements. Another useful tool is `ipython` (not installed) with its
+   TAB-completion.
 
 ## Writing new features and scenarios
 
@@ -140,7 +159,7 @@ completely fresh one, with all defaults. The defaults are defined in
 `features/domains/default.xml`, but some highlights are:
 
 * One virtual `x86_64` CPU with one core
-* 1 GiB of RAM
+* A reasonable amount of RAM
 * ACPI, APIC and PAE enabled
 * UTC harware clock
 * A DVD drive loaded with the Tails from the ISO
@@ -148,15 +167,27 @@ completely fresh one, with all defaults. The defaults are defined in
 * USB 2.0 controller
 * Ethernet interface, plugged into a network bridged with the host
 
-After this step there's a number of steps that reconfigures the
-above...
+However, most of the time we do not set up a computer from scratch
+using this step, but restore from a snapshot (also called checkpoint)
+using the one of the `Given Tails has booted ...` steps generated in
+`features/step_definitions/snapshots.rb`. An example of such a step,
+and indeed one of the most common ones, is:
+
+    Given Tails has booted from DVD and logged in and the network is connected
+
+These steps will actually run multiple steps, saving one or more
+snapshots along the way. See the next section for details about this.
+
+Returning back to what we'd do after the `Given a computer` step,
+there's a number of steps that reconfigures the computer...
 
     And I create a 10 GiB disk named "some_disk"
 
 The identifier (`some_disk`) is later used if we want to plug it or
 otherwise act on it. Note that all media created this way are backed
 by [[!wikipedia qcow2]] images, which grow only as they consume
-capacity. All such media are destroyed after the feature ends.
+capacity. All such media can be destroyed after the feature ends
+by using "I create a temporary…" instead.
 
 This step does not necessarily have to be run this early, but it does
 if we want to plug it as a non-removable drive...
@@ -189,10 +220,6 @@ This step:
 * makes sure that Tails Greeter starts
 * makes sure that the remote shell is up and running
 
-    And I enable more Tails Greeter options
-
-This is required for steps enabling Tails Greeter options, like the
-next one, or the `I enable Microsoft Windows XP camouflage` step.
 Note that the "I set sudo password ..." step has to be run before the
 other Tails Greeter option steps as it relies on keyboard navigation.
 
@@ -202,7 +229,7 @@ Beyond the obvious, after this step all steps requiring the
 administrative password have access to it.
 
     And I log in to a new session
-    And GNOME has started
+    And the Tails desktop is ready
     And I have a network connection
     And Tor is ready
 
@@ -223,21 +250,31 @@ has started` step.
 
 Since Tor is working, the check for upgrades will be run. We have to
 wait for it to complete because that generally will break later if we
-use a background snapshot.
+use snapshots.
 
-    And I save the state so the background can be restored next scenario
+### Snapshots
 
-This is where the state of the VM is saved into the so called
-background snapshot the first time it is reached within a feature. For
-all subsequent scenarios, all steps before this one are skipped and
-the VM state is restored from the snapshot in this state. This step
-also makes sure that the remote shell is back up, and if Tor was
-running, that the time is resynced from the host and Tor is restarted
-and working again.
+To speed up the test suite and get consistent results when setting up
+state, we make heavy use of virtual machine snapshots. We encourage
+contributors to read the snapshot definitions in
+`features/step_definitions/snapshots.rb` carefully. We generate steps
+from these descriptions, and they are created lazily on first use (and
+then reused in subsequent instances, across features). Some things to
+make note of:
 
-It's called the background snapshot because generally we only want to
-do this if we define a background in a feature. We don't want to use
-the above step if scenarios that have different steps before this one.
+* Snapshots may have parents, which means that they start by running
+  the parent's step, generating its snapshot, recursively to a "root"
+  snapshot without parent.
+
+* Snapshots can be made "temporary". If the snapshot description's
+  `:temporary` field is set to `true`, then the snapshot
+  will be cleared after the feature it was created in finishes. This
+  is a way to reduce the disk space needed for running the test suite,
+  and is encouraged to use for features where a very particular state
+  is set up, that isn't reused in any other feature.
+
+* Debugging snapshot creation is made a lot easier by enabling the
+  `debug` formatter, which will print the steps as they are run.
 
 ### Scenarios involving the Internet
 
@@ -249,25 +286,32 @@ feature for a simple example of how to do it.
 
 ### The tools and some guidelines for their usage
 
-In essense, the tools we have for interacting with the Tails instance
+In essence, the tools we have for interacting with the Tails instance
 are:
 
 * the VM helper class,
-* Sikuli, and
+* Sikuli and dogtail, and
 * the remote shell.
 
 It should be fairly obvious when to use the VM helper class (stuff
 relating to the virtual hardware), but there is some overlap between
-Sikuli and the remote shell.
+Sikuli, dogtail and the remote shell.
 
-Sikuli:
+Sikuli and dogtail:
 
-* Should be used in all instances where we want to simulate user
+* They should be used in all instances where we want to simulate user
   interaction with the Tails system. For instance, when we start an
   application we usually want to click our way through the GNOME
   applications menu to stay true to what an actual user would do.
-* It comes in handy when we want to verify some state pertaining
+* They come in handy when we want to verify some state pertaining
   to the GUI.
+* In general we prefer dogtail, since it is more precise given its
+  direct access to GUI elements and their state, and Sikuli's images
+  carry a quite heavy maintenance burden. However, Dogtail is not
+  possible to use before GNOME has started, so we rely on Sikuli for
+  anything before or after that. Also, for some applications it's
+  simply hard to "navigate" to the right element in the hierarchy of
+  elements of some GUI, due to ambiguity and/or lack of labels.
 
 The remote shell:
 
@@ -276,28 +320,8 @@ The remote shell:
   depending on user interaction (which should use Sikuli!).
 * It is acceptable (but not encouraged) to use the remote shell for
   simulating user terminal interaction when we need to analyze the
-  commands output. This is because of Sikuli's OCR capabilities are
+  commands output. This is because Sikuli's OCR capabilities are
   poor, and cannot be depended on.
-
-### Background snapshot compatibility
-
-All steps that possibly could be in a feature's background (that can
-be quickly skipped through thanks to background snapshots) should in
-general contain the following in its absolute beginning:
-
-    next if @skip_steps_while_restoring_background
-
-This is what makes it possible to pass the step without actually
-running it.
-
-Note the "in general" above, though. Sometimes there may be code in
-a step that we should let run before we skip the test. In general
-that's just assignment of input from a step into a global/class
-variable that is used in subsequent steps. For an instructive example
-of this, see the `I set sudo password ...` step in
-`features/step_definitions/common_steps.rb`, which saves the password
-into a class variable so it can be used by, among others, the `I enter
-the sudo password ...` step.
 
 # Limitations and issues
 
@@ -317,21 +341,13 @@ The remote shells have a few surprises in store:
 
 These are the currently known oddities of the remote shell, but there
 may be more, so beware, and make sure to verify that any commands sent
-through it does what you want them to do.
+through it do what you want them to do.
 
 ### Remote shell instability
 
 Although very rare, the remote shell can get into a state where it
 stops responding, resulting in the test suite waiting for a response
 forever.
-
-## Host-to-guest filesystem shares are incompatibile with snapshots
-
-Filesystem shares cannot (due to QEMU limitations) be added to an
-active VM, and cannot (due to QEMU limitations) be active
-(i.e. mounted) during a snapshot save. For this reason, don't use
-filesystem shares in combination with background snapshots. For more
-information, see [[!tails_ticket 5571]].
 
 ## Plugging SATA drives
 
@@ -341,27 +357,41 @@ drive, GNOME will report that the drive is failing when inside Tails,
 and indeed several SMART tests fail. For now, plug hard disks as IDE
 only (or USB, of course).
 
-## Class variables assigned in skippable steps
+## Passing state between steps in snapshots
 
-This is best explained with an example. Let's say we have this feature:
+When creating snapshots, anything stored in a variable in any of those
+steps will only be available in subsequent steps in that scenario, not
+in other scenarios restoring from that snapshot. The exception is when
+global variables are used, which is an acceptable workaround, but it
+is very hard to get right, and to follow. Please
+try to avoid this until [[!tails_ticket 5847]] is solved.
 
-	Background:
-    ...
-	Given I assign @x with something we read from the VMs state and we know should be 100
-	And I save the state so the background can be restored next scenario
+## Disabling scenarios that are known to fail
 
-	Scenario: 1
-	Then @x == 100
+When a scenario is broken for an extended period of time (e.g. when
+rebasing Tails on a new Debian version, which usually breaks tons of
+stuff) the current method of temporarily disabling affected tests is
+simply to remove them in Tails' Git, making sure that we won't forget
+about them.
 
-	Scenario: 2
-	Then @x == 100
+Note that such removals should be isolated per commit so that they are
+easy to revert when whatever was broken is fixed. Hence, such a commit
+could either:
 
-As expected, scenario 1 will succeed, but since class variables lie
-`@x` are cleared between scenarios, scenario 2 will fail if it is
-skippable (i.e. it has the `next if...` thing at the top), which it
-should besince it interacts with the VM. To avoid this, make sure to
-put *all* steps dealing with the class variable in the background, or
-all of them after the background. Alternatively, use global variables
-(e.g. `$x`) instead of class variables, since they are never cleared.
+* remove a single scenario if something unique to that scenario is
+  broken;
 
-Also, see [[!tails_ticket 5847]].
+* remove multiple scenarios possibly spanning multiple features, if
+  they're broken for the same reason, e.g. a step they all use is
+  broken;
+
+* remove a complete feature, if the complete feature is broken for the
+  same reason.
+
+Each such commit *must* have a ticket created, referencing the commit
+to revert, have an assignee and an appropriate milestone set so they
+are not forgotten. Bonus point: push a branch that reverts the commit,
+and then set it as the ticket's _Feature Branch_.
+
+(Once [[!tails_ticket 10198]] has hit Cucumber we can solve this,
+i.e. [[!tails_ticket 7233]], in a much better way.)

@@ -2,44 +2,26 @@
 
 There are several ways of shutting down Tails:
 
-- By clicking on the [[system shutdown
-  icon|introduction_to_gnome_and_the_tails_desktop#shutdown]] located in
-  the upper right corner of the notification area and choosing
-  <span class="guimenuitem">Shutdown Immediately</span> or
-  <span class="guimenuitem">Reboot Immediately</span>.
+- By clicking on the system menu located in
+  the upper right corner of the screen and choosing either:
 
-  [[!img introduction_to_gnome_and_the_tails_desktop/shutdown.png link=no]]
+  - [[!img lib/system-shutdown.png link="no" class="symbolic" alt="Shutdown icon"]] to
+    shutdown the computer or
+  - [[!img lib/view-refresh.png link="no" class="symbolic" alt="Restart icon"]] to restart
+    the computer.
 
-- By pressing the power button of the computer.
+  [[!img introduction_to_gnome_and_the_tails_desktop/system.png link="no"]]
 
-- By removing physically the device Tails is running from.
+- By physically removing the USB stick or DVD that Tails is running from.
 
 <div class="caution">
 
 <p>This method might in rare occasions break the file system of your persistent
 volume. <strong>Use this method only in case of emergency.</strong></p>
 
-<p>Using the [[<span class="guilabel">read-only</span> option|persistence/use]]
-of the persistent volume prevents this problem.</p>
-
 <p>If you cannot enable persistence after using this method, you should be able
 to recover most of your data by doing a [[file system check on the persistent
 volume|persistence/check_file_system]].</p>
-
-</div>
-
-<div class="bug">
-
-This method does not work [[with DVD|support/known_issues#index11h2]],
-see [[!tails_ticket 5447]].
-
-</div>
-
-<div class="bug">
-
-This method does not work [[after using the <span class="application">Tails
-Installer</span>|support/known_issues#index10h2]], see
-[[!tails_ticket 5677]].
 
 </div>
 

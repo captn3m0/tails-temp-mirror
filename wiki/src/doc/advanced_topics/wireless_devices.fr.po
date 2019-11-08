@@ -5,16 +5,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2015-01-25 19:23+0100\n"
-"PO-Revision-Date: 2013-06-17 19:26-0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Tails\n"
+"POT-Creation-Date: 2017-10-03 09:49+0200\n"
+"PO-Revision-Date: 2016-06-12 22:33-0000\n"
+"Last-Translator: Chre <tor@renaudineau.org>\n"
+"Language-Team: Tails translators <tails@boum.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #. type: Plain text
 #, no-wrap
@@ -22,40 +22,28 @@ msgid "[[!meta title=\"Enable a wireless device\"]]\n"
 msgstr "[[!meta title=\"Activer un périphérique sans-fil\"]]\n"
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "When Tails starts, Wi-Fi, Bluetooth, WWAN and WiMAX devices are enabled."
-msgid ""
-"When Tails starts, Wi-Fi, Bluetooth, WWAN and WiMAX devices are enabled (but "
-"Bluetooth doesn't work by default, see below to enable it)"
+msgid "When Tails starts, Wi-Fi, WWAN, and WiMAX devices are enabled."
 msgstr ""
-"Quand Tails démarre, les périphériques Wi-Fi, Bluetooth, WWAN et WiMAX sont "
-"activés."
+"Quand Tails démarre, les périphériques Wi-Fi, WWAN et WiMAX sont activés."
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "But all other kinds of wireless devices such as GPS and FM devices are "
-#| "disabled by default. If you want to use such a device, you need to "
-#| "enabled it first."
 msgid ""
-"But all other kinds of wireless devices such as GPS and FM devices are "
-"disabled by default. If you want to use such a device, you need to enable it "
-"first."
+"But all other kinds of wireless devices such as Bluetooth, GPS and FM "
+"devices are disabled by default. If you want to use such a device, you need "
+"to enable it first."
 msgstr ""
-"Mais tous les autres périphériques de type sans-fil comme les périphériques "
-"GPS et FM sont désactivés par défaut. Si vous voulez utiliser ces types de "
-"périphériques, il vous faudra les activer au préalable."
+"Tous les autres périphériques de type sans-fil comme les périphériques "
+"Bluetooth, GPS et FM sont désactivés par défaut. Si vous voulez utiliser de "
+"tels périphériques, il vous faudra les activer au préalable."
 
 #. type: Title -
-#, fuzzy, no-wrap
-#| msgid "[[!meta title=\"Enable a wireless device\"]]\n"
+#, no-wrap
 msgid "Enable a wireless device\n"
-msgstr "[[!meta title=\"Activer un périphérique sans-fil\"]]\n"
+msgstr "Activer un périphérique sans-fil\n"
 
 #. type: Plain text
 msgid "This technique uses the command line."
-msgstr "Cette méthode utilise les lignes de commande."
+msgstr "Cette méthode utilise la ligne de commande."
 
 #. type: Bullet: '1. '
 msgid ""
@@ -94,7 +82,7 @@ msgid ""
 "               Soft blocked: no\n"
 "               Hard blocked: no\n"
 "       1: hci0: Bluetooth\n"
-"               Soft blocked: no\n"
+"               Soft blocked: yes\n"
 "               Hard blocked: no\n"
 "       2: gps0: GPS\n"
 "               Soft blocked: yes\n"
@@ -104,7 +92,7 @@ msgstr ""
 "               Soft blocked: no\n"
 "               Hard blocked: no\n"
 "       1: hci0: Bluetooth\n"
-"               Soft blocked: no\n"
+"               Soft blocked: yes\n"
 "               Hard blocked: no\n"
 "       2: gps0: GPS\n"
 "               Soft blocked: yes\n"
@@ -157,7 +145,7 @@ msgid ""
 "in the root terminal again:"
 msgstr ""
 "Pour vérifier que le périphérique sans-fil est activé, exécutez la commande "
-"suivante dans un terminal administrateur toujours :"
+"suivante toujours dans un terminal administrateur :"
 
 #. type: Plain text
 #, no-wrap
@@ -168,7 +156,7 @@ msgid ""
 msgstr ""
 "   Le résultat devrait être très proche de celui obtenu à l'étape 2, mais\n"
 "   le périphérique activé à l'étape 3 ne devrait plus être\n"
-"   \"soft blocked\".\n"
+"   \"soft blocked\" (bloqué par logiciel).\n"
 
 #. type: Plain text
 #, no-wrap
@@ -177,7 +165,7 @@ msgid ""
 "               Soft blocked: no\n"
 "               Hard blocked: no\n"
 "       1: hci0: Bluetooth\n"
-"               Soft blocked: no\n"
+"               Soft blocked: yes\n"
 "               Hard blocked: no\n"
 "       2: gps0: GPS\n"
 "               Soft blocked: no\n"
@@ -187,32 +175,63 @@ msgstr ""
 "               Soft blocked: no\n"
 "               Hard blocked: no\n"
 "       1: hci0: Bluetooth\n"
-"               Soft blocked: no\n"
+"               Soft blocked: yes\n"
 "               Hard blocked: no\n"
 "       2: gps0: GPS\n"
 "               Soft blocked: no\n"
 "               Hard blocked: no\n"
 
+#. type: Plain text
+#, no-wrap
+msgid "<!--\n"
+msgstr "<!--\n"
+
 #. type: Title -
 #, no-wrap
 msgid "Enable Bluetooth\n"
-msgstr ""
+msgstr "Activer le Bluetooth\n"
 
 #. type: Plain text
 msgid ""
 "Bluetooth is not enabled by default in Tails because it is insecure when "
 "trying to protect from a local adversary."
 msgstr ""
+"Le Bluetooth n'est pas activé par défaut dans Tails car il n'est pas sûr "
+"pour se protéger d'un adversaire situé près de l'ordinateur."
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "When starting Tails, [[set up an administration password|doc/first_steps/"
-#| "startup_options/administration_password]]."
+msgid ""
+"XXX: one also needs to remove `sudo rm /etc/modprobe.d/no-bluetooth.conf && "
+"sudo udevadm trigger && sudo rfkill unblock bluetooth`."
+msgstr ""
+"XXX: one also needs to remove `sudo rm /etc/modprobe.d/no-bluetooth.conf && "
+"sudo udevadm trigger && sudo rfkill unblock bluetooth`."
+
+#. type: Plain text
 msgid ""
 "To use Bluetooth in Tails nonetheless, you have to [[set up an "
 "administration password at boot time|doc/first_steps/startup_options/"
 "administration_password]] and install the `gnome-bluetooth` package."
 msgstr ""
-"Lors du démarrage de Tails, [[définissez un mot de passe d'administration|"
-"doc/first_steps/startup_options/administration_password]]."
+"Pour utiliser le Bluetooth, vous devez [[définir un mot de passe "
+"d'administration|doc/first_steps/startup_options/administration_password]] "
+"et installer le paquet `gnome-bluetooth`."
+
+#. type: Plain text
+#, no-wrap
+msgid "-->\n"
+msgstr "-->\n"
+
+#~ msgid "<div class=\"bug\">\n"
+#~ msgstr "<div class=\"bug\">\n"
+
+#~ msgid ""
+#~ "<p>BlueTooth is enabled by default but Tails lacks the GNOME utilities\n"
+#~ "to actually use it.</p>\n"
+#~ msgstr ""
+#~ "<p>Le Bluetooth est activé par défaut, mais Tails n'inclut pas les "
+#~ "utilitaires GNOME\n"
+#~ "permettant de l'utiliser.</p>\n"
+
+#~ msgid "</div>\n"
+#~ msgstr "</div>\n"

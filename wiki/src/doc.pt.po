@@ -5,17 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-09 16:04+0100\n"
-"PO-Revision-Date: 2014-07-31 11:42-0300\n"
-"Last-Translator: Tails Developers <amnesia@boum.org>\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-09-29 19:58+0000\n"
+"PO-Revision-Date: 2019-05-14 19:03+0000\n"
+"Last-Translator: drebs <drebs@riseup.net>\n"
 "Language-Team: Portuguese <LL@li.org>\n"
-"Language: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Portugues\n"
-"X-Poedit-Country: BRASIL\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.19.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #. type: Plain text
@@ -24,13 +25,9 @@ msgid "[[!meta title=\"Documentation\"]]\n"
 msgstr "[[!meta title=\"Documentação\"]]\n"
 
 #. type: Plain text
-msgid "This documentation is a work in progress and a collective task."
-msgstr "Esta documentação é um trabalho em progresso e uma tarefa coletiva."
-
-#. type: Plain text
 #, no-wrap
 msgid "<div class=\"tip\">\n"
-msgstr ""
+msgstr "<div class=\"tip\">\n"
 
 #. type: Plain text
 #, no-wrap
@@ -38,11 +35,13 @@ msgid ""
 "<p>If this section doesn't answer your questions, you can also look at our\n"
 "[[FAQ|support/faq]].</p>\n"
 msgstr ""
+"<p>Se esta seção não responde suas perguntas, você pode dar uma olhada no\n"
+"[[FAQ|support/faq]].</p>\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "</div>\n"
-msgstr ""
+msgstr "</div>\n"
 
 #. type: Plain text
 msgid ""
@@ -63,18 +62,85 @@ msgstr "Informações gerais"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/about.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/about.index.pt\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/about.index\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/about.index.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Title #
 #, no-wrap
-msgid "Download and verify"
-msgstr "Baixe e verifique"
+msgid "Download, installation, and upgrade"
+msgstr ""
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Download without installing|install/download]]"
+msgid "[[Downloading without installing|install/download]]"
+msgstr "[[Baixe sem instalar|install/download]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Install from another Tails (for PC)|install/win/clone-overview]]"
+msgid "[[Installing from another Tails (for PC)|install/win/clone-overview]]"
+msgstr ""
+"[[Instale a partir de um outro Tails (para PC)|install/win/clone-overview]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Install from another Tails (for Mac)|install/mac/clone-overview]]"
+msgid "[[Installing from another Tails (for Mac)|install/mac/clone-overview]]"
+msgstr ""
+"[[Instale a partir de um outro Tails (para Mac)|install/mac/clone-overview]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Install from Windows|install/win/usb-overview]]"
+msgid "[[Installing from Windows|install/win/usb-overview]]"
+msgstr "[[Instale a partir de um Windows|install/win/usb-overview]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Install from macOS|install/mac/usb-overview]]"
+msgid "[[Installing from macOS|install/mac/usb-overview]]"
+msgstr "[[Instale a partir de um macOS|install/mac/usb-overview]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Install from Linux (recommended)|install/linux/usb-overview]]"
+msgid "[[Installing from Linux (recommended)|install/linux/usb-overview]]"
+msgstr ""
+"[[Instale a partir de um Linux (recomendado)|install/linux/usb-overview]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid ""
+#| "[[Install from Debian, Ubuntu, or Mint using the command line and GnuPG "
+#| "(experts)|install/expert/usb-overview]]"
+msgid ""
+"[[Installing from Debian, Ubuntu, or Mint using the command line and GnuPG "
+"(experts)|install/expert/usb-overview]]"
+msgstr ""
+"[[Instale a partir de um Debian, Ubuntu ou Mint usando a linha de comando e "
+"GnuPG (avançado)|install/expert/usb-overview]]"
+
+#. type: Bullet: '  - '
+#, fuzzy
+#| msgid "[[Burn a DVD|install/dvd]]"
+msgid "[[Burning a DVD|install/dvd]]"
+msgstr "[[Grave um DVD|install/dvd]]"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/get.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/get.index.pt\" raw=\"yes\"]]\n"
+msgid ""
+"  - [[!traillink Upgrading_a_Tails_USB_stick|upgrade]]\n"
+"    - [[!traillink Repairing_a_Tails_USB_stick_that_fails_to_start_after_an_upgrade|upgrade/repair]]\n"
+"  - Uninstalling Tails or resetting a USB stick using\n"
+"    [[!traillink Linux|reset/linux]],\n"
+"    [[!traillink Windows|reset/windows]], or\n"
+msgstr ""
+
+#. type: Plain text
+#, no-wrap
+msgid "    [[!traillink Mac|reset/mac]]\n"
+msgstr ""
 
 #. type: Title #
 #, no-wrap
@@ -83,8 +149,8 @@ msgstr "Primeiros passos com Tails"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/first_steps.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/first_steps.index.pt\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/first_steps.index\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/first_steps.index.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -93,8 +159,8 @@ msgstr "Conecte à Internet anonimamente"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/anonymous_internet.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/anonymous_internet.index.pt\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/anonymous_internet.index\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/anonymous_internet.index.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -103,8 +169,8 @@ msgstr "Criptografia e privacidade"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/encryption_and_privacy.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/encryption_and_privacy.index.pt\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/encryption_and_privacy.index\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/encryption_and_privacy.index.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -113,8 +179,8 @@ msgstr "Trabalhe com documentos importantes"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/sensitive_documents.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/sensitive_documents.index.pt\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/sensitive_documents.index\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/sensitive_documents.index.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -123,11 +189,92 @@ msgstr "Tópicos avançados"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/advanced_topics.index\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/advanced_topics.index.pt\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/advanced_topics.index\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/advanced_topics.index.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
-#~ msgid "[[Get Tails|download]]"
-#~ msgstr "[[Obtendo o Tails|download]]"
+#~ msgid "Download and install"
+#~ msgstr "Baixe e instale"
+
+#~ msgid "[[Install from Debian, Ubuntu, or Mint|install/debian/usb-overview]]"
+#~ msgstr ""
+#~ "[[Instale a partir de um Debian, Ubuntu ou Mint|install/debian/usb-"
+#~ "overview]]"
+
+#~ msgid ""
+#~ "[[Install from other Linux distributions|install/linux/usb-overview]]"
+#~ msgstr ""
+#~ "[[Instale a partir de outras distribuições de Linux|install/linux/usb-"
+#~ "overview]]"
+
+#~ msgid ""
+#~ "[[Install from macOS by burning a DVD first|install/mac/dvd-overview]]"
+#~ msgstr ""
+#~ "[[Instale a partir de um macOS gravando um DVD primeiro|install/mac/dvd-"
+#~ "overview]]"
+
+#, fuzzy
+#~| msgid "[[Download the ISO image|download#index2h1]]"
+#~ msgid "[[Download and verify using OpenPGP|install/download/openpgp]]"
+#~ msgstr "[[Baixar a imagen ISO|download#index2h1]]"
+
+#~ msgid "This documentation is a work in progress and a collective task."
+#~ msgstr "Esta documentação é um trabalho em progresso e uma tarefa coletiva."
+
+#~ msgid ""
+#~ "  - [[Verify the ISO image|doc/get/verify]]\n"
+#~ "    - [[Using Gnome: Ubuntu, Debian, Tails, etc.|get/"
+#~ "verify_the_iso_image_using_gnome]]\n"
+#~ "    - [[Using Linux with the command line|get/"
+#~ "verify_the_iso_image_using_the_command_line]]\n"
+#~ "    - [[Using other operating systems|get/"
+#~ "verify_the_iso_image_using_other_operating_systems]]\n"
+#~ "    - [[Trusting Tails signing key|get/trusting_tails_signing_key]]\n"
+#~ msgstr ""
+#~ "  - [[Verifique a imagem ISO|doc/get/verify]]\n"
+#~ "    - [[Usando Gnome: Ubuntu, Debian, Tails, etc.|get/"
+#~ "verify_the_iso_image_using_gnome]]\n"
+#~ "    - [[Usando Linux com a linha de comando|get/"
+#~ "verify_the_iso_image_using_the_command_line]]\n"
+#~ "    - [[Usando outros sistemas operacionais|get/"
+#~ "verify_the_iso_image_using_other_operating_systems]]\n"
+#~ "    - [[Confiando na chave de assinatura do Tails|get/"
+#~ "trusting_tails_signing_key]]\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "  - [[Verify the ISO image|doc/get/verify]]\n"
+#~| "    - [[Using Gnome: Ubuntu, Debian, Tails, etc.|get/"
+#~| "verify_the_iso_image_using_gnome]]\n"
+#~| "    - [[Using Linux with the command line|get/"
+#~| "verify_the_iso_image_using_the_command_line]]\n"
+#~| "    - [[Using other operating systems|get/"
+#~| "verify_the_iso_image_using_other_operating_systems]]\n"
+#~| "    - [[Trusting Tails signing key|get/trusting_tails_signing_key]]\n"
+#~| "  - [[Stay tuned|download#stay_tuned]]\n"
+#~ msgid ""
+#~ "  - [[Verify the ISO image|doc/get/verify]]\n"
+#~ "    - [[Using Gnome: Ubuntu, Debian, Tails, etc.|get/"
+#~ "verify_the_iso_image_using_gnome]]\n"
+#~ "    - [[Using Linux with the command line|get/"
+#~ "verify_the_iso_image_using_the_command_line]]\n"
+#~ "    - [[Using other operating systems|get/"
+#~ "verify_the_iso_image_using_other_operating_systems]]\n"
+#~ "    - [[Trusting Tails signing key|get/trusting_tails_signing_key]]\n"
+#~ "  - [[Download and verify using OpenPGP|install/download/openpgp]]\n"
+#~ msgstr ""
+#~ "  - [[Verifique a imagem ISO|doc/get/verify]]\n"
+#~ "    - [[Usando Gnome: Ubuntu, Debian, Tails, etc.|get/"
+#~ "verify_the_iso_image_using_gnome]]\n"
+#~ "    - [[Usando linux com a linha de comando|get/"
+#~ "verify_the_iso_image_using_the_command_line]]\n"
+#~ "    - [[Usando outros sistemas operacionais|get/"
+#~ "verify_the_iso_image_using_other_operating_systems]]\n"
+#~ "    - [[Confiando na chave de assinatura do Tails|get/"
+#~ "trusting_tails_signing_key]]\n"
+#~ "  - [[Fique ligado/a|download#stay_tuned]]\n"
+
+#~ msgid "[[!inline pages=\"doc/get.index\" raw=\"yes\"]]\n"
+#~ msgstr "[[!inline pages=\"doc/get.index.pt\" raw=\"yes\"]]\n"
 
 #~ msgid "[[Encryption & privacy|encryption_and_privacy]]"
 #~ msgstr "[[Criptografia e privacidade|encryption_and_privacy]]"
@@ -170,6 +317,3 @@ msgstr "[[!inline pages=\"doc/advanced_topics.index.pt\" raw=\"yes\"]]\n"
 
 #~ msgid "[[First time user?|download#index1h1]]"
 #~ msgstr "[[Primeira vez com o Tails?|download#index1h1]]"
-
-#~ msgid "[[Download the ISO image|download#index2h1]]"
-#~ msgstr "[[Baixar a imagen ISO|download#index2h1]]"

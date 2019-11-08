@@ -1,38 +1,52 @@
 [[!meta title="Calendar"]]
 
-* 2015-02-23:
-  - All translations and bug fixes targeting Tails 1.3 must be merged
-    into the 'testing' branch.
-  - Tor Browser 4.x, based on Firefox 31.5.0esr is *hopefully* out.
-  - Build and upload Tails 1.3 ISO image and IUKs.
-  - Start testing Tails 1.3 during late CET?
+All times are referenced to Berlin and Paris time.
 
-* 2015-02-24:
-  - Finish testing Tails 1.3 by the afternoon, CET.
-  - Release Tails 1.3 during late CET.
+# 2019Q4
 
-* 2015-03-03: [[Monthly meeting|contribute/meetings]]
+* 2019-10-21: build and upload 4.0
 
-* 2015-03-12: [[Low-hanging fruits session|contribute/low-hanging_fruit_sessions]]
+* 2019-10-22: test and **release 4.0** (Firefox 68.2, major release — intrigeri is the RM; segfault is the TR)
 
-* 2015-04-07: Release 1.3.1 (anonym is the RM)
+* 2019-10-24, 11:00: Summit organization meeting
 
-* 2015-05-19: Release 1.4 (anonym is the RM)
+* 2019-10-24, 14:00: Gitlab team meeting
 
-* 2015-06-30: Release 1.4.1
-  - anonym is the RM until June 10
-  - intrigeri is the RM from June 10 to the release
+* 2019-10-24, 16:00: Fundraising meeting
 
-* 2015-08-11: Release 1.5
-  - intrigeri is the RM until July 20
-  - anonym is the RM from July 20 to the release
+* 2019-11-06, 16:00: [[Foundations Team|contribute/working_together/roles/foundations_team]] meeting
 
-* 2015-09-22: Release 1.5.1 (anonym is the RM)
+* 2019-11-21, 14:00-17:00: Meeting about the long-term maintenance & support plan for our translation platform ([[!tails_ticket 17050]])
 
-* 2015-11-03: Release 1.6 (anonym is the RM)
+* 2019-12-03, 16:00: [[Foundations Team|contribute/working_together/roles/foundations_team]] meeting
 
-* 2015-12-22: Release 1.6.1 (anonym is the RM)
+* 2019-12-03: **Release 4.1** (Firefox 68.3, bugfix release — kibi is the RM)
 
-* 2016-02-02: Release 1.7
+# 2020Q1
 
-* 2016-03-15: Release 1.7.1
+* 2020-01-07: **Release 4.2** (Firefox 68.4)
+
+* 2020-02-11: **Release 4.3** (Firefox 68.5)
+
+* 2020-03-10: **Release 4.4** (Firefox 68.6)
+
+* 2020-03-21: potential emergency release that traditionally follows
+  [pwn2own](https://cansecwest.com/) (March 18-20)
+
+# 2020Q2
+
+* 2020-04-07: **Release 4.5** (Firefox 68.7)
+
+* 2020-05-05: **Release 4.6** (Firefox 68.8)
+
+* 2020-06-02: **Release 4.7** (Firefox 68.9)
+
+* 2020-06-30: **Release 4.8** (Firefox 68.10)
+
+# 2020Q3
+
+* 2020-07-28: **Release 4.9** (Firefox 68.11)
+
+* 2020-08-25: **Release 4.10** (Firefox 68.12)
+
+* 2020-09-22: **Release 4.11** (Firefox 78.3)

@@ -5,16 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-01-25 22:13+0100\n"
-"PO-Revision-Date: 2014-05-10 20:50-0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Tails\n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-07-18 19:06+0000\n"
+"PO-Revision-Date: 2019-08-17 12:07+0000\n"
+"Last-Translator: xin <xin@riseup.net>\n"
+"Language-Team: Tails translators <tails@boum.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.20\n"
 
 #. type: Bullet: '  - '
 msgid "[[!traillink System_requirements|about/requirements]]"
@@ -30,7 +32,7 @@ msgstr "[[!traillink Fonctionnalités_et_logiciels_inclus|about/features]]"
 
 #. type: Bullet: '  - '
 msgid "[[!traillink Why_does_Tails_use_Tor?|about/tor]]"
-msgstr "[[!traillink Pourquoi_Tails_utilise_Tor_?|about/trust]]"
+msgstr "[[!traillink Pourquoi_Tails_utilise_Tor_?|about/tor]]"
 
 #. type: Bullet: '  - '
 msgid ""
@@ -43,15 +45,21 @@ msgid "[[!traillink Trusting_Tails|about/trust]]"
 msgstr "[[!traillink Avoir_confiance_en_Tails|about/trust]]"
 
 #. type: Bullet: '  - '
-msgid "[[!traillink License|about/license]]"
-msgstr "[[!traillink License|about/license]]"
+msgid "[[!traillink License_and_source_code_distribution|about/license]]"
+msgstr "[[!traillink Licence_et_distribution_du_code_source|about/license]]"
 
 #. type: Bullet: '  - '
 msgid ""
 "[[!traillink Acknowledgments_and_similar_projects|about/"
 "acknowledgments_and_similar_projects]]"
 msgstr ""
+"[[!traillink Remerciements_et_projets_similaires|about/"
+"acknowledgments_and_similar_projects]]"
 
 #. type: Bullet: '  - '
 msgid "[[!traillink Finances|about/finances]]"
 msgstr "[[!traillink Finances|about/finances]]"
+
+#. type: Bullet: '  - '
+msgid "[[!traillink OpenPGP_keys|about/openpgp_keys]]"
+msgstr "[[!traillink Clés_OpenPGP|about/openpgp_keys]]"

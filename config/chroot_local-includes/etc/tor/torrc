@@ -15,12 +15,10 @@
 
 ## Default SocksPort
 SocksPort 127.0.0.1:9050 IsolateDestAddr IsolateDestPort
-## SocksPort for the MUA
-SocksPort 127.0.0.1:9061 IsolateDestAddr
 ## SocksPort for Tails-specific applications
 SocksPort 127.0.0.1:9062 IsolateDestAddr IsolateDestPort
 ## SocksPort for the default web browser
-SocksPort 127.0.0.1:9150
+SocksPort 127.0.0.1:9150 IsolateSOCKSAuth KeepAliveIsolateSOCKSAuth
 
 ## Entry policies to allow/deny SOCKS requests based on IP address.
 ## First entry that matches wins. If no SocksPolicy is set, we accept
@@ -55,7 +53,7 @@ SocksPort 127.0.0.1:9150
 
 ## The port on which Tor will listen for local connections from Tor
 ## controller applications, as documented in control-spec.txt.
-ControlPort 9051
+ControlPort 9052
 ControlListenAddress 127.0.0.1
 
 ############### This section is just for location-hidden services ###
@@ -170,3 +168,12 @@ AvoidDiskWrites 1
 ## We don't care if applications do their own DNS lookups since our Tor
 ## enforcement will handle it safely.
 WarnUnsafeSocks 0
+
+## Disable default warnings on StartTLS for email. Let's not train our
+## users to click through security warnings.
+WarnPlaintextPorts 23,109
+
+## Tor 0.3.x logs to syslog by default, which we redirect to the Journal;
+## but we have some code that reads Tor's logs and only supports plaintext
+## log files at the moment, so let's keep logging to a file.
+Log notice file /var/log/tor/log

@@ -1,8 +1,6 @@
 [[!meta title="Python 3"]]
 
-We'll need to migrate our custom programs to Python 3. First of all,
-we need to make sure all the Python 3 libraries we need are in Jessie:
-[[!tails_ticket 5875]], [[!tails_ticket 6175]].
+Now that the missing libraries are in Jessie ([[!tails_ticket 5875]], [[!tails_ticket 6175]]), we need to migrate our custom programs to Python3.
 
 [[!toc levels=2]]
 
@@ -13,43 +11,57 @@ we need to make sure all the Python 3 libraries we need are in Jessie:
 
 Modules not included in standard library follow:
 
-## config/chroot_local-includes/etc/whisperback/config.py
+## ~~config/chroot_local-includes/etc/whisperback/config.py~~
 
-None
+Was migrated to Python3 as part of WhisperBack (see below).
 
-## config/chroot_local-includes/usr/local/bin/lc.py
+## ~~config/chroot_local-includes/usr/local/bin/lc.py~~
 
-None
+Was migrated to Python3 as part of [[https://labs.riseup.net/code/projects/tails/repository/revisions/2b2b6c76d10db733905fad978340150da3c920a4]] ([[!tails_ticket 10088]])
 
-## config/chroot_local-includes/usr/local/bin/shutdown_helper_applet
+## ~~config/chroot_local-includes/usr/local/bin/shutdown_helper_applet~~
+
+We will not use this applet in Tails/Jessie, so there is nothing to do.
 
 - `gtk`: deprecated, replaced by `python3-gi` and `gir1.2-gtk-3.0`
 - `gnomeapplet`: deprecated, replaced by `python3-gi` and `gir1.2-panelapplet-4.0`
 
-## config/chroot_local-includes/usr/local/bin/tails-about
+## ~~config/chroot_local-includes/usr/local/bin/tails-about~~
+
+Was migrated to Python3 in Tails 2.6: [[!tails_ticket 10082]]
 
 - `gtk`: deprecated, replaced by `python3-gi` and `gir1.2-gtk-3.0`
 
-## config/chroot_local-includes/usr/local/sbin/autotest_remote_shell.py
+## ~~config/chroot_local-includes/usr/local/lib/tails-autotest-remote-shell~~
 
-- `serial`: OK, `python3-serial`
+Ported to Python3.
 
-## config/chroot_local-includes/usr/local/sbin/boot-profile
+## ~~config/chroot_local-includes/usr/local/lib/boot-profile~~
 
-- `pyinotify`: OK, `python3-pyinotify`
+Was migrated to Python3 in Tails 2.6: [[!tails_ticket 10083]]
 
-## config/chroot_local-includes/usr/local/sbin/tails-additional-software
+* `pyinotify`: OK, `python3-pyinotify`
 
-- `posix1e`: OK, `python3-pylibacl`
+## ~~config/chroot_local-includes/usr/local/sbin/tails-additional-software~~
 
-# Tails Greeter
+Was migrated to Python3 as part of [[!tails_ticket 15198]] in <https://labs.riseup.net/code/projects/tails/repository/revisions/2abe4abbf69f5c6cde80de6bcc3134734860ca13>: [[!tails_ticket 15067]]
 
-* `pycountry`: OK, `python3-pycountry` (unstable)
-- `icu`: OK, `python3-icu`
+* `posix1e`: OK, `python3-pylibacl`
+
+# ~~Tails Greeter~~
+
+Was migrated to Python3 in Tails 3.0: [[!tails_ticket 5701]]
+
+* `pycountry`: OK, `python3-pycountry`
+* `icu`: OK, `python3-icu`
 
 # Tails Installer
 
-- `configobj`: OK, `python3-configobj` (unstable)
+Should be migrated to Python3: [[!tails_ticket 10085]]
+
+XXX: this list of dependencies is outdated.
+
+- `configobj`: OK, `python3-configobj`
 - `StringIO`: the `StringIO` module is included in the stdlib, and
   available in python3 as `io.StringIO` or `io.BytesIO`
 - `PyQt4`: OK, `python3-pyqt4`
@@ -57,13 +69,6 @@ None
 - `parted`: OK, `python3-parted`
 - `urlparse`: renamed `urllib.urlparse`
 
-# WhisperBack
+# ~~WhisperBack~~
 
-- `GnuPGInterface`: **no python3 version, unmaintained**; replace it
-  with [Isis's fork](https://github.com/isislovecruft/python-gnupg)?
-  (ITP: [[!debbug 754120]])
-- `gtk`: deprecated, replaced by `python3-gi` and `gir1.2-gtk-3.0`
-- `gobject`: deprecated, replaced by `python3-gi`
-- `webkit`: deprecated, replaced by `python3-gi` and `gir1.2-webkit-3.0`
-- `gnutls`: **no python3 version**; seems replaced by <https://gitorious.org/pygnutls> but we might not need it anymore
-- `urlparse`: renamed `urllib.urlparse`
+Ported to Python3.

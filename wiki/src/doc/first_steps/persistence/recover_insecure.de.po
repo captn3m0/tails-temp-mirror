@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-11-29 15:53+0100\n"
+"POT-Creation-Date: 2017-07-31 21:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,8 +23,16 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "<div class=\"caution\">\n"
+msgid ""
+"<!-- Note for translators: The code pointing to this page was removed\n"
+"from Tails in November 2015, so feel free to skip translating this page\n"
+"after some time. -->\n"
 msgstr ""
+
+#. type: Plain text
+#, no-wrap
+msgid "<div class=\"caution\">\n"
+msgstr "<div class=\"caution\">\n"
 
 #. type: Plain text
 #, no-wrap
@@ -45,7 +53,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "</div>\n"
-msgstr ""
+msgstr "</div>\n"
 
 #. type: Plain text
 msgid ""
@@ -56,7 +64,7 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "To recover the data from your persistent volume, follow the instructions to "
-"[[manually copy your persistent data to a new device|copy]]."
+"[[manually copy your persistent data to a new USB stick|copy]]."
 msgstr ""
 
 #. type: Plain text

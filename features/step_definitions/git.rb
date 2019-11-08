@@ -1,22 +1,32 @@
+When /^I clone the Git repository "([\S]+)" in GNOME Terminal$/ do |repo|
+  repo_directory = /[\S]+\/([\S]+)(\.git)?$/.match(repo)[1]
+  assert(!$vm.directory_exist?("/home/#{LIVE_USER}/#{repo_directory}"))
+
+  recovery_proc = Proc.new do
+    $vm.execute("rm -rf /home/#{LIVE_USER}/#{repo_directory}",
+                             :user => LIVE_USER)
+    step 'I kill the process "git"'
+    @screen.type('clear' + Sikuli::Key.ENTER)
+  end
+
+  retry_tor(recovery_proc) do
+    step "I run \"git clone #{repo}\" in GNOME Terminal"
+    m = /^(https?|git):\/\//.match(repo)
+    unless m
+      step 'I verify the SSH fingerprint for the Git repository'
+    end
+    try_for(180, :msg => 'Git process took too long') {
+      !$vm.has_process?('/usr/bin/git')
+    }
+    Dogtail::Application.new('gnome-terminal-server')
+      .child('Terminal', roleName: 'terminal')
+      .text['Unpacking objects: 100%']
+  end
+end
+
 Then /^the Git repository "([\S]+)" has been cloned successfully$/ do |repo|
-  next if @skip_steps_while_restoring_background
-  assert(@vm.directory_exist?("/home/#{$live_user}/#{repo}/.git"))
-  assert(@vm.file_exist?("/home/#{$live_user}/#{repo}/.git/config"))
-  @vm.execute_successfully("cd '/home/#{$live_user}/#{repo}/' && git status", $live_user)
-end
-
-Given /^I have the SSH key pair for a Git repository$/ do
-  next if @skip_steps_while_restoring_background
-  @vm.execute_successfully("install -m 0700 -d '/home/#{$live_user}/.ssh/'", $live_user)
-  assert(!$tails_test_secret_ssh_key.nil? && $tails_test_secret_ssh_key.length > 0)
-  assert(!$tails_test_public_ssh_key.nil? && $tails_test_public_ssh_key.length > 0)
-  @vm.execute_successfully("echo '#{$tails_test_secret_ssh_key}' > '/home/#{$live_user}/.ssh/id_rsa'", $live_user)
-  @vm.execute_successfully("echo '#{$tails_test_public_ssh_key}' > '/home/#{$live_user}/.ssh/id_rsa.pub'", $live_user)
-  @vm.execute_successfully("chmod 0600 '/home/#{$live_user}/.ssh/'id*", $live_user)
-end
-
-Given /^I verify the SSH fingerprint for the Git repository$/ do
-  next if @skip_steps_while_restoring_background
-  @screen.wait("GitSSHFingerprint.png", 60)
-  @screen.type('yes' + Sikuli::Key.ENTER)
+  assert($vm.directory_exist?("/home/#{LIVE_USER}/#{repo}/.git"))
+  assert($vm.file_exist?("/home/#{LIVE_USER}/#{repo}/.git/config"))
+  $vm.execute_successfully("cd '/home/#{LIVE_USER}/#{repo}/' && git status",
+                           :user => LIVE_USER)
 end

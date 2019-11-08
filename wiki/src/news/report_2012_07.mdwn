@@ -1,4 +1,5 @@
-[[!meta date="2012-08-06 14:08:45 +0000"]]
+[[!meta date="Mon, 06 Aug 2012 14:08:45 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!meta title="Report for July 2012"]]
 
 Here is the report of what happened around Tails in July, 2012.
@@ -62,7 +63,7 @@ On-going discussions
 
 Feedback on a proof-of-concept for automated tests: see the
 [announcement](https://mailman.boum.org/pipermail/tails-dev/2012-June/001285.html)
-and the [[todo/automated_builds_and_tests]] page.
+and the [[!tails_ticket 6090 desc="automated builds and tests"]] page.
 
 [Using tlsdate?](https://mailman.boum.org/pipermail/tails-dev/2012-July/001376.html)
 

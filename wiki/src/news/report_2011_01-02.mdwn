@@ -1,4 +1,5 @@
-[[!meta date="2011-03-02 00:46:14 +0100"]]
+[[!meta date="Wed, 02 Mar 2011 00:46:14 +0100"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!meta title="Bimonthly report: January and February 2011"]]
 [[!tag announce]]
 
@@ -129,8 +130,8 @@ volume in mind.
 
 More and more upcoming Tails features (including [[todo/persistence]],
 [[todo/macchanger]], [[todo/bridge support]]) need ways to ask the
-user for input at boot time. We have [[researched various
-ways|todo/boot_menu]] we could implement this.
+user for input at boot time. We have [[!tails_ticket 5528 desc="researched various
+ways"]] we could implement this.
 
 We have researched how we could harden a bit Tails resistance against
 exploitation of security issues in bundled software

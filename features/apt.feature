@@ -1,34 +1,11 @@
 @product
-Feature: Installing packages through APT
+Feature: APT sources are correctly configured
   As a Tails user
-  when I set an administration password in Tails Greeter
-  I should be able to install packages using APT and Synaptic
-  and all Internet traffic should flow only through Tor.
-
-  Background:
-    Given a computer
-    And I capture all network traffic
-    And I start the computer
-    And the computer boots Tails
-    And I enable more Tails Greeter options
-    And I set sudo password "asdf"
-    And I log in to a new session
-    And GNOME has started
-    And Tor is ready
-    And all notifications have disappeared
-    And available upgrades have been checked
-    And I save the state so the background can be restored next scenario
+  I want APT to be configured to use hidden services
 
   Scenario: APT sources are configured correctly
-    Then the only hosts in APT sources are "ftp.us.debian.org,security.debian.org,backports.debian.org,deb.tails.boum.org,deb.torproject.org,mozilla.debian.net"
-
-  Scenario: Install packages using apt-get
-    When I update APT using apt-get
-    Then I should be able to install a package using apt-get
-    And all Internet traffic has only flowed through Tor
-
-  Scenario: Install packages using Synaptic
-    When I start Synaptic
-    And I update APT using Synaptic
-    Then I should be able to install a package using Synaptic
-    And all Internet traffic has only flowed through Tor
+    Given a computer
+    And I start Tails from DVD with network unplugged and genuine APT sources and I login
+    Then the only hosts in APT sources are "vwakviie2ienjx6t.onion,sgvtcaew4bxjd7ln.onion,jenw7xbd6tf7vfhp.onion,sdscoq7snqtznauu.onion"
+    And no proposed-updates APT suite is enabled
+    And no experimental APT suite is enabled for deb.torproject.org

@@ -4,34 +4,38 @@
 #
 # Translators:
 # ilbe123 <a3057016@drdrb.net>, 2014
+# Chris Park <utopinator@gmail.com>, 2016
+# Emma Peel, 2019
+# Bluephoenix Lol <diamondphonix@gmail.com>, 2019
 # Dr.what <javrick6@naver.com>, 2014
 # ryush00 <ryush00@gmail.com>, 2014
-# Sungjin Kang <potopro@gmail.com>, 2014
+# Sangmin Lee <sangminlee7648@gmail.com>, 2016
+# Thomas Sungjin Kang <potopro@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
-"Project-Id-Version: The Tor Project\n"
+"Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 22:08+0100\n"
-"PO-Revision-Date: 2014-12-26 18:40+0000\n"
-"Last-Translator: Sungjin Kang <potopro@gmail.com>\n"
-"Language-Team: Korean (http://www.transifex.com/projects/p/torproject/"
-"language/ko/)\n"
+"POT-Creation-Date: 2019-10-05 16:50+0200\n"
+"PO-Revision-Date: 2019-10-06 02:05+0000\n"
+"Last-Translator: carolyn <carolyn@anhalt.org>\n"
+"Language-Team: Korean (http://www.transifex.com/otf/torproject/language/"
+"ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready-notification.sh:42
+#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready.sh:39
 msgid "Tor is ready"
-msgstr "Tor 준비됨"
+msgstr "Tor가 준비되었습니다."
 
-#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready-notification.sh:43
+#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready.sh:40
 msgid "You can now access the Internet."
-msgstr "인터넷 접속 가능"
+msgstr ""
 
-#: config/chroot_local-includes/etc/whisperback/config.py:64
-#, fuzzy, python-format
+#: config/chroot_local-includes/etc/whisperback/config.py:69
+#, python-format
 msgid ""
 "<h1>Help us fix your bug!</h1>\n"
 "<p>Read <a href=\"%s\">our bug reporting instructions</a>.</p>\n"
@@ -48,339 +52,527 @@ msgid ""
 "confirm that you are using Tails.\n"
 "</p>\n"
 msgstr ""
-"<h1>버그 수정을 도와 주세요!</h1>\n"
-"<p><a href=\"%s\">버그에 대한 보고 치침</a>을 읽어 주세요</p>\n"
-"<p><strong>필요 이상으로 개인 정보를 넣지 마세요!</strong></p>\n"
-"<h2>메일 주소를 저희에게 전해주시는 것에 대해</h2>\n"
-"<p>귀하의 개인정보 일부가 Tails의 개발자에게 드러난다는 걸 신경쓰지 않으신다"
-"면, \n"
-"메일 주소를 제공받아서 버그에 관한 상세한 것을 물어볼 수도 있고,  \n"
-"공개 PGP 키로 미래의 통신처럼 암호화가 가능해집니다.</p>\n"
-"<p>이 답장을 보는 것이 누구든간에, 귀하는 아마 Tails의 이용자일 것입니다. 이"
-"쯤 되면 귀하의 인터넷과 메일 제공 업체가 얼마나 신뢰할 만한지 궁금하지 않으신"
-"가요?</p>\n"
 
-#: config/chroot_local-includes/usr/local/bin/electrum:14
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:8
+#: ../config/chroot_local-includes/usr/share/applications/org.boum.tails.additional-software-config.desktop.in.h:1
+msgid "Additional Software"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:51
+msgid ""
+"You can install additional software automatically from your persistent "
+"storage when starting Tails."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:77
+msgid ""
+"The following software is installed automatically from your persistent "
+"storage when starting Tails."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:135
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:171
+msgid ""
+"To add more, install some software using <a href=\"synaptic.desktop"
+"\">Synaptic Package Manager</a> or <a href=\"org.gnome.Terminal.desktop"
+"\">APT on the command line</a>."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:154
+msgid "_Create persistent storage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/electrum:62
 msgid "Persistence is disabled for Electrum"
 msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/electrum:16
+#: config/chroot_local-includes/usr/local/bin/electrum:64
 msgid ""
 "When you reboot Tails, all of Electrum's data will be lost, including your "
-"Bitcoin wallet. It is strongly recommended to only run Electrum when its "
-"persistence feature is activated."
+"Bitcoin wallet.\n"
+"It is strongly recommended to only run Electrum when its persistence feature "
+"is activated."
 msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/electrum:18
-msgid "Do you want to start Electrum any way?"
+#: config/chroot_local-includes/usr/local/bin/electrum:65
+msgid "Do you want to start Electrum anyway?"
 msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/electrum:20
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:36
+#: config/chroot_local-includes/usr/local/bin/electrum:68
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:41
 msgid "_Launch"
-msgstr "_Launch"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/electrum:21
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:37
+#: config/chroot_local-includes/usr/local/bin/electrum:69
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:42
 msgid "_Exit"
-msgstr "_Exit"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:136
-msgid "OpenPGP encryption applet"
-msgstr "OpenPGP 암호와 애플릿"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:139
-msgid "Exit"
-msgstr "종료"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:141
-msgid "About"
-msgstr "정보"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:192
-msgid "Encrypt Clipboard with _Passphrase"
-msgstr "_Passphrase 에서 클립보드를 암호화"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:195
-msgid "Sign/Encrypt Clipboard with Public _Keys"
-msgstr "Public _Keys 에서 클립보드 서명/암호와"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:200
-msgid "_Decrypt/Verify Clipboard"
-msgstr "_Decrypt/Verify 클립보드"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:204
-msgid "_Manage Keys"
-msgstr "_Manage 키"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:244
-msgid "The clipboard does not contain valid input data."
-msgstr "클립보드에 유효한 입력 데이터가 포함되어 있지 않습니다."
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:295
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:297
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:299
-msgid "Unknown Trust"
-msgstr "신뢰 수준 - 낮음"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:301
-msgid "Marginal Trust"
-msgstr "신뢰 수준 - 보통"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:303
-msgid "Full Trust"
-msgstr "신뢰 수준 - 높음"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:305
-msgid "Ultimate Trust"
-msgstr "신뢰 수준 - 존나 높음"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:358
-msgid "Name"
-msgstr "이름"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:359
-msgid "Key ID"
-msgstr "Key ID"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:360
-msgid "Status"
-msgstr "상태"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:392
-msgid "Fingerprint:"
-msgstr "핑거 프린트:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:395
-msgid "User ID:"
-msgid_plural "User IDs:"
-msgstr[0] "사용자의 ID들을 적으시오:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:425
-msgid "None (Don't sign)"
-msgstr "없음 (서명 안 함)"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:488
-msgid "Select recipients:"
-msgstr "받는 사람 선택:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:496
-msgid "Hide recipients"
-msgstr "받는 사람 숨기기"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:499
-msgid ""
-"Hide the user IDs of all recipients of an encrypted message. Otherwise "
-"anyone that sees the encrypted message can see who the recipients are."
 msgstr ""
-"암호화 된 메시지를 받는 모든 사람의 사용자 ID를 숨깁니다. 그렇지 않으면 암호"
-"화 된 메시지를 도청하는 사람은 받는 사람이 누구인지 볼 수 있습니다."
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:505
-msgid "Sign message as:"
-msgstr "메시지를 다음으로 서명:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:509
-msgid "Choose keys"
-msgstr "키 선택"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:549
-msgid "Do you trust these keys?"
-msgstr "이 키를 신뢰하십니까?"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:552
-msgid "The following selected key is not fully trusted:"
-msgid_plural "The following selected keys are not fully trusted:"
-msgstr[0] "선택된 키들을 충분히 신뢰할 수 없습니다:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:570
-msgid "Do you trust this key enough to use it anyway?"
-msgid_plural "Do you trust these keys enough to use them anyway?"
-msgstr[0] "이 키를 사용할만큼 이 키를 신뢰하십니까?"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:583
-msgid "No keys selected"
-msgstr "키 선택 안 함"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:585
-msgid ""
-"You must select a private key to sign the message, or some public keys to "
-"encrypt the message, or both."
-msgstr "메세지에 서명할 개인 키 또는 공인 암호키를 선택해야 합니다.-둘 다 가능"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:613
-msgid "No keys available"
-msgstr "사용 가능 키 없음"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:615
-msgid ""
-"You need a private key to sign messages or a public key to encrypt messages."
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:32
+msgid "Additional Settings"
 msgstr ""
-"메세지에 서명하키 위한 개인키나, 메세지를 암호화 할 수 있는 공개키가 필요합니"
-"다."
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:743
-msgid "GnuPG error"
-msgstr "GnuPG 오류"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:40
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:367
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:119
+#: config/chroot_local-includes/usr/local/bin/tor-browser:46
+msgid "Cancel"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:764
-msgid "Therefore the operation cannot be performed."
-msgstr "작업을 수행할 수 없습니다."
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:46
+msgid "Add"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:814
-msgid "GnuPG results"
-msgstr "GnuPG 상태"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:54
+msgid "Back"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:820
-msgid "Output of GnuPG:"
-msgstr "GnuPG 출력"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:56
+msgid "_Administration Password"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:845
-msgid "Other messages provided by GnuPG:"
-msgstr "GnuPG의 다른 알림"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:156
+msgid "_MAC Address Spoofing"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/lib/shutdown-helper-applet:39
-msgid "Shutdown Immediately"
-msgstr "강제 종료"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:206
+msgid "_Network Connection"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/lib/shutdown-helper-applet:40
-msgid "Reboot Immediately"
-msgstr "강제 재시동"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:215
+msgid "Direct (default)"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:16
-msgid "not available"
-msgstr "불가능"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:217
+msgid "Bridge & Proxy"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:19
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:219
+msgid "Offline"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:270
+msgid "On (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:272
+msgid "On"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:274
+msgid "Off"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:276
+msgid "Off (default)"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/main_window.py:172
+msgid "Shutdown"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/main_window.py:177
+msgid "_Start Tails"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:92
+#, python-brace-format
+msgid ""
+"live-persist failed with return code {returncode}:\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:125
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:142
+#, python-brace-format
+msgid ""
+"cryptsetup failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:160
+#, python-brace-format
+msgid ""
+"live-persist failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:174
+#, python-brace-format
+msgid ""
+"umount failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:60
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:107
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:425
+msgid "Unlock"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:63
+msgid "Failed to relock persistent storage."
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:79
+msgid "Unlocking…"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:111
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:40
+msgid "Cannot unlock encrypted storage with this passphrase."
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py:135
+msgid "_Language"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py:153
+msgid "_Keyboard Layout"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py:171
+msgid "_Formats"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/keepassxc:15
+#, sh-format
+msgid ""
+"<b><big>Do you want to rename your <i>KeePassXC</i> database?</big></b>\n"
+"\n"
+"You have a <i>KeePassXC</i> database in your <i>Persistent</i> folder:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Renaming it to <i>keepassx.kdbx</i> would allow <i>KeePassXC</i> to open it "
+"automatically in the future."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/keepassxc:23
+msgid "Rename"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/keepassxc:24
+msgid "Keep current name"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/replace-su-with-sudo:21
+msgid "su is disabled. Please use sudo instead."
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:75
+msgid "Lock screen"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:79
+msgid "Suspend"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:83
+msgid "Restart"
+msgstr ""
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:87
+msgid "Power Off"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-about:22
 #: ../config/chroot_local-includes/usr/share/desktop-directories/Tails.directory.in.h:1
 msgid "Tails"
-msgstr "Tails"
-
-#: config/chroot_local-includes/usr/local/bin/tails-about:24
-msgid "The Amnesic Incognito Live System"
-msgstr "Amnesic Incognito Live System"
+msgstr ""
 
 #: config/chroot_local-includes/usr/local/bin/tails-about:25
+#: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:1
+msgid "About Tails"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-about:35
+msgid "The Amnesic Incognito Live System"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-about:36
 #, python-format
 msgid ""
 "Build information:\n"
 "%s"
 msgstr ""
-"생성 정보:\n"
-"%s"
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:27
-#: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:1
-msgid "About Tails"
-msgstr "Tails에 관하여"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:118
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:124
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:128
-msgid "Your additional software"
-msgstr "추가 소프트웨어"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:119
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:129
-msgid ""
-"The upgrade failed. This might be due to a network problem. Please check "
-"your network connection, try to restart Tails, or read the system log to "
-"understand better the problem."
+#: config/chroot_local-includes/usr/local/bin/tails-about:54
+msgid "not available"
 msgstr ""
-"업그레이드에 실패했습니다. 이것은 아마도 네트워크 문제로 인한 것일 겁니다. 네"
-"트워크 설정을 확인 한 후 Tails를 다시 시작하거나 시스템 로그를 참조하십시오."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:125
-msgid "The upgrade was successful."
-msgstr "업그레이드 성공"
+#. Translators: Don't translate {details}, it's a placeholder and will
+#. be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:148
+#, python-brace-format
+msgid ""
+"{details} Please check your list of additional software or read the system "
+"log to understand the problem."
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tails-htp-notify-user:52
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:153
+msgid ""
+"Please check your list of additional software or read the system log to "
+"understand the problem."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:157
+msgid "Show Log"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:157
+msgid "Configure"
+msgstr ""
+
+#. Translators: Don't translate {beginning} or {last}, they are
+#. placeholders and will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:223
+#, python-brace-format
+msgid "{beginning} and {last}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:224
+msgid ", "
+msgstr ""
+
+#. Translators: Don't translate {packages}, it's a placeholder and will
+#. be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:290
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:320
+#, python-brace-format
+msgid "Add {packages} to your additional software?"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:292
+msgid ""
+"To install it automatically from your persistent storage when starting Tails."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
+msgid "Install Every Time"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:295
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:326
+msgid "Install Only Once"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:301
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:331
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:372
+msgid "The configuration of your additional software failed."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:322
+msgid ""
+"To install it automatically when starting Tails, you can create a persistent "
+"storage and activate the <b>Additional Software</b> feature."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:325
+msgid "Create Persistent Storage"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:333
+msgid "Creating your persistent storage failed."
+msgstr ""
+
+#. Translators: Don't translate {packages}, it's a placeholder and
+#. will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:342
+#, python-brace-format
+msgid "You could install {packages} automatically when starting Tails"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:345
+msgid ""
+"To do so, you need to run Tails from a USB stick installed using <i>Tails "
+"Installer</i>."
+msgstr ""
+
+#. Translators: Don't translate {packages}, it's a placeholder and will be
+#. replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:360
+#, python-brace-format
+msgid "Remove {packages} from your additional software?"
+msgstr ""
+
+#. Translators: Don't translate {packages}, it's a placeholder
+#. and will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:364
+#, python-brace-format
+msgid "This will stop installing {packages} automatically."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:154
+msgid "Remove"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:545
+msgid "Installing your additional software from persistent storage..."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:547
+msgid "This can take several minutes."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:560
+msgid "The installation of your additional software failed"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:575
+msgid "Additional software installed successfully"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:595
+msgid "The check for upgrades of your additional software failed"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:597
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:605
+msgid ""
+"Please check your network connection, restart Tails, or read the system log "
+"to understand the problem."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:604
+msgid "The upgrade of your additional software failed"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:37
+msgid "Documentation"
+msgstr ""
+
+#. Translators: Don't translate {package}, it's a placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:94
+#, python-brace-format
+msgid ""
+"Remove {package} from your additional software? This will stop installing "
+"the package automatically."
+msgstr ""
+
+#. Translators: Don't translate {pkg}, it's a placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:105
+#, python-brace-format
+msgid "Failed to remove {pkg}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:122
+msgid "Failed to read additional software configuration"
+msgstr ""
+
+#. Translators: Don't translate {package}, it's a placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:152
+#, python-brace-format
+msgid "Stop installing {package} automatically"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:178
+msgid ""
+"To do so, install some software using <a href=\"synaptic.desktop\">Synaptic "
+"Package Manager</a> or <a href=\"org.gnome.Terminal.desktop\">APT on the "
+"command line</a>."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:187
+msgid ""
+"To do so, unlock your persistent storage when starting Tails and install "
+"some software using <a href=\"synaptic.desktop\">Synaptic Package Manager</"
+"a> or <a href=\"org.gnome.Terminal.desktop\">APT on the command line</a>."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:197
+msgid ""
+"To do so, create a persistent storage and install some software using <a "
+"href=\"synaptic.desktop\">Synaptic Package Manager</a> or <a href=\"org."
+"gnome.Terminal.desktop\">APT on the command line</a>."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:205
+msgid ""
+"To do so, install Tails on a USB stick using <a href=\"tails-installer."
+"desktop\">Tails Installer</a> and create a persistent storage."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:252
+msgid "[package not available]"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:52
 msgid "Synchronizing the system's clock"
-msgstr "시스템 시간 맞추는 중..."
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tails-htp-notify-user:53
+#: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:53
 msgid ""
 "Tor needs an accurate clock to work properly, especially for Hidden "
 "Services. Please wait..."
 msgstr ""
-"Tor에서 적절한 작업을 위해 정확한 시계가 필요하니 잠깐만 기다려 주십시오."
 
-#: config/chroot_local-includes/usr/local/bin/tails-htp-notify-user:87
+#: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:87
 msgid "Failed to synchronize the clock!"
-msgstr "시간 맞추기 실패!"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-restricted-network-detector:38
-msgid "Network connection blocked?"
-msgstr "네트워크 연결이 깨졌나요?"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-restricted-network-detector:40
-msgid ""
-"It looks like you are blocked from the network. This may be related to the "
-"MAC spoofing feature. For more information, see the <a href=\\\"file:///usr/"
-"share/doc/tails/website/doc/first_steps/startup_options/mac_spoofing.en."
-"html#blocked\\\">MAC spoofing documentation</a>."
 msgstr ""
-"네트워크에서 차단 된 것 같습니다. 이것은 MAC 위장에 관계된 경우가 있습니다. "
-"자세한 내용은  <a href=\\\"file:///usr/share/doc/tails/website/doc/"
-"first_steps/startup_options/mac_spoofing.en.html#blocked\\\">MAC 위장 문서</"
-"a>를 참조하십시오."
 
-#: config/chroot_local-includes/usr/local/bin/tails-security-check:151
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:110
+msgid "Lock Screen"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:125
+msgid "Screen Locker"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:131
+msgid "Set up a password to unlock the screen."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:149
+msgid "Password"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:150
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:93
+msgid "Confirm"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-security-check:124
 msgid "This version of Tails has known security issues:"
-msgstr "지금 버전 Tails은 보안에 문제가 있습니다."
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:37
+#: config/chroot_local-includes/usr/local/bin/tails-security-check:135
+msgid "Known security issues"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:52
 #, sh-format
 msgid "Network card ${nic} disabled"
-msgstr "네트워크 카드 ${nic}가 잘못되었습니다"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:38
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:53
 #, sh-format
 msgid ""
 "MAC spoofing failed for network card ${nic_name} (${nic}) so it is "
 "temporarily disabled.\n"
-"You might prefer to restart Tails and disable MAC spoofing. See the <a "
-"href='file:///usr/share/doc/tails/website/doc/first_steps/startup_options/"
-"mac_spoofing.en.html'>documentation</a>."
+"You might prefer to restart Tails and disable MAC spoofing."
 msgstr ""
-"MAC 위장이 네트워크 카드 ${nic_name} (${nic}) 때문에 실패했기 때문에 일시적으"
-"로 비활성화됩니다.\n"
-"Tails를 다시 시작하여 MAC 위장을 비활성화하고 싶을지도 모릅니다. <a "
-"href='file:///usr/share/doc/tails/website/doc/first_steps/startup_options/"
-"mac_spoofing.en.html'>문서</a>를 참조하십시오."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:47
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:62
 msgid "All networking disabled"
-msgstr "모든 네트워크 연결이 불가능함"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:48
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:63
 #, sh-format
 msgid ""
 "MAC spoofing failed for network card ${nic_name} (${nic}). The error "
 "recovery also failed so all networking is disabled.\n"
-"You might prefer to restart Tails and disable MAC spoofing. See the <a "
-"href='file:///usr/share/doc/first_steps/startup_options/mac_spoofing.en."
-"html'>documentation</a>."
+"You might prefer to restart Tails and disable MAC spoofing."
 msgstr ""
-"MAC 위장이 네트워크 카드 ${nic_name} (${nic})로 인해 실패했습니다. 오류 복구 "
-"실패했기 때문에, 모든 네트워크 기능이 해제됩니다.\n"
-"Tails를 다시 시작하여 MAC 스푸핑을 무효화하고 싶을지도 모릅니다. <a "
-"href='file:///usr/share/doc/first_steps/startup_options/mac_spoofing.en."
-"html'>문서</a>를 참조하십시오."
 
-#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:19
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:22
-msgid "error:"
-msgstr "오류:"
-
-#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:20
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:23
-msgid "Error"
-msgstr "오류"
-
-#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:40
+#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:35
 msgid ""
-"<b>Not enough memory available to check for upgrades.</b>\n"
+"\"<b>Not enough memory available to check for upgrades.</b>\n"
 "\n"
 "Make sure this system satisfies the requirements for running Tails.\n"
 "See file:///usr/share/doc/tails/website/doc/about/requirements.en.html\n"
@@ -388,231 +580,507 @@ msgid ""
 "Try to restart Tails to check for upgrades again.\n"
 "\n"
 "Or do a manual upgrade.\n"
-"See https://tails.boum.org/doc/first_steps/upgrade#manual"
+"See https://tails.boum.org/doc/first_steps/upgrade#manual\""
 msgstr ""
-"<b>업그레이드 확인에 충분한 메모리를 사용할 수 없습니다.</b>\n"
-"\n"
-"이 시스템이 Tails의 작동 요구 사항을 충족하는지 확인하십시오.\n"
-"file:///usr/share/doc/tails/website/doc/about/requirements.en.html를 참조하십"
-"시오.\n"
-"\n"
-"Tails를 다시 시작하고 다시 업그레이드를 확인하십시오.\n"
-"\n"
-"또는 수동으로 업그레이드해야합니다.\n"
-"https://tails.boum.org/doc/first_steps/upgrade#manual 을 참조하십시오."
 
-#: config/chroot_local-includes/usr/local/bin/tails-virt-notify-user:53
+#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:72
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:27
+msgid "error:"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:73
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:28
+msgid "Error"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:71
 msgid "Warning: virtual machine detected!"
-msgstr "경고 : 가상 머신을 발견!"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tails-virt-notify-user:55
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:74
+msgid "Warning: non-free virtual machine detected!"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
 msgid ""
 "Both the host operating system and the virtualization software are able to "
-"monitor what you are doing in Tails."
+"monitor what you are doing in Tails. Only free software can be considered "
+"trustworthy, for both the host operating system and the virtualization "
+"software."
 msgstr ""
-"호스트 운영 체제 및 가상화 소프트웨어 모두 Tails에서 실시하고있는 것을 확인"
-"할 수 있습니다."
 
-#: config/chroot_local-includes/usr/local/bin/tails-virt-notify-user:57
-msgid ""
-"<a href='file:///usr/share/doc/tails/website/doc/advanced_topics/"
-"virtualization.en.html'>Learn more...</a>"
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:81
+msgid "Learn more"
 msgstr ""
-"<a href='file:///usr/share/doc/tails/website/doc/advanced_topics/"
-"virtualization.en.html'>정보</a> "
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:18
+#: config/chroot_local-includes/usr/local/bin/tor-browser:43
 msgid "Tor is not ready"
-msgstr "Tor 준비 안 됨"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:19
+#: config/chroot_local-includes/usr/local/bin/tor-browser:44
 msgid "Tor is not ready. Start Tor Browser anyway?"
-msgstr "Tor는 준비 안 됐는데, 그래도 Tor 브라우저를 실행할까요?"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:20
+#: config/chroot_local-includes/usr/local/bin/tor-browser:45
 msgid "Start Tor Browser"
-msgstr "Tor 브라우저 시작"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:21
-msgid "Cancel"
-msgstr "취소"
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js:35
+msgid "Tor Status"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:33
-msgid "Do you really want to launch the Unsafe Browser?"
-msgstr "정말 안전하지 않은 브라우저를 시작 하시겠습니까?"
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js:50
+msgid "Open Onion Circuits"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:35
+#. Translators: Don't translate {volume_label} or {volume_size},
+#. they are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:64
+#, python-brace-format
+msgid "{volume_label} ({volume_size})"
+msgstr ""
+
+#. Translators: Don't translate {partition_name} or {partition_size},
+#. they are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:69
+#, python-brace-format
+msgid "{partition_name} ({partition_size})"
+msgstr ""
+
+#. Translators: Don't translate {volume_size}, it's a placeholder
+#. and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:74
+#, python-brace-format
+msgid "{volume_size} Volume"
+msgstr ""
+
+#. Translators: Don't translate {volume_name}, it's a placeholder and
+#. will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:113
+#, python-brace-format
+msgid "{volume_name} (Read-Only)"
+msgstr ""
+
+#. Translators: Don't translate {partition_name} and {container_path}, they
+#. are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:121
+#, python-brace-format
+msgid "{partition_name} in {container_path}"
+msgstr ""
+
+#. Translators: Don't translate {volume_name} and {path_to_file_container},
+#. they are placeholders and will be replaced. You should only have to translate
+#. this string if it makes sense to reverse the order of the placeholders.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:128
+#, python-brace-format
+msgid "{volume_name} – {path_to_file_container}"
+msgstr ""
+
+#. Translators: Don't translate {partition_name} and {drive_name}, they
+#. are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:134
+#, python-brace-format
+msgid "{partition_name} on {drive_name}"
+msgstr ""
+
+#. Translators: Don't translate {volume_name} and {drive_name},
+#. they are placeholders and will be replaced. You should only have to translate
+#. this string if it makes sense to reverse the order of the placeholders.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:141
+#, python-brace-format
+msgid "{volume_name} – {drive_name}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:228
+msgid "Wrong passphrase or parameters"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:230
+msgid "Error unlocking volume"
+msgstr ""
+
+#. Translators: Don't translate {volume_name} or {error_message},
+#. they are placeholder and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:234
+#, python-brace-format
 msgid ""
-"Network activity within the Unsafe Browser is <b>not anonymous</b>. Only use "
-"the Unsafe Browser if necessary, for example if you have to login or "
+"Couldn't unlock volume {volume_name}:\n"
+"{error_message}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:336
+msgid "One or more applications are keeping the volume busy."
+msgstr ""
+
+#. Translators: Don't translate {volume_name} or {error_message},
+#. they are placeholder and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:342
+#, python-brace-format
+msgid ""
+"Couldn't lock volume {volume_name}:\n"
+"{error_message}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:344
+msgid "Locking the volume failed"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:83
+msgid "No file containers added"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:98
+msgid "No VeraCrypt devices detected"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:40
+#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
+msgid "Unlock VeraCrypt Volumes"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:114
+msgid "Container already added"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:115
+#, python-format
+msgid "The file container %s should already be listed."
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:131
+msgid "Container opened read-only"
+msgstr ""
+
+#. Translators: Don't translate {path}, it's a placeholder  and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:133
+#, python-brace-format
+msgid ""
+"The file container {path} could not be opened with write access. It was "
+"opened read-only instead. You will not be able to modify the content of the "
+"container.\n"
+"{error_message}"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:138
+msgid "Error opening file"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:160
+msgid "Not a VeraCrypt container"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:161
+#, python-format
+msgid "The file %s does not seem to be a VeraCrypt container."
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:163
+msgid "Failed to add container"
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:164
+#, python-format
+msgid ""
+"Could not add file container %s: Timeout while waiting for loop setup.\n"
+"Please try using the <i>Disks</i> application instead."
+msgstr ""
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:209
+msgid "Choose File Container"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:38
+msgid "Do you really want to launch the Unsafe Browser?"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:40
+msgid ""
+"Network activity within the Unsafe Browser is <b>not anonymous</b>.\\nOnly "
+"use the Unsafe Browser if necessary, for example\\nif you have to login or "
 "register to activate your Internet connection."
 msgstr ""
-"안전하지 않은 브라우저에서 네트워크의 활동 상황은 <b>익명이지 않습니다 </b>. "
-"필요한 경우에만 예를 들어, 인터넷 연결을 활성화하기 위해 로그인 또는 등록해야"
-"하는 경우에만 안전하지 않은 브라우저를 사용하십시오."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:47
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:51
 msgid "Starting the Unsafe Browser..."
-msgstr "안전하지 않은 브라우저를 실행 중 ..."
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:48
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:52
 msgid "This may take a while, so please be patient."
-msgstr "잠시 시간이 걸릴 수 있으므로 기다려주세요."
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:53
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:57
 msgid "Shutting down the Unsafe Browser..."
-msgstr "안전하지 않은 브라우저를 종료 중 ..."
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:54
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:58
 msgid ""
 "This may take a while, and you may not restart the Unsafe Browser until it "
 "is properly shut down."
 msgstr ""
-"시간이 좀 걸릴 우려가 있습니다. 적절하게 종료 될 때까지 안전하지 않은 브라우"
-"저를 다시 시작할 수 없습니다."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:66
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:70
 msgid "Failed to restart Tor."
-msgstr "Tor 재시작 실패"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:85
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:84
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:1
 msgid "Unsafe Browser"
-msgstr "안전하지 않은 브라우저"
+msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:93
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:91
 msgid ""
 "Another Unsafe Browser is currently running, or being cleaned up. Please "
 "retry in a while."
 msgstr ""
-"다른 안전하지 않은 웹 브라우저가 실행 중이거나 정리되어 있습니다. 잠시 후 다"
-"시 시도해주세요."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:105
-msgid ""
-"NetworkManager passed us garbage data when trying to deduce the clearnet DNS "
-"server."
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:99
+msgid "Failed to setup chroot."
 msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:115
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:104
+msgid "Failed to configure browser."
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:110
 msgid ""
 "No DNS server was obtained through DHCP or manually configured in "
 "NetworkManager."
 msgstr ""
-"DNS 서버는 DHCP를 통해 검색하거나 NetworkManager에서 수동으로 구성되지 않았습"
-"니다."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:123
-msgid "Failed to setup chroot."
-msgstr "chroot 설치에 실패했습니다."
-
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:129
-#, fuzzy
-msgid "Failed to configure browser."
-msgstr "Tor 재시작 실패"
-
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:134
-#, fuzzy
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:121
 msgid "Failed to run browser."
-msgstr "Tor 재시작 실패"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:31
-msgid "I2P failed to start"
-msgstr "I2P를 시작할 수 없습니다"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:32
-msgid ""
-"Something went wrong when I2P was starting. Check the logs in /var/log/i2p "
-"for more information."
-msgstr "I2P가 시작될때 뭔가 잘못된 것같습니다. 자세한 정보를 보기위해 /var/log/i2p 로그를 확인하세요."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:43
-msgid "I2P's router console is ready"
-msgstr "I2P 라우터 콘솔 준비됨"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:44
-msgid "You can now access I2P's router console on http://127.0.0.1:7657."
-msgstr "http://127.0.0.1:7657의 I2P 라우터 콘솔에 접근했습니다."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:49
-msgid "I2P is not ready"
-msgstr "I2P 준비 안 됨"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:50
-msgid ""
-"Eepsite tunnel not built within six minutes. Check the router console at "
-"http://127.0.0.1:7657/logs or the logs in /var/log/i2p for more information. "
-"Reconnect to the network to try again."
 msgstr ""
-"6분안에 Eepsite 터널이 생성되지 않았습니다. http://127.0.0.1:7657/logs에서 라"
-"우터 콘솔을 확인하거나 /var/log/i2p 로그에서 확인하세요. 네트워크를 재접속해"
-"주세요."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:60
-msgid "I2P is ready"
-msgstr "I2P 준비됨"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:61
-msgid "You can now access services on I2P."
-msgstr "I2P에서 서비스로 접근가능합니다."
 
 #: ../config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in.h:1
 msgid "Report an error"
-msgstr "오류 보고"
+msgstr ""
 
 #: ../config/chroot_local-includes/etc/skel/Desktop/tails-documentation.desktop.in.h:1
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:1
 msgid "Tails documentation"
-msgstr "Tails 문서"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/applications/root-terminal.desktop.in.h:1
+msgid "Root Terminal"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/applications/root-terminal.desktop.in.h:2
+msgid "Opens a terminal as the root user, using gksu to ask for the password"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:2
 msgid "Learn how to use Tails"
-msgstr "Tails 사용법에 대해서"
-
-#: ../config/chroot_local-includes/usr/share/applications/i2p-browser.desktop.in.h:1
-msgid "Anonymous overlay network browser"
-msgstr "익명 오버레이 네트워크 브라우저"
-
-#: ../config/chroot_local-includes/usr/share/applications/i2p-browser.desktop.in.h:2
-msgid "I2P Browser"
-msgstr "I2P 브라우저"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:2
 msgid "Learn more about Tails"
-msgstr "Tails에 대해서 더 알아보기"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-reboot.desktop.in.h:1
-msgid "Reboot"
-msgstr "재시동"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-reboot.desktop.in.h:2
-msgid "Immediately reboot computer"
-msgstr "즉시 컴퓨터를 다시 시작합니다"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-shutdown.desktop.in.h:1
-msgid "Power Off"
-msgstr "끄기"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-shutdown.desktop.in.h:2
-msgid "Immediately shut down computer"
-msgstr "빨리 컴퓨터를 종료합니다"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in.h:1
 msgid "Tor Browser"
-msgstr "Tor 브라우저"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in.h:2
 msgid "Anonymous Web Browser"
-msgstr "익명 웹 브라우저"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:2
 msgid "Browse the World Wide Web without anonymity"
-msgstr "익명없이 월드 와이드 웹 브라우징"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:3
 msgid "Unsafe Web Browser"
-msgstr "웹 브라우저 위험"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:2
+msgid "Mount VeraCrypt encrypted file containers and devices"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/applications/org.boum.tails.additional-software-config.desktop.in.h:2
+msgid ""
+"Configure the additional software installed from your persistent storage "
+"when starting Tails"
+msgstr ""
 
 #: ../config/chroot_local-includes/usr/share/desktop-directories/Tails.directory.in.h:2
 msgid "Tails specific tools"
-msgstr "Tails 전용 도구"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.root-terminal.policy.in.h:1
+msgid "To start a Root Terminal, you need to authenticate."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.additional-software.policy.in.h:1
+msgid "Remove an additional software package"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.additional-software.policy.in.h:2
+msgid ""
+"Authentication is required to remove a package from your additional software "
+"($(command_line))"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:18
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:56
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:669
+msgid "Administration Password"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:34
+msgid ""
+"Set up an administration password if you need to perform administrative "
+"tasks. Otherwise, the administration password is disabled for better "
+"security."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:69
+msgid "Enter an administration password"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:107
+msgid "Confirm your administration password"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:124
+msgid "Disable"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:154
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:673
+msgid "MAC Address Spoofing"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:170
+msgid ""
+"MAC address spoofing hides the serial number of your network interface (Wi-"
+"Fi or wired) to the local network. Spoofing MAC addresses is generally safer "
+"as it helps you hide your geographical location. But it might also create "
+"connectivity problems or look suspicious."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:212
+msgid "Spoof all MAC addresses (default)"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:258
+msgid "Don't spoof MAC addresses"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:311
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:677
+msgid "Network Configuration"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:327
+msgid ""
+"If your Internet connection is censored, filtered, or proxied you can "
+"configure a Tor bridge or a local proxy. To work completely offline, you can "
+"disable all networking."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:367
+msgid "Connect directly to the Tor network (default)"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:413
+msgid "Configure a Tor bridge or local proxy"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:457
+msgid "Disable all networking"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:100
+msgid ""
+"You will configure the Tor bridge and local proxy later on after connecting "
+"to a network."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:152
+msgid "Welcome to Tails!"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:186
+msgid "Language & Region"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:222
+msgid "Default Settings"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:285
+msgid "Encrypted _Persistent Storage"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:382
+msgid "Configure Persistent Storage"
+msgstr ""
+
+#. The label for this placeholder text is not very big, so keep this string short.
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:410
+msgid "Enter your passphrase to unlock the persistent storage"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:456
+msgid "Relock Persistent Storage"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:471
+msgid "Your persistent storage is unlocked. Restart Tails to lock it again."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:509
+msgid "_Additional Settings"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:592
+msgid "Add an additional setting"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:641
+msgid ""
+"The default settings are safe in most situations. To add a custom setting, "
+"press the \"+\" button below."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:61
+msgid "File Containers"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:80
+msgid "_Add"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:86
+msgid "Add a file container"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:103
+msgid "Partitions and Drives"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:121
+msgid ""
+"This application is not affiliated with or endorsed by the VeraCrypt project "
+"or IDRIX."
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:29
+msgid "_Open"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:38
+msgid "Lock this volume"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:52
+msgid "_Unlock"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:61
+msgid "Detach this volume"
+msgstr ""
+
+#: ../config/chroot_local-includes/usr/local/share/mime/packages/unlock-veracrypt-volumes.xml.in.h:1
+msgid "TrueCrypt/VeraCrypt container"
+msgstr ""

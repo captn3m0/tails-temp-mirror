@@ -1,18 +1,22 @@
---- a/etc/apparmor.d/system_tor	2014-09-12 15:44:48.000000000 +0000
-+++ b//etc/apparmor.d/system_tor	2014-09-17 04:41:35.591556000 +0000
-@@ -4,8 +4,12 @@
- profile system_tor {
+--- a/etc/apparmor.d/system_tor	2016-06-01 21:34:23.000000000 +0000
++++ b/etc/apparmor.d/system_tor	2016-06-10 11:09:09.249017739 +0000
+@@ -4,6 +4,18 @@
+ profile system_tor flags=(attach_disconnected) {
    #include <abstractions/tor>
-
-+  owner /etc/tor/torrc w,
-+  owner /etc/tor/torrc.* w,
-+  /lib/live/mount/overlay/etc/tor/* wl,
-+
--  owner /var/lib/tor/** rwk,
--  owner /var/log/tor/* w,
-+  owner /{,lib/live/mount/overlay/}var/lib/tor/** rwk,
-+  owner /{,lib/live/mount/overlay/}var/log/tor/* w,
  
-   /{,var/}run/tor/control w,
-   /{,var/}run/tor/tor.pid w,
++  link /etc/tor/.wh.torrc -> /.wh..wh.aufs,
++  /etc/tor/* w,
++
++  # Workaround Debian bug #862993 otherwise the Tor service cannot
++  # be restarted (e.g. when the Internet connection is turned off and on again)
++  # at least when using bridges as torrc is owned by debian-tor:debian-tor
++  # with permissions 0600 once it's been saved by Tor Launcher.
++  capability dac_read_search,
++
++  # Used by Tor to do clearnet DNS lookups while in bridge mode (#8775).
++  /etc/resolv-over-clearnet.conf r,
++
+   owner /var/lib/tor/** rwk,
+   owner /var/lib/tor/ r,
+   owner /var/log/tor/* w,
 

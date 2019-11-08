@@ -2,7 +2,7 @@
 
 # Introduction
 
-Tor (and I2P) sometimes freaks out if they detect too large clock
+Tor sometimes freaks out if they detect too large clock
 skews. It is therefore important for us to ensure that Tails somehow
 automatically synchronizes the system time at start in a safe manner.
 
@@ -11,7 +11,7 @@ whole bunch of fingerprinting attacks an attacker could mount if it
 could pose as the time server and mess with the user's time. We
 therefore want to be able to *authenticate* the servers that provide
 us with supposedly accurate time information. Home-made research
-[[!tails_todo authenticate_time_servers desc="demonstrated"]] that NTPv4's server
+[[!tails_ticket 6113 desc="demonstrated"]] that NTPv4's server
 authentication features do not fit our usecase yet, so we have to look
 for solutions elsewhere.
 
@@ -24,25 +24,25 @@ using Tor so we can make Tor usable.
 In short this is how time syncing is performed when Tails starts:
 
 0. Start Tor. If Tor is already working, skip to HTP step.
-0. Let Tor fetch a consensus (wait 150 seconds twice, restarting Tor
-   in between).
+0. Let Tor fetch a consensus.
 0. If the time is so badly off that the certificate of the Tor
    authority we picked (or certificates of the bridges we've
    configured in bridge mode) isn't valid, so we set the system time
-   to the valid-after date of the certificate (in bridge mode we get
+   to the `valid-after` date of the certificate (in bridge mode we get
    one certificate per bridge, so we set it to the highest valid-after
    date we see so that all bridges' certificates are valid).
-0. Set the system time to an initial "guess" based on the Tor
-   consensus validity period, no matter if the consensus was verifiable
-   or not.
-0. Restart Tor, which now should be working.
+   Then we restart Tor (since it behaves badly
+   with time jumps during the early bootstrap stages) and wait until it
+   accepts the consensus and finishes the bootstrap.
 0. Run HTP (see below) through Tor to get a more correct system time.
 
 A notification is shown while the whole process is running,
 informing the user that
-Tor may not function properly before it has finished (e.g. hidden
+Tor may not function properly before it has finished (e.g. onion
 services running Tor prior to version 0.2.3.7-alpha requires clients
 to have a time that is no more than 30 minutes incorrect).
+
+The hardware clock is not affected.
 
 # Guessing time based on Tor consensus
 
@@ -55,7 +55,7 @@ file contains such information:
 	valid-until 2010-12-27 19:00:00
 
 A consensus is valid for three hours. If the system time is in the
-[valid-after, valid-after + 2.5 hours] range, `tordate` exits.
+[valid-after, valid-after + 2 hours + 55 minutes] range, `tordate` exits.
 Else, it sets the system time to the middle of the [valid-after,
 fresh-until] range and restarts Tor.
 
@@ -72,11 +72,11 @@ tordate's approach essentially removes the time skew check, which is
 used to prevent replay of consensus data. Let's discuss this class of
 attacks.
 
-First, replaying a consensus older than one week or so results in
+First, replaying a consensus older than four weeks or so results in
 preventing access to the Tor network, and that's all, because onion
 keys will be wrong. An attacker who is in a position to replay a
 consensus to you could anyway do this, unrelated to time, so the issue
-at hand boils down to *replaying a consensus not older than one week
+at hand boils down to *replaying a consensus not older than four weeks
 or so*.
 
 Second, the same type of attacker as above could also try to forge a
@@ -92,18 +92,18 @@ Third, things are different depending on if you're using a bridge or
 not.
 
 If not using a bridge: Tails starts without a cached consensus, so its
-Tor client starts by connecting directly to a directory authority (and
-not to a directory mirror / entry guard), so feeding you an old
+Tor client starts by connecting directly to a fallback directory
+mirror, so feeding you an old
 consensus requires the attacker either to break SSL, or to control the
-directory authority your Tor client connects to. Not good, but
+fallback directory mirror your Tor client connects to. Not good, but
 probably a compromise we can make.
 
-If using a bridge: your bridge can replay an old (one week old max.)
+If using a bridge: your bridge can replay an old (four weeks old max.)
 consensus, which is used until HTP has fixed the time; not good, but
 probably a compromise we can make. If your bridge also can set up a SSL
 MitM attack against the HTP connections (e.g. the attacker also
 controls a SSL CA shipped by Debian), it can trick you into using this
-old consensus for max. one week, which is much worse.
+old consensus for max. four weeks, which is much worse.
 
 # HTP
 
@@ -131,7 +131,7 @@ The repository we copied this script from can be found there:
 
     https://git-tails.immerda.ch/htp
 
-For reasons detailed bellow, this version of htpdate uses curl for all
+For reasons detailed below, this version of htpdate uses curl for all
 of its HTTP operations.
 
 ## Authentication of servers
@@ -156,15 +156,19 @@ into three different pools according to their members' relationship to
 the members in the other pools; any member in a one pool should be
 unlikely to share logs (or other identifying data), or to agree to
 send fake time information, with a member from
-the the other pools. The pools are as follows:
+the other pools. The pools are as follows:
 
-* The "pal" pool are run by groups that are likely to take great care
+* The first pool lists websites run by groups that are likely to take great care
   of their visitors' privacy.
-* The "foe" pool are managed by adversaries of the "pal" pool.
-* The "neutral" pool members have a neutral raltionship to both the
-  "pal" and "foe" pool.
+* The second pool lists websites run by entities which have a neutral relationship
+  to both the members of the other pools.
+* The third pool lists websites run by adversaries of the first pool members.
 
-The pools are listed in [[!tails_gitweb config/chroot_local-includes/etc/default/htpdate]].
+This design does not require that we particularly trust even members
+of the first pool: what we need is to minimize the chance members of
+different pools conspire together against Tails users.
+
+The pools are listed in [[!tails_gitweb config/chroot_local-includes/etc/default/htpdate.pools]].
 
 Basically, Tails `htpdate` pick three random servers (one from each
 pool), and then build the mediate of the three advertised dates.
@@ -190,3 +194,16 @@ efforts and compromise should be made to prevent these?
 
 A Network Manager hook runs the whole thing:
 [[!tails_gitweb config/chroot_local-includes/etc/NetworkManager/dispatcher.d/20-time.sh]].
+
+The `hwclock.sh` initscript is disabled at reboot/shutdown time,
+otherwise it would set the hardware clock to the system time,
+violating (a strict interpretation of) our "don't leave traces on the
+hardware being used" design goal:
+
+* [[!tails_gitweb config/chroot_local-patches/do-not-modify-hardware-clock.diff]]
+* [[!tails_gitweb config/chroot_local-hooks/52-update-rc.d]]
+
+See also:
+
+* [[!tails_gitweb config/chroot_local-hooks/46-configure-htpdate]]
+* [[!tails_gitweb config/chroot_local-includes/lib/systemd/system/htpdate.service]]

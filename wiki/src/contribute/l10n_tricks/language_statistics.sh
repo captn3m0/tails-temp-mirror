@@ -2,41 +2,38 @@
 # -*- mode: sh; sh-basic-offset: 4; indent-tabs-mode: nil; -*-
 # vim: set filetype=sh sw=4 sts=4 expandtab autoindent:
 
-set -eu
+set -e
+set -u
 set -o pipefail
 
-LANGUAGES=${@:-de fr pt}
+LANGUAGES=${@:-de es fa fr it pt}
 
-count_msgids () {
-    cat | grep -E '^msgid\s+' | wc -l
-}
+GIT_TOPLEVEL_DIR=$(git rev-parse --show-toplevel)
 
-count_original_words () {
-    cat | grep ^msgid | sed 's/^msgid "//g;s/"$//g' | wc -w
-}
-
-count_translated_words () {
-    cat | grep ^msgstr | sed 's/^msgstr "//g;s/"$//g' | wc -w
-}
+# Import count_msgids() and count_translated_strings()
+. "${GIT_TOPLEVEL_DIR}/config/chroot_local-includes/usr/local/lib/tails-shell-library/po.sh"
 
 statistics () {
     PO_MESSAGES="$(mktemp -t XXXXXX.$lang.po)"
     msgcat --files-from=$PO_FILES --output=$PO_MESSAGES
     TOTAL=$(msgattrib --no-obsolete $PO_MESSAGES | count_msgids)
-    TOTAL_WC=$(
-        msgattrib --no-obsolete --no-wrap $PO_MESSAGES | count_original_words
-    )
     FUZZY=$(msgattrib --only-fuzzy --no-obsolete $PO_MESSAGES | count_msgids)
-    TRANSLATED=$(
-        msgattrib --translated --no-fuzzy --no-obsolete $PO_MESSAGES \
-            | count_msgids
-    )
-    TRANSLATED_WC=$(
-        msgattrib --translated --no-fuzzy --no-obsolete --no-wrap $PO_MESSAGES \
-	    | count_translated_words
-    )
-    echo "  - $lang: $(($TRANSLATED*100/$TOTAL))% ($TRANSLATED) strings translated, $(($FUZZY*100/$TOTAL))% strings fuzzy, $(($TRANSLATED_WC*100/$TOTAL_WC))% words translated"
+    TRANSLATED=$(cat $PO_MESSAGES | count_translated_strings)
+    echo "  - $lang: $(($TRANSLATED*100/$TOTAL))% ($TRANSLATED) strings translated, $(($FUZZY*100/$TOTAL))% strings fuzzy"
     rm -f $PO_FILES $PO_MESSAGES
+}
+
+intltool_report () {
+    rm -rf tmp/pot
+    "${GIT_TOPLEVEL_DIR}/refresh-translations" --keep-tmp-pot
+    rm -rf po.orig
+    cp -a po po.orig
+    (
+        cd po
+        intltool-update --report
+    )
+    rm -r po
+    mv po.orig po
 }
 
 # sanity checks
@@ -51,9 +48,14 @@ else
     exit 1
 fi
 
+# all program's PO files
+echo "## All programs"
+echo ""
+intltool_report
+
 # all PO files
-echo "All website PO files"
-echo "===================="
+echo ""
+echo "## All the website"
 echo ""
 
 for lang in $LANGUAGES ; do
@@ -65,8 +67,7 @@ done
 
 # core PO files
 echo ""
-echo "[[Core PO files|contribute/l10n_tricks/core_po_files.txt]]"
-echo "=========================================================="
+echo "## [[Core pages of the website|contribute/l10n_tricks/core_po_files.txt]]"
 echo ""
 
 for lang in $LANGUAGES ; do

@@ -1,41 +1,88 @@
 [[!meta title="Test suite installation and setup"]]
 
-Until we have a Puppet module to manage this in automated fashion,
-here's how to setup an environment to run our automated test suite.
+Here's how to set up an environment to run our automated test suite.
+Alternatively, you way want to use the `tails::tester` class from the
+[[!tails_gitweb_repo puppet-tails]] Puppet module.
 
 Once you have a working environment, see [[test/usage]].
 
 [[!toc levels=2]]
 
+Operating system
+================
+
+If you usually run another operating system than Debian Stretch,
+then you need to:
+
+1. Enable nested virtualization on your host system.
+
+   For example, if the host system has an Intel CPU:
+
+         if [ "$(cat /sys/module/kvm_intel/parameters/nested)" != Y ]; then
+            echo "options kvm_intel nested=Y" \
+                 >> /etc/modprobe.d/kvm.conf
+         fi
+
+2. Prepare a Stretch virtual machine.
+
+3. And then, every step below applies to this Stretch virtual machine,
+   instead of to the host system.
+
 Install dependencies
 ====================
 
-The following packages are necessary on Debian Wheezy, with
-wheezy-backports sources added:
+To install the dependencies on our test suite:
 
-    echo 'deb http://ftp.us.debian.org/debian/ testing main contrib non-free' \
-        > /etc/apt/sources.list.d/testing.list && \
-    echo -e "Package: *\nPin: release o=Debian,a=stable\nPin-Priority: 990" \
-        > /etc/apt/preferences.d/Debian_stable && \
-    echo -e "Package: *\nPin: release o=Debian,a=testing\nPin-Priority: 500" \
-        > /etc/apt/preferences.d/Debian_testing && \
-    apt-get update &&
-    apt-get install git i18nspector xvfb virt-viewer libsikuli-script-java \
-        libxslt1-dev tcpdump unclutter radvd x11-apps syslinux \
-        libcap2-bin devscripts libvirt-ruby ruby-rspec gawk ntp ovmf/testing \
-        ruby-json x11vnc xtightvncviewer ffmpeg libavcodec-extra-53 \
-        libvpx1 dnsmasq-base openjdk-7-jre ruby-guestfs && \
-    apt-get -t wheezy-backports install qemu-kvm qemu-system-x86 libvirt0 \
-        libvirt-dev libvirt-bin seabios ruby-rjb ruby-packetfu cucumber && \
-    service libvirtd restart
+1. Enable the `non-free` APT component.
 
-In addition, if `libguestfs` doesn't work by default you probably have
-hit [[!debbug 741203]], which still may affect Wheezy systems but it's
-verified to have been fixed in Debian Jessie. Then you must run (as
-root):
+2. Install the following packages:
 
-    export excludes="--exclude ^openrc"
-    update-guestfs-appliance
+        sudo apt update && \
+        sudo apt install \
+            cucumber \
+            devscripts \
+            dnsmasq-base \
+            gawk \
+            git \
+            i18nspector \
+            libav-tools \
+            libcap2-bin \
+            libsikulixapi-java \
+            libvirt-clients \
+            libvirt-daemon-system \
+            libvirt-dev \
+            libvirt0 \
+            obfs4proxy \
+            openssh-server \
+            ovmf \
+            pry \
+            python-jabberbot \
+            python-potr \
+            qemu-kvm \
+            qemu-system-common \
+            qemu-system-x86 \
+            qemu-utils \
+            redir \
+            ruby-guestfs \
+            ruby-json \
+            ruby-libvirt \
+            ruby-packetfu \
+            ruby-rb-inotify \
+            ruby-rjb \
+            ruby-rspec \
+            ruby-test-unit \
+            seabios \
+            tcpdump \
+            tcplay \
+            tor \
+            unclutter \
+            virt-viewer \
+            x11vnc \
+            tigervnc-viewer \
+            x264 \
+            xvfb \
+            && \
+        sudo service libvirtd restart
 
 Other requirements
 ==================
@@ -45,13 +92,43 @@ Synchronized clock
 
 The system running the test suite needs an accurate clock since we
 sync the clock from the host to the Tails guest after a background
-snapshot restore to appease Tor. This is why we installed ntp above.
+snapshot restore to appease Tor.
+
+You might want to enable `systemd-timesyncd.service` or your favorite
+time synchronization tool for this.
 
 File permissions
 ----------------
 
 The user that runs QEMU (via libvirt) needs read-access at least to
 the content of `features/misc_files/` in the Git checkout.
+
+AppArmor tweaks
+---------------
+
+If you have AppArmor enabled:
+
+* You need to add the `/tmp/TailsToaster/** rwk,` line
+  to `/etc/apparmor.d/libvirt/TEMPLATE.qemu`, in the
+  `profile LIBVIRT_TEMPLATE` section; then delete
+  `/etc/apparmor.d/libvirt/libvirt-*` and retry.
+  If you use a custom `TMPDIR` to run the test suite,
+  replace `/tmp/TailsToaster` with the value of that `$TMPDIR`.
+
+Patched QEMU
+------------
+
+Due to [[!tails_ticket 12142]]
+aka. [[!debbug 851694]], any test scenario that creates a persistent
+volume will fail. To work around this problem, rebuild [[!debpts
+qemu]] locally with the upstream fix applied. For example, the `qemu`
+source package in this APT suite has the fix:
+
+        deb-src http://deb.tails.boum.org/ isotester-stretch main
+
+This problem does not affect host systems that run Debian Buster
+or newer, but those cannot run our test suite at all due to
+[[!tails_ticket 15460]].
 
 Special use cases
 =================
@@ -60,41 +137,9 @@ Access the system under test with VNC
 -------------------------------------
 
 If you're running the test suite in a nested environnement, install
-xtightvncviewer on the bare metal level-0 host. Then you can use vncviewer's
+`tigervnc-viewer` on the bare metal level-0 host. Then you can use vncviewer's
 `-via` option so that it automatically setup a ssh tunnel to your first level
 test suite domain for you and display the Tails VM. E.g.
 where `$DISPLAY` is the display given to you by `run_test_suite` (often 0):
 
     vncviewer -viewonly -via user@level0 localhost:$DISPLAY
-
-Running the test suite as a non-root user
------------------------------------------
-
-<div class="note">
-This section may not be in tested and working shape.
-</div>
-
-This is entirely possible, but there's some additional configuration
-required. Run the following as `root`:
-
-    addgroup tcpdump
-    dpkg-statoverride --update --add root tcpdump 754 /usr/sbin/tcpdump
-    setcap CAP_NET_RAW+eip /usr/sbin/tcpdump
-    adduser $USER tcpdump
-    adduser $USER libvirt
-    adduser $USER libvirt-qemu
-
-It's important to run `setcap` after `dpkg-statoverride` since the
-latter deletes all capabilities. Unfortunately the `setcap` command
-has to be rerun for that reason everytime the `tcpdump` package is
-updated until [[!debbug 662845]] is fixed.
-
-Running these commands will add some interesting capabilities to
-`$USER`, so you may want to do this for a dedicated user separate from
-your normal user. In that case (and if you run the tests as root) the
-`--view` option won't work unless you grant `$USER` access to your
-display via `xhost +SI:localhost:$USER`. Alternatively you can use the
-`--vnc-server-only` option and manually connect to the VNC server with
-your normal user. Just make sure the VNC viewer is in view-only mode
-(e.g. `xtightvncviewer --view-only ...`) in order to not interfere
-with the testing session.

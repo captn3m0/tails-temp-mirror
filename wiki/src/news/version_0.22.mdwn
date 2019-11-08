@@ -1,4 +1,5 @@
-[[!meta date="Wed Dec 11 16:00:00 2013"]]
+[[!meta date="Wed, 11 Dec 2013 16:00:00 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!meta title="Tails 0.22 is out"]]
 [[!tag announce]]
 
@@ -64,7 +65,7 @@ for technical details.
 
 # I want to try it or to upgrade!
 
-Go to the [[download]] page but first, please consider [[testing the
+Go to the [[install]] page but first, please consider [[testing the
 incremental upgrade|news/test_incremental_upgrades]].
 
 As no software is ever perfect, we maintain a list of [[problems

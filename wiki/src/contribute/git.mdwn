@@ -41,6 +41,8 @@ Here are a couple of links to get started with Git:
 General information
 ===================
 
+<a id="immerda"></a>
+
 Git hosting setup at immerda
 ----------------------------
 
@@ -57,23 +59,10 @@ See our [[contribute/merge_policy]].
 Caution!
 --------
 
-If you want to commit patches that may be published later, you might
-want to anonymize them a bit; to do so, run the following commands
-in every of your local clones' directories:
-
-	git config user.name 'Tails developers'
-	git config user.email tails@boum.org
-
-If you intend to prepare Tails releases, you'll also need to make
+If you intend to prepare Tails releases, you'll need to make
 the development team signing key the default one for Git tags:
 
-	git config user.signingkey 1202821CBE2CD9C1
-
-Creating a new repository
--------------------------
-
-1. Create a new repository at immerda.
-2. Create a pull-style mirror at repo.or.cz.
+	git config user.signingkey A490D0F4D311A4153E2BB7CADBB802B258ACD84F
 
 Repositories
 ============
@@ -83,7 +72,7 @@ Repositories
 Main repository
 ---------------
 
-This repository contains the Tails source code and the wiki source.
+This repository contains the Tails source code and the source of the website.
 
 Anyone can check it out like this:
 
@@ -91,22 +80,51 @@ Anyone can check it out like this:
 
 Developers with write access to the repositories should instead:
 
-	git clone 'ssh://boum_org_amnesia@webmasters.boum.org/~/wiki.git'
+	torsocks git clone gitolite@d53ykjpeekuikgoq.onion:tails
+
+And then, in any case, in your new Git clone's directory:
+
+	git submodule update --init
+
+For more information about our usage of Git submodules, see
+[[the dedicated section|git#submodules]].
 
 We have a [web interface](https://git-tails.immerda.ch/tails/)
 available for the main repository.
+
+### Configuration
+
+Developers with write access to the repositories should:
+
+	git config --global url.tails@git.tails.boum.org:.insteadOf \
+	   https://git-tails.immerda.ch/
+
+We also recommend the following setting in your Tails clone since it
+otherwise is too easy to forget pushing updated submodules:
+
+    git config push.recurseSubmodules check
+
+<a id="branches"></a>
 
 ### Branches
 
 Tails development uses several branches modeled a bit like the
 Debian development process. Here they are.
 
+<a id="master_branch"></a>
+
 #### master
 
-The `master` branch is used by the online wiki.
+The `master` branch is mostly used to build the website. It is
+merged into `devel` and `stable` from time to time.
+We merge into `master`:
 
-**FIXME**: document what should go in there, when other branches are
-merged into it, etc.
+- [[Documentation improvements|contribute/how/documentation]] that
+  affect current Tails (e.g. not the next Tails release).
+- Other changes to the website ([[news]], [[security advisories|security/]], layout, and so on).
+- [[Translations|contribute/how/translate#website]] of the website.
+- When [[releasing a new Tails|contribute/release_process/]], the branch
+  the release was built from (`stable` or `testing`).
 
 #### stable
 
@@ -115,11 +133,11 @@ The `stable` branch is intended to contain:
 - the state of the code tagged for the last stable release
 - fixes for security or important bugs.
 
-Its purpose is to prepare minor releases.
+Its purpose is to prepare bugfix releases.
 
 #### testing
 
-The `testing` branch is used to prepare an imminent release: at some
+The `testing` branch is used to prepare an imminent major release: at some
 point of the development process, the `devel` branch code is merged
 into `testing`, frozen, and endures careful testing and bug-fixing
 until this branch is considered good enough to become a stable
@@ -154,68 +172,86 @@ rewritten, e.g. it may be rebased on top of `devel`.
 
 Unless there are good reasons to do otherwise, bugfix branches must be
 forked off the latest stable release tag, while feature branches
-should are forked off the devel branch.
+should be forked off the devel branch.
 
-#### experimental
+If you intend to work on a branch not really meant to be proposed to a
+merge at first, like an experimenting branch that you still want to push
+to share with other developers, you can prefix its name by the keyword
+`wip/`.  It will make it clear to everyone that this branch shouldn't be
+merged before being renamed, and our Jenkins instance will not build nor
+test it, so you won't get notifications for a branch that you know is
+breaking the build and/or the test suite.
 
-Generally, it's `devel` plus a few topic branches merged in.
-These topic branches are not ready enough to be merged into devel, but
-we seriously would like to get them fit for the next stable release,
-so this branch serves to test all these new features and bugfixes by
-building / getting a single image. The history of this branch is
-frequently rewritten and must not be used as the basis of
-any development.
+<a id="promotion-material"></a>
 
-Please note that the `experimental` branch can be broken, have awful
-security problems and so on. No guarantee, blablabla.
+Promotion material
+------------------
 
-<a id="puppet"></a>
-
-Puppet modules
---------------
-
-Those who have SSH access to these repositories must configure their
-SSH client a bit, e.g.:
-
-	Host git.puppet.tails.boum.org
-		HostName d53ykjpeekuikgoq.onion
-		ProxyCommand torsocks monkeysphere ssh-proxycommand %h %p
-
-### tails
-
-This is the main *public* Puppet module to manage Tails infrastructure,
-including classes such as `tails::reprepro` and `tails::whisperback::relay`.
+This repository contains Tails [[promotion
+material|contribute/how/promote/material]].
 
 Anyone can check it out like this:
 
-	git clone git://git.puppet.tails.boum.org/puppet-tails
+	git clone https://git-tails.immerda.ch/promotion-material
 
 Developers with write access to the repositories should instead:
 
-	git clone gitolite@git.puppet.tails.boum.org:puppet-tails
+	torsocks git clone gitolite@d53ykjpeekuikgoq.onion:promotion-material
 
-### Other Puppet modules
+We have a [web interface](https://git-tails.immerda.ch/promotion-material/)
+available for the promotion material repository.
 
-We use and publish a lot of other Puppet modules. See the section
-about our [[other repositories|git#other-repositories]].
+<a id="puppet"></a>
 
-### tails_lizard_manifests
+Puppet code
+-----------
 
-Developers with access to the APT secrets can check it out like this:
+### Puppet manifests
 
-	git clone gitolite@git.puppet.tails.boum.org:puppet-lizard-manifests
+Only Tails
+[[system administrators|contribute/working_together/roles/sysadmins]]
+have access to our Puppet manifests. If you are not a member of that
+team, please skip to the _Puppet modules_ section below.
 
-### tails_secrets_apt
+1. Configure your SSH client:
 
-Developers with access to the APT secrets can check it out like this:
+        Host git.puppet.tails.boum.org
+		    HostName d53ykjpeekuikgoq.onion
+		    ProxyCommand torsocks monkeysphere ssh-proxycommand %h %p
 
-	git clone gitolite@git.puppet.tails.boum.org:puppet-tails_secrets_apt
+2. Clone our private Puppet manifests repository:
 
-### tails_secrets_whisperback
+        git clone gitolite@git.puppet.tails.boum.org:puppet-lizard-manifests && \
+        git submodule update --init
 
-Developers with access to the WhisperBack secrets can check it out like this:
+All the Puppet modules we use are tracked as Git submodules in
+this repository.
 
-	git clone gitolite@git.puppet.tails.boum.org:puppet-tails_secrets_whisperback
+<a id="puppet-modules"></a>
+
+### Puppet modules
+
+We use and publish a lot of other Puppet modules. Each of them is
+stored in a Git repository called `puppet-$module`. For example,
+`puppet-tails` is the main public Puppet module we use to manage Tails
+infrastructure, including classes such as `tails::reprepro` and
+`tails::whisperback::relay`.
+
+If you are on the Tails system administration team, use the
+authoritative repositories for these modules at
+`git.puppet.tails.boum.org`:
+
+ - They are referenced as Git submodules in our private Puppet
+   manifests repository so you should have a local clone of
+   them already.
+ - Anything you push to these repositories (except `tails_secrets_*`)
+   is automatically synchronized to public mirrors at
+   <https://git-tails.immerda.ch/>.
+ - Do not push to the public mirrors: your changes would be
+   overwritten by the next automatic synchronization.
+
+Otherwise, you can list, browse and fork these repositories using
+their [[public mirrors|git#other-repositories]].
 
 <a id="other-repositories"></a>
 
@@ -232,3 +268,112 @@ Unauthenticated access is of the form:
 Developers with write access to the repositories should instead:
 
 	git clone tails@git.tails.boum.org:$REPOSITORY
+
+<a id="submodules"></a>
+
+Submodules
+==========
+
+We use Git submodules to track external repositories from the main
+Tails source tree.
+
+The main practical consequence thereof so far, for most Tails
+contributors, is that one should generally run the following command
+after checking out a branch:
+
+	git submodule update --init
+
+For more information, see:
+
+* the [chapter about
+  submodules](https://git-scm.herokuapp.com/book/en/v2/Git-Tools-Submodules)
+  in the *Pro Git* book;
+* the [`git-submodule(1)`](http://manpages.debian.org/git-submodule)
+  man page.
+
+<a id="creating-a-new-repository"></a>
+
+Creating a new repository
+=========================
+
+In the vast majority of cases, your new repository will be hosted
+at <https://git-tails.immerda.ch/>. Here is how to get it created.
+
+1. Send your OpenPGP public key, pasted in the body of an email, to
+   the [[Tails system administrators|about/contact#tails-sysadmins]].
+   State that you want to establish a communication channel in order
+   to eventually get a Git repository created. Do not _attach_ your
+   public key, this would not work due to bugs in the mailing list
+   software we use.
+2. Wait for the Tails system administrators to confirm they have
+   received your OpenPGP public key and imported it into the keyring
+   of their mailing list.
+3. Send your Git repository request in an OpenPGP-signed email to the
+   [[Tails system administrators|about/contact#tails-sysadmins]];
+   include the following information:
+   - the name you want to publicly use in our Git repository hosting
+     system (only lower-case ASCII chars and digits);
+   - the preferred name of the repository you want to create
+      (only lower-case ASCII chars and digits);
+   - your SSH RSA public key;
+   - whether the repository shall be publicly available or not;
+   - who else needs read access to the repository, plus their SSH RSA
+     public key;
+   - who else needs write access to the repository, plus their SSH RSA
+     public key.
+
+Once your repository has been created, clone it:
+
+* If you want to encrypt the content of your new Git repository with
+  OpenPGP, go through some arcane
+  [[initialization ritual|contribute/git#initialize-git-remote-gcrypt]]
+  to reach wisdom, bliss and enlightenment.
+* Otherwise (lucky you!), see:
+  - [[addresses for Git clone and web access|contribute/git#other-repositories]]
+  - [[immerda's documentation|contribute/git#immerda]].
+
+<a id="initialize-git-remote-gcrypt"></a>
+
+Initializing a git-remote-gcrypt repository
+===========================================
+
+Clone the new, empty repository in a way that tells Git it's going to
+be encrypted:
+
+	git clone gcrypt::tails@git-tails.immerda.ch:$REPOSITORY
+
+Change directory into the newly cloned repository:
+
+	cd $REPOSITORY
+
+Decide whether you want to hide to the immerda administrators which
+OpenPGP keys this repository will be encrypted for (note that this has
+severe usability drawbacks). Skip to the next step if you really want
+that. Otherwise:
+
+	git config gcrypt.publish-participants true
+
+Tell Git which OpenPGP keys the repository will be encrypted for:
+
+	git config gcrypt.participants "LIST OF OPENPGP FINGERPRINTS"
+
+Write some setup instructions for your team-mates, e.g. copy and
+paste the `git config` command(s) you have just run:
+
+	editor README
+
+Add these setup instructions to the repository and commit:
+
+	git add README && git commit -m 'Add setup documentation.'
+
+Push:
+
+	git push -u origin master
+
+Troubleshooting
+===============
+
+First, check with your team-mates: in some cases they can help you
+troubleshoot your problem, and confirm whether the problem is on your
+side or on the server side. If that is not enough, get in touch with
+the [[Tails system administrators|about/contact#tails-sysadmins]].

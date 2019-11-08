@@ -1,5 +1,6 @@
 [[!meta title="Help Tails: Mac and PC UEFI hardware needed"]]
-[[!meta date="Sat Oct 12 09:00:00 2013"]]
+[[!meta date="Sat, 12 Oct 2013 09:00:00 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!tag announce]]
 
 For the moment, Tails has very limited support for Mac.
@@ -19,7 +20,7 @@ If you can afford it, please consider donating known-working hardware
 of the kind described below.
 
 Alternatively, you may want to consider [[donating through
-Bitcoin|contribute/how/donate]] and dropping us an email to earmark
+Bitcoin|donate]] and dropping us an email to earmark
 your donation for hardware purchase.
 
 Else, there are [[many other ways|contribute]] you can contribute to

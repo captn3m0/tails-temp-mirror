@@ -13,25 +13,38 @@ require 'etc'
 
 class VMStorage
 
-  @@virt = nil
-
   def initialize(virt, xml_path)
-    @@virt ||= virt
+    @virt = virt
     @xml_path = xml_path
     pool_xml = REXML::Document.new(File.read("#{@xml_path}/storage_pool.xml"))
     pool_name = pool_xml.elements['pool/name'].text
+    @pool_path = "#{$config["TMPDIR"]}/#{pool_name}"
     begin
-      @pool = @@virt.lookup_storage_pool_by_name(pool_name)
+      @pool = @virt.lookup_storage_pool_by_name(pool_name)
     rescue Libvirt::RetrieveError
-      # There's no pool with that name, so we don't have to clear it
-    else
-      VMStorage.clear_storage_pool(@pool)
+      @pool = nil
     end
-    @pool_path = "#{$tmp_dir}/#{pool_name}"
-    pool_xml.elements['pool/target/path'].text = @pool_path
-    @pool = @@virt.define_storage_pool_xml(pool_xml.to_s)
-    @pool.build
-    @pool.create
+    if @pool and (not(KEEP_SNAPSHOTS) or
+                  (KEEP_SNAPSHOTS and not(Dir.exists?(@pool_path))))
+      VMStorage.clear_storage_pool(@pool)
+      @pool = nil
+    end
+    unless @pool
+      pool_xml.elements['pool/target/path'].text = @pool_path
+      @pool = @virt.define_storage_pool_xml(pool_xml.to_s)
+      if not(Dir.exists?(@pool_path))
+        # We'd like to use @pool.build, which will just create the
+        # @pool_path directory, but it does so with root:root as owner
+        # (at least with libvirt 1.2.21-2). libvirt itself can handle
+        # that situation, but guestfs (at least with <=
+        # 1:1.28.12-1+b3) cannot when invoked by a non-root user,
+        # which we want to support.
+        FileUtils.mkdir(@pool_path)
+        FileUtils.chown(nil, 'libvirt-qemu', @pool_path)
+        FileUtils.chmod("ug+wrx", @pool_path)
+      end
+    end
+    @pool.create unless @pool.active?
     @pool.refresh
   end
 
@@ -66,10 +79,27 @@ class VMStorage
     VMStorage.clear_storage_pool_volumes(@pool)
   end
 
+  def list_volumes
+    @pool.list_volumes
+  end
+
+  def delete_volume(name)
+    @pool.lookup_volume_by_name(name).delete
+  end
+
   def create_new_disk(name, options = {})
     options[:size] ||= 2
     options[:unit] ||= "GiB"
     options[:type] ||= "qcow2"
+    # Require 'slightly' more space to be available to give a bit more leeway
+    # with rounding, temp file creation, etc.
+    reserved = 500
+    needed = convert_to_MiB(options[:size].to_i, options[:unit])
+    avail = convert_to_MiB(get_free_space('host', @pool_path), "KiB")
+    assert(avail - reserved >= needed,
+           "Error creating disk \"#{name}\" in \"#{@pool_path}\". " \
+           "Need #{needed} MiB but only #{avail} MiB is available of " \
+           "which #{reserved} MiB is reserved for other temporary files.")
     begin
       old_vol = @pool.lookup_volume_by_name(name)
     rescue Libvirt::RetrieveError
@@ -118,13 +148,7 @@ class VMStorage
   end
 
   def disk_mklabel(name, parttype)
-    disk = {
-      :path => disk_path(name),
-      :opts => {
-        :format => disk_format(name)
-      }
-    }
-    guestfs_disk_helper(disk) do |g, disk_handle|
+    guestfs_disk_helper(name) do |g, disk_handle|
       g.part_init(disk_handle, parttype)
     end
   end
@@ -132,14 +156,22 @@ class VMStorage
   def disk_mkpartfs(name, parttype, fstype, opts = {})
     opts[:label] ||= nil
     opts[:luks_password] ||= nil
-    disk = {
-      :path => disk_path(name),
-      :opts => {
-        :format => disk_format(name)
-      }
-    }
-    guestfs_disk_helper(disk) do |g, disk_handle|
-      g.part_disk(disk_handle, parttype)
+    opts[:size] ||= nil
+    opts[:unit] ||= nil
+    guestfs_disk_helper(name) do |g, disk_handle|
+      if ! opts[:size].nil? and ! opts[:unit].nil?
+        g.part_init(disk_handle, parttype)
+        size_in_bytes = convert_to_bytes(opts[:size].to_f, opts[:unit])
+        sector_size = g.blockdev_getss(disk_handle)
+        size_in_sectors = (size_in_bytes / sector_size).floor
+        # leave some room for the partition table
+        offset_in_sectors = (convert_to_bytes(4, 'MiB') / sector_size).floor
+        g.part_add(disk_handle, 'primary',
+                   offset_in_sectors,
+                   offset_in_sectors + size_in_sectors - 1)
+      else
+        g.part_disk(disk_handle, parttype)
+      end
       g.part_set_name(disk_handle, 1, opts[:label]) if opts[:label]
       primary_partition = g.list_partitions()[0]
       if opts[:luks_password]
@@ -156,13 +188,7 @@ class VMStorage
   end
 
   def disk_mkswap(name, parttype)
-    disk = {
-      :path => disk_path(name),
-      :opts => {
-        :format => disk_format(name)
-      }
-    }
-    guestfs_disk_helper(disk) do |g, disk_handle|
+    guestfs_disk_helper(name) do |g, disk_handle|
       g.part_disk(disk_handle, parttype)
       primary_partition = g.list_partitions()[0]
       g.mkswap(primary_partition)
@@ -172,10 +198,21 @@ class VMStorage
   def guestfs_disk_helper(*disks)
     assert(block_given?)
     g = Guestfs::Guestfs.new()
-    g.set_trace(1) if $debug
+    g.set_trace(1)
+    message_callback = Proc.new do |event, _, message, _|
+      debug_log("libguestfs: #{Guestfs.event_to_string(event)}: #{message}")
+    end
+    g.set_event_callback(message_callback,
+                         Guestfs::EVENT_TRACE)
     g.set_autosync(1)
     disks.each do |disk|
-      g.add_drive_opts(disk[:path], disk[:opts])
+      if disk.class == String
+        g.add_drive_opts(disk_path(disk), format: disk_format(disk))
+      elsif disk.class == Hash
+        g.add_drive_opts(disk[:path], disk[:opts])
+      else
+        raise "cannot handle type '#{disk.class}'"
+      end
     end
     g.launch()
     yield(g, *g.list_devices())

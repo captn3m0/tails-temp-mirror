@@ -1,3 +1,7 @@
+[[!meta title="August 2014 online meeting"]]
+
+[[!toc levels=2]]
+
 [[!tails_ticket 6972 desc="Create a 'Sponsors' page"]]
 ======================================================
 
@@ -68,7 +72,7 @@ Press enquiries
 =======================================================================================================================
 
   - Three people (sajolida, jvoisin, and intrigeri) were convinced by anonym's
-    [comment #2](https://labs.riseup.net/code/issues/7380#note-2) and agreed
+    [[!tails_ticket 7380#note-2 desc="comment 2"]] and agreed
     with rejecting.
   - Furthermore as anonym said, we might not want to change how Tails behaves
     when opting-out of MAC spoofing, so it would turn the MAC option into a

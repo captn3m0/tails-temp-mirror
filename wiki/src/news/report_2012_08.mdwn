@@ -1,4 +1,5 @@
-[[!meta date="Thu Sep 6 21:00:16 2012 +0000"]]
+[[!meta date="Thu, 06 Sep 2012 21:00:16 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!meta title="Tails report for August, 2012"]]
 
 Here is the report of the many things that happened around Tails in
@@ -139,7 +140,7 @@ privacy, control, centralization and censorship. If you want to
 contact us and hope to get a response, please use the proper
 communication channels:
 
- * the ones for [[public discussions|contribute/talk]],
+ * the ones for [[public discussions|about/contact#tails-dev]],
  * the ones for [[private contacts|support/talk]].
 
 We have received 40 reports sent using WhisperBack. Our receiving relay

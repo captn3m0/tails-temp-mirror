@@ -5,16 +5,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-07-25 00:54+0300\n"
-"PO-Revision-Date: 2014-04-26 12:23+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Tails\n"
+"POT-Creation-Date: 2017-02-09 18:52+0100\n"
+"PO-Revision-Date: 2018-06-10 16:29+0200\n"
+"Last-Translator: \n"
+"Language-Team: Tails translators <tails@boum.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #. type: Plain text
 #, no-wrap
@@ -29,20 +29,17 @@ msgstr "[[!toc levels=3]]\n"
 #. type: Plain text
 #, no-wrap
 msgid ""
-"[[!inline pages=\"security/* and !security/audits and !security/audits.* and !security/audits/* and currentlang()\"\n"
-"actions=no archive=yes feedonly=yes show=10]]\n"
-msgstr ""
-"[[!inline pages=\"security/* and !security/audits and !security/audits.* and !security/audits/* and currentlang()\"\n"
-"actions=no archive=yes feedonly=yes show=10]]\n"
+"[[!inline pages=\"page(security/*) and !security/audits and !security/audits.* and !security/audits/* and currentlang()\"\n"
+"actions=no archive=yes feedonly=yes show=10 sort=\"-meta(date) age -path\"]]\n"
+msgstr "<!-- Disabled on purpose on translated version of this page. -->\n"
 
 #. type: Plain text
 msgid ""
 "Since Tails is based on Debian, it takes advantage of all the work done by "
 "the Debian security team. As quoted from <http://security.debian.org/>:"
 msgstr ""
-"> Vu que Tails est basé sur Debian, Tails profite ainsi de tout le travail "
-"effectué par l'équipe sécurité de Debian. Citation tirée de <http://security."
-"debian.org/>:"
+"Étant basé sur Debian, Tails profite ainsi de tout le travail effectué par "
+"l'équipe sécurité de Debian. Tel qu'écrit sur <http://security.debian.org/> :"
 
 #. type: Plain text
 #, no-wrap
@@ -82,17 +79,17 @@ msgid "Current holes"
 msgstr "Problèmes actuels"
 
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid ""
-#| "[[!inline pages=\"security/* and tagged(security/probable) and currentlang()\"\n"
-#| "actions=no archive=yes feeds=no show=0]]\n"
+#, no-wrap
 msgid ""
-"[[!inline pages=\"security/* and ! tagged(security/probable)\n"
-"and ! tagged(security/fixed) and currentlang() and created_after(security/Numerous_security_holes_in_1.0.1)\"\n"
-"actions=no archive=yes feeds=no show=0]]\n"
+"[[!inline pages=\"page(security/*) and ! tagged(security/probable)\n"
+"and !security/audits and !security/audits.* and !security/audits/*\n"
+"and ! tagged(security/fixed) and currentlang() and created_after(security/Numerous_security_holes_in_1.2)\"\n"
+"actions=no archive=yes feeds=no show=0 sort=\"-meta(date) age -path\"]]\n"
 msgstr ""
-"[[!inline pages=\"security* and tagged(security/probable) and currentlang()\"\n"
-"actions=no archive=yes feeds=no show=0]]\n"
+"[[!inline pages=\"page(security/*) and ! tagged(security/probable)\n"
+"and !security/audits and !security/audits.* and !security/audits/*\n"
+"and ! tagged(security/fixed) and currentlang() and created_after(security/Numerous_security_holes_in_1.2)\"\n"
+"actions=no archive=yes feeds=no show=0 sort=\"-meta(date) age -path\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -112,11 +109,11 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid ""
-"[[!inline pages=\"security/* and tagged(security/probable) and currentlang()\"\n"
-"actions=no archive=yes feeds=no show=0]]\n"
+"[[!inline pages=\"page(security/*) and tagged(security/probable) and currentlang()\"\n"
+"actions=no archive=yes feeds=no show=0 sort=\"-meta(date) age -path\"]]\n"
 msgstr ""
-"[[!inline pages=\"security* and tagged(security/probable) and currentlang()\"\n"
-"actions=no archive=yes feeds=no show=0]]\n"
+"[[!inline pages=\"page(security/*) and tagged(security/probable) and currentlang()\"\n"
+"actions=no archive=yes feeds=no show=0 sort=\"-meta(date) age -path\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -127,7 +124,7 @@ msgstr "Problèmes corrigés"
 #, no-wrap
 msgid ""
 "**WARNING**: some of these holes may only be fixed in [[Git|contribute/git]].\n"
-"Please carefully read the \"Affected versions\" sections bellow.\n"
+"Please carefully read the \"Affected versions\" sections below.\n"
 msgstr ""
 "**ATTENTION** : certains de ces problèmes sont peut-être corrigés uniquement\n"
 "dans le dépôt [[Git|contribute/git]].\n"
@@ -136,11 +133,11 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid ""
-"[[!inline pages=\"security/* and tagged(security/fixed) and currentlang()\"\n"
-"actions=no archive=yes feeds=no show=0]]\n"
+"[[!inline pages=\"page(security/*) and tagged(security/fixed) and (currentlang() or security/Numerous_security_holes_in_*)\"\n"
+"actions=no archive=yes feeds=no show=0 sort=\"-meta(date) age -path\"]]\n"
 msgstr ""
-"[[!inline pages=\"security* and tagged(security/fixed) and currentlang()\"\n"
-"actions=no archive=yes feeds=no show=0]]\n"
+"[[!inline pages=\"page(security/*) and tagged(security/fixed) and (currentlang() or security/Numerous_security_holes_in_*)\"\n"
+"actions=no archive=yes feeds=no show=0 sort=\"-meta(date) age -path\"]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -153,10 +150,3 @@ msgid ""
 msgstr ""
 "Les audits de Tails dont nous avons connaissance sont listés dans [[security/"
 "audits]]."
-
-#~ msgid ""
-#~ "[[!inline pages=\"security/* and tagged(security/current) and currentlang()\"\n"
-#~ "actions=no archive=yes feeds=no show=0]]\n"
-#~ msgstr ""
-#~ "[[!inline pages=\"security* and tagged(security/current) and currentlang()\"\n"
-#~ "actions=no archive=yes feeds=no show=0]]\n"

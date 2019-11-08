@@ -6,6 +6,11 @@ error ()
 	exit 1
 }
 
+warning ()
+{
+	echo "warning: ${@}" >&2
+}
+
 # import Cmdline_old()
 . /lib/live/boot/9990-cmdline-old \
 	|| error 'Could not source /lib/live/boot/9990-cmdline-old'
@@ -64,39 +69,64 @@ Options affecting the 'activate' action:
 "
 }
 
-warning ()
-{
-	echo "warning: ${@}" >&2
+escape() {
+	printf "%s\n" "${2}" | sed --regexp-extended "s/[${1}]/\\\&/g"
 }
 
-dbus_udisks_get_attribute ()
-{
-	local dev="${1}"
-	local attribute="${2}"
-	local re='^[[:space:]]*variant[[:space:]]\+string[[:space:]]\+"\(.*\)"$'
-	dbus-send --system --print-reply --dest=org.freedesktop.UDisks \
-		/org/freedesktop/UDisks/devices/$(basename ${dev}) \
-		org.freedesktop.DBus.Properties.Get \
-		string:org.freedesktop.UDisks.Device \
-		string:"${attribute}" 2>/dev/null | \
-		grep -e "${re}" | sed "s|${re}|\1|"
+escape_dots() {
+	escape . "${@}"
 }
 
-# We override the following two functions from live-helpers since old
-# blkid (i.e. util-linux and libblkid1) doesn't support GPT. We use dbus
-# instead (which should be available in user-space).
-get_gpt_name ()
+add_persistence_preset()
 {
-	local dev="${1}"
-	dbus_udisks_get_attribute ${dev} partition-label
+	local PRESET="${1}"
+	local PRESET_SOURCE="${2}"
+	local CONFIG="${3}"
+	if [ "${PERSISTENCE_READONLY}" = true ]
+	then
+		warning "We are trying to add a persistence preset while" \
+		        "persistence is in read-only mode"
+	else
+		echo "${PRESET}	source=${PRESET_SOURCE}" \
+		    >> "${CONFIG}" || error "Failed to make ${PRESET}: $?"
+		warning "Successfully made ${PRESET} persistent"
+	fi
 }
 
-is_gpt_device ()
+remove_persistence_preset()
 {
-	local dev="${1}"
-	[ "$(dbus_udisks_get_attribute ${dev} partition-scheme)" = "gpt" ]
+	local PRESET="${1}"
+	local CONFIG="${2}"
+	# The intent here is to simply remove the line starting with
+	# $PRESET, but since it is a path, and sed uses / as delimiter
+	# for patterns we can use together with d, we have to escape /
+	# (and . as usual).
+	sed -i "/^$(escape './' "${PRESET}")\s/d" "${CONFIG}"
 }
 
+is_preset_enabled() {
+	local PRESET="${1}"
+	local PRESET_SOURCE="${2}"
+	local CONFIG="${3}"
+	grep --extended-regexp --line-regex --quiet --no-messages \
+	     -e "$(escape_dots ${PRESET})\s+source=${PRESET_SOURCE}" "$CONFIG"
+}
+
+migrate_persistence_preset()
+{
+	local OLD="${1}"
+	local OLD_SOURCE="${2}"
+	local NEW="${3}"
+	local NEW_SOURCE="${4}"
+	local CONFIG="${5}"
+	if   is_preset_enabled "${OLD}" "${OLD_SOURCE}" "${CONFIG}" && \
+	   ! is_preset_enabled "${NEW}" "${NEW_SOURCE}" "${CONFIG}"
+	then
+		warning "Need to make ${NEW} persistent"
+		add_persistence_preset "${NEW}" "${NEW_SOURCE}" \
+		                       "${CONFIG}"
+	fi
+}
 
 # We override live-boot's logging facilities to get more useful error messages
 log_warning_msg ()
@@ -196,9 +226,9 @@ other::r-x"
 persistence_conf_file_has_correct_access_rights ()
 {
 	local conf="$1"
+	local expected_perms="$2"
 	local expected_user=tails-persistence-setup
 	local expected_group=tails-persistence-setup
-	local expected_perms=600
 	local expected_acl=""
 
 	if [ $(stat -c %U "$conf") != "$expected_user" ]
@@ -228,11 +258,25 @@ persistence_conf_file_has_correct_access_rights ()
 disable_and_create_empty_persistence_conf_file ()
 {
 	local conf="$1"
+	local mode="$2"
+
+	if [ -z "$mode" ]
+	then
+		mode=0600
+	fi
 
 	mv "$conf" "${conf}.insecure_disabled" \
 		|| error "Failed to disable '$conf': $?"
+	create_empty_persistence_conf_file "$conf" "$mode"
+}
+
+create_empty_persistence_conf_file ()
+{
+	local conf="$1"
+	local mode="$2"
+
 	install --owner tails-persistence-setup \
-		--group tails-persistence-setup --mode 0600 \
+		--group tails-persistence-setup --mode "$mode" \
 		/dev/null "$conf" \
 		|| error "Failed to create empty '$conf': $?"
 }
@@ -299,54 +343,51 @@ activate_volumes ()
 		fi
 	done
 
+	# Create live-additional-software.conf if there is none
+	for mountpoint in $(ls -d /live/persistence/*_unlocked || true)
+	do
+		if test ! -f "$mountpoint/live-additional-software.conf"
+		then
+			create_empty_persistence_conf_file "$mountpoint/live-additional-software.conf" "0644"
+		fi
+	done
+
 	# Disable all persistence configuration files if the mountpoint
 	# has wrong access rights.
 	if [ "$ACCESS_RIGHTS_ARE_CORRECT" != true ]
 	then
-		for f in $(ls /live/persistence/*_unlocked/persistence.conf \
-		              /live/persistence/*_unlocked/live-additional-software.conf || true)
+		for f in $(ls /live/persistence/*_unlocked/persistence.conf || true)
 		do
 			warning "Disabling '$f': persistent volume has unsafe access rights"
 			disable_and_create_empty_persistence_conf_file "$f"
+		done
+		for f in $(ls /live/persistence/*_unlocked/live-additional-software.conf || true)
+		do
+			warning "Disabling '$f': persistent volume has unsafe access rights"
+			disable_and_create_empty_persistence_conf_file "$f" "644"
 		done
 	fi
 
 	# Regardless of the mountpoint access rights, disable persistence
 	# configuration files with wrong access rights.
-	for f in $(ls /live/persistence/*_unlocked/persistence.conf \
-	              /live/persistence/*_unlocked/live-additional-software.conf || true)
+	for f in $(ls /live/persistence/*_unlocked/persistence.conf || true)
 	do
-		if ! persistence_conf_file_has_correct_access_rights "$f"
+		if ! persistence_conf_file_has_correct_access_rights "$f" "600"
 		then
 			warning "Disabling '$f', that has unsafe access rights"
 			disable_and_create_empty_persistence_conf_file "$f"
 		fi
 	done
-
-	# Migrate Squeeze-era NetworkManager persistence setting to Wheezy.
-	for conf in $(ls /live/persistence/*_unlocked/persistence.conf || true)
+	for f in $(ls /live/persistence/*_unlocked/live-additional-software.conf || true)
 	do
-		if grep -E -qs --line-regex \
-			-e '/home/amnesia/\.gconf/system/networking/connections\s+source=nm-connections' \
-			"$conf" \
-		   && ! grep -E -qs --line-regex \
-			-e '/etc/NetworkManager/system-connections\s+source=nm-system-connections' \
-			"$conf"
+		if persistence_conf_file_has_correct_access_rights "$f" "600"
 		then
-			warning "Needs to make /etc/NetworkManager/system-connections persistent"
-			if [ "$PERSISTENCE_READONLY" = true ]
-			then
-				# XXX: don't really error-out, do we?
-				error "Persistence configuration needs to be migrated, but read only was selected; please retry in read-write mode"
-			fi
-			echo '/etc/NetworkManager/system-connections	source=nm-system-connections' \
-				>> "$conf" \
-				|| error "Failed to make /etc/NetworkManager/system-connections persistent: $?"
-			warning "Successfully made /etc/NetworkManager/system-connections persistent"
-			# disable pre-Wheezy NM persistence setting
-			sed -r -i \
-				-e 's,^(/home/amnesia/\.gconf/system/networking/connections\s+source=nm-connections)$,#\1,' \
-				"$conf"
+			chmod 0644 "$f"
+		fi
+		if ! persistence_conf_file_has_correct_access_rights "$f" "644"
+		then
+			warning "Disabling '$f', that has unsafe access rights"
+			disable_and_create_empty_persistence_conf_file "$f" "644"
 		fi
 	done
 
@@ -392,6 +433,14 @@ activate_volumes ()
 		umask "$OLD_UMASK"
 	fi
 	rm -f ${custom_mounts} 2> /dev/null
+
+	# Get rid of any Enigmail configuredVersion that we previously used
+	# to set in a way that would persistently override the value maintained
+	# by Enigmail itself (#12680, #15693). We stopped writing this pref
+	# there a long time ago but recently instructed users to reintroduce
+	# this problem as a workaround (#15692).
+	tb_profile="$(dirname "${conf}")/thunderbird/profile.default"
+	rm -f "${tb_profile}/preferences/0000tails.js"
 
 	for vol in ${open_volumes}
 	do

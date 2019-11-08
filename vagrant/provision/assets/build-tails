@@ -1,134 +1,162 @@
 #!/bin/sh
 
-# This script is used by both our Vagrant and Jenkins -based build environments.
-
 set -e
+set -x
+
+if [ -n "${TAILS_PROXY:-}" ]; then
+	export http_proxy="${TAILS_PROXY}"
+fi
 
 as_root_do() {
 	sudo \
-		${RSYNC_PROXY:+RSYNC_PROXY="$RSYNC_PROXY"} \
-		${http_proxy:+http_proxy="$http_proxy"} \
-		${https_proxy:+https_proxy="$https_proxy"} \
-		${ftp_proxy:+ftp_proxy="$ftp_proxy"} \
-		${no_proxy:+no_proxy="$no_proxy"} \
-		${JENKINS_URL:+JENKINS_URL="$JENKINS_URL"} \
-		${MKSQUASHFS_OPTIONS:+MKSQUASHFS_OPTIONS="$MKSQUASHFS_OPTIONS"} \
-		"$@"
-}
-
-usable_memory() {
-	free -b | awk '/cache:/ { print $4 }'
+		${RSYNC_PROXY:+RSYNC_PROXY="${RSYNC_PROXY}"} \
+		${http_proxy:+http_proxy="${http_proxy}"} \
+		${https_proxy:+https_proxy="${https_proxy}"} \
+		${ftp_proxy:+ftp_proxy="${ftp_proxy}"} \
+		${no_proxy:+no_proxy="${no_proxy}"} \
+		${MKSQUASHFS_OPTIONS:+MKSQUASHFS_OPTIONS="${MKSQUASHFS_OPTIONS}"} \
+		${APT_SNAPSHOTS_SERIALS:+APT_SNAPSHOTS_SERIALS="${APT_SNAPSHOTS_SERIALS}"} \
+                ${TAILS_MERGE_BASE_BRANCH:+TAILS_MERGE_BASE_BRANCH="${TAILS_MERGE_BASE_BRANCH}"} \
+		${GIT_COMMIT:+GIT_COMMIT="${GIT_COMMIT}"} \
+		${GIT_REF:+GIT_REF="${GIT_REF}"} \
+		${BASE_BRANCH_GIT_COMMIT:+BASE_BRANCH_GIT_COMMIT="${BASE_BRANCH_GIT_COMMIT}"} \
+		"${@}"
 }
 
 cleanup() {
-	[ -n "$BUILD_DIR" ] || return 0
+	[ -n "${BUILD_DIR}" ] || return 0
 	cd /
-	mounts=$(mount | grep -E "^[^[:space:]]+ on $BUILD_DIR" | \
-		awk '{print $3}' | sort -r)
-	[ -n "$mounts" ] && sudo umount $mounts
-	[ -d "$TMPFS_DIR" ] && ( sudo umount $TMPFS_DIR ; rmdir $TMPFS_DIR )
-	[ -d "$BUILD_DIR" ] && sudo rm -rf $BUILD_DIR
+	remove_build_dirs
+	sudo rm -rf "${BUILD_DIR}"
 }
 
-trap cleanup EXIT
+remove_build_dirs() {
+	for mountpoint in $(old_build_dirs | tac) ; do
+		tries=0
+		sudo lsof | grep --fixed-strings "${mountpoint}" || true
+		while ! sudo umount -f --verbose "${mountpoint}" && [ $tries -lt 12 ]; do
+			sudo fuser --ismountpoint --mount "${mountpoint}" --kill || true
+			sleep 5
+			tries=$(expr $tries + 1)
+		done
+		sudo rm -rf "${mountpoint}"
+	done
+}
 
-if [ -n "$JENKINS_URL" ]; then
-	# Build triggered by Jenkins
-	ENV_FILE=/etc/jenkins/environment
-	if [ -f "$ENV_FILE" ] && [ -r "$ENV_FILE" ] ; then
-		. "$ENV_FILE"
-	fi
+old_build_dirs() {
+	mount | \
+	perl -ni -E 'say $mountpoint if (($mountpoint) = ($_ =~ m{^(?:aufs|tmpfs|devpts-live|proc-live|sysfs-live) on (/tmp/tails-build(?:-tmpfs)?\.[/[:alnum:]]+)}))'
+}
 
-	if [ -z "$WORKSPACE" ]; then
-		echo "WORKSPACE environment variable is not set. Aborting." >&2
-		exit 2
-	fi
-	if [ -z "$ARTIFACTS_ROOT_DIR" ] ; then
-		echo "ARTIFACTS_ROOT_DIR environment variable is not set. Aborting." >&2
-		exit 3
-	fi
-	if [ -z "$GIT_BRANCH" ]; then
-		echo "GIT_BRANCH environment variable is not set. Aborting." >&2
-		exit 4
-	fi
-	if [ -z "$GIT_COMMIT" ]; then
-		echo "GIT_COMMIT environment variable is not set. Aborting." >&2
-		exit 5
-	fi
-	REV="${GIT_BRANCH##origin/}"
-	COMMIT="$GIT_COMMIT"
-	ARTIFACTS_DIR="$ARTIFACTS_ROOT_DIR/$JOB_NAME"
-else
-	# Build triggered by Vagrant
-	WORKSPACE=/home/vagrant/amnesia
-	ARTIFACTS_DIR=/vagrant
-	COMMIT="$(git --git-dir=/amnesia.git rev-parse --verify HEAD)"
-	if git --git-dir=/amnesia.git symbolic-ref HEAD >/dev/null 2>&1; then
-		# We are building from a branch
-		REV="${1:-$(git --git-dir=/amnesia.git name-rev --name-only HEAD)}"
-	else
-		# We are (hopefully) building from a tag
-		if ! REV="${1:-$(git --git-dir=/amnesia.git describe --tags --exact-match ${COMMIT})}"; then
-			echo "It seems we are building from an untagged detached HEAD. Aborting." >&2
-			exit 1
-		fi
-	fi
-	test -d "$WORKSPACE" || git clone /amnesia.git "$WORKSPACE"
-	cd "$WORKSPACE"
-	git fetch origin
+ntp_enabled() {
+	timedatectl status | grep -qs -E '^\s*NTP\s+service:\s+active$'
+}
+
+ntp_synchronized() {
+	ntp_enabled && \
+	timedatectl status | grep -qs -E '^\s*System\s+clock\s+synchronized:\s+yes$'
+}
+
+if [ "${TAILS_BUILD_FAILURE_RESCUE}" != 1 ]; then
+	trap cleanup EXIT
+	remove_build_dirs
 fi
 
-cd "$WORKSPACE"
-git checkout --force "$REV"
-git reset --hard "$COMMIT"
-
-install -m 0755 -d "$ARTIFACTS_DIR"
-
-if [ "$TAILS_CLEAN_BUILD" ]; then
-	as_root_do lb clean --all
+TAILS_GIT_DIR="/home/vagrant/amnesia"
+if [ ! -d "${TAILS_GIT_DIR}" ]; then
+	# We use --shared as an time/space optimization, and it is safe
+	# since our build process doesn't modify any objects (which would
+	# fail since the host's .git directory is shared read-only).
+	git clone --shared --local /amnesia.git/.git "${TAILS_GIT_DIR}"
+	# When we locally Git clone the main repo over the filesystem
+	# above, it will use the host's local repo as origin, but the
+	# submodules will continue to use their remote repos. A problem
+	# with this, beside unnecessary fetching of the network, is that
+	# any unpublished commits in the host's submodule are
+	# inaccessible, so if we want to build we first have to push those
+	# commits to the submodules remote repo. To avoid this, and in
+	# general try to make sure that the Git state in the builder is
+	# the same as on the host, we just clone the submodules in the
+	# same way we do the main repo.
+	(
+		cd "${TAILS_GIT_DIR}/submodules"
+		for submodule in $(ls -1); do
+			rm -rf "${submodule}"
+			git clone --shared \
+			    "/amnesia.git/.git/modules/submodules/${submodule}"
+		done
+	)
 fi
-./build-wiki
+
+cd "${TAILS_GIT_DIR}"
+# Mirror the branches amnesia.git tracks on its "origin" remote as if
+# they were on our own "origin" remote, (i.e. under the origin/$REF
+# name), even if it's untrue (our own "origin" is amnesia.git and has
+# only one local ref, which is the branch we work on and that it has
+# checked out as a local tracking branch). This allows
+# git_base_branch_head(), that's used by Rakefile to set
+# $BASE_BRANCH_GIT_COMMIT, to do its job: without this, it would not
+# have access to the state of the base branch because it would not
+# have any ref for it.
+git config remote.origin.fetch +refs/remotes/origin/*:refs/remotes/origin/*
+
+# Ensure we have the same Git state as on the host
+git fetch --tags
+git checkout --force "${GIT_REF}"
+git reset --hard "${GIT_COMMIT}"
+git submodule update --init
+
+if as_root_do systemctl --quiet is-active apt-cacher-ng.service ; then
+	as_root_do ./auto/scripts/update-acng-config
+	as_root_do systemctl restart apt-cacher-ng.service
+fi
+
+if [ "${TAILS_OFFLINE_MODE}" != 1 ]; then
+	as_root_do timedatectl set-ntp true
+	echo -n "Waiting for the time to be synchronized..."
+	while ! ntp_synchronized; do
+		sleep 1
+		echo -n "."
+	done
+	echo " done."
+fi
+if [ -n "$TAILS_DATE_OFFSET" ]; then
+	as_root_do timedatectl set-ntp false
+
+	echo -n "Waiting for NTP to be disabled..."
+	while ntp_enabled; do
+		sleep 1
+		echo -n "."
+	done
+	echo " done."
+
+	DESIRED_DATE=$(date --utc --date="${TAILS_DATE_OFFSET} days" '+%F %T')
+	echo "Setting system time to ${DESIRED_DATE}"
+	as_root_do timedatectl set-time "$DESIRED_DATE"
+fi
+
+if [ "${TAILS_PROXY_TYPE}" = "vmproxy" ]; then
+	# The apt-cacher-ng cache disk is 15G, so let's ensure at most 10G
+	# of it is used there is 5G before each build, which should be
+	# enough for any build, even if we have to download a complete set
+	# of new packages for a new Debian release.
+	as_root_do /usr/lib/apt-cacher-ng/acngtool shrink 10G -f || \
+	echo "The clean-up of apt-cacher-ng's cache failed: this is" \
+	     "not fatal and most likely just means that some disk" \
+	     "space could not be reclaimed -- in order to fix that" \
+	     "situation you need to manually investigate " \
+	     "/var/cache/apt-cacher-ng/apt-cacher-ng-log/main_*.html" >&2
+fi
 
 BUILD_DIR=$(mktemp -d /tmp/tails-build.XXXXXXXX)
-if [ "$TAILS_RAM_BUILD" ]; then
-	TMPFS_DIR=$(mktemp -d /tmp/tmpfs.XXXXXXXX)
-	as_root_do mount -t tmpfs -o "noatime,size=100%,mode=0770,uid=root,gid=${USER}" tmpfs "$TMPFS_DIR"
-	as_root_do mount -t aufs -o "noatime,noxino,dirs=$TMPFS_DIR=rw:${WORKSPACE}/=rr+wh" aufs "$BUILD_DIR"
-else
-	as_root_do rsync -a "$WORKSPACE"/ "$BUILD_DIR"/
+if [ "${TAILS_RAM_BUILD}" ]; then
+	as_root_do mount -t tmpfs -o "noatime,size=100%,mode=0770,uid=root,gid=${USER}" tmpfs "${BUILD_DIR}"
 fi
+as_root_do rsync -a "${TAILS_GIT_DIR}"/ "${BUILD_DIR}"/
 
-cd "$BUILD_DIR"
+cd "${BUILD_DIR}"
 as_root_do lb config --cache false
 
 as_root_do lb build
 
-if [ -n "$JENKINS_URL" ]; then
-	ISO=$(ls *.iso)
-
-	USER_ON_ACNG_HOST=jenkins
-	ACNG_HOST=apt-proxy.lizard
-	ACNG_REMOTE_LOG=/var/log/apt-cacher-ng/apt-cacher.log
-	ACNG_LOCAL_LOG=$(basename "$ACNG_REMOTE_LOG")
-	sftp "${USER_ON_ACNG_HOST}@${ACNG_HOST}:${ACNG_REMOTE_LOG}"
-	BUILD_IP=$(ip a show dev eth0 | grep '^\s\+inet\s' | awk '{print $2}' | sed -e 's,/.*,,')
-	START_TIME=$(cat "$ISO.start.timestamp")
-	END_TIME=$(cat "$ISO.end.timestamp")
-	./auto/scripts/packages-from-acng-log "$ACNG_LOCAL_LOG" "$BUILD_IP" \
-					      "$START_TIME" "$END_TIME" \
-					      "${ISO}.binpkgs" "${ISO}.srcpkgs"
-	rm "$ISO".*.timestamp
-
-	for file in tails-*; do
-		sha512sum "$file" >> "$ISO.shasum"
-	done
-	gpg --batch --detach-sign --armor "$ISO.shasum"
-fi
-
-mv -f tails-* "$ARTIFACTS_DIR"
-
-if [ -n "$JENKINS_URL" ]; then
-	for EXT in '' .binpkgs .srcpkgs .shasum .shasum.asc .packages .buildlog ; do
-		ln -sf "${ISO}${EXT}" "$ARTIFACTS_DIR/latest.iso${EXT}"
-	done
-fi
+mv -f tails-* "${TAILS_GIT_DIR}/"

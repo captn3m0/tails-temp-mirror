@@ -3,16 +3,29 @@
 # vi: set ft=ruby :
 
 # Hostname of the virtual machine (must be in /etc/hosts)
-VIRTUAL_MACHINE_HOSTNAME = 'tails-builder-20140709.vagrantup.com'
+VIRTUAL_MACHINE_HOSTNAME = 'vagrant-buster'
+
+# Approximate amount of RAM needed to run the builder's base system
+# and perform a build
+VM_MEMORY_BASE = 1.5*1024
 
 # Approximate amount of extra space needed for builds
-BUILD_SPACE_REQUIREMENT = 6656
+BUILD_SPACE_REQUIREMENT = 12*1024
 
 # Virtual machine memory size for on-disk builds
-VM_MEMORY_FOR_DISK_BUILDS = 512
+VM_MEMORY_FOR_DISK_BUILDS = VM_MEMORY_BASE
 
 # Virtual machine memory size for in-memory builds
-VM_MEMORY_FOR_RAM_BUILDS = VM_MEMORY_FOR_DISK_BUILDS + BUILD_SPACE_REQUIREMENT
+VM_MEMORY_FOR_RAM_BUILDS = VM_MEMORY_BASE + BUILD_SPACE_REQUIREMENT
 
-# Checksum for BOX
-BOX_CHECKSUM = 'efb339f06192d5db16585abc946e50cc73cb13aad5afd39357c6a8e33aebb814'
+# The builder VM's platform
+ARCHITECTURE = "amd64"
+DISTRIBUTION = "buster"
+
+# The name of the Vagrant box
+def box_name
+  git_root = `git rev-parse --show-toplevel`.chomp
+  shortid, date = `git log -1 --date="format:%Y%m%d" --pretty="%h %ad" -- \
+                   #{git_root}/vagrant/`.chomp.split
+  return "tails-builder-#{ARCHITECTURE}-#{DISTRIBUTION}-#{date}-#{shortid}"
+end

@@ -1,49 +1,47 @@
-[apps/florence/behaviour]
-hide-on-start=true
-startup-notification=false
-
-[apps/florence/layout]
-style='/usr/share/florence/styles/hard'
-
-[apps/florence/style]
-sounds=false
-system-font=false
-
-[apps/florence/window]
-decorated=false
-xpos=384
-ypos=27
-
 [apps/seahorse/listing]
 item-filter=''
 sidebar-visible=true
 
-[org/gnome/crypto/pgp]
-keyservers = ['hkp://pool.sks-keyservers.net']
+[desktop/gnome/crypto/pgp]
+keyservers = ['hkp://jirk5u4osbsr34t5.onion']
 
-[org/gnome/desktop/session]
-session-name='gnome-fallback'
+[org/gnome/desktop/a11y]
+always-show-universal-access-status=true
 
 [org/gnome/desktop/background]
 show-desktop-icons = true
 picture-uri='file:///usr/share/tails/desktop_wallpaper.png'
 
 [org/gnome/desktop/interface]
+clock-show-date=true
 menus-have-icons=true
 
-[org/gnome/libgnomekbd/keyboard]
-options=['grp\tgrp:shifts_toggle', 'grp\tgrp:alt_shift_toggle']
-
 [org/gnome/desktop/lockdown]
-disable-lock-screen = true
+disable-log-out = true
 disable-user-switching = true
 
 [org/gnome/desktop/media-handling]
 automount = false
 automount-open = false
+autorun-x-content-start-app = @as []
+autorun-x-content-ignore = @as []
+
+[org/gnome/desktop/peripherals/touchpad]
+click-method = 'default'
+natural-scroll = true
+tap-to-click = true
+two-finger-scrolling-enabled = true
+
+[org/gnome/desktop/screensaver]
+lock-enabled = true
+picture-uri = 'file:///usr/share/tails/screensaver_background.png'
+user-switch-enabled = false
 
 [org/gnome/desktop/sound]
 event-sounds=false
+
+[org/gnome/desktop/wm/preferences]
+button-layout = ':minimize,maximize,close'
 
 [org/gnome/gedit/preferences/editor]
 create-backup-copy = false
@@ -51,20 +49,34 @@ create-backup-copy = false
 [org/gnome/nautilus/desktop]
 volumes-visible = false
 
-[org/gnome/settings-daemon/peripherals/touchpad]
-disable-while-typing = true
-horiz-scroll-enabled = false
-scroll-method = 'two-finger-scrolling'
-tap-to-click = true
+[org/gnome/nautilus/icon-view]
+default-zoom-level = 'small'
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+screensaver=''
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>l'
+command='tails-screen-locker'
+name='Lock Screen'
 
 [org/gnome/settings-daemon/plugins/power]
-button-hibernate = 'shutdown'
-button-power = 'shutdown'
-button-sleep = 'shutdown'
-button-suspend = 'shutdown'
-critical-battery-action = 'shutdown'
+power-button-action = 'nothing'
 lid-close-ac-action = 'blank'
 lid-close-battery-action = 'blank'
+sleep-inactive-ac-type ='nothing'
+sleep-inactive-battery-type ='nothing'
 
-[org/gnome/gnome-screenshot]
-auto-save-directory = 'file:///home/amnesia'
+[org/gnome/shell]
+enabled-extensions = ['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net', 'status-menu-helper@tails.boum.org', 'torstatus@tails.boum.org', 'desktop-icons@csoriano']
+favorite-apps=['tor-browser.desktop', 'thunderbird.desktop', 'pidgin.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Nautilus.desktop', 'gnome-terminal.desktop']
+
+[org/gnome/shell/extensions/desktop-icons]
+icon-size='small'
+show-home = false
+show-trash = true
+
+[org/gnome/shell/extensions/topicons]
+tray-pos='right'
+tray-order=4

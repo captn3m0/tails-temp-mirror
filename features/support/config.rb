@@ -1,67 +1,86 @@
 require 'fileutils'
+require 'yaml'
 require "#{Dir.pwd}/features/support/helpers/misc_helpers.rb"
 
-# Dynamic
-$tails_iso = ENV['ISO'] || get_newest_iso
-$old_tails_iso = ENV['OLD_ISO'] || get_oldest_iso
-$tmp_dir = ENV['TEMP_DIR'] || "/tmp/TailsToaster"
-$vm_xml_path = ENV['VM_XML_PATH'] || "#{Dir.pwd}/features/domains"
-$misc_files_dir = "#{Dir.pwd}/features/misc_files"
-$keep_snapshots = !ENV['KEEP_SNAPSHOTS'].nil?
-$x_display = ENV['DISPLAY']
-$debug = !ENV['DEBUG'].nil?
-$pause_on_fail = !ENV['PAUSE_ON_FAIL'].nil?
-$time_at_start = Time.now
-$live_user = cmd_helper(". config/chroot_local-includes/etc/live/config.d/username.conf; echo ${LIVE_USERNAME}").chomp
-$sikuli_retry_findfailed = !ENV['SIKULI_RETRY_FINDFAILED'].nil?
-$git_dir = ENV['PWD']
+# These files deal with options like some of the settings passed
+# to the `run_test_suite` script, and "secrets" like credentials
+# (passwords, SSH keys) to be used in tests.
+CONFIG_DIR = "#{Dir.pwd}/features/config"
+DEFAULTS_CONFIG_FILE = "#{CONFIG_DIR}/defaults.yml"
+LOCAL_CONFIG_FILE = "#{CONFIG_DIR}/local.yml"
+LOCAL_CONFIG_DIRS_FILES_GLOB = "#{CONFIG_DIR}/*.d/*.yml"
 
-# Static
-$configured_keyserver_hostname = 'hkps.pool.sks-keyservers.net'
-$services_expected_on_all_ifaces =
+assert File.exists?(DEFAULTS_CONFIG_FILE)
+$config = YAML.load(File.read(DEFAULTS_CONFIG_FILE))
+config_files = Dir.glob(LOCAL_CONFIG_DIRS_FILES_GLOB).sort
+config_files.insert(0, LOCAL_CONFIG_FILE) if File.exists?(LOCAL_CONFIG_FILE)
+config_files.each do |config_file|
+  yaml_struct = YAML.load(File.read(config_file)) || Hash.new
+  if not(yaml_struct.instance_of?(Hash))
+    raise "Local configuration file '#{config_file}' is malformed"
+  end
+  $config.merge!(yaml_struct)
+end
+# Options passed to the `run_test_suite` script will always take
+# precedence. The way we import these keys is only safe for values
+# with types boolean or string. If we need more, we'll have to invoke
+# YAML's type autodetection on ENV some how.
+$config.merge!(ENV)
+
+# Export TMPDIR back to the environment for subprocesses that we start
+# (e.g. guestfs). Note that this export will only make a difference if
+# TMPDIR wasn't already set and --tmpdir wasn't passed, i.e. only when
+# we use the default.
+ENV['TMPDIR'] = $config['TMPDIR']
+
+# Dynamic constants initialized through the environment or similar,
+# e.g. options we do not want to be configurable through the YAML
+# configuration files.
+DEBUG_LOG_PSEUDO_FIFO = "#{$config["TMPDIR"]}/debug_log_pseudo_fifo"
+DISPLAY = ENV['DISPLAY']
+GIT_DIR = ENV['PWD']
+KEEP_SNAPSHOTS = !ENV['KEEP_SNAPSHOTS'].nil?
+LIVE_USER = cmd_helper(". config/chroot_local-includes/etc/live/config.d/username.conf; echo ${LIVE_USERNAME}").chomp
+TAILS_ISO = ENV['TAILS_ISO']
+TAILS_IMG = TAILS_ISO.sub(/\.iso/, '.img')
+OLD_TAILS_ISO = ENV['OLD_TAILS_ISO'] || TAILS_ISO
+OLD_TAILS_IMG = OLD_TAILS_ISO.sub(/\.iso/, '.img')
+TIME_AT_START = Time.now
+loop do
+  ARTIFACTS_DIR = $config['TMPDIR'] + "/run-" +
+                  sanitize_filename(TIME_AT_START.to_s) + "-" +
+                  [
+                    "git",
+                    sanitize_filename(describe_git_head,
+                                      :replacement => '-'),
+                    current_short_commit
+                  ].reject(&:empty?).join("_") + "-" +
+                  random_alnum_string(6)
+  if not(File.exist?(ARTIFACTS_DIR))
+    FileUtils.mkdir_p(ARTIFACTS_DIR)
+    break
+  end
+end
+SIKULI_CANDIDATES_DIR = "#{ARTIFACTS_DIR}/sikuli_candidates"
+SIKULI_IMAGE_PATH = "#{Dir.pwd}/features/images/"
+SIKULI_MIN_SIMILARITY = 0.9
+
+# Constants that are statically initialized.
+CONFIGURED_KEYSERVER_HOSTNAME = 'jirk5u4osbsr34t5.onion'
+LIBVIRT_DOMAIN_NAME = "TailsToaster"
+LIBVIRT_DOMAIN_UUID = "203552d5-819c-41f3-800e-2c8ef2545404"
+LIBVIRT_NETWORK_NAME = "TailsToasterNet"
+LIBVIRT_NETWORK_UUID = "f2305af3-2a64-4f16-afe6-b9dbf02a597e"
+MISC_FILES_DIR = "#{Dir.pwd}/features/misc_files"
+SERVICES_EXPECTED_ON_ALL_IFACES =
   [
-   ["cupsd",    "0.0.0.0", "631"],
-   ["dhclient", "0.0.0.0", "*"]
-  ]
-$tor_authorities =
-  # List grabbed from Tor's sources, src/or/config.c:~750.
-  [
-   "128.31.0.39", "86.59.21.38", "194.109.206.212",
-   "82.94.251.203", "76.73.17.194", "212.112.245.170",
-   "193.23.244.244", "208.83.223.34", "171.25.193.9",
-   "154.35.32.5"
+   ["cupsd",    "*", "631"],
+   ["dhclient", "0.0.0.0", "68"]
   ]
 # OpenDNS
-$some_dns_server = "208.67.222.222"
+SOME_DNS_SERVER = "208.67.222.222"
+VM_XML_PATH = "#{Dir.pwd}/features/domains"
 
-$tails_test_secret_ssh_key = <<EOF
------BEGIN RSA PRIVATE KEY-----
-MIIEowIBAAKCAQEAvMUNgUUM/kyuo26m+Xw7igG6zgGFMFbS3u8m5StGsJOn7zLi
-J8P5Mml/R+4tdOS6owVU4RaZTPsNZZK/ClYmOPhmNvJ04pVChk2DZ8AARg/TANj3
-qjKs3D+MeKbk1bt6EsA55kgGsTUky5Ti8cc2Wna25jqjagIiyM822PGG9mmI6/zL
-YR6QLUizNaciXrRM3Q4R4sQkEreVlHeonPEiGUs9zx0swCpLtPM5UIYte1PVHgkw
-ePsU6vM8UqVTK/VwtLLgLanXnsMFuzq7DTAXPq49+XSFNq4JlxbEF6+PQXZvYZ5N
-eW00Gq7NSpPP8uoHr6f1J+mMxxnM85jzYtRx+QIDAQABAoIBAA8Bs1MlhCTrP67q
-awfGYo1UGd+qq0XugREL/hGV4SbEdkNDzkrO/46MaHv1aVOzo0q2b8r9Gu7NvoDm
-q51Mv/kjdizEFZq1tvYqT1n+H4dyVpnopbe4E5nmy2oECokbQFchRPkTnMSVrvko
-OupxpdaHPX8MBlW1GcLRBlE00j/gfK1SXX5rcxkF5EHVND1b6iHddTPearDbU8yr
-wga1XO6WeohAYzqmGtMD0zk6lOk0LmnTNG6WvHiFTAc/0yTiKub6rNOIEMS/82+V
-l437H0hKcIN/7/mf6FpqRNPJTuhOVFf+L4G/ZQ8zHoMGVIbhuTiIPqZ/KMu3NaUF
-R634jckCgYEA+jJ31hom/d65LfxWPkmiSkNTEOTfjbfcgpfc7sS3enPsYnfnmn5L
-O3JJzAKShSVP8NVuPN5Mg5FGp9QLKrN3kV6QWQ3EnqeW748DXMU6zKGJQ5wo7ZVm
-w2DhJ/3PAuBTL/5X4mjPQL+dr86Aq2JBDC7LHJs40I8O7UbhnsdMxKcCgYEAwSXc
-3znAkAX8o2g37RiAl36HdONgxr2eaGK7OExp03pbKmoISw6bFbVpicBy6eTytn0A
-2PuFcBKJRfKrViHyiE8UfAJ31JbUaxpg4bFF6UEszN4CmgKS8fnwEe1aX0qSjvkE
-NQSuhN5AfykXY/1WVIaWuC500uB7Ow6M16RDyF8CgYEAqFTeNYlg5Hs+Acd9SukF
-rItBTuN92P5z+NUtyuNFQrjNuK5Nf68q9LL/Hag5ZiVldHZUddVmizpp3C6Y2MDo
-WEDUQ2Y0/D1rGoAQ1hDIb7bbAEcHblmPSzJaKirkZV4B+g9Yl7bGghypfggkn6o6
-c3TkKLnybrdhZpjC4a3bY48CgYBnWRYdD27c4Ycz/GDoaZLs/NQIFF5FGVL4cdPR
-pPl/IdpEEKZNWwxaik5lWedjBZFlWe+pKrRUqmZvWhCZruJyUzYXwM5Tnz0b7epm
-+Q76Z1hMaoKj27q65UyymvkfQey3ucCpic7D45RJNjiA1R5rbfSZqqnx6BGoIPn1
-rLxkKwKBgDXiWeUKJCydj0NfHryGBkQvaDahDE3Yigcma63b8vMZPBrJSC4SGAHJ
-NWema+bArbaF0rKVJpwvpkZWGcr6qRn94Ts0kJAzR+VIVTOjB9sVwdxjadwWHRs5
-kKnpY0tnSF7hyVRwN7GOsNDJEaFjCW7k4+55D2ZNBy2iN3beW8CZ
------END RSA PRIVATE KEY-----
-EOF
-
-$tails_test_public_ssh_key = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8xQ2BRQz+TK6jbqb5fDuKAbrOAYUwVtLe7yblK0awk6fvMuInw/kyaX9H7i105LqjBVThFplM+w1lkr8KViY4+GY28nTilUKGTYNnwABGD9MA2PeqMqzcP4x4puTVu3oSwDnmSAaxNSTLlOLxxzZadrbmOqNqAiLIzzbY8Yb2aYjr/MthHpAtSLM1pyJetEzdDhHixCQSt5WUd6ic8SIZSz3PHSzAKku08zlQhi17U9UeCTB4+xTq8zxSpVMr9XC0suAtqdeewwW7OrsNMBc+rj35dIU2rgmXFsQXr49Bdm9hnk15bTQars1Kk8/y6gevp/Un6YzHGczzmPNi1HH5 amnesia@amnesia'
+TAILS_SIGNING_KEY = cmd_helper(". #{Dir.pwd}/config/amnesia; echo ${AMNESIA_DEV_KEYID}").tr(' ', '').chomp
+TAILS_DEBIAN_REPO_KEY = "221F9A3C6FA3E09E182E060BC7988EA7A358D82E"
+WEBM_VIDEO_URL = 'https://tails.boum.org/lib/test_suite/test.webm'

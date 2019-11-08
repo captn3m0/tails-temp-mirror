@@ -1,4 +1,6 @@
 [[!meta title="Tails 2013 summit report"]]
+[[!meta date="Fri, 09 Aug 2013 09:12:07 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 
 A bunch of people spend a dozen days together in July at the third
 Tails developers yearly summit. This was a great opportunity to have
@@ -29,16 +31,16 @@ We also **redesigned our communication channels** to ease involvement
 of new contributors, to make more workload sharing possible, and to be
 able to provide better user support. In short:
 
-  * Our mailing-lists see quite a lot of traffic these days.
+  * Our mailing lists see quite a lot of traffic these days.
     This might deter people from reading it. So, we will create two
-    specialized mailing-lists: a private, encrypted one will receive
+    specialized mailing lists: a private, encrypted one will receive
     bug reports, while a public one will be dedicated to user support.
   * A growing FAQ will be assembled: it will be a tool for
     self-service help, and should make support work less repetitive.
   * In a few months, we will evaluate how all this fares and we will
     reconsider web support, which is postponed for the moment.
 
-Still, the tails-dev mailing-list remains the main communication
+Still, the tails-dev mailing list remains the main communication
 channel for development and project-wide discussions.
 
 This summit gave us the chance to **evaluate and refine processes**
@@ -81,8 +83,8 @@ and [web
 development](https://labs.riseup.net/code/projects/tails/issues?query_id=115).
 
 We spent some time listing problems with early builds of **Tails based
-on Debian Wheezy**. It is now clearer to us what remains to do: [a few
-dozens tickets](https://labs.riseup.net/code/issues/6015) were
+on Debian Wheezy**. It is now clearer to us what remains to do:
+[[!tails_ticket 6015 desc="a few dozens tickets"]] were
 created. Did we mention that any kind of help is warmly welcome? :)
 
 Our **Jenkins instance** also had been taken care of: it is getting

@@ -2,32 +2,31 @@
 
 [[!toc levels=1]]
 
-If running Wheezy or older, you will have to do the upstream part of
-the work in a Jessie chroot (e.g. with pbuilder).
+Pre-requisites
+=============
+
+* a Debian Stretch (or newer) system
+* Tails' `devel` APT suite enabled
+* the latest version of the `tails-perl5lib` package installed
 
 Install build and test dependencies
 ===================================
 
-Install build-dependencies listed in `debian/control`:
-
-    mk-build-deps -i -r
-
-Install build-dependencies from Debian:
-
-    libdist-zilla-perl libdist-zilla-plugins-cjm-perl
-    libdist-zilla-plugin-installguide-perl
-    libdist-zilla-plugin-test-perl-critic-perl
-    libdist-zilla-plugin-test-notabs-perl
-    libdist-zilla-plugin-git-perl
-    liblocale-msgfmt-perl libmoosex-has-sugar-perl
-    dh-make-perl
-
-Install build-dependencies that are not in Debian yet:
-
-    DEB_BUILD_OPTIONS=nocheck dh-make-perl --build --install --cpan Dist::Zilla::Plugin::LocaleMsgfmt
+    git checkout master && \
+    sudo apt install \
+       devscripts \
+       dh-make-perl \
+       libdist-zilla-app-command-authordebs-perl \
+       libfunction-parameters-perl \
+       libuuid-tiny-perl && \
+    dzil authordebs --install && \
+    git checkout debian && \
+    mk-build-deps -i -r --root-cmd sudo
 
 Make an upstream release
 ========================
+
+    git checkout master
 
 Enable new translations in `po/PACKAGE` and commit.
 
@@ -35,25 +34,28 @@ Export new upstream version number:
 
     export VERSION=XXX
 
-Update version number in `bin/tails-persistence-setup`:
+Update version number in `bin/tails-persistence-setup` and
+commit all files that need to be:
 
-    perl -pi -E 's,^Version [0-9.]+,Version $ENV{VERSION},' bin/tails-persistence-setup
-    perl -pi -E "s,^our \\\$VERSION = '[0-9.]+';\$,our \\\$VERSION = '$VERSION';," bin/tails-persistence-setup
+    perl -pi -E 's,^Version [0-9.]+,Version $ENV{VERSION},' bin/tails-persistence-setup && \
+    perl -pi -E "s,^our \\\$VERSION = '[0-9.]+';\$,our \\\$VERSION = '$VERSION';," bin/tails-persistence-setup && \
+    git commit bin/tails-persistence-setup -m "tails-persistence-setup $VERSION"
 
-Commit all files that need to be:
+Optionally, run the upstream test suite (it is run as part of the
+Debian package build later, but running it early may avoid publishing
+a broken upstream release; however, beware if you are running Debian
+sid: it has happened in the past that this code base required
+adjustments to work with newer versions of the libraries it depends
+on, so if tests fail on testing/sid, retry on Debian stable before
+going amok):
 
-    git commit bin/tails-persistence-setup -m "tails-persistent-setup $VERSION"
-
-Run the upstream test suite (point `PERL5LIB` to a checkout of the
-relevant tag of Tails' perl5lib):
-
-    RELEASE_TESTING=1 PERL5LIB=/home/user/tails/perl5lib/lib fakeroot dzil test
+    RELEASE_TESTING=1 LC_ALL=C fakeroot dzil test
 
 Build an upstream tarball, tag the release, move the tarball out of
 the build repository and cleanup:
 
     dzil build && \
-       git tag -s $VERSION -m "tails-persistent-setup $VERSION" && \
+       git tag -s $VERSION -m "tails-persistence-setup $VERSION" && \
        mv Tails-Persistence-*.tar.gz .. && \
        rm -rf Tails-Persistence-* .build po/*.mo
 
@@ -63,29 +65,36 @@ Update the Debian package
 Checkout the Debian packaging branch and import the new upstream tarball:
 
     git checkout debian && \
-       git-import-orig --upstream-vcs-tag=$VERSION ../Tails-Persistence-$VERSION.tar.gz
+       gbp import-orig --upstream-vcs-tag=$VERSION \
+       ../Tails-Persistence-$VERSION.tar.gz
 
 Update `debian/changelog`:
 
-    git-dch && dch -e
+    gbp dch --auto --spawn-editor=always
 
 (Do not forget to set the appropriate release.)
 
 Commit `debian/changelog`:
 
-        git commit debian/changelog -m "$(head -n 1 debian/changelog | sed -e 's,).*,),')"
+        git commit debian/changelog \
+            -m "$(echo -e "$(dpkg-parsechangelog -SSource) ($(dpkg-parsechangelog -SVersion))\n\nGit-Dch: Ignore\n")"
 
-Build a Debian package (use a Wheezy/i386 chroot, that
-has either tails-perl5lib installed, or the Tails APT repository
-configured):
+Build a Debian package (use a Buster/amd64 chroot that has
+`sid` sources enabled and pinned low,
+and on top of that: either tails-perl5lib
+installed or the Tails APT repository configured):
 
-    git-buildpackage
+    gbp buildpackage
 
 If everything is fine, add a signed tag to the repository and push the
 changes:
 
-    git-buildpackage --git-tag-only --git-sign-tags && \
-       git push && git push --tags
+    gbp buildpackage --git-tag-only --git-sign-tags && \
+    git push --follow-tags \
+                   origin master:master \
+                   debian:debian \
+                   pristine-tar:pristine-tar \
+                   upstream:upstream
 
 (Make sure `master`, `upstream`, `debian` and `pristine-tar` were all pushed.)
 

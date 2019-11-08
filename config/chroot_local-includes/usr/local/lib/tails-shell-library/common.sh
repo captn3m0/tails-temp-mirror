@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# Get monotonic time in seconds. See clock_gettime(2) for details.
+# Note: we limit ourselves to seconds simply because floating point
+# arithmetic is a PITA in the shell.
+clock_gettime_monotonic() {
+    perl -w -MTime::HiRes=clock_gettime,CLOCK_MONOTONIC \
+         -E 'say int(clock_gettime(CLOCK_MONOTONIC))'
+}
+
 # Run `check_expr` until `timeout` seconds has passed, and sleep
 # `delay` (optional, defaults to 1) seconds in between the calls.
 # Note that execution isn't aborted exactly after `timeout`
@@ -11,9 +19,9 @@ wait_until() {
     timeout="${1}"
     check_expr="${2}"
     delay="${3:-1}"
-    timeout_at=$(expr $(date +%s) + ${timeout})
+    timeout_at=$(expr $(clock_gettime_monotonic) + ${timeout})
     until eval "${check_expr}"; do
-        if [ "$(date +%s)" -ge "${timeout_at}" ]; then
+        if [ "$(clock_gettime_monotonic)" -ge "${timeout_at}" ]; then
             return 1
         fi
         sleep ${delay}
@@ -28,23 +36,42 @@ try_for() {
     wait_until "${@}"
 }
 
-# Sets the `value` of a `key` in a simple configuration `file`. With
-# "simple" you should think something like a the shell environment as
-# output by the `env` command. Hence this is only useful for
-# configuration files that have no structure (e.g. sections with
-# semantic meaning, like the namespace secions in .gitconfig), allow
-# only one assignment per line, and a fixed/static assignment operator
-# (`op`, which defaults to '=', but other examples would be " = " or
-# torrc's " "). If the key already exists its value is updated in
-# place, otherwise it's added at the end.
-set_simple_config_key() {
-    local key="${1}"
-    local value="${2}"
-    local file="${3}"
-    local op="${4:-=}"
-    if grep -q "^${key}${op}" "${file}"; then
-        sed -i -n "s/^${key}${op}.*$/${key}${op}${value}/p" "${file}"
+# Runs the wrapped command while temporarily disabling `set -e`, if
+# enabled. It will always return 0 to not make scripts with `set -e`
+# enabled abort but will instead store the wrapped command's return
+# value into the global variable _NO_ABORT_RET.
+no_abort() {
+    local set_e_was_enabled
+    if echo "${-}" | grep -q 'e'; then
+        set +e
+        set_e_was_enabled=true
     else
-        echo "${key}${op}${value}" >> "${file}"
+        set_e_was_enabled=false
     fi
+    "${@}"
+    _NO_ABORT_RET=${?}
+    if [ "${set_e_was_enabled}" = true ]; then
+        set -e
+    fi
+    return 0
+}
+
+is_package_installed() {
+    local package_name package_status
+    package_name="${1}"
+    package_status="$(no_abort dpkg-query --show \
+                      --showformat='${db:Status-Status}' "${package_name}" \
+                      2>/dev/null)"
+    [ "${package_status}" = "installed" ]
+}
+
+extract_from_file_between_markers () {
+    local file start stop
+    file="${1}"
+    start="${2}"
+    stop="${3}"
+    awk "/${start}/ { between=1; next; }
+         /${stop}/ { between=0; }
+         { if (between) { print; } }" \
+             "${file}"
 }

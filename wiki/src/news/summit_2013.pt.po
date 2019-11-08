@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-10 21:09+0300\n"
+"POT-Creation-Date: 2018-09-18 06:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,6 +18,16 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "[[!meta title=\"Tails 2013 summit report\"]]\n"
+msgstr ""
+
+#. type: Plain text
+#, no-wrap
+msgid "[[!meta date=\"Fri, 09 Aug 2013 09:12:07 +0000\"]]\n"
+msgstr ""
+
+#. type: Plain text
+#, no-wrap
+msgid "[[!pagetemplate template=\"news.tmpl\"]]\n"
 msgstr ""
 
 #. type: Plain text
@@ -69,8 +78,8 @@ msgstr ""
 
 #. type: Bullet: '  * '
 msgid ""
-"Our mailing-lists see quite a lot of traffic these days.  This might deter "
-"people from reading it. So, we will create two specialized mailing-lists: a "
+"Our mailing lists see quite a lot of traffic these days.  This might deter "
+"people from reading it. So, we will create two specialized mailing lists: a "
 "private, encrypted one will receive bug reports, while a public one will be "
 "dedicated to user support."
 msgstr ""
@@ -89,7 +98,7 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"Still, the tails-dev mailing-list remains the main communication channel for "
+"Still, the tails-dev mailing list remains the main communication channel for "
 "development and project-wide discussions."
 msgstr ""
 
@@ -150,9 +159,9 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "We spent some time listing problems with early builds of **Tails based on "
-"Debian Wheezy**. It is now clearer to us what remains to do: [a few dozens "
-"tickets](https://labs.riseup.net/code/issues/6015) were created. Did we "
-"mention that any kind of help is warmly welcome? :)"
+"Debian Wheezy**. It is now clearer to us what remains to do: [[!tails_ticket "
+"6015 desc=\"a few dozens tickets\"]] were created. Did we mention that any "
+"kind of help is warmly welcome? :)"
 msgstr ""
 
 #. type: Plain text

@@ -5,21 +5,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: sPACKAGE VERSION\n"
-"POT-Creation-Date: 2014-04-27 20:08+0300\n"
-"PO-Revision-Date: 2014-04-25 06:23-0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: sLANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Tails\n"
+"POT-Creation-Date: 2019-08-29 08:06+0000\n"
+"PO-Revision-Date: 2018-01-18 13:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: Tails translators <tails@boum.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "[[!meta title=\"Warnings about persistence\"]]\n"
-msgstr "[[!meta title=\"Avertissement à propos de la persistance\"]]\n"
+msgstr "[[!meta title=\"Avertissements à propos de la persistance\"]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -40,12 +40,12 @@ msgstr "Stocker des documents sensibles\n"
 #, no-wrap
 msgid ""
 "**The persistent volume is not hidden.** An attacker in possession of\n"
-"the device can know that there is a persistent volume on it. Take into consideration\n"
+"your USB stick can know that there is a persistent volume on it. Take into consideration\n"
 "that you can be forced or tricked to give out its passphrase.\n"
 msgstr ""
-"**Le volume persistant n'est pas caché.** Un attaquant en possession du périphérique\n"
+"**Le volume persistant n'est pas caché.** Un attaquant en possession de votre clé USB\n"
 "peut ainsi savoir qu'elle contient un volume persistant. Prenez en considération le fait que\n"
-"vous pouvez être forcé ou dupé pour obtenir le mot de passe.\n"
+"l'on peut vous forcer ou vous duper pour obtenir la phrase de passe.\n"
 
 #. type: Plain text
 msgid ""
@@ -83,7 +83,7 @@ msgid ""
 "Be especially careful when using the [[Dotfiles|persistence/"
 "configure#dotfiles]] feature."
 msgstr ""
-"Soyez particulièrement prudent lors de l'utilisation de la fonctionnalité "
+"Faites particulièrement attention lors de l'utilisation de la fonctionnalité "
 "[[Dotfiles|persistence/configure#dotfiles]]."
 
 #. type: Plain text
@@ -94,56 +94,8 @@ msgid ""
 "configurations can break your anonymity.</strong>\n"
 msgstr ""
 "De plus, l'anonymat basé sur Tor et Tails repose sur le principe de rendre difficile\n"
-"la distinction entre un utilisateur de Tails et un autre. Changer la configuration\n"
-"par défaut peut vous rendre différentiable et ainsi menacer votre anonymat.\n"
-
-#. type: Plain text
-#, no-wrap
-msgid "<a id=\"installing_programs\"></a>\n"
-msgstr "<a id=\"installing_programs\"></a>\n"
-
-#. type: Title =
-#, no-wrap
-msgid "Installing additional programs\n"
-msgstr "Installation de logiciels additionnels\n"
-
-#. type: Plain text
-msgid ""
-"To protect your anonymity and leave no trace, Tails developers select and "
-"configure with care programs that work well together. **Installing "
-"additional programs may introduce unpredictable problems and may break the "
-"protections built-in Tails.** Tails developers may not want or may not be "
-"capable of helping you to solve those problems."
-msgstr ""
-"Afin de protéger votre anonymat et de ne pas laisser de traces, les "
-"développeurs de Tails sélectionnent et configurent avec soin des logiciels "
-"qui fonctionnent correctement ensemble. **L'installation de logiciels "
-"additionnels peut provoquer des problèmes imprévisibles et altérer les "
-"règles de sécurité incluses dans Tails.** Les développeurs de Tails ne "
-"voudront ou ne pourront peut-être pas résoudre ces problèmes."
-
-#. type: Plain text
-#, no-wrap
-msgid "<a id=\"browser_plugins\"></a>\n"
-msgstr "<a id=\"browser_plugins\"></a>\n"
-
-#. type: Title =
-#, no-wrap
-msgid "Browser plugins\n"
-msgstr "Les modules complémentaires du navigateur\n"
-
-#. type: Plain text
-msgid ""
-"The web browser is a central part in a system like Tails. The plugins "
-"included in the browser are carefully chosen and configured with security in "
-"mind. **If you install other plugins or change their configuration, you can "
-"break your anonymity.**"
-msgstr ""
-"Le navigateur internet est un élément central d'un système tel que Tails. "
-"Les plugins inclus dans le navigateur sont choisis avec soin et configurés "
-"avec une attention particulière pour la sécurité. **Si vous installez des "
-"plugins additionnels ou modifiez leur configuration, vous pouvez rompre "
-"votre anonymat.**"
+"la distinction entre différentes personnes utilisant Tails. <strong>Changer la configuration\n"
+"par défaut peut vous rendre différentiable et ainsi menacer votre anonymat.</strong>\n"
 
 #. type: Plain text
 #, no-wrap
@@ -168,6 +120,84 @@ msgstr ""
 "Toutes les fonctionnalités de persistance sont optionnelles et nécessitent d'être\n"
 "explicitement activées. Seules les fichiers et dossiers que vous sélectionnez sont\n"
 "sauvegardés.\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "<a id=\"open_other_systems\"></a>\n"
+msgstr "<a id=\"open_other_systems\"></a>\n"
+
+#. type: Title =
+#, no-wrap
+msgid "Opening the persistent volume from other operating systems\n"
+msgstr "Accéder au volume persistant depuis un autre système d'exploitation\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"**It is possible to\n"
+"open the persistent volume from other operating systems. But, doing so might\n"
+"compromise the security provided by Tails.**\n"
+msgstr ""
+"**Il est possible d'ouvrir le volume persistant depuis un autre système\n"
+"d'exploitation, mais cela pourrait mettre en péril la sécurité de vos données.**\n"
+
+#. type: Plain text
+msgid ""
+"For example, image thumbnails might be created and saved by the other "
+"operating system. Or, the contents of files might be indexed by the other "
+"operating system."
+msgstr ""
+"Par exemple, des miniatures d'images pourraient être crées et sauvegardées "
+"par l'autre système d'exploitation. Ou le contenu de fichiers pourrait être "
+"indexé par l'autre système."
+
+#. type: Plain text
+msgid ""
+"Other operating systems should probably not be trusted to handle sensitive "
+"information or leave no trace."
+msgstr ""
+"Il n'est pas conseillé d'utiliser un autre système d'exploitation pour "
+"manipuler\n"
+"des informations sensibles ou pour ne laisser aucune trace sur l'ordinateur "
+"utilisé."
+
+#~ msgid "<a id=\"installing_programs\"></a>\n"
+#~ msgstr "<a id=\"installing_programs\"></a>\n"
+
+#~ msgid "Installing additional programs\n"
+#~ msgstr "Installation de logiciels additionnels\n"
+
+#~ msgid ""
+#~ "To protect your anonymity and leave no trace, Tails developers select and "
+#~ "configure with care programs that work well together. **Installing "
+#~ "additional programs may introduce unpredictable problems and may break "
+#~ "the protections built-in Tails.** Tails developers may not want or may "
+#~ "not be capable of helping you to solve those problems."
+#~ msgstr ""
+#~ "Afin de protéger votre anonymat et de ne pas laisser de traces, les "
+#~ "développeurs de Tails sélectionnent et configurent avec soin des "
+#~ "logiciels qui fonctionnent correctement ensemble. **L'installation de "
+#~ "logiciels additionnels peut provoquer des problèmes imprévisibles et "
+#~ "altérer les règles de sécurité incluses dans Tails.** Les développeurs de "
+#~ "Tails ne voudront ou ne pourront peut-être pas résoudre ces problèmes."
+
+#~ msgid "<a id=\"browser_plugins\"></a>\n"
+#~ msgstr "<a id=\"browser_plugins\"></a>\n"
+
+#~ msgid "Browser plugins\n"
+#~ msgstr "Les modules complémentaires du navigateur\n"
+
+#~ msgid ""
+#~ "The web browser is a central part in a system like Tails. The plugins "
+#~ "included in the browser are carefully chosen and configured with security "
+#~ "in mind. **If you install other plugins or change their configuration, "
+#~ "you can break your anonymity.**"
+#~ msgstr ""
+#~ "Le navigateur web est un élément central d'un système tel que Tails. Les "
+#~ "modules complémentaires inclus dans le navigateur sont choisis avec soin "
+#~ "et configurés avec une attention particulière pour la sécurité. **Si vous "
+#~ "installez d'autres modules complémentaires ou modifiez leur "
+#~ "configuration, vous pouvez rompre votre anonymat.**"
 
 #~ msgid ""
 #~ "Note also that **secure deletion does not work as expected on USB sticks."

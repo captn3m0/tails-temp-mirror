@@ -1,100 +1,117 @@
 require 'packetfu'
-require 'ipaddr'
 
-# Extent IPAddr with a private/public address space checks
-class IPAddr
-  PrivateIPv4Ranges = [
-    IPAddr.new("10.0.0.0/8"),
-    IPAddr.new("172.16.0.0/12"),
-    IPAddr.new("192.168.0.0/16"),
-    IPAddr.new("255.255.255.255/32")
-  ]
+def looks_like_dhcp_packet?(eth_packet, protocol, sport, dport, ip_packet)
+  protocol == "udp" && sport == 68 && dport == 67 && 
+    eth_packet.eth_daddr == "ff:ff:ff:ff:ff:ff" &&
+    ip_packet && ip_packet.ip_daddr == "255.255.255.255"
+end
 
-  PrivateIPv6Ranges = [
-    IPAddr.new("fc00::/7"),   # private
-  ]
+def is_rarp_packet?(p)
+  # Details: https://www.netometer.com/qa/rarp.html#A13
+  p.force_encoding("UTF-8").start_with?(
+    "\xFF\xFF\xFF\xFF\xFF\xFFRT\x00\xAC\xDD\xEE\x805\x00\x01\b\x00\x06"
+  ) && (p[19] == "\x03" || p[19] == "\x04")
+end
 
-  def private?
-    if self.ipv4?
-      PrivateIPv4Ranges.each do |ipr|
-        return true if ipr.include?(self)
-      end
-      return false
+# Returns the unique edges (based on protocol, source/destination
+# address/port) in the graph of all network flows.
+def pcap_connections_helper(pcap_file, opts = {})
+  opts[:ignore_dhcp] = true unless opts.has_key?(:ignore_dhcp)
+  opts[:ignore_arp] = true unless opts.has_key?(:ignore_arp)
+  opts[:ignore_sources] ||= [$vm.vmnet.bridge_mac]
+  connections = Array.new
+  packets = PacketFu::PcapFile.new.file_to_array(:filename => pcap_file)
+  packets.each do |p|
+    if PacketFu::EthPacket.can_parse?(p)
+      eth_packet = PacketFu::EthPacket.parse(p)
     else
-      PrivateIPv6Ranges.each do |ipr|
-        return true if ipr.include?(self)
+      if is_rarp_packet?(p)
+        # packetfu cannot parse RARP, see #16825.
+        next
+      else
+        raise FirewallAssertionFailedError.new(
+                'Found something that is not an ethernet packet'
+              )
       end
-      return false
     end
-  end
+    sport = nil
+    dport = nil
+    if PacketFu::IPv6Packet.can_parse?(p)
+      ip_packet = PacketFu::IPv6Packet.parse(p)
+      protocol = 'ipv6'
+    elsif PacketFu::TCPPacket.can_parse?(p)
+      ip_packet = PacketFu::TCPPacket.parse(p)
+      protocol = 'tcp'
+      sport = ip_packet.tcp_sport
+      dport = ip_packet.tcp_dport
+    elsif PacketFu::UDPPacket.can_parse?(p)
+      ip_packet = PacketFu::UDPPacket.parse(p)
+      protocol = 'udp'
+      sport = ip_packet.udp_sport
+      dport = ip_packet.udp_dport
+    elsif PacketFu::ICMPPacket.can_parse?(p)
+      ip_packet = PacketFu::ICMPPacket.parse(p)
+      protocol = 'icmp'
+    elsif PacketFu::IPPacket.can_parse?(p)
+      ip_packet = PacketFu::IPPacket.parse(p)
+      protocol = 'ip'
+    elsif PacketFu::ARPPacket.can_parse?(p)
+      ip_packet = PacketFu::ARPPacket.parse(p)
+      protocol = 'arp'
+    else
+      raise FirewallAssertionFailedError.new(
+              "Found something that cannot be parsed"
+            )
+    end
 
-  def public?
-    !private?
+    next if opts[:ignore_dhcp] &&
+            looks_like_dhcp_packet?(eth_packet, protocol,
+                                    sport, dport, ip_packet)
+    next if opts[:ignore_arp] && protocol == "arp"
+    next if opts[:ignore_sources].include?(eth_packet.eth_saddr)
+
+    packet_info = {
+      mac_saddr: eth_packet.eth_saddr,
+      mac_daddr: eth_packet.eth_daddr,
+      protocol: protocol,
+      sport: sport,
+      dport: dport,
+    }
+
+    begin
+      packet_info[:saddr] = ip_packet.ip_saddr
+      packet_info[:daddr] = ip_packet.ip_daddr
+    rescue NoMethodError, NameError
+      begin
+        packet_info[:saddr] = ip_packet.ipv6_saddr
+        packet_info[:daddr] = ip_packet.ipv6_daddr
+      rescue NoMethodError, NameError
+        puts "We were hit by #11508. PacketFu bug? Packet info: #{ip_packet}"
+        packet_info[:saddr] = nil
+        packet_info[:daddr] = nil
+      end
+    end
+    connections << packet_info
+  end
+  connections.uniq.map { |p| OpenStruct.new(p) }
+end
+
+class FirewallAssertionFailedError < Test::Unit::AssertionFailedError
+end
+
+# These assertions are made from the perspective of the system under
+# testing when it comes to the concepts of "source" and "destination".
+def assert_all_connections(pcap_file, opts = {}, &block)
+  all = pcap_connections_helper(pcap_file, opts)
+  good = all.find_all(&block)
+  bad = all - good
+  unless bad.empty?
+    raise FirewallAssertionFailedError.new(
+            "Unexpected connections were made:\n" +
+            bad.map { |e| "  #{e}" } .join("\n"))
   end
 end
 
-class FirewallLeakCheck
-  attr_reader :ipv4_tcp_leaks, :ipv4_nontcp_leaks, :ipv6_leaks, :nonip_leaks
-
-  def initialize(pcap_file, tor_relays)
-    packets = PacketFu::PcapFile.new.file_to_array(:filename => pcap_file)
-    @tor_relays = tor_relays
-    ipv4_tcp_packets = []
-    ipv4_nontcp_packets = []
-    ipv6_packets = []
-    nonip_packets = []
-    packets.each do |p|
-      if PacketFu::TCPPacket.can_parse?(p)
-        ipv4_tcp_packets << PacketFu::TCPPacket.parse(p)
-      elsif PacketFu::IPPacket.can_parse?(p)
-        ipv4_nontcp_packets << PacketFu::IPPacket.parse(p)
-      elsif PacketFu::IPv6Packet.can_parse?(p)
-        ipv6_packets << PacketFu::IPv6Packet.parse(p)
-      elsif PacketFu::Packet.can_parse?(p)
-        nonip_packets << PacketFu::Packet.parse(p)
-      else
-        save_pcap_file
-        raise "Found something in the pcap file that cannot be parsed"
-      end
-    end
-    ipv4_tcp_hosts = get_public_hosts_from_ippackets ipv4_tcp_packets
-    tor_nodes = Set.new(get_all_tor_contacts)
-    @ipv4_tcp_leaks = ipv4_tcp_hosts.select{|host| !tor_nodes.member?(host)}
-    @ipv4_nontcp_leaks = get_public_hosts_from_ippackets ipv4_nontcp_packets
-    @ipv6_leaks = get_public_hosts_from_ippackets ipv6_packets
-    @nonip_leaks = nonip_packets
-  end
-
-  # Returns a list of all unique non-LAN destination IP addresses
-  # found in `packets`.
-  def get_public_hosts_from_ippackets(packets)
-    hosts = []
-    packets.each do |p|
-      candidate = nil
-      if p.kind_of?(PacketFu::IPPacket)
-        candidate = p.ip_daddr
-      elsif p.kind_of?(PacketFu::IPv6Packet)
-        candidate = p.ipv6_header.ipv6_daddr
-      else
-        save_pcap_file
-        raise "Expected an IP{v4,v6} packet, but got something else:\n" +
-              p.peek_format
-      end
-      if candidate != nil and IPAddr.new(candidate).public?
-        hosts << candidate
-      end
-    end
-    hosts.uniq
-  end
-
-  # Returns an array of all Tor relays and authorities, i.e. all
-  # Internet hosts Tails ever should contact.
-  def get_all_tor_contacts
-    @tor_relays + $tor_authorities
-  end
-
-  def empty?
-    @ipv4_tcp_leaks.empty? and @ipv4_nontcp_leaks.empty? and @ipv6_leaks.empty? and @nonip_leaks.empty?
-  end
-
+def assert_no_connections(pcap_file, opts = {}, &block)
+  assert_all_connections(pcap_file, opts) { |*args| not(block.call(*args)) }
 end

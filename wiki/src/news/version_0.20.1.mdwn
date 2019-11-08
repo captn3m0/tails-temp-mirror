@@ -1,4 +1,5 @@
-[[!meta date="Thu Sep 19 13:30:00 2013"]]
+[[!meta date="Thu, 19 Sep 2013 13:30:00 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!meta title="Tails 0.20.1 is out"]]
 [[!tag announce]]
 
@@ -65,7 +66,7 @@ Click on the <span class="guilabel">Close</span> button.
 
 # I want to try it or to upgrade!
 
-Go to the [[download]] page.
+Go to the [[install]] page.
 
 As no software is ever perfect, we maintain a list of [[problems
 that affects the last release of Tails|support/known_issues]].

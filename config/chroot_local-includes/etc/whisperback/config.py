@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 #
-# Tails configuration file for Whisperback
+# Tails configuration file for WhisperBack
 # ==========================================
 #
-# This is a python script that will be read at startup. Any python
+# This is a Python script that will be read at startup. Any Python
 # syntax is valid.
 
 # IMPORTS
@@ -12,16 +12,18 @@
 import os
 import subprocess
 import random
+import re
 import locale
 import gettext
 
 # DOCUMENTATION
 
+
 def __get_localised_doc_link():
     """Return the link to the localised documentation
 
-    @returns  the link to the localised documentation if available, or to the
-            english version
+    @returns  the link to the localised documentation if available, or fallback
+              to the English version
     """
 
     # Try to get the list of supported languages codes supported by the
@@ -48,16 +50,19 @@ def __get_localised_doc_link():
         localised_doc_language = 'en'
 
     return ("file:///usr/share/doc/tails/website/doc/first_steps/bug_reporting." +
-        localised_doc_language +
-        ".html")
+            localised_doc_language +
+            ".html")
+
 
 def _(string):
     try:
-        string = gettext.translation("tails", "/usr/share/locale").lgettext(string)
+        encoded = gettext.translation("tails", "/usr/share/locale").lgettext(string)
+        string = encoded.decode('utf-8')
     except IOError:
         pass
     finally:
         return string
+
 
 # The right panel help (HTML string)
 html_help = _(
@@ -81,7 +86,7 @@ confirm that you are using Tails.
 
 # The path to the OpenPGP keyring to use. If None, use OpenPGP default
 # keyring.
-gnupg_keyring = "/usr/share/keyrings/tails-keyring.gpg"
+gnupg_keyring = "/usr/share/keyrings/whisperback-keyring.gpg"
 
 # RECIPIENT
 #
@@ -90,7 +95,7 @@ gnupg_keyring = "/usr/share/keyrings/tails-keyring.gpg"
 # The address of the recipient
 to_address = "tails-bugs@boum.org"
 
-# The fingerprint of the recipient's GPG key 
+# The fingerprint of the recipient's GPG key
 to_fingerprint = "1F56EDD30741048035DAC1C5EC57B56EF0C43132"
 
 # SENDER
@@ -105,13 +110,18 @@ from_address = "devnull@tails.boum.org"
 # This section defines the SMTP server parameters
 #
 # The SMTP server to use to send the mail
-smtp_host = "4mvq3pnvid3awjln.onion"
+smtp_host = "xgvhluz6szspb2od6yi37cs4tdm27hgjunbig23yc5hxececcax5wlyd.onion"
 # The port to connect to on that SMTP server
 smtp_port = 25
-# The path to a file containing the certificate to trust
-# This can be either a CA certificate used to sign the SMTP server
-# certificate or the certificate of the SMTP server itself
-smtp_tlscafile = "/etc/whisperback/4mvq3pnvid3awjln.onion.pem"
+
+# SOCKS
+#
+# This section defines the SOCKS proxy parameters
+#
+# The SOCKS proxy to use to send the mail
+socks_host = "127.0.0.1"
+# The port to connect to on that SOCKS proxy
+socks_port = 9062
 
 # MESSAGE
 #
@@ -121,49 +131,51 @@ smtp_tlscafile = "/etc/whisperback/4mvq3pnvid3awjln.onion.pem"
 # Please take into account that this will not be encrypted
 mail_subject = "Bug report: %x" % random.randrange(16**32)
 
-# A callback function to get information to prepend to the mail
-# (this information will be encrypted). This is useful to add
-# software version.
-# 
-# It should not take any parameter, and should return a string to be
-# preprended to the email
+
 def mail_prepended_info():
-    """Returns the version of the running amnesia system
-    
-    @return The output of tails-version, if any, or an english string 
+    """Returns the version of the running Tails system
+    A callback function to get information to prepend to the mail
+    (this information will be encrypted). This is useful to add
+    software version.
+
+    It should not take any parameter, and should return a string to be
+    preprended to the email
+
+    @return The output of tails-version, if any, or an English string
             explaining the error
     """
-  
-    try:
-      amnesia_version_process = subprocess.Popen ("tails-version", 
-                                                 stdout=subprocess.PIPE)
-      amnesia_version_process.wait()
-      amnesia_version = amnesia_version_process.stdout.read()
-    except OSError:
-      amnesia_version = "tails-version command not found"
-    except subprocess.CalledProcessError:
-      amnesia_version = "tails-version returned an error"
-    
-    return "Tails-Version: %s\n" % amnesia_version
 
-# A callback function to get information to append to the email
-# (this information will be encrypted). This is useful to add
-# configuration files usebul for debugging.
-# 
-# It should not take any parameter, and should return a string to be
-# appended to the email
+    try:
+        tails_version_process = subprocess.Popen("tails-version",
+                                                 stdout=subprocess.PIPE)
+        tails_version_process.wait()
+        tails_version = tails_version_process.stdout.read().decode('utf-8')
+    except OSError:
+        tails_version = "tails-version command not found"
+    except subprocess.CalledProcessError:
+        tails_version = "tails-version returned an error"
+
+    return "Tails-Version: %s\n" % tails_version
+
+
 def mail_appended_info():
-    """Returns debugging informations on the running amnesia system
-    
-    @return a long string containing debugging informations
+    """Returns debugging information on the running Tails system
+    A callback function to get information to append to the email
+    (this information will be encrypted). This is useful to add
+    configuration files useful for debugging.
+
+    It should not take any parameter, and should return a string serialized
+    json to be deserialized to append infos to the email
+
+    @return a string containing serialized json with debugging information
     """
     debugging_info = ""
 
     try:
-        process = subprocess.Popen (["sudo", "/usr/local/sbin/tails-debugging-info"], 
-                                    stdout=subprocess.PIPE)
+        process = subprocess.Popen(["sudo", "/usr/local/sbin/tails-debugging-info"],
+                                   stdout=subprocess.PIPE)
         for line in process.stdout:
-            debugging_info += line
+            debugging_info += re.sub(r'^--\s*', '', line.decode('utf-8'))
         process.wait()
     except OSError:
         debugging_info += "sudo command not found\n"

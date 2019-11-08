@@ -1,6 +1,3 @@
 [[!meta title="Help other Tails users"]]
 
-Providing assistance to other users on our support channels is of great help:
-
-  - [[tails-support mailing list|support/tails-support]]
-  - [[#tails channel on our IRC|contribute/talk]]
+Providing assistance to other users in our [[users chat room|support/chat]] is of great help.

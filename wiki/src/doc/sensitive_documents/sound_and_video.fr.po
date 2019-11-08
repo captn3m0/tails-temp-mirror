@@ -5,15 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-07-21 03:22+0300\n"
-"PO-Revision-Date: 2012-09-09 10:13-0000\n"
-"Last-Translator: \n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Tails\n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-08-29 08:06+0000\n"
+"PO-Revision-Date: 2019-09-23 22:09+0000\n"
+"Last-Translator: xin <xin@riseup.net>\n"
+"Language-Team: Tails translators <tails@boum.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.20\n"
 
 #. type: Plain text
 #, no-wrap
@@ -22,59 +25,71 @@ msgstr "[[!meta title=\"Son et vidéo\"]]\n"
 
 #. type: Plain text
 msgid "Tails includes several sound and video applications:"
-msgstr "Tails inclut de nombreuses applications pour le son et la video :"
+msgstr "Tails inclut plusieurs applications pour le son et la vidéo :"
 
 #. type: Bullet: '  - '
 msgid ""
-"**<span class=\"application\">[Audacity](http://audacity.sourceforge.net/)</"
+"**<span class=\"application\">[Audacity](https://www.audacityteam.org/)</"
 "span>** is a multi-track audio editor designed for recording, playing and "
 "editing of digital audio.  See the [official documentation](http://manual."
-"audacityteam.org/o/)."
+"audacityteam.org/)."
 msgstr ""
-"**<span class=\"application\">[Audacity](http://audacity.sourceforge.net/)</"
-"span>** est un éditeur audio multipiste permettant l'enregistrement, la "
+"**<span class=\"application\">[Audacity](https://www.audacityteam.org/)</"
+"span>** est un éditeur audio multipistes permettant l'enregistrement, la "
 "lecture et la modification de données audio de manière intuitive. Consultez "
-"la [documentation officielle](http://manual.audacityteam.org/o/) (en "
-"anglais) ou [ce guide en français](http://manual.audacityteam.org/man/"
-"Main_Page/fr)."
+"la [documentation officielle](http://manual.audacityteam.org/) (en anglais)."
 
 #. type: Bullet: '  - '
 msgid ""
-"**<span class=\"application\">[Brasero](http://projects.gnome.org/brasero/)</"
-"span>** is an application to burn, copy, and erase CD and DVD media: audio, "
-"video, or data.  See the [official documentation](https://help.gnome.org/"
-"users/brasero/stable/)."
+"**<span class=\"application\">[Brasero](https://wiki.gnome.org/Apps/"
+"Brasero)</span>** is an application to burn, copy, and erase CD and DVD "
+"media: audio, video, or data.  See the [official documentation](https://help."
+"gnome.org/users/brasero/stable/)."
 msgstr ""
-"**<span class=\"application\">[Brasero](http://projects.gnome.org/brasero/)</"
-"span>** est une application permettant de graver, copier et effacer des CD "
-"et DVD contenant de la vidéo, du son ou des données. Voir la [documentation "
-"officielle](https://help.gnome.org/users/brasero/stable/index.html.fr)."
+"**<span class=\"application\">[Brasero](https://wiki.gnome.org/Apps/"
+"Brasero)</span>** est une application permettant de graver, copier et "
+"effacer des CD et DVD contenant de la vidéo, du son ou des données. Voir la "
+"[documentation officielle](https://help.gnome.org/users/brasero/stable/index."
+"html.fr)."
 
 #. type: Bullet: '  - '
 msgid ""
-"**<span class=\"application\">[Pitivi](http://www.pitivi.org/)</span>** is a "
-"video editor.  See the [official documentation](http://www.pitivi.org/"
-"manual/)."
+"**<span class=\"application\">[Sound Juicer](https://wiki.gnome.org/Apps/"
+"SoundJuicer)</span>** is a CD ripper application."
 msgstr ""
-"**<span class=\"application\">[Pitivi](http://www.pitivi.org/)</span>** est "
-"un logiciel de montage vidéo. Voir la [documentation officielle](http://www."
-"pitivi.org/manual/) (en anglais)."
+"**<span class=\"application\">[Sound Juicer](https://wiki.gnome.org/Apps/"
+"SoundJuicer)</span>** est un logiciel permettant d'encoder les CD."
 
 #. type: Bullet: '  - '
 msgid ""
-"**<span class=\"application\">[Sound Juicer](http://burtonini.com/blog/"
-"computers/sound-juicer)</span>** is a CD ripper application."
+"**<span class=\"application\">Sound Recorder</span>** is a simple "
+"application to record sound. Sound clips recorded using <span class="
+"\"application\">Sound Recorder</span> are saved to the <span class=\"filename"
+"\">Recordings</span> folder."
 msgstr ""
-"**<span class=\"application\">[Sound Juicer](http://burtonini.com/blog/"
-"computers/sound-juicer)</span>** est un logiciel permettant d'encoder les CD."
+"**<span class=\"application\">Enregistreur de son</span>** est une "
+"application simple pour enregistrer du son. Les séquences audio enregistrées "
+"avec l'<span class=\"application\">Enregistreur de son</span> sont "
+"sauvegardées dans le dossier <span class=\"filename\">Enregistrements</span>."
 
 #. type: Bullet: '  - '
 msgid ""
-"**<span class=\"application\">[Traverso](http://traverso-daw.org/)</span>** "
-"is a multi-track audio recorder and editor."
+"**<span class=\"application\">Videos</span>** is an audio and video player."
 msgstr ""
-"**<span class=\"application\">[Traverso](http://traverso-daw.org/)</span>** "
-"est un logiciel d'enregistrement et de montage audio et vidéo."
+"**<span class=\"application\">Vidéos</span>** est un lecteur audio et vidéo."
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"    For more advanced features, you can install the\n"
+"    [<span class=\"application\">VLC</span> media player](https://www.videolan.org/vlc/)\n"
+"    using the [[Additional Software|doc/first_steps/additional_software]] feature.\n"
+msgstr ""
+"    Pour des fonctionnalités plus avancées, vous pouvez installer le\n"
+"    [lecteur multimédia <span class=\"application\""
+">VLC</span>](https://www.videolan.org/vlc/index.fr.html)\n"
+"    en utilisant la fonctionnalité [[Logiciels additionnels|doc/first_steps/"
+"additional_software]].\n"
 
 #. type: Plain text
 #, no-wrap
@@ -91,5 +106,19 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/sensitive_documents/persistence\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/sensitive_documents/persistence.fr\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/sensitive_documents/persistence\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/sensitive_documents/persistence.fr\" raw=\"yes\" sort=\"age\"]]\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "[[!inline pages=\"doc/sensitive_documents/metadata\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/sensitive_documents/metadata.fr\" raw=\"yes\" sort=\"age\"]]\n"
+
+#~ msgid ""
+#~ "**<span class=\"application\">[Pitivi](http://pitivi.org/)</span>** is a "
+#~ "video editor.  See the [official documentation](http://pitivi.org/"
+#~ "manual/)."
+#~ msgstr ""
+#~ "**<span class=\"application\">[Pitivi](http://pitivi.org/)</span>** est "
+#~ "un logiciel de montage vidéo. Voir la [documentation officielle](http://"
+#~ "pitivi.org/manual/) (en anglais)."

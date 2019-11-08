@@ -6,39 +6,41 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sACKAGE VERSION\n"
-"POT-Creation-Date: 2014-06-08 19:38+0300\n"
-"PO-Revision-Date: 2014-05-10 20:32-0000\n"
-"Last-Translator: \n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-09-29 06:52+0000\n"
+"PO-Revision-Date: 2019-10-01 17:38+0000\n"
+"Last-Translator: xin <xin@riseup.net>\n"
 "Language-Team: sLANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.20\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!meta title=\"Tails OpenPGP public-key cryptography\"]]\n"
-msgstr "[[!meta title=\"La cryptographie à clé publique OpenPGP de Tails\"]]\n"
+msgid "[[!meta title=\"OpenPGP public-key cryptography\"]]\n"
+msgstr "[[!meta title=\"La cryptographie à clé publique OpenPGP\"]]\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"With <span class=\"application\">Tails OpenPGP Applet</span> you can\n"
+"With <span class=\"application\">OpenPGP Applet</span> you can\n"
 "**encrypt or sign text using the public key encryption of OpenPGP**.\n"
 msgstr ""
-"Avec <span class=\"application\">l'applet OpenPGP de Tails</span> vous pouvez **chiffrer\n"
-"ou signer du texte en utilisant la chiffrement par clé publique d'OpenPGP**.\n"
+"Avec <span class=\"application\">l'applet OpenPGP</span> vous pouvez **chiffrer\n"
+"ou signer du texte en utilisant le chiffrement par clé publique d'OpenPGP**.\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!inline pages=\"doc/encryption_and_privacy/gpgapplet.warning\" raw=\"yes\"]]\n"
-msgstr "[[!inline pages=\"doc/encryption_and_privacy/gpgapplet.warning.fr\" raw=\"yes\"]]\n"
+msgid "[[!inline pages=\"doc/encryption_and_privacy/gpgapplet.warning\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"doc/encryption_and_privacy/gpgapplet.warning.fr\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "<div class=\"note\">\n"
-msgstr ""
+msgstr "<div class=\"note\">\n"
 
 #. type: Plain text
 #, no-wrap
@@ -64,61 +66,60 @@ msgstr "</div>\n"
 msgid ""
 "Write your text in a text editor. **Do not write it in the web browser!**"
 msgstr ""
-"Ecrivez votre texte dans un éditeur de texte. **Ne l'écrivez pas dans le "
+"Écrivez votre texte dans un éditeur de texte. **Ne l'écrivez pas dans le "
 "navigateur web !**"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"   For example, open <span class=\"application\">gedit</span> from the menu\n"
-"   <span class=\"menuchoice\">\n"
-"     <span class=\"guimenu\">Applications</span>&nbsp;▸\n"
-"     <span class=\"guisubmenu\">Accessories</span>&nbsp;▸\n"
-"     <span class=\"guimenuitem\">gedit Text Editor</span></span>.\n"
+"   Click on <span class=\"application\">OpenPGP Applet</span> and\n"
+"   choose <span class=\"guimenuitem\">Open Text Editor</span> to open\n"
+"   <span class=\"application\">gedit</span>.\n"
 msgstr ""
-"   Par exemple, ouvrez <span class=\"application\">gedit</span> depuis\n"
-"   <span class=\"menuchoice\">\n"
-"     <span class=\"guimenu\">Applications</span>&nbsp;▸\n"
-"     <span class=\"guisubmenu\">Accessoires</span>&nbsp;▸\n"
-"     <span class=\"guimenuitem\">Éditeur de texte gedit</span></span>.\n"
+"   Cliquer sur l'<span class=\"application\">applet OpenPGP</span> et\n"
+"   choisir <span class=\"guimenuitem\">Ouvrir l'Éditeur de Texte</span> pour ouvrir\n"
+"   <span class=\"application\">gedit</span>.\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
 "2. Select with the mouse the text that you want to encrypt or sign. To\n"
 "copy it into the [[!wikipedia Clipboard_(computing) desc=\"clipboard\"]],\n"
-"right-click on the selected text and choose <span\n"
+"right-click (on Mac, click with two fingers) on the selected text and choose <span\n"
 "class=\"guimenuitem\">Copy</span> from the menu.\n"
 msgstr ""
-"2. Sélectionnez avec la souris le texte que vous voulez chiffrer ou signer. Pour le\n"
-"copier dans le [[!wikipedia_fr Presse-papier_(informatique) desc=\"presse-papier\"]],\n"
-"faire clic droit sur le texte sélectionné et choisir <span\n"
+"2. Sélectionnez avec la souris le texte que vous voulez chiffrer ou signer. "
+"Pour le\n"
+"copier dans le [[!wikipedia_fr Presse-papier_(informatique) desc=\"presse-"
+"papier\"]],\n"
+"faire clic droit (sur Mac, cliquer avec deux doigts) sur le texte "
+"sélectionné et choisir <span\n"
 "class=\"guimenuitem\">Copier</span> dans le menu.\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"   <span class=\"application\">Tails OpenPGP Applet</span> now shows\n"
+"   <span class=\"application\">OpenPGP Applet</span> now shows\n"
 "   lines of text, meaning that the clipboard contains non-encrypted\n"
-"   text.\n"
+"   text:\n"
 msgstr ""
-"   <span class=\"application\">L'applet OpenPGP de Tails</span> affiche\n"
+"   <span class=\"application\">L'applet OpenPGP</span> affiche\n"
 "   désormais des lignes de texte, signifiant que le presse-papier contient\n"
-"   du texte non-chiffré.\n"
+"   du texte non-chiffré :\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img gpgapplet_with_text.png link=no alt=\"Tails OpenPGP Applet with lines of text\"]]\n"
-msgstr "   [[!img gpgapplet_with_text.png link=no alt=\"Applet Tails OpenPGP avec des lignes de texte\"]]\n"
+msgid "   [[!img gpgapplet_with_text.png link=\"no\" class=\"symbolic\" alt=\"\"]]\n"
+msgstr "   [[!img gpgapplet_with_text.png link=\"no\" class=\"symbolic\" alt=\"\"]]\n"
 
 #. type: Bullet: '3. '
 msgid ""
-"Click on <span class=\"application\">Tails OpenPGP Applet</span> and select "
-"<span class=\"guimenuitem\">Sign/Encrypt Clipboard with Public Keys</span> "
-"from the menu."
+"Click on <span class=\"application\">OpenPGP Applet</span> and select <span "
+"class=\"guimenuitem\">Sign/Encrypt Clipboard with Public Keys</span> from "
+"the menu."
 msgstr ""
-"Cliquez sur <span class=\"application\">l'applet OpenPGP de Tails</span> et "
-"choisir <span class=\"guimenuitem\">Signer/Chiffrer le presse-papier avec "
+"Cliquez sur <span class=\"application\">l'applet OpenPGP</span> et "
+"choisissez <span class=\"guimenuitem\">Signer/Chiffrer le presse-papier avec "
 "une clé publique</span> dans le menu."
 
 #. type: Plain text
@@ -186,62 +187,59 @@ msgstr ""
 #, no-wrap
 msgid ""
 "8. If you selected one or several public keys to encrypt the text,\n"
-"<span class=\"application\">Tails OpenPGP Applet</span> now shows a\n"
-"padlock, meaning that the clipboard contains encrypted text.\n"
+"<span class=\"application\">OpenPGP Applet</span> now shows a\n"
+"padlock, meaning that the clipboard contains encrypted text:\n"
 msgstr ""
 "8. Si vous avez sélectionné une ou plusieurs clés publiques pour chiffrer le texte,\n"
-"<span class=\"application\">L'applet OpenPGP de Tails</span> affiche désormais\n"
-"un cadenas, signifiant que le presse-papier contient du texte chiffré.\n"
+"<span class=\"application\">l'applet OpenPGP</span> affiche désormais\n"
+"un cadenas, signifiant que le presse-papier contient du texte chiffré :\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img gpgapplet_with_padlock.png link=no alt=\"Tails OpenPGP Applet with a padlock\"]]\n"
-msgstr "   [[!img gpgapplet_with_padlock.png link=no alt=\"Aplet Tails OpenPGP avec un cadenas\"]]\n"
+msgid "[[!img gpgapplet_with_padlock.png link=\"no\" class=\"symbolic\" alt=\"\"]]\n"
+msgstr "[[!img gpgapplet_with_padlock.png link=\"no\" class=\"symbolic\" alt=\"\"]]\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
 "   If you only selected a secret key to sign the text, <span\n"
-"   class=\"application\">Tails OpenPGP Applet</span> now shows a seal, meaning that the\n"
-"   clipboard contains signed text.\n"
+"   class=\"application\">OpenPGP Applet</span> now shows a seal, meaning that the\n"
+"   clipboard contains signed text:\n"
 msgstr ""
 "   Si vous avez seulement sélectionné une clé privée pour signer le texte,\n"
-"   <span class=\"application\">l'applet GnuPG de Tails</span> affiche désormais un sceau,\n"
-"   signifiant que le presse-papier contient du texte signé.\n"
+"   <span class=\"application\">l'applet OpenPGP</span> affiche désormais un sceau,\n"
+"   signifiant que le presse-papier contient du texte signé :\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "   [[!img gpgapplet_with_seal.png link=no alt=\"Tails OpenPGP Applet with a seal\"]]\n"
-msgstr "   [[!img gpgapplet_with_seal.png link=no alt=\"Applet Tails OpenPGP avec un sceau\"]]\n"
+msgid "   [[!img gpgapplet_with_seal.png link=\"no\" class=\"symbolic\" alt=\"\"]]\n"
+msgstr "   [[!img gpgapplet_with_seal.png link=\"no\" class=\"symbolic\" alt=\"\"]]\n"
 
 #. type: Bullet: '9. '
 msgid ""
 "To paste the encrypted or signed text into another application, right-click "
-"in the application where you want to paste it and choose <span class="
-"\"guimenuitem\">Paste</span> from the menu."
+"(on Mac, click with two fingers) in the application where you want to paste "
+"it and choose <span class=\"guimenuitem\">Paste</span> from the menu."
 msgstr ""
 "Pour coller le texte chiffré ou signé dans une autre application, faire clic "
-"droit dans l'application où vous voulez le coller et choisir <span class="
-"\"guimenuitem\">Coller</span> dans le menu."
+"droit (sur Mac, cliquer avec deux doigts) dans l'application où vous voulez "
+"le coller et choisir <span class=\"guimenuitem\">Coller</span> dans le menu."
 
 #. type: Plain text
 #, no-wrap
 msgid "   For example, you can paste it into the web browser to send it by email.\n"
-msgstr "   Par exemple, vous pouvez le coller dans le navigateur web pour l'envoyer par email.\n"
+msgstr "   Par exemple, vous pouvez le coller dans le navigateur web pour l'envoyer par courrier électronique.\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"   [[!img browser_paste.png link=no alt=\"Encrypted text starting with\n"
+"   [[!img browser_paste.png link=\"no\" alt=\"Encrypted text starting with\n"
 "   -----BEGIN PGP MESSAGE-----\"]]\n"
+"<div class=\"tip\">\n"
 msgstr ""
-"   [[!img browser_paste.png link=no alt=\"Texte chiffré commençant par\n"
+"   [[!img browser_paste.png link=\"no\" alt=\"Texte chiffré commençant par\n"
 "   -----BEGIN PGP MESSAGE-----\"]]\n"
-
-#. type: Plain text
-#, no-wrap
-msgid "<div class=\"tip\">\n"
-msgstr ""
+"<div class=\"tip\">\n"
 
 #. type: Plain text
 #, no-wrap
@@ -257,15 +255,29 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "<div class=\"next\">\n"
-msgstr "<div class=\"suivant\">\n"
+msgstr "<div class=\"next\">\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
 "You can also [[decrypt or verify a text that is encrypted or signed using\n"
-"public-key cryptography|decrypt_verify]] using <span class=\"application\">Tails\n"
+"public-key cryptography|decrypt_verify]] using <span class=\"application\">\n"
 "OpenPGP Applet</span>.\n"
 msgstr ""
 "Vous pouvez également [[déchiffrer ou vérifier un texte chiffré ou signé grâce\n"
-"à la crytographie à clé publique|decrypt_verify]] en utilisant <span class=\"application\">\n"
-"l'applet GnuPG de Tails</span>.\n"
+"à la cryptographie à clé publique|decrypt_verify]] en utilisant <span class=\"application\">\n"
+"l'applet OpenPGP</span>.\n"
+
+#~ msgid ""
+#~ "   For example, open <span class=\"application\">gedit</span> from the "
+#~ "menu\n"
+#~ "   <span class=\"menuchoice\">\n"
+#~ "     <span class=\"guimenu\">Applications</span>&nbsp;▸\n"
+#~ "     <span class=\"guisubmenu\">Accessories</span>&nbsp;▸\n"
+#~ "     <span class=\"guimenuitem\">gedit Text Editor</span></span>.\n"
+#~ msgstr ""
+#~ "   Par exemple, ouvrez <span class=\"application\">gedit</span> depuis\n"
+#~ "   <span class=\"menuchoice\">\n"
+#~ "     <span class=\"guimenu\">Applications</span>&nbsp;▸\n"
+#~ "     <span class=\"guisubmenu\">Accessoires</span>&nbsp;▸\n"
+#~ "     <span class=\"guimenuitem\">Éditeur de texte gedit</span></span>.\n"

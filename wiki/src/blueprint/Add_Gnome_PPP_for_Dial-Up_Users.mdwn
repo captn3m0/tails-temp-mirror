@@ -9,7 +9,7 @@ reach the Internet when broadband operators have been shut down.
 # Roadmap
 
 **Next thing to do**: make up our mind wrt. towards which one of the
-possible solutions we want to go: [[todo/choose_direction_for_PPP_support]].
+possible solutions we want to go: [[!tails_ticket 6045]].
 
 Possible solutions:
 
@@ -18,13 +18,13 @@ Possible solutions:
    we want.
  * find alternative ways to use WvDial or PPP.
 
-Ideal solution: [[todo/NetworkManager:_PSTN_dial-up]]
+Ideal solution: [[!tails_ticket 5543]]
 
 # Research
 
 NetworkManager (and ModemManager) have full support for **mobile** modems. But
-nothing for old school dial-up modems at the moment: see [b.g.o #348330 -
-Tracker: Integrated PPP support](https://bugzilla.gnome.org/show_bug.cgi?id=348330)
+nothing for old school dial-up modems at the moment:
+see [[!gnomebug 348330 desc="Integrated PPP support"]]
 
 Fallback option: provide GNOME PPP, a GUI front-end to old but trusty WvDial.
 

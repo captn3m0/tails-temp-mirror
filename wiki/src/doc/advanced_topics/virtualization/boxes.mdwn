@@ -4,15 +4,11 @@
 interface to create and use virtual machines for Linux with GNOME.
 *GNOME Boxes* does not allow to use a persistent volume.
 
-[[!inline pages="doc/advanced_topics/virtualization.caution" raw="yes"]]
+[[!inline pages="doc/advanced_topics/virtualization.caution" raw="yes" sort="age"]]
 
 <div class="note">
 
-<p>In Debian Wheezy, Ubuntu 14.04, and earlier,
-<span class="application">GNOME Boxes</span> allocates only 512 MiB of
-RAM to new virtual machines by default. This is too little to allow
-Tails to run smoothly. We recommend you to reconfigure the virtual
-machine and allocate at least 1 GiB of RAM.</p>
+<p>The following instructions have been tested on Debian Jessie.</p>
 
 </div>
 
@@ -22,7 +18,7 @@ Installation
 To install *GNOME Boxes* in Debian or Ubuntu, execute the following
 command:
 
-    sudo apt-get install gnome-boxes
+    sudo apt install gnome-boxes
 
 Running Tails from an ISO image
 ===============================
@@ -50,11 +46,9 @@ versa.</p>
 
 To disable the shared clipboard:
 
-  1. Click on the
-     [[!img preferences-system-symbolic.png alt="Preferences" class=symbolic link=no]]
-     button on the top-right corner of the window.
-  2. Select the **Display** screen in the left pane.
-  3. Deactivate **Share clipboard** in the right pane.
-  4. Click on the
-     [[!img go-previous-symbolic.png alt="Previous" class=symbolic link=no]]
-     button to go back to the display of the virtual machine.
+  1. Choose
+     <span class="menuchoice">
+       <span class="guimenu">[[!img lib/open-menu.png alt="Menu" class="symbolic" link="no"]]</span>&nbsp;▸
+       <span class="guisubmenu">Properties</span></span>.
+
+  1. Deselect the <span class="guilabel">Share Clipboard</span> option.

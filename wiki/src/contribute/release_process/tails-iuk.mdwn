@@ -2,50 +2,54 @@
 
 [[!toc levels=1]]
 
-If running Wheezy or older, you will have to do the upstream part of
-the work in a Jessie chroot (e.g. with pbuilder).
+Pre-requisites
+=============
+
+* a Debian Stretch (or newer) system
+* Tails' `devel` APT suite enabled
+* the right version of the `tails-perl5lib` package installed
+* a user that has sudo credentials
+* Environment:
+  - Export location of a checkout of the `stable` branch of the main
+    Tails Git repository:
+
+    	export TAILS_GIT_CHECKOUT="$RELEASE_CHECKOUT"
 
 Install build and test dependencies
 ===================================
 
-Install build-dependencies listed in `debian/control`:
-
-    mk-build-deps -i -r
-
-Install build-dependencies from Debian:
-
-    libdist-zilla-perl libdist-zilla-plugins-cjm-perl \
-    libdist-zilla-plugin-changelogfromgit-perl \
-    libdist-zilla-plugin-installguide-perl \
-    libdist-zilla-plugin-test-perl-critic-perl \
-    libdist-zilla-plugin-test-notabs-perl \
-    libdist-zilla-plugin-git-perl \
-    liblocale-msgfmt-perl libmoosex-has-sugar-perl \
-    dh-make-perl
-
-If running something older than Jessie:
-
-    apt-get install libtest-bdd-cucumber/wheezy-backports
-
-Install build-dependencies that are not in Debian yet:
-
-    DEB_BUILD_OPTIONS=nocheck dh-make-perl --build --install --cpan Dist::Zilla::Plugin::LocaleMsgfmt
+    git checkout master && \
+    sudo apt install \
+       devscripts \
+       dh-make-perl \
+       libdist-zilla-app-command-authordebs-perl && \
+    dzil authordebs --install && \
+    git checkout debian && \
+    mk-build-deps -i -r --root-cmd sudo
 
 Update POT and PO files
 =======================
 
     git checkout master && \
-        ( cd po && make pot && make update-po ) && \
-        git commit po -m 'Update POT and PO files.'
+    "${TAILS_GIT_CHECKOUT:?}"/import-translations && \
+    "${TAILS_GIT_CHECKOUT:?}"/submodules/jenkins-tools/slaves/check_po && \
+    git add po && \
+    git commit -m 'Update POT and PO files, pull updated translations from Transifex.'
 
 Make an upstream release
 ========================
+
+    git checkout master
 
 Enable new translations in `po/PACKAGE` and commit.
 
 Export new upstream version number:
 
     export VERSION=XXX
+
+Export source date epoch:
+
+    export SOURCE_DATE_EPOCH=$(date --utc +%s)
 
 Update version number in `bin/tails-create-iuk`, commit all files that
 need to be.
@@ -56,16 +60,19 @@ need to be.
           bin/tails-create-iuk && \
        git commit bin/tails-create-iuk -m "tails-iuk $VERSION"
 
-Run the upstream test suite (point `PERL5LIB` to a checkout of the
-relevant tag of Tails' perl5lib):
+Run the upstream test suite:
 
     # get an authentication token, needed by the test suite
     sudo true
     # run the tests in closer to real conditions
     umask 077
     
-    # Run the rest of the test suite
-    RELEASE_TESTING=1 LC_ALL=C PERL5LIB=/home/user/tails/perl5lib/lib dzil test
+    # Run the test suite
+    NODE_PATH="${TAILS_GIT_CHECKOUT}/submodules/mirror-pool-dispatcher/lib/js" \
+    PATH="${TAILS_GIT_CHECKOUT}/submodules/mirror-pool-dispatcher/bin:$PATH" \
+       RELEASE_TESTING=1 \
+       LC_ALL=C \
+       dzil test
 
 Build an upstream tarball, tag the release, move the tarball out of
 the build repository and cleanup:
@@ -81,10 +88,9 @@ Checkout the branch with Debian package specifics and import the new
 upstream tarball, update `debian/changelog`:
 
     git checkout debian && \
-       git-import-orig --upstream-vcs-tag=$VERSION \
+       gbp import-orig --upstream-vcs-tag=$VERSION \
           ../Tails-IUK-$VERSION.tar.gz && \
-       git-dch --auto && \
-       dch -e
+       gbp dch --auto --spawn-editor=always
 
 (Do not forget to set the appropriate release.)
 
@@ -93,15 +99,20 @@ and then update `debian/changelog` again if needed.
 
 Commit `debian/changelog`:
 
-    git commit debian/changelog -m "$(head -n 1 debian/changelog | sed -e 's,).*,),')"
+    git commit debian/changelog \
+        -m "$(echo -e "$(dpkg-parsechangelog -SSource) ($(dpkg-parsechangelog -SVersion))\n\nGit-Dch: Ignore\n")"
 
-Build a Debian package (use a Wheezy chroot with the right version of
-`tails-perl5lib` installed), add a signed tag to the repository and
-push the changes:
+Build a Debian package (use a Buster/amd64 chroot, that has
+either tails-perl5lib
+installed or the Tails APT repository configured):
 
-    git-buildpackage && \
-       git-buildpackage --git-tag-only --git-sign-tags && \
-       git push && git push --tags
+    gbp buildpackage && \
+    gbp buildpackage --git-tag-only --git-sign-tags && \
+    git push --follow-tags origin \
+                    master:master \
+                    debian:debian \
+                    pristine-tar:pristine-tar \
+                    upstream:upstream
 
 Add the Debian package to Tails
 ===============================

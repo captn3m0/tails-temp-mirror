@@ -1,7 +1,5 @@
 [[!meta title="Documentation"]]
 
-This documentation is a work in progress and a collective task.
-
 <div class="tip">
 
 <p>If this section doesn't answer your questions, you can also look at our
@@ -16,28 +14,41 @@ documentation|/contribute/how/documentation]].
 
 # General information
 
-[[!inline pages="doc/about.index" raw="yes"]]
+[[!inline pages="doc/about.index" raw="yes" sort="age"]]
 
-# Download and verify
+# Download, installation, and upgrade
 
-[[!inline pages="doc/get.index" raw="yes"]]
+  - [[Downloading without installing|install/download]]
+  - [[Installing from another Tails (for PC)|install/win/clone-overview]]
+  - [[Installing from another Tails (for Mac)|install/mac/clone-overview]]
+  - [[Installing from Windows|install/win/usb-overview]]
+  - [[Installing from macOS|install/mac/usb-overview]]
+  - [[Installing from Linux (recommended)|install/linux/usb-overview]]
+  - [[Installing from Debian, Ubuntu, or Mint using the command line and GnuPG (experts)|install/expert/usb-overview]]
+  - [[Burning a DVD|install/dvd]]
+  - [[!traillink Upgrading_a_Tails_USB_stick|upgrade]]
+    - [[!traillink Repairing_a_Tails_USB_stick_that_fails_to_start_after_an_upgrade|upgrade/repair]]
+  - Uninstalling Tails or resetting a USB stick using
+    [[!traillink Linux|reset/linux]],
+    [[!traillink Windows|reset/windows]], or
+    [[!traillink Mac|reset/mac]]
 
 # First steps with Tails
 
-[[!inline pages="doc/first_steps.index" raw="yes"]]
+[[!inline pages="doc/first_steps.index" raw="yes" sort="age"]]
 
 # Connect to the Internet anonymously
 
-[[!inline pages="doc/anonymous_internet.index" raw="yes"]]
+[[!inline pages="doc/anonymous_internet.index" raw="yes" sort="age"]]
 
 # Encryption and privacy
 
-[[!inline pages="doc/encryption_and_privacy.index" raw="yes"]]
+[[!inline pages="doc/encryption_and_privacy.index" raw="yes" sort="age"]]
 
 # Work on sensitive documents
 
-[[!inline pages="doc/sensitive_documents.index" raw="yes"]]
+[[!inline pages="doc/sensitive_documents.index" raw="yes" sort="age"]]
 
 # Advanced topics
 
-[[!inline pages="doc/advanced_topics.index" raw="yes"]]
+[[!inline pages="doc/advanced_topics.index" raw="yes" sort="age"]]

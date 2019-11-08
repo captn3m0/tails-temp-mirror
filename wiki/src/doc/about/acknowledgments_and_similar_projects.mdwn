@@ -4,7 +4,7 @@ Acknowledgements
 ================
 
   - Tails could not exist without [[Debian|https://www.debian.org/]],
-    [[Debian Live|http://live.debian.net]], and
+    [[Debian Live|https://www.debian.org/devel/debian-live/]], and
     [[Tor|https://www.torproject.org/]]; see our
     [[contribute/relationship with upstream]] document for details.
   - Tails was inspired by the [[Incognito
@@ -12,7 +12,7 @@ Acknowledgements
     Incognito author declared it to be dead on March 23rd, 2010, and
     wrote that Tails "should be considered as its spiritual
     successor".
-  - The [[Privatix Live-System|http://mandalka.name/privatix/]] an
+  - The [[Privatix Live-System|http://mandalka.name/privatix/]] was an
     early source of inspiration, too.
   - Some ideas (in particular
     [[tordate|contribute/design/Time_syncing]] and improvements to our
@@ -29,27 +29,31 @@ if some project is listed in the wrong category.
 
 ## Active projects
 
-* [Freepto](http://www.freepto.mx/)
-* [JonDo Live-CD](https://anonymous-proxy-servers.net/en/jondo-live-cd.html)
-* [Lightweight Portable Security](http://www.spi.dod.mil/lipose.htm)
-* [SubgraphOS](https://subgraph.com/sgos/)
+<!-- We degrade projects to 'discontinued' if they don't release a new version in at least 1 year. -->
+
+* [Qubes](https://www.qubes-os.org/)
+* [Trusted End Node Security](https://spi.dod.mil/lipose.htm) (previously *Lightweight Portable Security*)
 * [Whonix](https://www.whonix.org/)
 
 ## Discontinued, abandoned or sleeping projects
 
 * [Anonym.OS](http://sourceforge.net/projects/anonym-os/)
-* [IprediaOS](http://www.ipredia.org/)
-* [ISXUbuntu](http://www.isoc-ny.org/wiki/ISXubuntu)
-* [ELE](http://www.northernsecurity.net/download/ele/) (dead link)
+* [ELE](https://web.archive.org/web/20101220113317/http://northernsecurity.net:80/download/ele/)
 * [Estrella Roja](http://distrowatch.com/table.php?distribution=estrellaroja)
-* [The Haven Project](https://www.haven-project.org/) (dead link)
-* [The Incognito LiveCD](http://web.archive.org/web/20090220133020/http://anonymityanywhere.com/)
+* [Freepto](https://web.archive.org/web/20171022102527/http://www.freepto.mx:80/en/)
+* [Heads](https://heads.dyne.org/)
+* [IprediaOS](http://www.ipredia.org/)
+* [ISXUbuntu](https://web.archive.org/web/20180625024257/http://www.isoc-ny.org/wiki/ISXUbuntu)
+* [JonDo Live-CD](https://anonymous-proxy-servers.net/en/jondo-live-cd.html)
 * [Liberté Linux](http://dee.su/liberte)
-* [Odebian](http://www.odebian.org/)
-* [onionOS](http://jamon.name/files/onionOS/) (dead link)
-* [ParanoidLinux](http://www.paranoidlinux.org/) (dead link)
+* [Odebian](https://web.archive.org/web/20140816183354/http://www.odebian.org/)
+* onionOS
+* [ParanoidLinux](https://web.archive.org/web/20090425140610/http://paranoidlinux.org:80/)
 * [Phantomix](http://phantomix.ytternhagen.de/)
-* [Polippix](http://polippix.org/)
+* [Polippix](https://web.archive.org/web/20140329210549/http://polippix.org/)
 * [Privatix](http://www.mandalka.name/privatix/)
-* [Ubuntu Privacy Remix](https://www.privacy-cd.org/)
-* [uVirtus](http://uvirtus.org/)
+* [SubgraphOS](https://subgraph.com/sgos/)
+* [The Haven Project](https://web.archive.org/web/20171005222753/http://www.haven-project.org/)
+* [The Incognito LiveCD](http://web.archive.org/web/20090220133020/http://anonymityanywhere.com/)
+* [Discreete Linux](https://www.privacy-cd.org/)
+* [uVirtus](https://web.archive.org/web/20131030050159/https://www.uvirtus.org/)

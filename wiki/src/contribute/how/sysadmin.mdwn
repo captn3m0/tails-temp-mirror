@@ -11,9 +11,10 @@ Welcome aboard! Please read-on.</p>
 
 # Read this first
 
-First of all, please read the [[goals and
-principles|contribute/working_together/roles/sysadmins#goals]] of the
-Tails system administration team.
+First of all, please read about the
+[[goals|contribute/working_together/roles/sysadmins#goals]]
+and [[principles|contribute/working_together/roles/sysadmins#principles]]
+of the Tails system administration team.
 
 # Skills needed
 
@@ -44,13 +45,13 @@ ready to learn whatever you need to know :)</li>
 We use Redmine to manage our list of tasks:
 
 * [tasks that require *Sysadmin*
-  work](https://labs.riseup.net/code/projects/tails/issues?query_id=113)
+  work](https://redmine.tails.boum.org/code/projects/tails/issues?query_id=113)
 * [tasks that belong to the *Infrastructure*
-  category](https://labs.riseup.net/code/projects/tails/issues?query_id=140)
+  category](https://redmine.tails.boum.org/code/projects/tails/issues?query_id=140)
 
 Here are a few tips to pick a task:
 
-* Focus on the issues marked as *[[Easy|easy_tasks]]* on Redmine.
+* Focus on the issues marked as *[[Starter|starter_tasks]]* on Redmine.
 * Choose something that matters for you.
 * Choose something where your singular skills are put to work.
 
@@ -103,8 +104,10 @@ To solve a problem with Puppet, you need to:
 * Or, create a new Puppet module. But first, try to find an existing
   module that can be adapted to our needs.
 
+See the [[Puppet modules|contribute/git#puppet-modules]] we already use.
+
 Many Puppet modules can be found in the [shared Puppet
-modules](https://labs.riseup.net/code/projects/sharedpuppetmodules),
+modules](https://redmine.tails.boum.org/code/projects/sharedpuppetmodules),
 the [Puppet Forge](https://forge.puppetlabs.com/), and on GitHub.
 
 To smooth the reviewing and merging process: create atomic commits,
@@ -123,6 +126,6 @@ this is great; or else you may ask us to host your repository.
 
 # Contact information
 
-Email us at <tails-sysadmins@boum.org>. We prefer receiving email
-encrypted with our OpenPGP key, that can be found on the keyservers,
-and is certified by the Tails signing key.
+Email us at [[tails-sysadmins@boum.org|about/contact#tails-sysadmins]]. We prefer receiving email
+encrypted with [[our OpenPGP key|doc/about/openpgp_keys#sysadmins]],
+that is certified by the Tails signing key.

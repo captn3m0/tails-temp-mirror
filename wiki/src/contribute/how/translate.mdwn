@@ -14,7 +14,7 @@ Welcome aboard!</p>
 Most of Tails developers are not native English speakers so you're
 more than welcome to correct or improve our English.
 For this, you can either follow the [[Git workflow|translate/with_Git]] or
-[[propose|contribute/talk]] another way that suits you better to share
+propose on [[tails-dev@boum.org|about/contact#tails-dev]] another way that suits you better to share
 your improvements with us.
 
 <a id="translate"></a>
@@ -22,58 +22,82 @@ your improvements with us.
 # Translate Tails custom programs
 
 You can help correct, improve, or complete the translations of Tails
-programs into your native language:
+programs into your native language. Read [[translating with Transifex|translate/with_Transifex]].
+Tails programs can be translated into more than 140 languages this way.
 
-* **For French**, the translation team uses Git. Read its [[dedicated
-  documentation|translate/team/fr]] for translators.
-* **For other languages**, read [[translating with
-  Transifex|translate/with_Transifex]].
-  Tails programs can be translated into more than 140 languages this way.
+<a id="website"></a>
 
 # Translate this website
 
 You can also translate this website, which includes the Tails
-[[documentation|doc]]. This is done [[translate/with_Git]].
+[[documentation|doc]]. This is done [[on the translation
+platform|translate/with_translation_platform]] or, for a more technical
+approach, [[using Git|translate/with_Git]].
 
 The translations are peer-reviewed and thus, you need to get into contact with
 a language team if you want to participate.
 In general, you can contact the translation teams via the
 [[mailing list for translators|translate#follow-up]].
 
+Translators should focus on translating and maintaining the
+[[core pages|contribute/l10n_tricks/core_po_files.txt]] first, then on
+the rest of the website.
+
 <a id="language-teams"></a>
 
-Currently, there are three active **language teams**:
+Currently, there are several active **language teams**:
 
+* [[Catalan|translate/team/ca]]
+* [[Chinese (Simplified)|translate/team/zh]]
+* [[Farsi|translate/team/fa]]
 * [[French|translate/team/fr]]
 * [[German|translate/team/de]]
 * [[Portuguese|translate/team/pt]]
+* [[Italian|translate/team/it]]
+* [[Spanish|translate/team/es]]
 
-and three new language teams are being set up:
+Other teams are being set up:
 
-* Italian
-* Spanish
 * Turkish
 
 If your language is not listed here, read the documentation
 to [[add a new language|translate/team/new]].
 
+<a id="tier-1-languages"></a>
+
+Tier-1 languages
+================
+
+We call "tier-1 languages" the languages that we consider the most
+important for our target user base:
+
+- Languages proposed on our website
+- Languages that make Tails understandable by a majority of the
+  population of the top 10 countries of either
+  - [Directly-connecting Tor clients](https://metrics.torproject.org/userstats-relay-table.html)
+  - [Tor clients connecting via bridges](https://metrics.torproject.org/userstats-bridge-table.html)
+
+In March 2019 this list was:
+
+- Arabic
+- English
+- Farsi
+- French
+- German
+- Hindi
+- Indonesian
+- Italian
+- Portuguese
+- Russian
+- Simplified Chinese
+- Spanish
+- Turkish
+
+We are particularly interested in translations in these languages and
+include language packs and dictionaries by default in Tails for them.
+
 <a id="follow-up"></a>
 
 # Mailing list for translators
 
-Translators coordinate on the tails-l10n mailing
-list (*l10n* stands for [[!wikipedia Software_localization desc="localization"]]).
-
-This is where important changes to translatable strings are announced.
-So, please subscribe to the list if you want to become a regular
-translator:
-
-<form method="POST" action="https://mailman.boum.org/subscribe/tails-l10n">
-	<input class="text" name="email" value=""/>
-	<input class="button" type="submit" value="Subscribe"/>
-</form>
-
-Any message sent to this list is stored in a [public
-archive](https://mailman.boum.org/pipermail/tails-l10n/), so beware of
-what your email content and headers reveal about yourself: location,
-IP address, email subject and content, etc.
+[[!inline pages="contribute/how/translate/tails-l10n.inline" raw="yes" sort="age"]]

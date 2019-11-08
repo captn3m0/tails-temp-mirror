@@ -2,99 +2,69 @@
 
 set -e
 
-# Do not use virtual machine proxy before apt-cacher-ng is installed
-if [ "$http_proxy" = "http://$(hostname -f):3142" ] &&
-   ! [ -f /etc/apt-cacher-ng/acng.conf ]; then
-	LOCAL_HTTP_PROXY="$http_proxy"
-	http_proxy=''
+export http_proxy="${TAILS_PROXY}"
+export DEBIAN_FRONTEND=noninteractive
+
+if [ ! -f /var/lib/vagrant_box_build_from ]; then
+	echo "${GIT_REF}" > /var/lib/vagrant_box_build_from
+else
+	if [ "$(cat /var/lib/vagrant_box_build_from)" != "${GIT_REF}" ]; then
+		echo "E: The current VM has been created to build $(cat /var/lib/vagrant_box_build_from)."
+		echo "E: Please first use rake vm:destroy before trying to build again."
+		exit 1
+	fi
 fi
 
-# Uninstall custom Ikiwiki in case the build directory is still there
-if [ -d /home/vagrant/ikiwiki ]; then
-	rm -f /usr/local/bin/ikiwiki*
-	rm -rf /usr/local/lib/perl/5.10.1/auto/IkiWiki
-	rm -rf /usr/local/share/perl/5.10.1/
-	rm -rf /home/vagrant/ikiwiki
+latest_serial(){
+	local archive="${1}"
+	(
+		cd /amnesia.git
+		auto/scripts/apt-snapshots-serials get-latest --print-serials-only ${archive}
+        )
+}
+
+if [ "${TAILS_PROXY_TYPE}" = "vmproxy" ]; then
+    echo "I: Configuring HTTP proxy..."
+    # Ensure that the apt-cacher-ng cache disk is formated and mounted
+    if [ ! -b /dev/vdb1 ]; then
+        echo '1,,83' | sfdisk /dev/vdb
+        mkfs.ext4 -m 0 /dev/vdb1
+    fi
+
+    if ! mountpoint -q /var/cache/apt-cacher-ng; then
+        e2fsck -f -p /dev/vdb1 || :
+        mount -o relatime,journal_checksum /dev/vdb1 /var/cache/apt-cacher-ng
+        chown -R apt-cacher-ng:apt-cacher-ng /var/cache/apt-cacher-ng
+    fi
+
+    # Install custom configuration for apt-cacher-ng and restart
+    install -o root -g root -m 644 /vagrant/provision/assets/acng.conf /etc/apt-cacher-ng/acng.conf
+    [ "${TAILS_OFFLINE_MODE}" = 1 ] || TAILS_OFFLINE_MODE=0
+    echo "Offlinemode: ${TAILS_OFFLINE_MODE}" > /etc/apt-cacher-ng/network.conf
+    if [ -n "${TAILS_ACNG_PROXY:-}" ]; then
+        echo "Proxy: ${TAILS_ACNG_PROXY}" >> /etc/apt-cacher-ng/network.conf
+    fi
+    systemctl restart apt-cacher-ng.service
 fi
 
-rm -f /etc/apt/preferences.d/* /etc/apt/sources.list.d/*
+echo "I: Updating debian-security APT source..."
+# Always set the latest serial for debian-security
+stable_serial="$(grep -Po '\d{10}' /etc/apt/sources.list)"
+security_serial="$(latest_serial debian-security)"
+sed -i -e "s/${stable_serial}/${security_serial}/g" /etc/apt/sources.list.d/buster-security.list
 
-# Add our builder-wheezy repository for live-build, and pin it low
-echo 'deb http://deb.tails.boum.org/ builder-wheezy main' > /etc/apt/sources.list.d/tails.list
-sed -e 's/^[[:blank:]]*//' > /etc/apt/preferences.d/tails <<EOF
-	Package: *
-	Pin: origin deb.tails.boum.org
-	Pin-Priority: 99
-EOF
-sed -e 's/^[[:blank:]]*//' > /etc/apt/preferences.d/live-build <<EOF
-	Package: live-build
-	Pin: origin deb.tails.boum.org
-	Pin-Priority: 500
-EOF
-sed -e 's/^[[:blank:]]*//' > /etc/apt/preferences.d/syslinux-utils <<EOF
-	Package: syslinux-utils
-	Pin: origin deb.tails.boum.org
-	Pin-Priority: 500
-EOF
+echo "I: Current APT sources are:"
+cat /etc/apt/sources.list /etc/apt/sources.list.d/*
 
-# We don't want to use apt-cacher-ng for gpg
-http_proxy="" gpg --keyserver hkps.pool.sks-keyservers.net --recv-key C7988EA7A358D82E
-gpg --export C7988EA7A358D82E | sudo apt-key add -
-
-# Add unstable repository for ikiwiki, and pin it low
-echo 'deb http://ftp.us.debian.org/debian unstable main' > /etc/apt/sources.list.d/unstable.list
-sed -e 's/^[[:blank:]]*//' > /etc/apt/preferences.d/unstable <<EOF
-	Package: *
-	Pin: release a=unstable
-	Pin-Priority: 99
-EOF
-sed -e 's/^[[:blank:]]*//' > /etc/apt/preferences.d/ikiwiki <<EOF
-	Package: ikiwiki
-	Pin: release a=unstable
-	Pin-Priority: 500
-EOF
-
-# Add wheezy-backports for apt-cacher-ng. The version in wheezy has problems
-# with redirects to https, which we need when fetching the TBB tarballs
-echo 'deb http://ftp.us.debian.org/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports.list
-
+echo "I: Upgrading system..."
+apt-key add /amnesia.git/config/chroot_sources/tails.binary.gpg
 apt-get update
-apt-get -o Dpkg::Options::="--force-confold" -y -t wheezy-backports install apt-cacher-ng
-
-# Install custom configuration for apt-cacher-ng and restart
-install -o root -g root -m 644 /vagrant/provision/assets/acng.conf /etc/apt-cacher-ng/acng.conf
-service apt-cacher-ng restart
-
-# Restore local HTTP proxy if needed
-if [ "$LOCAL_HTTP_PROXY" ]; then
-	http_proxy="$LOCAL_HTTP_PROXY"
-fi
-
-# Upgrade if needed
 apt-get -y dist-upgrade
 
-# Those are needed to build Tails
-apt-get -y install \
-	live-build \
-	syslinux-utils \
-	eatmydata \
-	time whois \
-	dpkg-dev \
-	git \
-	aufs-tools \
-	ikiwiki \
-	intltool \
-	gettext/wheezy-backports
-
-# Be sure to get all the modules we need for our Ikiwiki
-apt-get -y --no-install-recommends install \
-       libyaml-perl libyaml-libyaml-perl po4a perlmagick libyaml-syck-perl \
-       libfile-chdir-perl liburi-perl libhtml-parser-perl wdg-html-validator \
-       libhtml-scrubber-perl libhtml-template-perl libtimedate-perl \
-       libxml-simple-perl libtext-multimarkdown-perl
-
-# Add build script
+echo "I: Installing build script..."
 install -o root -g root -m 755 /vagrant/provision/assets/build-tails /usr/local/bin
+
+echo "I: Forcing live-build to use the mirrors configured in auto/config..."
 
 disable_live_build_conf()
 {
@@ -104,7 +74,6 @@ disable_live_build_conf()
 	sed -e "/^[[:space:]]*$var=/d" -i /etc/live/build.conf
 }
 
-# Force live-build to use the mirrors configured in auto/config
 for prefix in MIRROR PARENT_MIRROR ; do
 	for target in BOOTSTRAP BINARY CHROOT ; do
 		for archive in '' BACKPORTS SECURITY UPDATES VOLATILE ; do
@@ -118,3 +87,12 @@ for prefix in MIRROR PARENT_MIRROR ; do
 		done
 	done
 done
+
+echo "I: Cleaning up..."
+apt-get -y autoremove
+apt-get -y clean
+
+echo "I: Configuring Git..."
+# Necessary so that vagrant can merge the base branch
+git config --global user.name vagrant
+git config --global user.email vagrant@tailsbuilder

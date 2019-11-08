@@ -1,17 +1,17 @@
-[[!meta title="Tails OpenPGP Applet"]]
+[[!meta title="OpenPGP Applet"]]
 
 Tails includes a custom applet, called <span
-class="application">Tails OpenPGP Applet</span>, to manipulate text using
+class="application">OpenPGP Applet</span>, to manipulate text using
 OpenPGP.
 
-[[!inline pages="doc/encryption_and_privacy/gpgapplet.warning" raw="yes"]]
+[[!inline pages="doc/encryption_and_privacy/gpgapplet.warning" raw="yes" sort="age"]]
 
-<span class="application">Tails OpenPGP Applet</span> is located in the notification area.
+<span class="application">OpenPGP Applet</span> is located in the notification area.
 
-[[!img gpgapplet_with_text.png link=no alt="Tails OpenPGP Applet with lines of
-text"]]
+[[!img doc/first_steps/introduction_to_gnome_and_the_tails_desktop/openpgp_applet.png
+link=no alt=""]]
 
-With <span class="application">Tails OpenPGP Applet</span> you can:
+With <span class="application">OpenPGP Applet</span> you can:
 
   - [[Encrypt text with a passphrase|encryption_and_privacy/gpgapplet/passphrase_encryption]]
   - [[Encrypt and sign text with a public key|encryption_and_privacy/gpgapplet/public-key_cryptography]]

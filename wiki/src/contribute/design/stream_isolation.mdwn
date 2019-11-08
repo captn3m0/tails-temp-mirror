@@ -17,11 +17,7 @@ Tails:
 * incremental updates
 * htpdate
 * security check
-* WhisperBack (not implemented: given no other application than
-  WhisperBack has good reasons to talk to the hidden service used to
-  relay the bug reports, and the default `SocksPort` has
-  per-destination isolation on, we don't care that much isolating that
-  one from others)
+* WhisperBack
 
 Web Browser
 -----------
@@ -64,14 +60,8 @@ having Pidgin use a (not necessarily dedicated) `SocksPort` that has
 
 For the same reason, we actually want to enable `IsolateDestAddr` and
 `IsolateDestPort` for the `SocksPort` used by most applications,
-unless we tell them otherwise.
-
-The email client we ship is a special case: for the same
-multiple-accounts reason as the IM client, we want `IsolateDestAddr`
-for the MUA we ship. Adding `IsolateDestPort` to the mix would avoid
-correlating unrelated email and IM accounts, *but* it breaks
-POP-before-SMTP. Then, the MUA should use a `SocksPort` that has
-`IsolateDestAddr` enabled, but `IsolateDestPort` disabled.
+unless we tell them otherwise. It may break POP-before-SMTP
+in Thunderbird.
 
 Implementation
 ==============
@@ -81,8 +71,6 @@ in [[!tails_gitweb config/chroot_local-includes/etc/tor/torrc]]:
 
 * default system-wide `SocksPort` (9050): `IsolateDestAddr` and
   `IsolateDestPort` enabled
-* dedicated `SocksPort` for the email client (9061): `IsolateDestAddr`
-  enabled
 * dedicated `SocksPort` for Tails-specific applications (9062):
   `IsolateDestAddr` and `IsolateDestPort` enabled
 * dedicated `SocksPort` for web browser (9150): no stream
@@ -91,8 +79,7 @@ in [[!tails_gitweb config/chroot_local-includes/etc/tor/torrc]]:
 
 Applications are configured to use the right SOCKS port:
 
-- [[!tails_gitweb config/chroot_local-includes/etc/tor-browser/profile/preferences/0000tails.js]]
-- [[!tails_gitweb config/chroot_local-includes/etc/init.d/htpdate]]
-- [[!tails_gitweb config/chroot_local-includes/etc/tor/tor-tsocks-mua.conf]]
+- [[!tails_gitweb config/chroot_local-includes/usr/share/tails/tor-browser-prefs.js]]
+- [[!tails_gitweb config/chroot_local-includes/lib/systemd/system/htpdate.service]]
 - [[!tails_gitweb config/chroot_local-includes/usr/local/bin/tails-security-check]]
-- [[!tails_gitweb config/chroot_local-includes/usr/local/bin/torified-claws-mail]]
+- [[!tails_gitweb config/chroot_local-includes/usr/local/bin/thunderbird]]

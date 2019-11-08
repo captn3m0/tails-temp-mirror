@@ -1,298 +1,142 @@
-@product @old_iso
-Feature: Installing Tails to a USB drive, upgrading it, and using persistence
+@product
+Feature: Installing Tails to a USB drive
   As a Tails user
-  I may want to install Tails to a USB drive
-  and upgrade it to new Tails versions
-  and use persistence
+  I want to install Tails to a suitable USB drive
 
-  @keep_volumes
-  Scenario: Installing Tails to a pristine USB drive
-    Given a computer
-    And I start Tails from DVD with network unplugged and I login
-    And I create a 4 GiB disk named "current"
-    And I plug USB drive "current"
-    And I "Clone & Install" Tails to USB drive "current"
-    Then the running Tails is installed on USB drive "current"
-    But there is no persistence partition on USB drive "current"
-    And I unplug USB drive "current"
+  Scenario: Try installing Tails to a too small USB drive without partition table
+    Given I have started Tails from DVD without network and logged in
+    And I temporarily create a 4500 MiB disk named "too-small-device"
+    And I start Tails Installer
+    But a suitable USB device is not found
+    And no USB drive is selected
+    When I plug USB drive "too-small-device"
+    Then I am told by Tails Installer that the destination device "is too small"
+    And no USB drive is selected
+    When I unplug USB drive "too-small-device"
+    And I temporarily create a 7200 MiB disk named "big-enough"
+    And I plug USB drive "big-enough"
+    Then the "big-enough" USB drive is selected
 
-  @keep_volumes
+  Scenario: Try installing Tails to a too small USB drive with GPT and a FAT partition
+    Given I have started Tails from DVD without network and logged in
+    And I temporarily create a 4 GiB disk named "gptfat"
+    And I create a gpt partition with a vfat filesystem on disk "gptfat"
+    And I plug USB drive "gptfat"
+    When I start Tails Installer
+    Then I am told by Tails Installer that the destination device "is too small"
+
+  Scenario: Detecting when a target USB drive is inserted or removed
+    Given I have started Tails from DVD without network and logged in
+    And I temporarily create a 7200 MiB disk named "temp"
+    And I start Tails Installer
+    But a suitable USB device is not found
+    When I plug USB drive "temp"
+    Then the "temp" USB drive is selected
+    When I unplug USB drive "temp"
+    Then a suitable USB device is not found
+
+  Scenario: Installing Tails to a used USB drive
+    Given I have started Tails from DVD without network and logged in
+    And I temporarily create a 7200 MiB disk named "install"
+    And I create a gpt partition with a vfat filesystem on disk "install"
+    And I plug USB drive "install"
+    And I install Tails to USB drive "install" by cloning
+    Then the running Tails is installed on USB drive "install"
+    But there is no persistence partition on USB drive "install"
+
+  Scenario: Installing Tails with Tails Installer to a pristine USB drive
+    Given I have started Tails from DVD without network and logged in
+    And I temporarily create a 7200 MiB disk named "install"
+    And I plug USB drive "install"
+    And I install Tails to USB drive "install" by cloning
+    Then the running Tails is installed on USB drive "install"
+    But there is no persistence partition on USB drive "install"
+
+  Scenario: Re-installing Tails over an existing USB installation with a persistent partition
+    # We reach this first checkpoint only to ensure that the ' __internal' disk has reached the state (Tails installed + persistent partition set up) we need before we clone it below.
+    # This first part is done without Tails Installer (install from Tails USB image)
+    # Note: the "__internal" disk will keep its state across scenarios
+    # and features until one of its snapshots is restored.
+    Given I have started Tails without network from a USB drive with a persistent partition enabled and logged in
+    Given I have started Tails from DVD without network and logged in
+    And I clone USB drive "__internal" to a temporary USB drive "install"
+    And I plug USB drive "install"
+    # This second part is done with Tails Installer, that's what this scenario is about
+    When I reinstall Tails to USB drive "install" by cloning
+    Then the running Tails is installed on USB drive "install"
+    And there is no persistence partition on USB drive "install"
+
+  Scenario: Booting Tails from a USB drive without a persistent partition and creating one
+    Given I have started Tails without network from a USB drive without a persistent partition and stopped at Tails Greeter's login screen
+    And I log in to a new session
+    When I create a persistent partition
+    Then a Tails persistence partition exists on USB drive "__internal"
+
+  Scenario: Booting Tails from a USB drive without a persistent partition
+    Given I have started Tails without network from a USB drive without a persistent partition and stopped at Tails Greeter's login screen
+    When I log in to a new session
+    Then Tails is running from USB drive "__internal"
+    And the persistent Tor Browser directory does not exist
+    And there is no persistence partition on USB drive "__internal"
+
+  #13459
+  @fragile
   Scenario: Booting Tails from a USB drive in UEFI mode
-    Given a computer
-    And the computer is set to boot in UEFI mode
-    When I start Tails from USB drive "current" with network unplugged and I login
+    Given I have started Tails without network from a USB drive without a persistent partition and stopped at Tails Greeter's login screen
+    Then I power off the computer
+    Given the computer is set to boot in UEFI mode
+    When I start Tails from USB drive "__internal" with network unplugged and I login
     Then the boot device has safe access rights
-    And Tails is running from USB drive "current"
+    And Tails is running from USB drive "__internal"
     And the boot device has safe access rights
     And Tails has started in UEFI mode
 
-  @keep_volumes
-  Scenario: Booting Tails from a USB drive without a persistent partition and creating one
-    Given a computer
-    And I start Tails from USB drive "current" with network unplugged and I login
-    Then the boot device has safe access rights
-    And Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And there is no persistence partition on USB drive "current"
-    And the persistent Tor Browser directory does not exist
-    And I create a persistent partition with password "asdf"
-    Then a Tails persistence partition with password "asdf" exists on USB drive "current"
-    And I shutdown Tails and wait for the computer to power off
-
-  @keep_volumes
-  Scenario: Booting Tails from a USB drive with a disabled persistent partition
-    Given a computer
-    And I start Tails from USB drive "current" with network unplugged and I login
-    Then Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And persistence is disabled
-    But a Tails persistence partition with password "asdf" exists on USB drive "current"
-
-  @keep_volumes
-  Scenario: The persistent Tor Browser directory is usable
-    Given a computer
-    And I start Tails from USB drive "current" and I login with persistence password "asdf"
-    And Tails is running from USB drive "current"
-    And Tor is ready
-    And available upgrades have been checked
-    And all notifications have disappeared
-    Then the persistent Tor Browser directory exists
-    And there is a GNOME bookmark for the persistent Tor Browser directory
-    When I start the Tor Browser
-    And the Tor Browser has started and loaded the startup page
-    And I can save the current page as "index.html" to the persistent Tor Browser directory
-    When I open the address "file:///home/amnesia/Persistent/Tor Browser/index.html" in the Tor Browser
-    Then I see "TorBrowserSavedStartupPage.png" after at most 10 seconds
-    And I can print the current page as "output.pdf" to the persistent Tor Browser directory
-
-  @keep_volumes
-  Scenario: Persistent browser bookmarks
-    Given a computer
-    And the computer is set to boot from USB drive "current"
-    And the network is unplugged
-    When I start the computer
-    And the computer boots Tails
-    And Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And I enable persistence with password "asdf"
-    And I log in to a new session
-    And GNOME has started
-    And all notifications have disappeared
-    And all persistence presets are enabled
-    And all persistent filesystems have safe access rights
-    And all persistence configuration files have safe access rights
-    And all persistent directories have safe access rights
-    And I start the Tor Browser in offline mode
-    And the Tor Browser has started in offline mode
-    And I add a bookmark to eff.org in the Tor Browser
-    And I warm reboot the computer
-    And the computer reboots Tails
-    And I enable read-only persistence with password "asdf"
-    And I log in to a new session
-    And GNOME has started
-    And I start the Tor Browser in offline mode
-    And the Tor Browser has started in offline mode
-    Then the Tor Browser has a bookmark to eff.org
-
-  @keep_volumes
-  Scenario: Writing files to a read/write-enabled persistent partition
-    Given a computer
-    And I start Tails from USB drive "current" with network unplugged and I login with persistence password "asdf"
-    Then Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And all persistence presets are enabled
-    And I write some files expected to persist
-    And all persistent filesystems have safe access rights
-    And all persistence configuration files have safe access rights
-    And all persistent directories have safe access rights
-    And I take note of which persistence presets are available
-    And I shutdown Tails and wait for the computer to power off
-    Then only the expected files are present on the persistence partition encrypted with password "asdf" on USB drive "current"
-
-  @keep_volumes
-  Scenario: Writing files to a read-only-enabled persistent partition
-    Given a computer
-    And I start Tails from USB drive "current" with network unplugged and I login with read-only persistence password "asdf"
-    Then Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And all persistence presets are enabled
-    And there is no GNOME bookmark for the persistent Tor Browser directory
-    And I write some files not expected to persist
-    And I remove some files expected to persist
-    And I take note of which persistence presets are available
-    And I shutdown Tails and wait for the computer to power off
-    Then only the expected files are present on the persistence partition encrypted with password "asdf" on USB drive "current"
-
-  @keep_volumes
-  Scenario: Deleting a Tails persistent partition
-    Given a computer
-    And I start Tails from USB drive "current" with network unplugged and I login
-    Then Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And persistence is disabled
-    But a Tails persistence partition with password "asdf" exists on USB drive "current"
-    And all notifications have disappeared
-    When I delete the persistent partition
-    Then there is no persistence partition on USB drive "current"
-
-  @keep_volumes
-  Scenario: Installing an old version of Tails to a pristine USB drive
-    Given a computer
-    And the computer is set to boot from the old Tails DVD
-    And the network is unplugged
-    And I start the computer
-    When the computer boots Tails
-    And I log in to a new session
-    And GNOME has started
-    And all notifications have disappeared
-    And I create a 4 GiB disk named "old"
-    And I plug USB drive "old"
-    And I "Clone & Install" Tails to USB drive "old"
-    Then the running Tails is installed on USB drive "old"
-    But there is no persistence partition on USB drive "old"
-    And I unplug USB drive "old"
-
-  @keep_volumes
-  Scenario: Creating a persistent partition with the old Tails USB installation
-    Given a computer
-    And I start Tails from USB drive "old" with network unplugged and I login
-    Then Tails is running from USB drive "old"
-    And I create a persistent partition with password "asdf"
-    And I take note of which persistence presets are available
-    Then a Tails persistence partition with password "asdf" exists on USB drive "old"
-    And I shutdown Tails and wait for the computer to power off
-
-  @keep_volumes
-  Scenario: Writing files to a read/write-enabled persistent partition with the old Tails USB installation
-    Given a computer
-    And I start Tails from USB drive "old" with network unplugged and I login with persistence password "asdf"
-    Then Tails is running from USB drive "old"
-    And all persistence presets are enabled
-    And I write some files expected to persist
-    And all persistent filesystems have safe access rights
-    And all persistence configuration files have safe access rights
-    And all persistent directories from the old Tails version have safe access rights
-    And I take note of which persistence presets are available
-    And I shutdown Tails and wait for the computer to power off
-    Then only the expected files are present on the persistence partition encrypted with password "asdf" on USB drive "old"
-
-  @keep_volumes
-  Scenario: Upgrading an old Tails USB installation from a Tails DVD
-    Given a computer
-    And I clone USB drive "old" to a new USB drive "to_upgrade"
-    And I start Tails from DVD with network unplugged and I login
-    And I plug USB drive "to_upgrade"
-    And I "Clone & Upgrade" Tails to USB drive "to_upgrade"
-    Then the running Tails is installed on USB drive "to_upgrade"
-    And I unplug USB drive "to_upgrade"
-
-  @keep_volumes
-  Scenario: Booting Tails from a USB drive upgraded from DVD with persistence enabled
-    Given a computer
-    And I start Tails from USB drive "to_upgrade" with network unplugged and I login with persistence password "asdf"
-    Then all persistence presets from the old Tails version are enabled
-    Then Tails is running from USB drive "to_upgrade"
-    And the boot device has safe access rights
-    And the expected persistent files created with the old Tails version are present in the filesystem
-    And all persistent directories from the old Tails version have safe access rights
-
-  @keep_volumes
-  Scenario: Upgrading an old Tails USB installation from another Tails USB drive
-    Given a computer
-    And I clone USB drive "old" to a new USB drive "to_upgrade"
-    And I start Tails from USB drive "current" with network unplugged and I login
-    Then Tails is running from USB drive "current"
-    And the boot device has safe access rights
-    And I plug USB drive "to_upgrade"
-    And I "Clone & Upgrade" Tails to USB drive "to_upgrade"
-    Then the running Tails is installed on USB drive "to_upgrade"
-    And I unplug USB drive "to_upgrade"
-    And I unplug USB drive "current"
-
-  @keep_volumes
-  Scenario: Booting Tails from a USB drive upgraded from USB with persistence enabled
-    Given a computer
-    And I start Tails from USB drive "to_upgrade" with network unplugged and I login with persistence password "asdf"
-    Then all persistence presets from the old Tails version are enabled
-    And Tails is running from USB drive "to_upgrade"
-    And the boot device has safe access rights
-    And the expected persistent files created with the old Tails version are present in the filesystem
-    And all persistent directories from the old Tails version have safe access rights
-
-  @keep_volumes
-  Scenario: Upgrading an old Tails USB installation from an ISO image, running on the old version
-    Given a computer
-    And I clone USB drive "old" to a new USB drive "to_upgrade"
-    And I setup a filesystem share containing the Tails ISO
-    When I start Tails from USB drive "old" with network unplugged and I login
-    And I plug USB drive "to_upgrade"
-    And I do a "Upgrade from ISO" on USB drive "to_upgrade"
-    Then the ISO's Tails is installed on USB drive "to_upgrade"
-    And I unplug USB drive "to_upgrade"
-
-  @keep_volumes
-  Scenario: Upgrading an old Tails USB installation from an ISO image, running on the new version
-    Given a computer
-    And I clone USB drive "old" to a new USB drive "to_upgrade"
-    And I setup a filesystem share containing the Tails ISO
-    And I start Tails from DVD with network unplugged and I login
-    And I plug USB drive "to_upgrade"
-    And I do a "Upgrade from ISO" on USB drive "to_upgrade"
-    Then the ISO's Tails is installed on USB drive "to_upgrade"
-    And I unplug USB drive "to_upgrade"
-
-  Scenario: Booting a USB drive upgraded from ISO with persistence enabled
-    Given a computer
-    And I start Tails from USB drive "to_upgrade" with network unplugged and I login with persistence password "asdf"
-    Then all persistence presets from the old Tails version are enabled
-    And Tails is running from USB drive "to_upgrade"
-    And the boot device has safe access rights
-    And the expected persistent files created with the old Tails version are present in the filesystem
-    And all persistent directories from the old Tails version have safe access rights
-
-  @keep_volumes
-  Scenario: Installing Tails to a USB drive with an MBR partition table but no partitions
-    Given a computer
-    And I create a 4 GiB disk named "mbr"
+  Scenario: Installing Tails to a USB drive with an MBR partition table but no partitions, and making sure that it boots
+    Given I have started Tails from DVD without network and logged in
+    And I temporarily create a 7200 MiB disk named "mbr"
     And I create a msdos label on disk "mbr"
-    And I start Tails from DVD with network unplugged and I login
     And I plug USB drive "mbr"
-    And I "Clone & Install" Tails to USB drive "mbr"
+    And I install Tails to USB drive "mbr" by cloning
     Then the running Tails is installed on USB drive "mbr"
     But there is no persistence partition on USB drive "mbr"
-    And I unplug USB drive "mbr"
-
-  Scenario: Booting a USB drive that originally had an empty MBR partition table
-    Given a computer
+    When I shutdown Tails and wait for the computer to power off
     And I start Tails from USB drive "mbr" with network unplugged and I login
     Then Tails is running from USB drive "mbr"
     And the boot device has safe access rights
     And there is no persistence partition on USB drive "mbr"
 
-  @keep_volumes
-  Scenario: Cat:ing a Tails isohybrid to a USB drive and booting it
+  Scenario: Writing a Tails isohybrid to a USB drive and booting it, then installing Tails on top of it using Tails Installer, and it still boots
     Given a computer
-    And I create a 4 GiB disk named "isohybrid"
-    And I cat an ISO of the Tails image to disk "isohybrid"
+    And I temporarily create a 7200 MiB disk named "isohybrid"
+    And I write the Tails ISO image to disk "isohybrid"
     And I start Tails from USB drive "isohybrid" with network unplugged and I login
     Then Tails is running from USB drive "isohybrid"
-
-  @keep_volumes
-  Scenario: Try upgrading but end up installing Tails to a USB drive containing a Tails isohybrid installation
-    Given a computer
+    When I shutdown Tails and wait for the computer to power off
     And I start Tails from DVD with network unplugged and I login
-    And I plug USB drive "isohybrid"
-    And I try a "Clone & Upgrade" Tails to USB drive "isohybrid"
-    But I am suggested to do a "Clone & Install"
-    And I kill the process "liveusb-creator"
-    And I "Clone & Install" Tails to USB drive "isohybrid"
+    And I install Tails to USB drive "isohybrid" by cloning
     Then the running Tails is installed on USB drive "isohybrid"
     But there is no persistence partition on USB drive "isohybrid"
-    And I unplug USB drive "isohybrid"
-
-  Scenario: Booting a USB drive that originally had a isohybrid installation
-    Given a computer
+    When I shutdown Tails and wait for the computer to power off
     And I start Tails from USB drive "isohybrid" with network unplugged and I login
     Then Tails is running from USB drive "isohybrid"
     And the boot device has safe access rights
     And there is no persistence partition on USB drive "isohybrid"
+
+  Scenario: Installing Tails with GNOME Disks from a USB image
+    Given I have started Tails from DVD without network and logged in
+    And I plug and mount a USB drive containing a Tails USB image
+    And I create a 7200 MiB disk named "usbimage"
+    And I plug USB drive "usbimage"
+    And I install a Tails USB image to the 7200 MiB disk with GNOME Disks
+
+  # Depends on scenario: Installing Tails with GNOME Disks from a USB image
+  Scenario: The system partition is updated when booting from a USB drive where a Tails USB image was copied
+    Given a computer
+    And I start Tails from USB drive "usbimage" with network unplugged and I login
+    Then Tails is running from USB drive "usbimage"
+    And the label of the system partition on "usbimage" is "Tails"
+    And the system partition on "usbimage" is an EFI system partition
+    And the FAT filesystem on the system partition on "usbimage" is at least 4000M large
+    And the UUID of the FAT filesystem on the system partition on "usbimage" was randomized
+    And the label of the FAT filesystem on the system partition on "usbimage" is "TAILS"
+    And the system partition on "usbimage" has the expected flags

@@ -1,42 +1,89 @@
-[[!meta title="Emailing with Thunderbird"]]
+[[!meta title="Emailing and reading news with Thunderbird"]]
 
-**FIXME**: This section have not been adapted now so please do not take it into
-account. Tails uses Claws Mail instead of Thunderbird.
+Tails includes <span class="application">Thunderbird</span> for:
 
-Not everyone is happy using webmail (like the authors) but want to use
-a _real_ email client instead of some fragile web-based interface. For
-that we have included Mozilla Thunderbird which looks like this:
+- Reading and writing emails
+- Reading [[!wikipedia RSS]] and [[!wikipedia Atom_(Web_standard) desc="Atom"]] feeds for news and blogs
 
-<center><a href="tb-main.jpg"><img border="0" height="305"
-src="tb-main.jpg" width="453" /></a></center>
+[[!toc levels=2]]
 
-Composing email looks like this:
+To start <span class="application">Thunderbird</span> choose
+<span class="menuchoice">
+  <span class="guimenu">Applications</span>&nbsp;▸
+  <span class="guisubmenu">Internet</span>&nbsp;▸
+  <span class="guimenuitem">Thunderbird</span></span>.
 
-<center><a href="tb-compose.jpg"><img border="0" height="257"
-src="tb-compose.jpg" width="324" /></a></center>
+<div class="tip">
 
-Notice that there are buttons for PGP encryption in both of the above
-windows (labelled with "Decrypt" and "OpenPGP"). These are provided by
-the [Enigmail](http://http://enigmail.mozdev.org/) extension, and
-pressing any of them for the first time will start a guide for setting
-up PGP, possibly generating new keys if you do not have any. Their web
-site is a great resource for learning how PGP encryption works so make
-sure to check it out.
+<p>You can activate the [[<strong>Thunderbird</strong> persistence
+feature|doc/first_steps/persistence/configure#thunderbird]] to store your
+emails, feeds, and settings across separate working sessions.</p>
 
-Setting up your email account requires a tiny amount of knowledge,
-like what [POP](http://en.wikipedia.org/wiki/Post_Office_Protocol),
-[IMAP](http://en.wikipedia.org/wiki/IMAP) and
-[SMTP](http://en.wikipedia.org/wiki/SMTP) is, and indeed that your
-email service supports these. [This step-by-step
-guide](http://opensourcearticles.com/articles/thunderbird_15/english/part_01)
-might be useful. However, this initial configuration requires writing
-down the addresses of the servers involved, downloading mail, etc.
-which will take some time. It is a bit annoying to have to redo
-everytime you start Tails, which is necessary when running from a
-DVD, so you might want to consider using a persistent home directory by
-[running from USB](#usb) if you plan to use Thunderbird often. One
-more thing to consider is that Tor exit nodes usually block the
-plaintext SMTP port (25) in order to prevent spam. This is easily
-fixed by enabling end-to-end encryption with the email server through
-SSL, which you should do any way for all of POP, IMAP and SMTP as your
-password otherwise will be sent in plaintext.
+</div>
+
+For more detailed documentation, refer to the [official
+<span class="application">Thunderbird</span>
+help](https://support.mozilla.org/en-US/products/thunderbird).
+
+Configure an email account
+==========================
+
+[[!inline pages="doc/anonymous_internet/thunderbird/account_creation.inline" raw="yes" sort="age"]]
+
+OpenPGP encryption with Enigmail
+================================
+
+<span class="application">Thunderbird</span> in Tails includes the
+<span class="application">[Enigmail](https://www.enigmail.net/)</span>
+extension to encrypt and authenticate emails using OpenPGP.
+
+To configure <span class="application">Enigmail</span> for your email account, you can start the
+<span class="application">Enigmail Setup Wizard</span> by choosing
+<span class="menuchoice">
+  <span class="guimenu">[[!img lib/open-menu.png alt="Menu" class=symbolic link=no]]</span>&nbsp;▸
+  <span class="guisubmenu">Enigmail</span>&nbsp;▸
+  <span class="guimenuitem">Setup Wizard</span></span>.
+
+You can also create an OpenPGP key associated with your email address as
+part of the <span class="application">Enigmail Setup Wizard</span>.
+
+If you are new to OpenPGP, you can read the following guides on getting
+started with encrypting emails using
+<span class="application">Thunderbird</span> and
+<span class="application">Enigmail</span>:
+
+  - [Security-in-a-Box: Thunderbird & OpenPGP - secure email](https://securityinabox.org/en/guide/thunderbird/linux/)
+  - [Enigmail: Enigmail Quick Start Guide](https://www.enigmail.net/index.php/en/user-manual/quick-start)
+
+Enhanced privacy with TorBirdy
+==============================
+
+<span class="application">Thunderbird</span> in Tails includes the
+<span class="application">[TorBirdy](https://trac.torproject.org/projects/tor/wiki/torbirdy)</span>
+extension for additional privacy and anonymity.
+
+<div class="note">
+
+<p>For more security,
+<span class="application">TorBirdy</span> disables some features of
+<span class="application">Thunderbird</span>:
+
+<ul>
+<li>Sending emails and displaying feeds in HTML format.<br/>Emails and feeds in HTML format are displayed in plain text and can become harder to read.</li>
+<li>Automatic checking of Atom and RSS feeds on startup.</li>
+</ul>
+
+</div>
+
+To learn more about the security properties of <span class="application">TorBirdy</span>,
+you can read its [design document](https://trac.torproject.org/projects/tor/attachment/wiki/doc/TorifyHOWTO/EMail/Thunderbird/Thunderbird%2BTor.pdf).
+
+Using Thunderbird in your language
+==================================
+
+To use <span class="application">Thunderbird</span> in your language, you can
+install the <span class="command">thunderbird-l10n-<span class="command-placeholder">lang</span></span>
+package using the [[Additional Software|doc/first_steps/additional_software]]
+feature. Replace <span class="command-placeholder">lang</span> with the code
+for your language. For example, <span class="command">es</span> for Spanish or
+<span class="command">de</span> for German.

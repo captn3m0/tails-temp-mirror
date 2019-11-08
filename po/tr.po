@@ -4,39 +4,52 @@
 #
 # Translators:
 # Ayca Omrak <aycaom@hotmail.com>, 2013
-# cmldrs <cmldrs@yandex.com>, 2014
+# Bullgeschichte <bullgeschichte@riseup.net>, 2015
+# Can Günay <cangunay@yandex.com>, 2018
+# Cenk Yıldızlı <goncagul@national.shitposting.agency>, 2019
+# cmldrs, 2014
+# cmldrs, 2014
 # imratirtil <d.imra.gundogdu@gmail.com>, 2014
 # ecocan <eecocan@yahoo.com>, 2014
+# ecocan <eecocan@yahoo.com>, 2014
+# Emma Peel, 2018
+# imratirtil <d.imra.gundogdu@gmail.com>, 2014
+# Kaya Zeren <kayazeren@gmail.com>, 2015-2019
 # metint, 2014
+# metint, 2014
+# Ozancan Karataş <ozancankaratas96@outlook.com>, 2015-2016
 # Tails_developers <tails@boum.org>, 2014
+# Tails_developers <tails@boum.org>, 2014
+# T. E. Kalayci <tekrei@gmail.com>, 2017-2018
+# Th3Kh3d1v3, 2018
 # Ümit Türk <zucchinitr@gmail.com>, 2013
-# Volkan Gezer <volkangezer@gmail.com>, 2013-2014
+# Volkan Gezer <volkangezer@gmail.com>, 2013-2016
 # Yasin Özel <iletisim@yasinozel.com.tr>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: The Tor Project\n"
+"Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 22:08+0100\n"
-"PO-Revision-Date: 2014-12-04 08:50+0000\n"
-"Last-Translator: runasand <runa.sandvik@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/torproject/"
-"language/tr/)\n"
+"POT-Creation-Date: 2019-10-05 16:50+0200\n"
+"PO-Revision-Date: 2019-10-06 03:31+0000\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/otf/torproject/language/"
+"tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready-notification.sh:42
+#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready.sh:39
 msgid "Tor is ready"
 msgstr "Tor hazır"
 
-#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready-notification.sh:43
+#: config/chroot_local-includes/etc/NetworkManager/dispatcher.d/60-tor-ready.sh:40
 msgid "You can now access the Internet."
 msgstr "Artık İnternet'e erişebilirsiniz."
 
-#: config/chroot_local-includes/etc/whisperback/config.py:64
-#, fuzzy, python-format
+#: config/chroot_local-includes/etc/whisperback/config.py:69
+#, python-format
 msgid ""
 "<h1>Help us fix your bug!</h1>\n"
 "<p>Read <a href=\"%s\">our bug reporting instructions</a>.</p>\n"
@@ -53,346 +66,612 @@ msgid ""
 "confirm that you are using Tails.\n"
 "</p>\n"
 msgstr ""
-"<h1>Hataları düzeltmemizde bize yardım edin!</h1>\n"
-"<p><a href=\"%s\">Hata bildirme talimatlarını okuyun.</a></p>\n"
-"<p><strong>Gerekenden daha fazla kişisel bilgi içermesin!</strong></p>\n"
-"<h2>Bize e-posta adresi vermekle alakalı</h2>\n"
-"<p>Eğer Tails geliştiricilerine karşı kimliğinizin biraz açığa çıkmasını "
-"umursamıyorsanız, hata hakkında daha fazla detayı size sorabilmemiz için e-"
-"posta adresinizi verebilirsiniz. Ayrıca bir public PGP anahtarı girmeniz "
-"gelecekteki iletişimimizin şifrelenmiş olmasına izin verir.</p>\n"
-"<p>Bu cevabı gören herkes sizin bir Tails kullanıcısı olduğunuzu muhtemelen "
-"anlayacaktır. İnternetinize ve e-posta sağlayıcınıza ne kadar "
-"güvenebileceğinizi merak etme zamanı!</p>\n"
+"<h1>Karşılaştığınız sorunu çözmemize yardım edin!</h1>\n"
+"<p><a href=\"%s\">Hata bildirme yönergelerini</a> okuyun.</p>\n"
+"<p><strong>Gerektiğinden fazla kişisel bilgi vermeyin!</strong></p>\n"
+"<h2>E-posta adresinizi bildirmeniz hakkında</h2>\n"
+"<p>\n"
+"Bir e-posta adresi bildirmeniz, sorununuzu daha iyi anlamak için sizinle "
+"iletişim\n"
+"kurmamızı sağlar. Bize iletilen pek çok hata bildirimi, iletişim bilgileri "
+"bulunmadığı\n"
+"için işe yaramıyor. Ancak gerçek bilgilerinizi verdiğinizde sizi izliyor "
+"olabilecek \n"
+"kişi ya da kuruluşlara (e-posta ya da İnternet hizmeti sağlayıcınıza) Tails "
+"uygulamasını kullandığınızı\n"
+"belirleme fırsatı vermiş olursunuz. Bu nedenle farklı bir e-posta adresi "
+"kullanmanız önerilir.\n"
+"</p>\n"
 
-#: config/chroot_local-includes/usr/local/bin/electrum:14
-msgid "Persistence is disabled for Electrum"
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:8
+#: ../config/chroot_local-includes/usr/share/applications/org.boum.tails.additional-software-config.desktop.in.h:1
+msgid "Additional Software"
+msgstr "Ek Yazılımlar"
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:51
+msgid ""
+"You can install additional software automatically from your persistent "
+"storage when starting Tails."
 msgstr ""
+"Tails başlatılırken otomatik olarak kalıcı depolama alanınızdan ek "
+"yazılımlar kurabilirsiniz."
 
-#: config/chroot_local-includes/usr/local/bin/electrum:16
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:77
+msgid ""
+"The following software is installed automatically from your persistent "
+"storage when starting Tails."
+msgstr ""
+"Şu yazılımlar Tails başlatılırken otomatik olarak kalıcı depolama "
+"alanınızdan kurulacak."
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:135
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:171
+msgid ""
+"To add more, install some software using <a href=\"synaptic.desktop"
+"\">Synaptic Package Manager</a> or <a href=\"org.gnome.Terminal.desktop"
+"\">APT on the command line</a>."
+msgstr ""
+"Başka yazılımlar eklemek için <a href=\"synaptic.desktop\">Synaptic Paket "
+"Yöneticisi</a> ya da <a href=\"org.gnome.Terminal.desktop\">komut satırından "
+"APT kullanarak</a> başka yazılımlar kurun."
+
+#: config/chroot_local-includes/usr/share/tails/additional-software/configuration-window.ui:154
+msgid "_Create persistent storage"
+msgstr "_Kalıcı depolama oluştur"
+
+#: config/chroot_local-includes/usr/local/bin/electrum:62
+msgid "Persistence is disabled for Electrum"
+msgstr "Electrum için kalıcılık devre dışı bırakıldı"
+
+#: config/chroot_local-includes/usr/local/bin/electrum:64
 msgid ""
 "When you reboot Tails, all of Electrum's data will be lost, including your "
-"Bitcoin wallet. It is strongly recommended to only run Electrum when its "
-"persistence feature is activated."
+"Bitcoin wallet.\n"
+"It is strongly recommended to only run Electrum when its persistence feature "
+"is activated."
 msgstr ""
+"Tails yeniden başlatıldığında, Bitcoin cüzdanınız da dahil tüm Electrum "
+"verileri kaybolur. \n"
+"Electrum uygulamasının yalnız kalıcılık özelliği etkin iken çalıştırılması "
+"önerilir."
 
-#: config/chroot_local-includes/usr/local/bin/electrum:18
-msgid "Do you want to start Electrum any way?"
-msgstr ""
+#: config/chroot_local-includes/usr/local/bin/electrum:65
+msgid "Do you want to start Electrum anyway?"
+msgstr "Electrum yine de başlatılsın mı?"
 
-#: config/chroot_local-includes/usr/local/bin/electrum:20
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:36
+#: config/chroot_local-includes/usr/local/bin/electrum:68
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:41
 msgid "_Launch"
 msgstr "_Başlat"
 
-#: config/chroot_local-includes/usr/local/bin/electrum:21
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:37
+#: config/chroot_local-includes/usr/local/bin/electrum:69
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:42
 msgid "_Exit"
-msgstr "_Çıkış"
+msgstr "Çı_kış"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:136
-msgid "OpenPGP encryption applet"
-msgstr "OpenPGP şifreleme uygulaması"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:32
+msgid "Additional Settings"
+msgstr "Ek Ayarlar"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:139
-msgid "Exit"
-msgstr "Çıkış"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:40
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:367
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:119
+#: config/chroot_local-includes/usr/local/bin/tor-browser:46
+msgid "Cancel"
+msgstr "İptal"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:141
-msgid "About"
-msgstr "Hakkında"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:46
+msgid "Add"
+msgstr "Ekle"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:192
-msgid "Encrypt Clipboard with _Passphrase"
-msgstr "Panoyu Anahtar Parola ile Şifrele"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/add_settings_dialog.py:54
+msgid "Back"
+msgstr "Geri"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:195
-msgid "Sign/Encrypt Clipboard with Public _Keys"
-msgstr "Panoyu Genel Anahtarlarla İmzala/Şifrele"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:56
+msgid "_Administration Password"
+msgstr "_Yönetim Parolası"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:200
-msgid "_Decrypt/Verify Clipboard"
-msgstr "Panoyu Deşifre Et/Onayla"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:156
+msgid "_MAC Address Spoofing"
+msgstr "_MAC Adresi Yanıltması"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:204
-msgid "_Manage Keys"
-msgstr "Anahtarları Yönet"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:206
+msgid "_Network Connection"
+msgstr "_Ağ Bağlantısı"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:244
-msgid "The clipboard does not contain valid input data."
-msgstr "Pano geçerli girdi verisi içermiyor."
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:215
+msgid "Direct (default)"
+msgstr "Doğrudan (varsayılan)"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:295
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:297
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:299
-msgid "Unknown Trust"
-msgstr "Bilinmeyen İtimat"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:217
+msgid "Bridge & Proxy"
+msgstr "Köprü ve Vekil Sunucu"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:301
-msgid "Marginal Trust"
-msgstr "Marjinal İtimat"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:219
+msgid "Offline"
+msgstr "Çevrimdışı"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:303
-msgid "Full Trust"
-msgstr "Tam İtimat"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:270
+msgid "On (default)"
+msgstr "Açık (varsayılan)"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:305
-msgid "Ultimate Trust"
-msgstr "Aşırı İtimat"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:272
+msgid "On"
+msgstr "Açık"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:358
-msgid "Name"
-msgstr "İsim"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:274
+msgid "Off"
+msgstr "Kapalı"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:359
-msgid "Key ID"
-msgstr "Anahtar No"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py:276
+msgid "Off (default)"
+msgstr "Kapalı (varsayılan)"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:360
-msgid "Status"
-msgstr "Durum"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/main_window.py:172
+msgid "Shutdown"
+msgstr "Kapat"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:392
-msgid "Fingerprint:"
-msgstr "Parmak izi:"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/main_window.py:177
+msgid "_Start Tails"
+msgstr "_Tails Başlat"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:395
-msgid "User ID:"
-msgid_plural "User IDs:"
-msgstr[0] "Kullanıcı No:"
-msgstr[1] "Kullanıcı No:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:425
-msgid "None (Don't sign)"
-msgstr "Hiçbiri (İmzalama)"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:488
-msgid "Select recipients:"
-msgstr "Alıcıları seç:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:496
-msgid "Hide recipients"
-msgstr "Alıcıları gizle"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:499
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:92
+#, python-brace-format
 msgid ""
-"Hide the user IDs of all recipients of an encrypted message. Otherwise "
-"anyone that sees the encrypted message can see who the recipients are."
+"live-persist failed with return code {returncode}:\n"
+"{stderr}"
 msgstr ""
-"Şifreli mesajın tüm alıcılarının kullanıcı kimliklerini gizle. Aksi halde "
-"şifreli mesajı görebilen herkes alıcıları görebilecek."
+"live-persist şu hata kodu ile yürütülemedi {returncode}:\n"
+"{stderr}"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:505
-msgid "Sign message as:"
-msgstr "Mesajı şu olarak imzala:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:509
-msgid "Choose keys"
-msgstr "Anahtarları seçin"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:549
-msgid "Do you trust these keys?"
-msgstr "Bu anahtarlara güveniyor musun ?"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:552
-msgid "The following selected key is not fully trusted:"
-msgid_plural "The following selected keys are not fully trusted:"
-msgstr[0] "Bu anahtar tamamen güvenilir değil:"
-msgstr[1] "Bu anahtarlar tamamen güvenilir değil:"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:570
-msgid "Do you trust this key enough to use it anyway?"
-msgid_plural "Do you trust these keys enough to use them anyway?"
-msgstr[0] "Bu anahtara kullanabilecek kadar güveniyor musunuz?"
-msgstr[1] "Bu anahtarı kullanabilecek kadar güveniyor musunuz?"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:583
-msgid "No keys selected"
-msgstr "Anahtar seçilmedi"
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:585
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:125
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:142
+#, python-brace-format
 msgid ""
-"You must select a private key to sign the message, or some public keys to "
-"encrypt the message, or both."
+"cryptsetup failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
 msgstr ""
-"Mesajı imzalamak için bir gizli anahtar seçmelisiniz veya mesajı şifrelemek "
-"için bir genel anahtar seçmelisiniz ya da her ikisini birden seçebilirsiniz."
+"cryptsetup şu hata kodu ile yürütülemedi {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:613
-msgid "No keys available"
-msgstr "Anahtar bulunamadı."
-
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:615
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:160
+#, python-brace-format
 msgid ""
-"You need a private key to sign messages or a public key to encrypt messages."
+"live-persist failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
 msgstr ""
-"Mesajı imzalamak için özel bir anahtara veya mesajları şifrelemek için genel "
-"bir anahtara ihtiyacınız var."
+"live-persist şu hata kodu ile yürütülemedi {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:743
-msgid "GnuPG error"
-msgstr "GnuPG hatası"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/settings/persistence.py:174
+#, python-brace-format
+msgid ""
+"umount failed with return code {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
+msgstr ""
+"umount şu hata kodu ile yürütülemedi {returncode}:\n"
+"{stdout}\n"
+"{stderr}"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:764
-msgid "Therefore the operation cannot be performed."
-msgstr "Bu yüzden işlem gerçekleştirilemedi."
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:60
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:107
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:425
+msgid "Unlock"
+msgstr "Kilidi Aç"
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:814
-msgid "GnuPG results"
-msgstr "GnuPG sonuçları"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:63
+msgid "Failed to relock persistent storage."
+msgstr "Kalıcı depolama yeniden kilitlenemedi."
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:820
-msgid "Output of GnuPG:"
-msgstr "GnuPG çıktısı: "
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:79
+msgid "Unlocking…"
+msgstr "Kilit açılıyor..."
 
-#: config/chroot_local-includes/usr/local/bin/gpgApplet:845
-msgid "Other messages provided by GnuPG:"
-msgstr "GnuPG'den temin edilen diğer mesajlar: "
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py:111
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:40
+msgid "Cannot unlock encrypted storage with this passphrase."
+msgstr "Bu parola ile şifreli depolama alanının kilidi açılamadı."
 
-#: config/chroot_local-includes/usr/local/lib/shutdown-helper-applet:39
-msgid "Shutdown Immediately"
-msgstr "Oturumu hemen kapat"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py:135
+msgid "_Language"
+msgstr "_Dil"
 
-#: config/chroot_local-includes/usr/local/lib/shutdown-helper-applet:40
-msgid "Reboot Immediately"
-msgstr "Hemen yeniden başlat"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py:153
+msgid "_Keyboard Layout"
+msgstr "_Tuş Takımı Düzeni"
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:16
-msgid "not available"
-msgstr "mevcut değil"
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py:171
+msgid "_Formats"
+msgstr "_Biçimler"
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:19
+#: config/chroot_local-includes/usr/local/bin/keepassxc:15
+#, sh-format
+msgid ""
+"<b><big>Do you want to rename your <i>KeePassXC</i> database?</big></b>\n"
+"\n"
+"You have a <i>KeePassXC</i> database in your <i>Persistent</i> folder:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Renaming it to <i>keepassx.kdbx</i> would allow <i>KeePassXC</i> to open it "
+"automatically in the future."
+msgstr ""
+"<b><big><i>KeePassXC</i> veritabanınızı yeniden adlandırmak ister misiniz?</"
+"big></b>\n"
+"\n"
+"<i>Kalıcı</i> klasörünüzde bir <i>KeePassXC</i> veritabanı var:\n"
+"\n"
+"<i>${filename}</i>\n"
+"\n"
+"Bu dosyayı <i>keepassx.kdbx</i> olarak yeniden adlandırarak gelecekte "
+"<i>KeePassXC</i> ile otomatik olarak açılmasını sağlayabilirsiniz."
+
+#: config/chroot_local-includes/usr/local/bin/keepassxc:23
+msgid "Rename"
+msgstr "Yeniden Adlandır"
+
+#: config/chroot_local-includes/usr/local/bin/keepassxc:24
+msgid "Keep current name"
+msgstr "Geçerli ad korunsun"
+
+#: config/chroot_local-includes/usr/local/bin/replace-su-with-sudo:21
+msgid "su is disabled. Please use sudo instead."
+msgstr ""
+" su komutu devre dışı bırakılmış. Lütfen yerine sudo komutunu kullanın."
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:75
+msgid "Lock screen"
+msgstr "Ekranı kilitle"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:79
+msgid "Suspend"
+msgstr "Duraklat"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:83
+msgid "Restart"
+msgstr "Yeniden başlat"
+
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/status-menu-helper@tails.boum.org/extension.js:87
+msgid "Power Off"
+msgstr "Gücü Kapat"
+
+#: config/chroot_local-includes/usr/local/bin/tails-about:22
 #: ../config/chroot_local-includes/usr/share/desktop-directories/Tails.directory.in.h:1
 msgid "Tails"
 msgstr "Tails"
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:24
-msgid "The Amnesic Incognito Live System"
-msgstr "Amnesic Incognito Canlı Sistemi"
-
 #: config/chroot_local-includes/usr/local/bin/tails-about:25
+#: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:1
+msgid "About Tails"
+msgstr "Tails Hakkında"
+
+#: config/chroot_local-includes/usr/local/bin/tails-about:35
+msgid "The Amnesic Incognito Live System"
+msgstr "The Amnesic Incognito Live System"
+
+#: config/chroot_local-includes/usr/local/bin/tails-about:36
 #, python-format
 msgid ""
 "Build information:\n"
 "%s"
 msgstr ""
-"Sürüm bilgisi:\n"
+"Yapım bilgisi:\n"
 "%s"
 
-#: config/chroot_local-includes/usr/local/bin/tails-about:27
-#: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:1
-msgid "About Tails"
-msgstr "Tails hakkında"
+#: config/chroot_local-includes/usr/local/bin/tails-about:54
+msgid "not available"
+msgstr "kullanılamıyor"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:118
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:124
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:128
-msgid "Your additional software"
-msgstr "Diğer yazılımlarınız"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:119
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:129
+#. Translators: Don't translate {details}, it's a placeholder and will
+#. be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:148
+#, python-brace-format
 msgid ""
-"The upgrade failed. This might be due to a network problem. Please check "
-"your network connection, try to restart Tails, or read the system log to "
-"understand better the problem."
+"{details} Please check your list of additional software or read the system "
+"log to understand the problem."
 msgstr ""
-"Yükseltme başarısız. Bu bir ağ probleminden dolayı olabilir. Lütfen ağ "
-"bağlantınızı kontrol edin ve Tails'i yeniden başlatmaya çalışın veya sorunu "
-"daha iyi anlayabilmek için sistem günlüğünü okuyun."
+"{details} Lütfen ek yazılım listenizi denetleyin ya da sorunu anlamak için "
+"sistem günlüğüne bakın."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:125
-msgid "The upgrade was successful."
-msgstr "Güncelleme başarılı oldu."
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:153
+msgid ""
+"Please check your list of additional software or read the system log to "
+"understand the problem."
+msgstr ""
+"Lütfen ek yazılım listenizi denetleyin ya da sorunu anlamak için sistem "
+"günlüğüne bakın."
 
-#: config/chroot_local-includes/usr/local/bin/tails-htp-notify-user:52
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:157
+msgid "Show Log"
+msgstr "Günlüğü Görüntüle"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:157
+msgid "Configure"
+msgstr "Yapılandır"
+
+#. Translators: Don't translate {beginning} or {last}, they are
+#. placeholders and will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:223
+#, python-brace-format
+msgid "{beginning} and {last}"
+msgstr "{beginning} ile {last}"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:224
+msgid ", "
+msgstr ", "
+
+#. Translators: Don't translate {packages}, it's a placeholder and will
+#. be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:290
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:320
+#, python-brace-format
+msgid "Add {packages} to your additional software?"
+msgstr "Ek yazılımlarına {packages} eklensin mi?"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:292
+msgid ""
+"To install it automatically from your persistent storage when starting Tails."
+msgstr ""
+"Tails başlatılırken otomatik olarak kalıcı depolama alanınızdan kurmak için."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:294
+msgid "Install Every Time"
+msgstr "Her Defasında Kurulsun"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:295
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:326
+msgid "Install Only Once"
+msgstr "Yalnız Bir Kez Kurulsun"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:301
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:331
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:372
+msgid "The configuration of your additional software failed."
+msgstr "Ek yazılımınız yapılandırılamadı."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:322
+msgid ""
+"To install it automatically when starting Tails, you can create a persistent "
+"storage and activate the <b>Additional Software</b> feature."
+msgstr ""
+"Tails başlatılırken otomatik olarak kurulması için bir kalıcı depolama "
+"oluşturarak <b>Ek Yazılımlar</b> özelliğini etkinleştirmeniz gerekir."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:325
+msgid "Create Persistent Storage"
+msgstr "Kalıcı Depolama Oluştur"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:333
+msgid "Creating your persistent storage failed."
+msgstr "Kalıcı depolamanız oluşturulamadı."
+
+#. Translators: Don't translate {packages}, it's a placeholder and
+#. will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:342
+#, python-brace-format
+msgid "You could install {packages} automatically when starting Tails"
+msgstr "Tails başlatılırken otomatik olarak {packages} kurabilirsiniz"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:345
+msgid ""
+"To do so, you need to run Tails from a USB stick installed using <i>Tails "
+"Installer</i>."
+msgstr ""
+"Bunun için Tails uygulamasını <i>Tails Kurucu</i> ile hazırlanmış bir USB "
+"bellekten çalıştırmalısınız."
+
+#. Translators: Don't translate {packages}, it's a placeholder and will be
+#. replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:360
+#, python-brace-format
+msgid "Remove {packages} from your additional software?"
+msgstr "{packages} ek yazılımlarınızdan kaldırılsın mı?"
+
+#. Translators: Don't translate {packages}, it's a placeholder
+#. and will be replaced.
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:364
+#, python-brace-format
+msgid "This will stop installing {packages} automatically."
+msgstr "Bu işlem otomatik {packages} kurulumunu durduracak."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:366
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:154
+msgid "Remove"
+msgstr "Kaldır"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:545
+msgid "Installing your additional software from persistent storage..."
+msgstr "Ek yazılımınız kalıcı depolama alanınızdan kuruluyor..."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:547
+msgid "This can take several minutes."
+msgstr "Bu işlem bir kaç dakika sürebilir."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:560
+msgid "The installation of your additional software failed"
+msgstr "Ek yazılım kurulamadı"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:575
+msgid "Additional software installed successfully"
+msgstr "Ek yazılım kuruldu"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:595
+msgid "The check for upgrades of your additional software failed"
+msgstr "Ek yazılımınızın güncellemeleri denetlenemedi"
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:597
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:605
+msgid ""
+"Please check your network connection, restart Tails, or read the system log "
+"to understand the problem."
+msgstr ""
+"Lütfen ağ bağlantınızı denetleyin, Tails uygulamasını yeniden başlatın ya da "
+"sorunu anlamak için sistem günlüğüne bakın."
+
+#: config/chroot_local-includes/usr/local/sbin/tails-additional-software:604
+msgid "The upgrade of your additional software failed"
+msgstr "Ek yazılım güncellenemedi"
+
+#: config/chroot_local-includes/usr/local/lib/tails-additional-software-notify:37
+msgid "Documentation"
+msgstr "Belgeler"
+
+#. Translators: Don't translate {package}, it's a placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:94
+#, python-brace-format
+msgid ""
+"Remove {package} from your additional software? This will stop installing "
+"the package automatically."
+msgstr ""
+"{package} ek yazılımlarınız arasından kaldırılsın mı? Bu işlem paketin "
+"otomatik olarak kurulmasını durduracak."
+
+#. Translators: Don't translate {pkg}, it's a placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:105
+#, python-brace-format
+msgid "Failed to remove {pkg}"
+msgstr "{pkg} kaldırılamadı"
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:122
+msgid "Failed to read additional software configuration"
+msgstr "Ek yazılım yapılandırması okunamadı"
+
+#. Translators: Don't translate {package}, it's a placeholder and will be replaced.
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:152
+#, python-brace-format
+msgid "Stop installing {package} automatically"
+msgstr "{package} otomatik olarak kurulmasın"
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:178
+msgid ""
+"To do so, install some software using <a href=\"synaptic.desktop\">Synaptic "
+"Package Manager</a> or <a href=\"org.gnome.Terminal.desktop\">APT on the "
+"command line</a>."
+msgstr ""
+"Bunun için <a href=\"synaptic.desktop\">Synaptic Paket Yöneticisi</a> ya da "
+"<a href=\"org.gnome.Terminal.desktop\">komut satırından APT kullanarak</a> "
+"başka yazılımlar kurun."
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:187
+msgid ""
+"To do so, unlock your persistent storage when starting Tails and install "
+"some software using <a href=\"synaptic.desktop\">Synaptic Package Manager</"
+"a> or <a href=\"org.gnome.Terminal.desktop\">APT on the command line</a>."
+msgstr ""
+"Bunun için Tails uygulamasını başlatırken kalıcı deponuzun kilidini açın ve "
+"<a href=\"synaptic.desktop\">Synaptic Paket Yöneticisi</a> ya da <a href="
+"\"org.gnome.Terminal.desktop\">komut satırından APT kullanarak</a> başka "
+"yazılımlar kurun."
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:197
+msgid ""
+"To do so, create a persistent storage and install some software using <a "
+"href=\"synaptic.desktop\">Synaptic Package Manager</a> or <a href=\"org."
+"gnome.Terminal.desktop\">APT on the command line</a>."
+msgstr ""
+"Bunun için, kalıcı bir depo ekleyin ve <a href=\"synaptic.desktop\">Synaptic "
+"Paket Yöneticisi</a> ya da <a href=\"org.gnome.Terminal.desktop\">komut "
+"satırından APT kullanarak</a> başka yazılımlar kurun."
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:205
+msgid ""
+"To do so, install Tails on a USB stick using <a href=\"tails-installer."
+"desktop\">Tails Installer</a> and create a persistent storage."
+msgstr ""
+"Bunun için <a href=\"tails-installer.desktop\">Tails Kurucu </a>uygulamasını "
+"kullanarak bir Tails uygulamasını bir USB belleğe kurun ve kalıcı bir depo "
+"ekleyin. "
+
+#: config/chroot_local-includes/usr/local/bin/tails-additional-software-config:252
+msgid "[package not available]"
+msgstr "[paket kullanılamıyor]"
+
+#: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:52
 msgid "Synchronizing the system's clock"
 msgstr "Sistem saati eşitleniyor "
 
-#: config/chroot_local-includes/usr/local/bin/tails-htp-notify-user:53
+#: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:53
 msgid ""
 "Tor needs an accurate clock to work properly, especially for Hidden "
 "Services. Please wait..."
 msgstr ""
-"Tor'un düzgün çalışabilmesi için doğru çalışan bir saate ihtiyacı var, "
+"Tor uygulamasının düzgün çalışabilmesi için saatin doğru olması önemlidir, "
 "özellikle Gizli Servisler için. Lütfen bekleyin..."
 
-#: config/chroot_local-includes/usr/local/bin/tails-htp-notify-user:87
+#: config/chroot_local-includes/usr/local/lib/tails-htp-notify-user:87
 msgid "Failed to synchronize the clock!"
 msgstr "Saat eşitlenemedi!"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-restricted-network-detector:38
-msgid "Network connection blocked?"
-msgstr "Ağ bağlantısı engellensin mi?"
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:110
+msgid "Lock Screen"
+msgstr "Ekranı Kilitle"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-restricted-network-detector:40
-msgid ""
-"It looks like you are blocked from the network. This may be related to the "
-"MAC spoofing feature. For more information, see the <a href=\\\"file:///usr/"
-"share/doc/tails/website/doc/first_steps/startup_options/mac_spoofing.en."
-"html#blocked\\\">MAC spoofing documentation</a>."
-msgstr ""
-"Ağı engellemiş gibi görünüyorsunuz. Bu MAC aldatma özelliği ile ilişkili "
-"olabilir. Daha fazla bilgi için, MAC aldatma belgelerine <a href=\\\"file:///"
-"usr/share/doc/tails/website/doc/first_steps/startup_options/mac_spoofing.en."
-"html#blocked\\\">bakın</a>."
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:125
+msgid "Screen Locker"
+msgstr "Ekran Kilitleyici"
 
-#: config/chroot_local-includes/usr/local/bin/tails-security-check:151
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:131
+msgid "Set up a password to unlock the screen."
+msgstr "Ekran kilidini açmak için bir parola ayarlayın."
+
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:149
+msgid "Password"
+msgstr "Parola"
+
+#: config/chroot_local-includes/usr/local/bin/tails-screen-locker:150
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:93
+msgid "Confirm"
+msgstr "Onayla"
+
+#: config/chroot_local-includes/usr/local/bin/tails-security-check:124
 msgid "This version of Tails has known security issues:"
-msgstr "Tails'in bu sürümünün güvenlik problemleri var: "
+msgstr "Bu Tails sürümünde bilinen bazı güvenlik sorunları var: "
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:37
+#: config/chroot_local-includes/usr/local/bin/tails-security-check:135
+msgid "Known security issues"
+msgstr "Bilinen güvenlik sorunları"
+
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:52
 #, sh-format
 msgid "Network card ${nic} disabled"
 msgstr "${nic} ağ kartı devre dışı"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:38
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:53
 #, sh-format
 msgid ""
 "MAC spoofing failed for network card ${nic_name} (${nic}) so it is "
 "temporarily disabled.\n"
-"You might prefer to restart Tails and disable MAC spoofing. See the <a "
-"href='file:///usr/share/doc/tails/website/doc/first_steps/startup_options/"
-"mac_spoofing.en.html'>documentation</a>."
+"You might prefer to restart Tails and disable MAC spoofing."
 msgstr ""
-"MAC aldatma ağ kartı ${nic_name} (${}nic) için başarısız oldu, bu yüzden "
+"${nic_name} (${nic}) ağ kartı için MAC maskelemesi başarısız bu yüzden "
 "geçici olarak devre dışı bırakıldı.\n"
-"MAC aldatmayı devre dışı bırakarak, Tails'i yeniden tercih edebilirsiniz. "
-"Belgelere <a href='file:///usr/share/doc/tails/website/doc/first_steps/"
-"startup_options/mac_spoofing.en.html'>bakın</a>."
+"Tails'i yeniden başlatmanız ve MAC maskelemesini kapatmanız gerekebilir."
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:47
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:62
 msgid "All networking disabled"
 msgstr "Tüm ağ devre dışı"
 
-#: config/chroot_local-includes/usr/local/sbin/tails-spoof-mac:48
+#: config/chroot_local-includes/usr/local/lib/tails-spoof-mac:63
 #, sh-format
 msgid ""
 "MAC spoofing failed for network card ${nic_name} (${nic}). The error "
 "recovery also failed so all networking is disabled.\n"
-"You might prefer to restart Tails and disable MAC spoofing. See the <a "
-"href='file:///usr/share/doc/first_steps/startup_options/mac_spoofing.en."
-"html'>documentation</a>."
+"You might prefer to restart Tails and disable MAC spoofing."
 msgstr ""
-"MAC aldatma ağ kartı ${nic_name} (${nic}) için başarısız. Hata iyileştirme "
-"de başarısız böylece tüm ağ devre dışı bırakıldı.\n"
-"MAC aldatmayı devre dışı bırakarak, Tails'i yeniden tercih edebilirsiniz. "
-"Belgelere <a href='file:///usr/share/doc/tails/website/doc/first_steps/"
-"startup_options/mac_spoofing.en.html'>bakın</a>."
+"${nic_name} (${nic}) ağ kartı için MAC maskelemesi başarısız. Ayrıca bu "
+"hatanın kurtarılma girişimi de başarısız dolayısıyla tüm ağ devre dışı.\n"
+"Tails uygulamasını yeniden başlatmanız ve MAC maskelemesini kapatmanız "
+"gerekebilir."
 
-#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:19
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:22
-msgid "error:"
-msgstr "hata:"
-
-#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:20
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:23
-msgid "Error"
-msgstr "Hata"
-
-#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:40
+#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:35
 msgid ""
-"<b>Not enough memory available to check for upgrades.</b>\n"
+"\"<b>Not enough memory available to check for upgrades.</b>\n"
 "\n"
 "Make sure this system satisfies the requirements for running Tails.\n"
 "See file:///usr/share/doc/tails/website/doc/about/requirements.en.html\n"
@@ -400,222 +679,340 @@ msgid ""
 "Try to restart Tails to check for upgrades again.\n"
 "\n"
 "Or do a manual upgrade.\n"
-"See https://tails.boum.org/doc/first_steps/upgrade#manual"
+"See https://tails.boum.org/doc/first_steps/upgrade#manual\""
 msgstr ""
-"<b>Güncellemeleri kontrol etmek için yeterli hafıza yok.</b>\n"
+"\"<b>Güncellemeleri denetlemek için yeterli bellek yok.</b>\n"
 "\n"
-"Bu sistemin Tails'i çalıştırmak için gerekenleri karşıladığından emin olun.\n"
-"Bkz. file:///usr/share/doc/tails/website/doc/about/requirements.tr.html\n"
+"Sistemin Tails uygulamasını çalıştırmak için gereksinimleri karşıladığından "
+"emin olun.\n"
+"file:///usr/share/doc/tails/website/doc/about/requirements.en.html dosyasına "
+"bakabilirsiniz\n"
 "\n"
-"Güncellemeleri tekrar kontrol etmek için Tails'i yeniden başlatın.\n"
+"Güncellemeleri yeniden denetlemek için Tails uygulamasını yeniden başlatmayı "
+"deneyin.\n"
 "\n"
-"Ya da manuel olarak güncelleyin.\n"
-"Bkz. https://tails.boum.org/doc/first_steps/upgrade#manual"
+"Ya da el ile güncellemeyi deneyin.\n"
+"Ayrıntılı bilgi almak için https://tails.boum.org/doc/first_steps/"
+"upgrade#manual\" adresine bakabilirsiniz"
 
-#: config/chroot_local-includes/usr/local/bin/tails-virt-notify-user:53
+#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:72
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:27
+msgid "error:"
+msgstr "hata:"
+
+#: config/chroot_local-includes/usr/local/bin/tails-upgrade-frontend-wrapper:73
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:28
+msgid "Error"
+msgstr "Hata"
+
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:71
 msgid "Warning: virtual machine detected!"
-msgstr "Uyarı: Sanal makine tespit edildi!"
+msgstr "Uyarı: Sanal makine algılandı!"
 
-#: config/chroot_local-includes/usr/local/bin/tails-virt-notify-user:55
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:74
+msgid "Warning: non-free virtual machine detected!"
+msgstr "Uyarı: Özgür olmayan sanal makine algılandı!"
+
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
 msgid ""
 "Both the host operating system and the virtualization software are able to "
-"monitor what you are doing in Tails."
+"monitor what you are doing in Tails. Only free software can be considered "
+"trustworthy, for both the host operating system and the virtualization "
+"software."
 msgstr ""
-"Hem ana işletim sistemi hem de sanallaştırma yazılımı Tails içerisinde ne "
-"yapacağınızı görebilir."
+"Sunucu işletim sistemi ve sanallaştırma uygulaması Tails üzerinde yaptığınız "
+"işlemleri izler. Sunucu işletim sistemi ve sanallaştırma uygulaması için "
+"yalnızca özgür yazılımlar güvenilir olarak düşünülebilir."
 
-#: config/chroot_local-includes/usr/local/bin/tails-virt-notify-user:57
-msgid ""
-"<a href='file:///usr/share/doc/tails/website/doc/advanced_topics/"
-"virtualization.en.html'>Learn more...</a>"
-msgstr ""
-"<a href='file:///usr/share/doc/tails/website/doc/advanced_topics/"
-"virtualization.en.html'>Daha fazlasını öğren...</a>"
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:81
+msgid "Learn more"
+msgstr "Ayrıntılı bilgi alın"
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:18
+#: config/chroot_local-includes/usr/local/bin/tor-browser:43
 msgid "Tor is not ready"
 msgstr "Tor hazır değil"
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:19
+#: config/chroot_local-includes/usr/local/bin/tor-browser:44
 msgid "Tor is not ready. Start Tor Browser anyway?"
-msgstr "Tor hazır değil.Yinede Tor'u başlatmak ister misiniz?"
+msgstr "Tor hazır değil. Gene de Tor Browser başlatılsın mı?"
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:20
+#: config/chroot_local-includes/usr/local/bin/tor-browser:45
 msgid "Start Tor Browser"
-msgstr "Tor Browser'ı başlat"
+msgstr "Tor Browser Başlatılsın"
 
-#: config/chroot_local-includes/usr/local/bin/tor-browser:21
-msgid "Cancel"
-msgstr "İptal"
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js:35
+msgid "Tor Status"
+msgstr "Tor Durumu"
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:33
-msgid "Do you really want to launch the Unsafe Browser?"
-msgstr "Güvenli olmayan tarayıcıyı kullanmak istediğinize emin misiniz?"
+#: config/chroot_local-includes/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js:50
+msgid "Open Onion Circuits"
+msgstr "Açık Onion Devreleri"
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:35
+#. Translators: Don't translate {volume_label} or {volume_size},
+#. they are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:64
+#, python-brace-format
+msgid "{volume_label} ({volume_size})"
+msgstr "{volume_label} ({volume_size})"
+
+#. Translators: Don't translate {partition_name} or {partition_size},
+#. they are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:69
+#, python-brace-format
+msgid "{partition_name} ({partition_size})"
+msgstr "{partition_name} ({partition_size})"
+
+#. Translators: Don't translate {volume_size}, it's a placeholder
+#. and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:74
+#, python-brace-format
+msgid "{volume_size} Volume"
+msgstr "{volume_size} Birim"
+
+#. Translators: Don't translate {volume_name}, it's a placeholder and
+#. will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:113
+#, python-brace-format
+msgid "{volume_name} (Read-Only)"
+msgstr "{volume_name} (Salt Okunur)"
+
+#. Translators: Don't translate {partition_name} and {container_path}, they
+#. are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:121
+#, python-brace-format
+msgid "{partition_name} in {container_path}"
+msgstr "{container_path} içindeki {partition_name}"
+
+#. Translators: Don't translate {volume_name} and {path_to_file_container},
+#. they are placeholders and will be replaced. You should only have to translate
+#. this string if it makes sense to reverse the order of the placeholders.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:128
+#, python-brace-format
+msgid "{volume_name} – {path_to_file_container}"
+msgstr "{volume_name} – {path_to_file_container}"
+
+#. Translators: Don't translate {partition_name} and {drive_name}, they
+#. are placeholders and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:134
+#, python-brace-format
+msgid "{partition_name} on {drive_name}"
+msgstr "{drive_name} üzerindeki {partition_name}"
+
+#. Translators: Don't translate {volume_name} and {drive_name},
+#. they are placeholders and will be replaced. You should only have to translate
+#. this string if it makes sense to reverse the order of the placeholders.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:141
+#, python-brace-format
+msgid "{volume_name} – {drive_name}"
+msgstr "{volume_name} – {drive_name}"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:228
+msgid "Wrong passphrase or parameters"
+msgstr "Parola ya da parametreler hatalı"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:230
+msgid "Error unlocking volume"
+msgstr "Birim kilidi açılırken sorun çıktı"
+
+#. Translators: Don't translate {volume_name} or {error_message},
+#. they are placeholder and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:234
+#, python-brace-format
 msgid ""
-"Network activity within the Unsafe Browser is <b>not anonymous</b>. Only use "
-"the Unsafe Browser if necessary, for example if you have to login or "
+"Couldn't unlock volume {volume_name}:\n"
+"{error_message}"
+msgstr ""
+"{volume_name} biriminin kilidi açılamadı:\n"
+"{error_message}"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:336
+msgid "One or more applications are keeping the volume busy."
+msgstr "Bir ya da birkaç uygulama bu birimi meşgul ediyor."
+
+#. Translators: Don't translate {volume_name} or {error_message},
+#. they are placeholder and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:342
+#, python-brace-format
+msgid ""
+"Couldn't lock volume {volume_name}:\n"
+"{error_message}"
+msgstr ""
+"Birim kilitlenemedi {volume_name}:\n"
+"{error_message}"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py:344
+msgid "Locking the volume failed"
+msgstr "Birim kilitlenemedi"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:83
+msgid "No file containers added"
+msgstr "Herhangi bir dosya kapsayıcısı eklenmedi"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py:98
+msgid "No VeraCrypt devices detected"
+msgstr "Herhangi bir VeraCrypt aygıtı algılanamadı"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:40
+#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:1
+msgid "Unlock VeraCrypt Volumes"
+msgstr "VeraCrypt Birimlerinin Kilidini Aç"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:114
+msgid "Container already added"
+msgstr "Kapsayıcı zaten eklenmiş"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:115
+#, python-format
+msgid "The file container %s should already be listed."
+msgstr "%s kapsayıcısının zaten listede olması gerekir."
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:131
+msgid "Container opened read-only"
+msgstr "Kapsayıcı salt okunur olarak açıldı"
+
+#. Translators: Don't translate {path}, it's a placeholder  and will be replaced.
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:133
+#, python-brace-format
+msgid ""
+"The file container {path} could not be opened with write access. It was "
+"opened read-only instead. You will not be able to modify the content of the "
+"container.\n"
+"{error_message}"
+msgstr ""
+"{path} dosya kapsayıcısı yazma izinleri ile açılamadı. Bu nedenle salt "
+"okunur olarak açıldı. Kapsayıcının içeriğini değiştiremeyeceksiniz.\n"
+"{error_message}"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:138
+msgid "Error opening file"
+msgstr "Dosya açılırken sorun çıktı"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:160
+msgid "Not a VeraCrypt container"
+msgstr "Bir VeraCrypt kapsayıcısı değil"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:161
+#, python-format
+msgid "The file %s does not seem to be a VeraCrypt container."
+msgstr "%s dosyası bir VeraCrypt kapsayıcısı gibi görünmüyor."
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:163
+msgid "Failed to add container"
+msgstr "Kapsayıcı eklenemedi"
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:164
+#, python-format
+msgid ""
+"Could not add file container %s: Timeout while waiting for loop setup.\n"
+"Please try using the <i>Disks</i> application instead."
+msgstr ""
+"%s dosya kapsayıcısı eklenemedi: Çevrim kurulumu beklenirken zaman aşımı "
+"oluştu.\n"
+"Lütfen bunun yerine <i>Diskler</i> uygulamasını kullanmayı deneyin."
+
+#: config/chroot_local-includes/usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py:209
+msgid "Choose File Container"
+msgstr "Dosya Kapsayıcısını Seçin"
+
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:38
+msgid "Do you really want to launch the Unsafe Browser?"
+msgstr "Güvenli Olmayan Tarayıcıyı başlatmak istediğinize emin misiniz?"
+
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:40
+msgid ""
+"Network activity within the Unsafe Browser is <b>not anonymous</b>.\\nOnly "
+"use the Unsafe Browser if necessary, for example\\nif you have to login or "
 "register to activate your Internet connection."
 msgstr ""
-"Güvenli Olmayan Tarayıcı dahilindeki ağ etkinlikleri <b>anonim değildir</b>. "
-"Güvenli Olmayan Tarayıcıyı sadece gerekli olduğu zamanlarda, örneğin "
-"İnternet bağlantısını etkinleştirmek için oturum açmanızı veya kayıt "
-"olmanızı gerektiren durumlarda kullanınız."
+"Güvensiz Tarayıcı ile ağ etkinlikleriniz <b>anonim değildir</b>.\\nGüvensiz "
+"Tarayıcıyı yalnızca kullanmanız gerekiyorsa, örneğin\\nİnternet bağlantınızı "
+"etkinleştirmek için kaydolmanız ya da oturum açmanız gerekiyorsa kullanın."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:47
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:51
 msgid "Starting the Unsafe Browser..."
 msgstr "Güvenli Olmayan Tarayıcı başlatılıyor..."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:48
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:52
 msgid "This may take a while, so please be patient."
-msgstr "Bu biraz zaman alabilir, lütfen sabır gösterin."
+msgstr "Bu işlem biraz zaman alabilir, lütfen sabırlı olun."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:53
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:57
 msgid "Shutting down the Unsafe Browser..."
 msgstr "Güvenli Olmayan Tarayıcı kapatılıyor..."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:54
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:58
 msgid ""
 "This may take a while, and you may not restart the Unsafe Browser until it "
 "is properly shut down."
 msgstr ""
-"Bu biraz zaman alabilir ve Güvenli Olmayan Tarayıcıyı düzgün kapatılmadan "
-"yeniden açamazsınız. "
+"Bu işlem biraz zaman alabilir. Güvenli Olmayan Tarayıcı düzgün kapatılmadan "
+"yeniden başlatamayabilirsiniz."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:66
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:70
 msgid "Failed to restart Tor."
 msgstr "Tor yeniden başlatılamadı."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:85
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:84
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:1
 msgid "Unsafe Browser"
 msgstr "Güvenli Olmayan Tarayıcı"
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:93
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:91
 msgid ""
 "Another Unsafe Browser is currently running, or being cleaned up. Please "
 "retry in a while."
 msgstr ""
-"Başka bir Güvenli Olmayan Tarayıcı şu anda çalışıyor veya temizleniyor. "
-"Lütfen birazdan tekrar deneyin."
+"Şu anda başka bir Güvenli Olmayan Tarayıcı çalışıyor ya da temizleniyor. "
+"Lütfen bir süre sonra yeniden deneyin."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:105
-msgid ""
-"NetworkManager passed us garbage data when trying to deduce the clearnet DNS "
-"server."
-msgstr ""
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:99
+msgid "Failed to setup chroot."
+msgstr "chroot kurulamadı."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:115
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:104
+msgid "Failed to configure browser."
+msgstr "Tarayıcıyı ayarlanamadı."
+
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:110
 msgid ""
 "No DNS server was obtained through DHCP or manually configured in "
 "NetworkManager."
 msgstr ""
-"DHCP aracılığıyla bir DNS sunucusu elde edilemedi veya Ağ Yöneticisi "
-"içerisinde yapılandırılmamış."
+"DHCP aracılığıyla bir DNS sunucusu bulunamadı ya da AğYöneticisi içinde el "
+"ile ayarlanmış."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:123
-msgid "Failed to setup chroot."
-msgstr "chroot kurulamadı."
-
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:129
-#, fuzzy
-msgid "Failed to configure browser."
-msgstr "Tor yeniden başlatılamadı."
-
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:134
-#, fuzzy
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:121
 msgid "Failed to run browser."
-msgstr "Tor yeniden başlatılamadı."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:31
-msgid "I2P failed to start"
-msgstr "I2P başlatılamadı."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:32
-msgid ""
-"Something went wrong when I2P was starting. Check the logs in /var/log/i2p "
-"for more information."
-msgstr ""
-"I2P başlatılırken bir şeyler yanlış gitti. Daha fazla bilgi için /var/log/"
-"i2p içerisindeki günlüklere bakın."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:43
-msgid "I2P's router console is ready"
-msgstr "I2P yönlendirici konsolu hazır"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:44
-msgid "You can now access I2P's router console on http://127.0.0.1:7657."
-msgstr ""
-"Artık I2P yönlendirici konsoluna http://127.0.0.1:7657 adresinden "
-"erişebilirsiniz."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:49
-msgid "I2P is not ready"
-msgstr "I2P hazır değil"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:50
-msgid ""
-"Eepsite tunnel not built within six minutes. Check the router console at "
-"http://127.0.0.1:7657/logs or the logs in /var/log/i2p for more information. "
-"Reconnect to the network to try again."
-msgstr ""
-"Eepsite tüneli altı dakika içerisinde derlenemedi. Daha fazla bilgi için "
-"http://127.0.0.1:7657/logs üzerindeki veya /var/log/i2p içerisindeki "
-"günlüklere bakın. Ağa yeniden bağlanıp, yeniden deneyin."
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:60
-msgid "I2P is ready"
-msgstr "I2P hazır"
-
-#: config/chroot_local-includes/usr/local/sbin/tails-i2p:61
-msgid "You can now access services on I2P."
-msgstr "Artık I2P üzerinde hizmetlere erişebilirsiniz."
+msgstr "Tarayıcıyı çalıştırılamadı."
 
 #: ../config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in.h:1
 msgid "Report an error"
-msgstr "Bir hata bildir"
+msgstr "Hata bildirin"
 
 #: ../config/chroot_local-includes/etc/skel/Desktop/tails-documentation.desktop.in.h:1
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:1
 msgid "Tails documentation"
-msgstr "Tails kılavuzu"
+msgstr "Tails belgeleri"
+
+#: ../config/chroot_local-includes/usr/share/applications/root-terminal.desktop.in.h:1
+msgid "Root Terminal"
+msgstr "Root Uçbirimi"
+
+#: ../config/chroot_local-includes/usr/share/applications/root-terminal.desktop.in.h:2
+msgid "Opens a terminal as the root user, using gksu to ask for the password"
+msgstr "Uçbirimi root kullanıcı ile açar.  Parola sormak için gksu kullanır"
 
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:2
 msgid "Learn how to use Tails"
-msgstr "Tail'lerin nasıl kullanacağınızı öğrenin"
-
-#: ../config/chroot_local-includes/usr/share/applications/i2p-browser.desktop.in.h:1
-msgid "Anonymous overlay network browser"
-msgstr "Anonim kaplama ağ tarayıcı"
-
-#: ../config/chroot_local-includes/usr/share/applications/i2p-browser.desktop.in.h:2
-msgid "I2P Browser"
-msgstr "I2P Tarayıcı"
+msgstr "Tails uygulamasını nasıl kullanacağınızı öğrenin"
 
 #: ../config/chroot_local-includes/usr/share/applications/tails-about.desktop.in.h:2
 msgid "Learn more about Tails"
-msgstr "Tails hakkında daha fazla öğren"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-reboot.desktop.in.h:1
-msgid "Reboot"
-msgstr "Yeniden başlat"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-reboot.desktop.in.h:2
-msgid "Immediately reboot computer"
-msgstr "Bilgisayarı derhal yeniden başlat"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-shutdown.desktop.in.h:1
-msgid "Power Off"
-msgstr "Kapat"
-
-#: ../config/chroot_local-includes/usr/share/applications/tails-shutdown.desktop.in.h:2
-msgid "Immediately shut down computer"
-msgstr "Bilgisayarı hemen kapat"
+msgstr "Tails hakkında ayrıntılı bilgi alın"
 
 #: ../config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in.h:1
 msgid "Tor Browser"
-msgstr "Tor Tarayıcı"
+msgstr "Tor Browser"
 
 #: ../config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in.h:2
 msgid "Anonymous Web Browser"
@@ -623,12 +1020,223 @@ msgstr "Anonim Web Tarayıcısı"
 
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:2
 msgid "Browse the World Wide Web without anonymity"
-msgstr "Web'de anonim olmadan gez"
+msgstr "Web üzerinde anonim olmadan gez"
 
 #: ../config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in.h:3
 msgid "Unsafe Web Browser"
 msgstr "Güvenli Olmayan Tarayıcı"
 
+#: ../config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in.h:2
+msgid "Mount VeraCrypt encrypted file containers and devices"
+msgstr "VeraCrypt ile şifrelenmiş dosya kapsayıcı ve aygıtlarını bağla"
+
+#: ../config/chroot_local-includes/usr/share/applications/org.boum.tails.additional-software-config.desktop.in.h:2
+msgid ""
+"Configure the additional software installed from your persistent storage "
+"when starting Tails"
+msgstr ""
+"Tails başlatılırken otomatik olarak kalıcı depolama alanınızdan kurulacak ek "
+"yazılımları yapılandırın."
+
 #: ../config/chroot_local-includes/usr/share/desktop-directories/Tails.directory.in.h:2
 msgid "Tails specific tools"
-msgstr "Tails'e özel araçlar"
+msgstr "Özel Tails araçları"
+
+#: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.root-terminal.policy.in.h:1
+msgid "To start a Root Terminal, you need to authenticate."
+msgstr "Bir Root Uç Birimi başlatmak için kimliğinizi doğrulamalısınız."
+
+#: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.additional-software.policy.in.h:1
+msgid "Remove an additional software package"
+msgstr "Bir ek yazılım paketini kaldır"
+
+#: ../config/chroot_local-includes/usr/share/polkit-1/actions/org.boum.tails.additional-software.policy.in.h:2
+msgid ""
+"Authentication is required to remove a package from your additional software "
+"($(command_line))"
+msgstr ""
+"Ek yazılımlarınızdan bir paket kaldırmak için kimlik doğrulaması gerekir "
+"($(command_line))"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:18
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:56
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:669
+msgid "Administration Password"
+msgstr "Yönetici Parolası"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:34
+msgid ""
+"Set up an administration password if you need to perform administrative "
+"tasks. Otherwise, the administration password is disabled for better "
+"security."
+msgstr ""
+"Yönetim işlemleri yapacaksanız bir yönetim parolası yazın. Yoksa güvenlik "
+"için yönetim parolası devre dışı bırakılır."
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:69
+msgid "Enter an administration password"
+msgstr "Yönetim parolasını yazın"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:107
+msgid "Confirm your administration password"
+msgstr "Yönetim parolasını onaylayın"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:124
+msgid "Disable"
+msgstr "Devre Dışı Bırak"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:154
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:673
+msgid "MAC Address Spoofing"
+msgstr "MAC Adresi Yanıltması"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:170
+msgid ""
+"MAC address spoofing hides the serial number of your network interface (Wi-"
+"Fi or wired) to the local network. Spoofing MAC addresses is generally safer "
+"as it helps you hide your geographical location. But it might also create "
+"connectivity problems or look suspicious."
+msgstr ""
+"MAC adreslerini yanıltması ağ kartlarınızın (Wi-Fİ ya da kablolu) seri "
+"numarasını yerel ağlardan gizler. Bu özellik coğrafi konumunuzu gizlemenize "
+"yardımcı olacağından genellikle daha fazla güvenlik sağlar. Bununla birlikte "
+"bağlanma sorunlarına ya da şüpheli olarak algılanmanıza yol açabilir."
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:212
+msgid "Spoof all MAC addresses (default)"
+msgstr "Tüm MAC adresleri yanıltılsın (varsayılan)"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:258
+msgid "Don't spoof MAC addresses"
+msgstr "MAC adresleri yanıltılmasın"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:311
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:677
+msgid "Network Configuration"
+msgstr "Ağ Yapılandırması"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:327
+msgid ""
+"If your Internet connection is censored, filtered, or proxied you can "
+"configure a Tor bridge or a local proxy. To work completely offline, you can "
+"disable all networking."
+msgstr ""
+"İnternet bağlantınız sansürleniyor, süzülüyor ya da vekil sunucu "
+"kullanıyorsa, bir Tor köprüsü ya da yerel vekil sunucu "
+"yapılandırabilirsiniz. Tamamıyla çevrimdışı çalışmak için, tüm ağları devre "
+"dışı bırakabilirsiniz."
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:367
+msgid "Connect directly to the Tor network (default)"
+msgstr "Doğrudan Tor ağına bağlanılsın (varsayılan)"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:413
+msgid "Configure a Tor bridge or local proxy"
+msgstr "Bir Tor köprüsü ya da vekil sunucu yapılandır"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in:457
+msgid "Disable all networking"
+msgstr "Tüm ağ devre dışı bırakılsın"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:100
+msgid ""
+"You will configure the Tor bridge and local proxy later on after connecting "
+"to a network."
+msgstr ""
+"Bir ağa bağlandıktan sonra Tor köprüsü ya da yerel vekil sunucu "
+"yapılandırmasını yapacaksınız."
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:152
+msgid "Welcome to Tails!"
+msgstr "Tails Uygulamasına Hoş Geldiniz!"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:186
+msgid "Language & Region"
+msgstr "Dil ve Bölge"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:222
+msgid "Default Settings"
+msgstr "Varsayılan Ayarlar"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:285
+msgid "Encrypted _Persistent Storage"
+msgstr "Şifreli _Kalıcı Depolama"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:382
+msgid "Configure Persistent Storage"
+msgstr "Kalıcı Depolama Yapılandırması"
+
+#. The label for this placeholder text is not very big, so keep this string short.
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:410
+msgid "Enter your passphrase to unlock the persistent storage"
+msgstr "Kalıcı depolamanın kilidini açmak için parolanızı yazın"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:456
+msgid "Relock Persistent Storage"
+msgstr "Kalıcı Depolamayı Yeniden Kilitle"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:471
+msgid "Your persistent storage is unlocked. Restart Tails to lock it again."
+msgstr ""
+"Kalıcı depolama alanının kilidi açıldı. Yeniden kilitlemek için Tails "
+"uygulamasını yeniden başlatın."
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:509
+msgid "_Additional Settings"
+msgstr "_Ek Ayarlar"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:592
+msgid "Add an additional setting"
+msgstr "Ek bir ayar ekle"
+
+#: ../config/chroot_local-includes/usr/share/tails/greeter/main.ui.in:641
+msgid ""
+"The default settings are safe in most situations. To add a custom setting, "
+"press the \"+\" button below."
+msgstr ""
+"Çoğu durum için varsayılan ayarları kullanmak güvenlidir. Özel bir ayar "
+"eklemek için aşağıdaki \"+\" düğmesine tıklayın."
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:61
+msgid "File Containers"
+msgstr "Dosya Kapsayıcıları"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:80
+msgid "_Add"
+msgstr "_Ekle"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:86
+msgid "Add a file container"
+msgstr "Bir dosya kapsayıcısı ekle"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:103
+msgid "Partitions and Drives"
+msgstr "Bölüm ve Sürücüler"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in:121
+msgid ""
+"This application is not affiliated with or endorsed by the VeraCrypt project "
+"or IDRIX."
+msgstr ""
+"Bu uygulamanın VeraCrypt ya da IDRIX ile herhangi bir bağlantısı ve onlardan "
+"alınmış bir parçası yoktur."
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:29
+msgid "_Open"
+msgstr "_Aç"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:38
+msgid "Lock this volume"
+msgstr "Bu birimi kilitle"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:52
+msgid "_Unlock"
+msgstr "_Engellemeyi Kaldır"
+
+#: ../config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in:61
+msgid "Detach this volume"
+msgstr "Bu birimin bağlantısını kes"
+
+#: ../config/chroot_local-includes/usr/local/share/mime/packages/unlock-veracrypt-volumes.xml.in.h:1
+msgid "TrueCrypt/VeraCrypt container"
+msgstr "TrueCrypt/VeraCrypt kapsayıcısı"

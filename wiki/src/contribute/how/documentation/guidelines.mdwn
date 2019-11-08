@@ -25,9 +25,6 @@ Documentation](http://developer.gnome.org/gdp-style-guide/2.32/gdp-style-guide.h
 The following sections are also of particular interest or have been
 debated within Tails before:
 
-  - [2.4.2.&nbsp;Guidelines for Using Screenshots in Online
-    Help](http://developer.gnome.org/gdp-style-guide/2.32/gdp-style-guide.html#infodesign-10)
-    explains how to decide to use screenshots.
   - [4.&nbsp;Writing documentation for an International
     Audience](http://developer.gnome.org/gdp-style-guide/2.32/gdp-style-guide.html#locale)
     includes specific rules about how to write documentation that is
@@ -72,8 +69,8 @@ to style your documentation using CSS.
     - Code: `<span class="code">id="tails-greeter"</span>`
     - Result: <span class="code">id="tails-greeter"</span>
   - <span class="code">span.command</span>  for command names
-    - Code: `the <span class="command">apt-get</span> command`
-    - Result: the <span class="command">apt-get</span> command
+    - Code: `the <span class="command">apt</span> command`
+    - Result: the <span class="command">apt</span> command
   - <span class="code">span.filename</span>  for file names, for example:
     - Code: `the <span class="filename">~/.gnupg/gpg.conf</span> file`
     - Result: the <span class="filename">~/.gnupg/gpg.conf</span> file
@@ -116,10 +113,10 @@ is described in its principal use cases. For example:
 
 <div class="bug">
 
-The screen reading functionality of <span class="application">GNOME
+<p>The screen reading functionality of <span class="application">GNOME
 Orca</span> does not work neither with the <span
 class="application">Tor Browser</span> nor with the <span
-class="application">Unsafe Web Browser</span>.
+class="application">Unsafe Web Browser</span>.</p>
 
 </div>
 
@@ -131,17 +128,98 @@ be interesting to read next. For example:
 
 <div class="next">
 
-You can also
+<p>You can also
 [[decrypt or verify a text that is encrypted or signed using public-key cryptography|doc/encryption_and_privacy/gpgapplet/decrypt_verify]]
-using <span class="application">Tails OpenPGP Applet</span>.
+using <span class="application">OpenPGP Applet</span>.</p>
 
 </div>
+
+<a id="screenshot"></a>
+
+Screenshots
+===========
+
+We limit the number of screenshots in the documentation to the minimum.
+The GNOME Documentation Style Guide explains very well the
+[disadvantages of screenshots](https//developer.gnome.org/gdp-style-guide/2.32/gdp-style-guide.html#infodesign-10).
+
+When using screenshots of full windows, we include the window decoration
+and a border of blue background to clarify the context and the nature of
+the image. To take such a screenshot:
+
+1. In *Gimp* choose **File**&nbsp;▸ **Create**&nbsp;▸ **Screenshot&hellip;**).
+2. Select **Include windows decoration**.
+3. Make sure the blue border (`0x204a87`) on each side of the screenshot is at least 18px.
+
+We also most of the time resize the screenshots to 66%, either when they are
+too big or when they can be confused for the actual application (see
+[[!tails_ticket 11527]]). Use the *NoHalo* interpolation in *GIMP*.
+
+We always compress screenshots using [[compress-image|documentation#image-compress]].
+
+Good:
+
+[[!img screenshot-blue.png link="no"]]
+
+Bad:
+
+[[!img screenshot-transparent.png link="no"]]
+
+[[!img screenshot-cut.png link="no"]]
+
+Highlights
+----------
+
+When an element of a screenshot needs to be highlighted, for example
+because the element is small, has no label or is in a place that is hard
+to describe, highlight it in red using *Inkscape*:
+
+1. Create the base screenshot, resized at 66%.
+1. Open it in Inkspace.
+1. Create a red circle or rectangle with a width of 2 px.
+1. Export the screenshot to PNG, respecting it's original size.
+
+<a id="alt"></a>
+
+`alt` attributes for images
+===========================
+
+The `alt` attribute of an image is, for example, read by screen readers
+in place of images allowing the *content* and *function* of the image to
+be accessible to those with visual or certain cognitive disabilities.
+
+Every image must have an `alt` attribute but it can be empty (`alt=""`).
+
+In the case of our documentation:
+
+- Often screenshots require no additional information to clarify their
+  *content*. They often provide visual context that is useful for people
+  who see them but not necessary to people who don't see them.
+
+- For graphical buttons or icons, use as `alt` attribute the text that
+  is read by the GNOME Screen Reader (or that you think should be read
+  if none is read). For example:
+
+  <pre>1. Click on the &lt;span class="guimenu"&gt;
+  \[[!img lib/unlock.png alt="Unlock" class="symbolic" link="no"]]
+  &lt;/span&gt; button.</pre>
+
+For more guidelines and examples about writing good `alt` attributes,
+read the article on [alternative text by
+WebAIM](https://webaim.org/techniques/alttext/).
 
 Ikiwiki shortcuts
 =================
 
 The `\[[!wikipedia ..]]` strings you can find in some files are ikiwiki [[shortcuts]].
 You might also need to understand [[ikiwiki directives|ikiwiki/directive]].
+
+Wrap to 80 characters but only when needed
+==========================================
+
+New documentation should be wrapped to 80 characters. However, please do
+not submit patches that merely re-wrap existing text, as this makes it
+harder to read the Git history.
 
 Related online resources
 ========================

@@ -1,4 +1,5 @@
-[[!meta date="Sat Aug 2 00:00:00 2014"]]
+[[!meta date="Sat, 02 Aug 2014 00:00:00 +0000"]]
+[[!pagetemplate template="news.tmpl"]]
 [[!meta title="Tails HackFest 2014, retrospect"]]
 [[!tag announce]]
 
@@ -37,11 +38,11 @@ New mailing lists
 =================
 
 * <tails-project@boum.org>: public, archived
-[mailing-list](https://mailman.boum.org/listinfo/tails-project) to
+[mailing list](https://mailman.boum.org/listinfo/tails-project) to
 talk about the non-technical decisions regarding the project.
 * <tails-press@boum.org>: the new contact for journalists and people
 wanting to promote Tails. Just write to <tails-press@boum.org>. You
 can encrypt your email.
 * <tails-ux@boum.org>: public, archived
-[mailing-list](https://mailman.boum.org/listinfo/tails-ux) to discuss
+[mailing list](https://mailman.boum.org/listinfo/tails-ux) to discuss
 Tails website and software user interfaces.

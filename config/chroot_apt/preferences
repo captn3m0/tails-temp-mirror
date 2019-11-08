@@ -1,257 +1,81 @@
-Package: aircrack-ng
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: amd64-microcode
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: amd64-microcode
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: aufs-dkms
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
 Package: b43-fwcutter
-Pin: release o=Debian,a=unstable
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: bilibop-common
-Pin: release o=Debian Backports,n=wheezy-backports
+Explanation: unavailable in Buster
+Package: electrum python3-electrum python3-aiohttp-socks python3-aiorpcx
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: bilibop-udev
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: cryptsetup
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: cryptsetup-bin
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: electrum
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: florence
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: gnupg-agent
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: gnupg2
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: hopenpgp-tools
-Pin: release o=Debian,n=jessie
-Pin-Priority: 999
-
-Package: iproute2
-Pin: origin o=Debian Backports,n=wheezy-backports
+Package: enigmail
+Pin: origin deb.tails.boum.org
 Pin-Priority: -1
 
-Package: libffi6
-Pin: release o=Debian,n=jessie
-Pin-Priority: 999
-
-Package: poedit
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: firmware-atheros
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
 Package: firmware-b43-installer
-Pin: release o=Debian,a=unstable
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
 Package: firmware-b43legacy-installer
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-brcm80211
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-ipw2x00
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-iwlwifi
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-libertas
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-linux
-Pin: release o=Debian,a=unstable
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
 Package: firmware-linux-free
-Pin: release o=Debian,a=unstable
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: firmware-linux-nonfree
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-ralink
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: firmware-realtek
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
+Explanation: src:firmware-nonfree
+Package: firmware-linux firmware-linux-nonfree firmware-amd-graphics firmware-atheros firmware-brcm80211 firmware-intel-sound firmware-ipw2x00 firmware-iwlwifi firmware-libertas firmware-misc-nonfree firmware-realtek firmware-ti-connectivity
+Pin: release o=Debian,n=sid
+Pin-Priority: 990
 
 Package: firmware-zd1211
-Pin: release o=Debian,a=unstable
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: initramfs-tools
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: linux-compiler-* linux-headers-* linux-image-* linux-kbuild-* linux-source-*
+Pin: release o=Debian,n=experimental
 Pin-Priority: 999
 
-Package: intel-microcode
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: iucode-tool
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: keyringer
-Pin: release o=Debian,n=jessie
-Pin-Priority: 999
-
-Package: libcryptsetup4
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: linux-base
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-compiler-gcc-4.8-x86
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-586
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-686-pae
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-amd64
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-3.16.0-4-common
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-3.16.0-4-586
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-3.16.0-4-686-pae
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-headers-3.16.0-4-amd64
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-image-586
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-image-686-pae
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-image-amd64
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-image-3.16.0-4-586
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-image-3.16.0-4-686-pae
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-image-3.16.0-4-amd64
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: linux-kbuild-3.16
-Pin: release o=Debian,a=unstable
-Pin-Priority: 999
-
-Package: mat
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: monkeysign
-Pin: release o=Debian Backports,n=wheezy-backports
+Explanation: src:live-boot (#15477)
+Package: live-boot live-boot-doc live-boot-initramfs-tools
+Pin: origin deb.tails.boum.org
 Pin-Priority: 999
 
 Package: obfs4proxy
 Pin: release o=TorProject,n=obfs4proxy
 Pin-Priority: 990
 
-Package: python-six
-Pin: release o=Debian Backports,n=wheezy-backports
+Explanation: install 0.47 for now (#17005)
+Package: po4a
+Pin: origin deb.tails.boum.org
 Pin-Priority: 999
 
-Package: python-slowaes
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: python3-dogtail
+Pin: release o=Debian,n=bullseye
 Pin-Priority: 999
 
-Package: python-ecdsa
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: squashfs-tools
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: python-electrum
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: tails-installer
+Pin: origin deb.tails.boum.org
 Pin-Priority: 999
 
-Package: scdaemon
-Pin: release o=Debian Backports,n=wheezy-backports
+Package: virtualbox*
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
-Package: seahorse-nautilus
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: shared-mime-info
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: torsocks
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: virtualbox-guest-dkms
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: virtualbox-guest-utils
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: virtualbox-guest-x11
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 999
-
-Package: ttdnsd
-Pin: release o=TorProject,a=unstable
+Package: webext-ublock-origin
+Pin: release o=Debian,n=sid
 Pin-Priority: 999
 
 Explanation: weirdness in chroot_apt install-binary
@@ -261,27 +85,23 @@ Pin-Priority: 1010
 
 Package: *
 Pin: origin deb.tails.boum.org
-Pin-Priority: 1005
-
-Package: *
-Pin: release o=Debian,n=wheezy-updates
 Pin-Priority: 990
 
 Package: *
-Pin: release o=Debian,n=wheezy
+Pin: release o=Debian,n=buster
 Pin-Priority: 990
 
 Package: *
-Pin: release o=TorProject,n=wheezy
+Pin: release o=Debian,n=buster-updates
 Pin-Priority: 990
 
 Package: *
-Pin: release o=Debian Backports,n=wheezy-backports
-Pin-Priority: 200
+Pin: release l=Debian-Security,n=buster/updates
+Pin-Priority: 990
 
 Package: *
-Pin: origin live.debian.net
-Pin-Priority: -1
+Pin: release o=TorProject,n=buster
+Pin-Priority: 990
 
 Package: *
 Pin: release o=Debian
