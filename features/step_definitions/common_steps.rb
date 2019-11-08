@@ -19,7 +19,6 @@ def post_snapshot_restore_hook
   if $vm.has_network?
     if $vm.execute("systemctl --quiet is-active tor@default.service").success?
       $vm.execute("systemctl stop tor@default.service")
-      $vm.execute("systemctl --no-block restart tails-tor-has-bootstrapped.target")
       $vm.host_to_guest_time_sync
       $vm.execute("systemctl start tor@default.service")
       wait_until_tor_is_working
@@ -167,7 +166,7 @@ When /^I power off the computer$/ do
 end
 
 When /^I cold reboot the computer$/ do
-  step "I power off the computer"
+  step "I shutdown Tails and wait for the computer to power off"
   step "I start the computer"
 end
 
@@ -415,7 +414,7 @@ Given /^I add a bookmark to eff.org in the Tor Browser$/ do
   @screen.wait_and_click("TorBrowserBookmarkLocation.png", 10)
   @screen.wait_and_click("TorBrowserBookmarkLocationBookmarksMenu.png", 10)
   # Need to sleep here, otherwise the changed Bookmark location is not taken
-  # into account and we end up create a bookmark in "Other Bookmark" location.
+  # into account and we end up creating a bookmark in "Other Bookmark" location.
   sleep 1
   @screen.type(Sikuli::Key.ENTER)
 end
