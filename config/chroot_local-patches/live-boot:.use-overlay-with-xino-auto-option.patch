@@ -1,0 +1,13 @@
+diff --git a/components/9990-misc-helpers.sh b/components/9990-misc-helpers.sh
+index ee53b16..bb9fd8a 100755
+--- a/lib/live/boot/9990-misc-helpers.sh
++++ b/lib/live/boot/9990-misc-helpers.sh
+@@ -1332,7 +1332,7 @@ do_union ()
+ 			# + workdir and upperdir to be in separate directories
+ 			mkdir "${unionrw}/rw"
+ 			mkdir "${unionrw}/work"
+-			unionmountopts="-o noatime,lowerdir=${unionro},upperdir=${unionrw}/rw,workdir=${unionrw}/work"
++			unionmountopts="-o redirect_dir=on,metacopy=on,index=on,xino=on,noatime,lowerdir=${unionro},upperdir=${unionrw}/rw,workdir=${unionrw}/work"
+ 			;;
+ 	esac
+
