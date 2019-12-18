@@ -22,15 +22,13 @@ class LocalisationSettings(object):
         self._user_account = None
         self._actusermanager_loadedid = None
 
-        locales = self._get_locales()
-
         self._actusermanager = AccountsService.UserManager.get_default()
         self._actusermanager_loadedid = self._actusermanager.connect(
             "notify::is-loaded",  self.__on_usermanager_loaded)
 
-        self.language = LanguageSetting(locales, locale_selected_cb)
+        self.language = LanguageSetting(self._get_locales(), locale_selected_cb)
         self.keyboard = KeyboardSetting()
-        self.formats = FormatsSetting(locales)
+        self.formats = FormatsSetting()
 
     def __del__(self):
         if self._actusermanager_loadedid:

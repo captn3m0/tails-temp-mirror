@@ -11,10 +11,10 @@ from gi.repository import GObject, GnomeDesktop, Gtk
 
 
 class FormatsSetting(LocalizationSetting):
-    def __init__(self, language_codes: [str]):
+    def __init__(self):
         super().__init__()
         self.value = 'en_US'
-        self.locales_per_country = self._make_locales_per_country_dict(language_codes)
+        self.locales_per_country = self._make_locales_per_country_dict()
 
     def get_tree(self) -> Gtk.TreeStore:
         treestore = Gtk.TreeStore(GObject.TYPE_STRING,  # id
@@ -105,17 +105,21 @@ class FormatsSetting(LocalizationSetting):
             return locale_code
 
     @staticmethod
-    def _make_locales_per_country_dict(language_codes: [str]) -> {str: [str]}:
+    def _make_locales_per_country_dict() -> {str: [str]}:
         """assemble dictionary of country codes to corresponding locales list
 
         example {FR: [fr_FR, en_FR], ...}"""
         res = {}
-        for language_code in language_codes:
-            country_code = country_from_locale(language_code)
+        locales = GnomeDesktop.get_all_locales()
+        for locale in locales:
+            success, _, country_code, _, _ = GnomeDesktop.parse_locale(locale)
+            if not success or country_code is None:
+                continue
+
             if country_code not in res:
                 res[country_code] = []
-            if language_code not in res[country_code]:
-                res[country_code].append(language_code)
+            if locale not in res[country_code]:
+                res[country_code].append(locale)
         return res
 
     def on_language_changed(self, language_code: str):
