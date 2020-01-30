@@ -82,6 +82,10 @@ install_tor_browser() {
     chmod -R a+rX /usr/local/lib/obfs4proxy
     chown -R root:root /usr/local/lib/obfs4proxy
     sed -i 's/attach_disconnected/attach_disconnected,complain/' /etc/apparmor.d/system_tor
+    mkdir -p /etc/xul-ext
+    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
+                     extensions.torlauncher.transportproxy_path \
+                     '"/usr/local/lib/obfs4proxy/obfs4proxy"'
 
     # We don't need the Tor binary, the shared libraries Tor needs
     # (but Firefox doesn't) and documentation shipped in the TBB.
@@ -94,15 +98,6 @@ install_tor_browser() {
 
     # Otherwise the "General" section in the preferences is not displayed.
     install -d -m 0755 "${prep}"/TorBrowser/UpdateInfo
-
-    # Needed for Moat
-    mkdir -p /etc/xul-ext
-    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
-                     extensions.torlauncher.transportproxy_path \
-                     '"/usr/local/lib/obfs4proxy/obfs4proxy"'
-    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
-                     extensions.torlauncher.default_bridge_recommended_type \
-                     '"obfs4"'
 
     mv "${prep}" "${destination}"
     rm -r "${tmp}"
