@@ -263,8 +263,7 @@ apply_prefs_hacks() {
         7z x -tzip "${tbb_install}/browser/omni.ja"
 
         # For Moat, we need Tor's default Meek pluggable transports
-        # XXX: simplify
-        sed --regexp-extended -n 's@pref\("(extensions\.torlauncher\.default_bridge\.meek-[^"]*)", "meek ([^"]*)"\);@pref("\1", "meek \2");@p' \
+        grep '^pref("extensions.torlauncher.default_bridge.meek-' \
             defaults/preferences/000-tor-browser.js \
             >> /etc/xul-ext/tor-launcher.js
 
