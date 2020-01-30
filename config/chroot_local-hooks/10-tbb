@@ -146,6 +146,11 @@ MaxVersion=*.*.*
 [Shell]
 Icon=icon.png
 EOF
+
+    # Moat does not work so we disable it
+    sed -i 's@<radio id="bridgeRadioBridgeDB"@<radio id="bridgeRadioBridgeDB" hidden="true"@' \
+	   "${destination}/chrome/content/network-settings-shared.js"
+
     chmod -R a+rX "${destination}"
     rm -r "${tmp}"
 }
