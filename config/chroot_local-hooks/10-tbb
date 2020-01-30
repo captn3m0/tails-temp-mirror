@@ -78,9 +78,9 @@ install_tor_browser() {
     # so disable this for now.
     # cp "${prep}"/TorBrowser/Tor/libstdc++/libstdc++.so.6 "${prep}"
 
-    mv "${prep}"/TorBrowser/Tor/PluggableTransports /usr/local/lib/meek
-    chmod -R a+rX /usr/local/lib/meek
-    chown -R root:root /usr/local/lib/meek
+    mv "${prep}"/TorBrowser/Tor/PluggableTransports /usr/local/lib/obfs4proxy
+    chmod -R a+rX /usr/local/lib/obfs4proxy
+    chown -R root:root /usr/local/lib/obfs4proxy
     sed -i 's/attach_disconnected/attach_disconnected,complain/' /etc/apparmor.d/system_tor
 
     # We don't need the Tor binary, the shared libraries Tor needs
@@ -98,7 +98,7 @@ install_tor_browser() {
     # Needed for Moat
     set_mozilla_pref /etc/xul-ext/tor-launcher.js \
                      extensions.torlauncher.transportproxy_path \
-                     '"/usr/bin/obfs4proxy"'
+                     '"/usr/local/lib/obfs4proxy/obfs4proxy"'
     set_mozilla_pref /etc/xul-ext/tor-launcher.js \
                      extensions.torlauncher.default_bridge_recommended_type \
                      '"obfs4"'

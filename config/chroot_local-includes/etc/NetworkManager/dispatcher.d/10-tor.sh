@@ -74,7 +74,6 @@ EOF
     # when bridge mode is not enabled, since we then use seccomp
     # sandboxing.
     tor_control_setconf 'ClientTransportPlugin="obfs2,obfs3,obfs4,meek_lite exec /usr/bin/obfs4proxy managed"'
-    tor_control_setconf 'ClientTransportPlugin="meek exec /usr/local/lib/meek/meek-client-torbrowser -- /usr/local/lib/meek/meek-client"'
 
     /usr/local/sbin/tails-tor-launcher &
 
