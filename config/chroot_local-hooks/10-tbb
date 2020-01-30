@@ -96,6 +96,7 @@ install_tor_browser() {
     install -d -m 0755 "${prep}"/TorBrowser/UpdateInfo
 
     # Needed for Moat
+    mkdir -p /etc/xul-ext
     set_mozilla_pref /etc/xul-ext/tor-launcher.js \
                      extensions.torlauncher.transportproxy_path \
                      '"/usr/local/lib/obfs4proxy/obfs4proxy"'
@@ -262,7 +263,8 @@ apply_prefs_hacks() {
         cd "${tmp}"
         7z x -tzip "${tbb_install}/browser/omni.ja"
 
-        # For Moat, we need Tor's default Meek pluggable transports
+        # Include Tor's default Meek pluggable transports
+        mkdir -p /etc/xul-ext
         grep '^pref("extensions.torlauncher.default_bridge.meek-' \
             defaults/preferences/000-tor-browser.js \
             >> /etc/xul-ext/tor-launcher.js
