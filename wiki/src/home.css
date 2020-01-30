@@ -46,7 +46,7 @@
   margin-top: 0;
 }
 
-/* Donate message */
+/* Donate outside of campaign */
 
 #donate {
   background: #eee url(lib/give-love.svg) no-repeat top 50% left 1.5em !important;
@@ -68,10 +68,6 @@
 
 span.highlight {
   background: yellow;
-}
-
-span.underlined {
-  border-bottom: 3px solid #9f73d2;
 }
 
 /* Survey message */

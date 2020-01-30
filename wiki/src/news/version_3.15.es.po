@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2019-07-09 19:55+0200\n"
-"PO-Revision-Date: 2019-07-31 04:53+0000\n"
+"PO-Revision-Date: 2019-10-23 08:11+0000\n"
 "Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -54,7 +54,7 @@ msgstr "[[!toc levels=1]]\n"
 #. type: Title #
 #, no-wrap
 msgid "Changes and upgrades"
-msgstr ""
+msgstr "Cambios y actualizaciones"
 
 #. type: Plain text
 msgid "- Update *Tor Browser* to 8.5.4."
@@ -74,6 +74,8 @@ msgid ""
 "- Fix Tails failing to start a second time on some computers. ([[!"
 "tails_ticket 16389]])"
 msgstr ""
+"- Arregla Tails fallando para iniciar por segunda vez en algunas "
+"computadoras. ([[!tails_ticket 16389]])"
 
 #. type: Bullet: '- '
 msgid ""
@@ -136,7 +138,7 @@ msgstr ""
 #. type: Bullet: '- '
 msgid ""
 "If you cannot do an automatic upgrade or if Tails fails to start after an "
-"automatic upgrade, please try to do a [[manual upgrade|upgrade]]."
+"automatic upgrade, please try to do a [[manual upgrade|doc/upgrade#manual]]."
 msgstr ""
 
 #. type: Title ##
@@ -154,11 +156,11 @@ msgstr "[[Instalar desde Windows|install/win]]"
 
 #. type: Bullet: '  - '
 msgid "[[Install from macOS|install/mac]]"
-msgstr ""
+msgstr "[[Instalar desde macOS|install/mac]]"
 
 #. type: Bullet: '  - '
 msgid "[[Install from Linux|install/linux]]"
-msgstr ""
+msgstr "[[Instalar desde Linux|install/linux]]"
 
 #. type: Plain text
 #, no-wrap
@@ -178,7 +180,7 @@ msgstr ""
 
 #. type: Bullet: '  - '
 msgid "[[For USB sticks (USB image)|install/download]]"
-msgstr ""
+msgstr "[[Para memorias USB (imagen USB)|install/download]]"
 
 #. type: Bullet: '  - '
 msgid "[[For DVDs and virtual machines (ISO image)|install/download-iso]]"

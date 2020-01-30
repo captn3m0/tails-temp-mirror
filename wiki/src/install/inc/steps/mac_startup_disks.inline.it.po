@@ -3,18 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-07-30 15:29+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-10-31 11:29+0000\n"
+"PO-Revision-Date: 2019-10-24 10:40+0000\n"
+"Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: ita <transitails@inventati.org>\n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.20\n"
 
 #. type: Content of: <ol><li><p>
 msgid "Shut down the computer while leaving the USB stick plugged in."
@@ -47,9 +49,8 @@ msgstr ""
 #| "   [[!img install/inc/screenshots/mac_option_key.png class=\"mac mac-clone"
 #| "\" link=\"no\"]]\n"
 msgid ""
-"[[!img install/inc/screenshots/mac_option_key.png class=\"mac mac-clone\" "
-"link=\"no\" alt=\"'Option' or 'alt' key in the bottom left of Mac keyboard"
-"\"]]"
+"[[!img install/inc/screenshots/mac_option_key.png link=\"no\" alt=\"'Option' "
+"or 'alt' key in the bottom left of Mac keyboard\"]]"
 msgstr ""
 "   [[!img install/inc/screenshots/mac_option_key.png class=\"mac mac-clone\" "
 "link=\"no\"]]\n"
@@ -85,14 +86,52 @@ msgstr ""
 #| "labeled 'Macintosh HD' and an external hard disk labelled "
 #| "'Windows' (selected)\"]]\n"
 msgid ""
-"[[!img install/inc/screenshots/mac_startup_usb.png class=\"mac mac-clone\" "
-"link=\"no\" alt=\"Screen with the logo of an internal hard disk labeled "
-"'Macintosh HD' and an external hard disk labelled 'Windows' (selected)\"]]"
+"[[!img install/inc/screenshots/mac_startup_usb.png link=\"no\" alt=\"Screen "
+"with the logo of an internal hard disk labeled 'Macintosh HD' and an "
+"external hard disk labelled 'Windows' (selected)\"]]"
 msgstr ""
 "   [[!img install/inc/screenshots/mac_startup_usb.png class=\"mac mac-clone"
 "\" link=\"no\" alt=\"Schermo con il logo di un hard disk interno etichettato "
 "'macintosh HD' e un hard disk esterno etichettato "
 "'Windows' (selezionato)\"]]\n"
+
+#. type: Content of: <ol><li><div><p>
+msgid "If the USB stick does not appear in the list of possible startup disks:"
+msgstr ""
+
+#. type: Content of: <ol><li><div><ol><li>
+msgid ""
+"Make sure that you have [[verified your download of Tails|install/mac/usb-"
+"download]]."
+msgstr ""
+
+#. type: Content of: <ol><li><div><ol><li>
+msgid "Try installing again on the same USB stick."
+msgstr ""
+
+#. type: Content of: <ol><li><div><ol><li>
+msgid "Try installing on a different USB stick."
+msgstr ""
+
+#. type: Content of: <ol><li><div><ol><li>
+msgid "Try using the same USB stick to start on a different computer."
+msgstr ""
+
+#. type: Content of: <ol><li><div><ol><li>
+msgid ""
+"If the same USB stick works on a different computer, please [[!toggle id="
+"\"report-toggle-1\" text=\"report the problem to our help desk\"]]."
+msgstr ""
+
+#. type: Content of: <ol>
+msgid ""
+"[[!toggleable id=\"report-toggle-1\" text=\"\"\" <span class=\"hide\">[[!"
+"toggle id=\"report-toggle-1\" text=\"\"]]</span> [[!inline pages=\"install/"
+"inc/steps/reporting.inline\" raw=\"yes\"]] \"\"\"]]"
+msgstr ""
+"[[!toggleable id=\"report-toggle-1\" text=\"\"\" <span class=\"hide\">[[!"
+"toggle id=\"report-toggle-1\" text=\"\"]]</span> [[!inline pages=\"install/"
+"inc/steps/reporting.inline.it\" raw=\"yes\"]] \"\"\"]]"
 
 #. type: Content of: <ol><li><p>
 msgid ""
@@ -107,8 +146,25 @@ msgid ""
 "'Tails (Troubleshooting Mode)'.\"]]"
 msgstr ""
 
-#. type: Content of: <ol><li><div><p>
+#. type: Content of: <div><p>
 msgid ""
-"If your computer fails to start on the USB stick, then it might currently be "
+"If your computer displays the <span class=\"application\">Boot Loader Menu</"
+"span> but then fails to start on the USB stick, it might currently be "
 "impossible to start Tails on your Mac model."
 msgstr ""
+
+#. type: Content of: <div><p>
+msgid ""
+"Please [[!toggle id=\"report-toggle\" text=\"report the problem to our help "
+"desk\"]]."
+msgstr ""
+
+#. type: Content of: outside any tag (error?)
+msgid ""
+"[[!toggleable id=\"report-toggle\" text=\"\"\" <span class=\"hide\">[[!"
+"toggle id=\"report-toggle\" text=\"\"]]</span> [[!inline pages=\"install/inc/"
+"steps/reporting.inline\" raw=\"yes\"]] \"\"\"]]"
+msgstr ""
+"[[!toggleable id=\"report-toggle\" text=\"\"\" <span class=\"hide\">[[!"
+"toggle id=\"report-toggle\" text=\"\"]]</span> [[!inline pages=\"install/inc/"
+"steps/reporting.inline.it\" raw=\"yes\"]] \"\"\"]]"

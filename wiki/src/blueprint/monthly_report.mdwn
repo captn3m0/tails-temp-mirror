@@ -16,6 +16,23 @@ The month in the list corresponds to the month to be reported about. For
 example, the report about April in the list will be written at the
 beginning of May.
 
+### 2020
+
+  - January 2020: sajolida
+  - February 2020:
+  - March 2020:
+  - April 2020: sajolida
+  - May 2020:
+  - June 2020:
+  - July 2020: sajolida
+  - August 2020:
+  - September 2020:
+  - October 2020: sajolida
+  - November 2020:
+  - December 2020:
+
+### 2019
+
   - January 2019: emmapeel
   - February 2019: intrigeri
   - March 2019: sajolida
@@ -25,9 +42,9 @@ beginning of May.
   - July 2019: muri
   - August 2019: intrigeri
   - September 2019: muri
-  - October 2019: u
-  - November 2019:
-  - December 2019:
+  - October 2019: muri
+  - November 2019: sajolida
+  - December 2019: intrigeri
 
 ### 2018
 
@@ -135,8 +152,6 @@ Template
          themselves, check the archives of tails-ux:
          <https://lists.autistici.org/list/tails-XXX.html>
 
-    XXX: Use in Hong-Kong.
-
     Hot topics on our help desk
     ===========================
 
@@ -177,7 +192,7 @@ Template
     Press and testimonials
     ======================
 
-    XXX: Copy content from press/media_appearances_2018.mdwn
+    XXX: Copy content from press/media_appearances_2019.mdwn
          This page is continuously updated by tails-press@boum.org, so if
          it's empty there might be nothing special to report.
 

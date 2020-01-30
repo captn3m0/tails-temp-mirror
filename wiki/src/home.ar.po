@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-07-20 16:34+0000\n"
+"POT-Creation-Date: 2020-01-12 20:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. type: Content of: <div>
+msgid "[[!meta title=\"Welcome to Tails!\"]]"
+msgstr ""
+
 #. type: Content of: outside any tag (error?)
 msgid ""
-"[[!meta title=\"Welcome to Tails!\"]] [[!meta stylesheet=\"home\" rel="
-"\"stylesheet\" title=\"\"]] [[!meta robots=\"noindex\"]] [[!meta script="
-"\"home\"]]"
+"[[!meta stylesheet=\"home\" rel=\"stylesheet\" title=\"\"]] [[!meta robots="
+"\"noindex\"]] [[!meta script=\"home\"]]"
 msgstr ""
 
 #. type: Content of: <div>
@@ -30,3 +33,41 @@ msgstr ""
 #. type: Content of: <div>
 msgid "[[!inline pages=\"news\" raw=\"yes\" sort=\"age\"]]"
 msgstr ""
+
+msgid "[[!inline pages=\"home/tor_check\" raw=\"yes\" sort=\"age\"]]"
+msgstr "[[!inline pages=\"home/tor_check.de\" raw=\"yes\" sort=\"age\"]]"
+
+#, fuzzy
+#| msgid ""
+#| "<a href=\"https://check.torproject.org/\"> [[!img \"lib/onion.png\" link="
+#| "\"no\"]] <span>Tor check</span> </a>"
+msgid ""
+"<a href=\"https://tails.boum.org/install/check/\"> [[!img \"lib/onion.png\" "
+"link=\"no\"]] <span>Tor check</span> </a>"
+msgstr ""
+"<a href=\"https://check.torproject.org/\"> [[!img \"lib/onion.png\" link=\"no"
+"\"]] <span class=\"twolines\">Tor überprüfen</span> </a>"
+
+msgid "[[!meta title=\"News\"]] [[!meta robots=\"noindex\"]]"
+msgstr "[[!meta title=\"Neuigkeiten\"]] [[!meta robots=\"noindex\"]]"
+
+msgid ""
+"<div id=\"tor_check\">\n"
+"<a href=\"https://check.torproject.org/\">\n"
+msgstr ""
+"<div id=\"tor_check\">\n"
+"<a href=\"https://check.torproject.org/\">\n"
+
+msgid "[[!img \"lib/onion.png\" link=\"no\"]]\n"
+msgstr "[[!img \"lib/onion.png\" link=\"no\"]]\n"
+
+msgid ""
+"<!-- Note for translators: You can use <span class=\"twolines\"> if your\n"
+"translation of the label below is long and gets split into two lines. -->\n"
+"<span>Tor check</span>\n"
+"</a>\n"
+"</div>\n"
+msgstr ""
+"<span class=\"twolines\">Verbindung testen</span>\n"
+"</a>\n"
+"</div>\n"

@@ -119,6 +119,7 @@ TORPROJECT_MIRROR="$(apt-mirror torproject)"
 perl -pi \
      -E \
        "s|^(deb(?:-src)?\s+)https?://ftp[.]us[.]debian[.]org/debian/?(\s+)|\$1$DEBIAN_MIRROR\$2| ; \
+        s|^(deb(?:-src)?\s+)https?://security[.]debian[.]org/debian-security/?(\s+)|\$1$DEBIAN_SECURITY_MIRROR\$2| ; \
         s|^(deb(?:-src)?\s+)https?://deb[.]torproject[.]org/torproject[.]org/?(\s+)|\$1$TORPROJECT_MIRROR\$2|" \
     config/chroot_sources/*.chroot \
     || fatal "APT mirror substitution failed with exit code $?"
@@ -138,7 +139,7 @@ $RUN_LB_CONFIG \
    --checksums none \
    --bootappend-live "${AMNESIA_APPEND}" \
    --bootstrap debootstrap \
-   --bootstrap-config tails-build-jessie \
+   --bootstrap-config buster \
    --archive-areas "main contrib non-free" \
    --includes none \
    --iso-application="The Amnesic Incognito Live System" \
@@ -154,7 +155,6 @@ $RUN_LB_CONFIG \
    --packages-lists none \
    --tasks none \
    --linux-packages="linux-image-${KERNEL_VERSION}" \
-   --security false \
    --syslinux-menu vesamenu \
    --syslinux-splash data/splash.png \
    --syslinux-timeout 4 \
@@ -203,18 +203,23 @@ install -m 0755 \
    submodules/mirror-pool-dispatcher/lib/js/mirror-dispatcher.js \
    config/chroot_local-includes/usr/local/lib/nodejs/
 
-# aufs4-standalone
-rm -rf config/chroot_local-includes/usr/src/aufs4-standalone
-cp -a submodules/aufs4-standalone config/chroot_local-includes/usr/src/
+# aufs-standalone
+rm -rf config/chroot_local-includes/usr/src/aufs-standalone
+cp -a submodules/aufs-standalone config/chroot_local-includes/usr/src/
 
-# custom debootstrap script, setting some APT magic to log downloads:
+# save the original file, shipped by the debootstrap package,
+# so we can always apply our debian-common.patch to the original
+# version
+if ! [ -e /usr/share/debootstrap/scripts/debian-common.bak ]; then
+   cp -a /usr/share/debootstrap/scripts/debian-common \
+         /usr/share/debootstrap/scripts/debian-common.bak
+fi
+# customize debootstrap with some APT magic to log downloads
 patch \
-    --follow-symlinks \
-    --output=/usr/share/debootstrap/scripts/tails-build-jessie \
-    /usr/share/debootstrap/scripts/jessie \
-    data/debootstrap/scripts/jessie.patch
-sed -i "s,%%topdir%%,$(pwd)," /usr/share/debootstrap/scripts/tails-build-jessie
+    --output=/usr/share/debootstrap/scripts/debian-common \
+    /usr/share/debootstrap/scripts/debian-common.bak \
+    data/debootstrap/scripts/debian-common.patch
+sed -i "s,%%topdir%%,$(pwd)," /usr/share/debootstrap/scripts/debian-common
 
 # Make the python library available in Tails
 install -d -m 2777 config/chroot_local-includes/tmp/
-cp -r submodules/pythonlib config/chroot_local-includes/tmp/

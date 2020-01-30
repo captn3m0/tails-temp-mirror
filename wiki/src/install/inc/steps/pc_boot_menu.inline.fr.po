@@ -3,51 +3,62 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-07-30 13:25+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2019-11-28 18:06+0000\n"
+"PO-Revision-Date: 2020-01-03 14:25+0000\n"
+"Last-Translator: xin <xin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. type: Content of: <h2>
 msgid "Make the computer start on the USB stick"
-msgstr ""
+msgstr "Faire démarrer l'ordinateur sur une clé USB"
 
 #. type: Content of: <p>
 msgid ""
 "This step is the most complicated one as it depends a lot on the model of "
 "the computer:"
 msgstr ""
+"Cette étape est l'une des plus compliquées car elle dépend beaucoup du "
+"modèle de l'ordinateur :"
 
 #. type: Content of: <ul><li>
 msgid ""
 "On most computers, our basic instructions to get to the boot menu work fine."
 msgstr ""
+"Sur la plupart des ordinateurs, nos instructions de base pour obtenir le "
+"menu de démarrage fonctionnent bien."
 
 #. type: Content of: <ul><li>
 msgid ""
 "On some computers, you might have to do more advanced techniques, like "
 "editing the BIOS settings."
 msgstr ""
+"Sur certains ordinateurs, vous pouvez avoir besoin de techniques plus "
+"avancées, comme de modifier les paramètres du BIOS."
 
 #. type: Content of: <ul><li>
 msgid ""
 "On a few computers, it might currently be impossible to start Tails.  But, "
 "it is very hard to know without trying."
 msgstr ""
+"Sur quelques ordinateurs, il pourrait être actuellement impossible de "
+"démarrer Tails. Mais c'est très difficile de le savoir sans essayer."
 
 #. type: Content of: <p>
 msgid ""
 "The goal is to reach the <span class=\"application\">Boot Loader Menu</span> "
 "of Tails:"
 msgstr ""
+"Le but est d'obtenir le <span class=\"application\">menu du chargeur "
+"d’amorçage</span> de Tails :"
 
 #. type: Content of: <p>
 msgid ""
@@ -55,6 +66,9 @@ msgid ""
 "screen with Tails artwork. Boot Loader Menu with two options 'Tails' and "
 "'Tails (Troubleshooting Mode)'.\"]]"
 msgstr ""
+"[[!img install/inc/screenshots/boot_loader_menu.png link=\"no\" alt=\"Écran "
+"noir avec le logo Tails. Le menu du chargeur d'amorçage avec deux options "
+"'Tails' et 'Tails (Troubleshooting Mode)'.\"]]"
 
 #. type: Content of: <div><p>
 msgid ""
@@ -62,46 +76,41 @@ msgid ""
 "can skip the rest of this section and <a href=\"#greeter\">wait until <span "
 "class=\"application\">Tails Greeter</span> appears</a>."
 msgstr ""
+"Après avoir obtenu le <span class=\"application\">menu du chargeur "
+"d'amorçage</span>, vous pouvez ignorer le reste de cette section et <a href="
+"\"#greeter\">attendre jusqu'à ce que <span class=\"application\">Tails "
+"Greeter</span> apparaisse</a>."
 
 #. type: Content of: <h3>
 msgid "Getting to the boot menu"
-msgstr ""
+msgstr "Obtenir le menu de démarrage"
 
 #. type: Content of: <p>
-#, fuzzy
-#| msgid ""
-#| "   On most computers, you can press a *boot menu key* to display a list "
-#| "of\n"
-#| "   possible devices to start from. The following instructions explain "
-#| "how\n"
-#| "   to display the boot menu and start on the USB stick. The following\n"
-#| "   screenshot is an example of such boot menu:\n"
 msgid ""
 "On most computers, you can press a <em>boot menu key</em> to display a list "
 "of possible devices to start from. The following instructions explain how to "
 "display the boot menu and start on the USB stick. The following screenshot "
 "is an example of a boot menu:"
 msgstr ""
-"   Sur la plupart des ordinateurs, il est possible d'appuyer sur une touche "
-"afin d'obtenir un\n"
-"   menu (souvent appelé *Boot Menu*) permettant de choisir le périphérique "
-"sur lequel\n"
-"   démarrer. Les instructions suivantes expliquent comment afficher le menu "
-"et démarrer sur\n"
-"   la clé USB. La capture d'écran qui suit montre l'exemple d'un tel menu :\n"
+"Sur la plupart des ordinateurs, il est possible d'appuyer sur une touche "
+"afin d'obtenir un menu (souvent appelé *Boot Menu*) permettant de choisir le "
+"périphérique sur lequel démarrer. Les instructions suivantes expliquent "
+"comment afficher le menu et démarrer sur la clé USB. La capture d'écran qui "
+"suit montre l'exemple d'un tel menu :"
 
 #. type: Content of: <p>
 msgid ""
 "[[!img install/inc/screenshots/bios_boot_menu.png link=\"no\" alt=\"\"]]"
 msgstr ""
+"[[!img install/inc/screenshots/bios_boot_menu.png link=\"no\" alt=\"\"]]"
 
 #. type: Content of: <ol><li><p>
 msgid "Shut down the computer while leaving the USB stick plugged in."
-msgstr ""
+msgstr "Éteignez l'ordinateur tout en laissant la clé USB branchée."
 
 #. type: Content of: <ol><li><p>
 msgid "Shut down the computer."
-msgstr ""
+msgstr "Éteindre l'ordinateur."
 
 #. type: Content of: <ol><li><p>
 msgid ""
@@ -123,79 +132,87 @@ msgstr ""
 
 #. type: Content of: <ol><li><table><tr><th>
 msgid "Manufacturer"
-msgstr ""
+msgstr "Fabricant"
 
 #. type: Content of: <ol><li><table><tr><th>
 msgid "Key"
-msgstr ""
+msgstr "Touche"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Acer"
-msgstr ""
+msgstr "Acer"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Esc, F12, F9"
-msgstr ""
+msgstr "Échap, F12, F9"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Asus"
-msgstr ""
+msgstr "Asus"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Esc, F8"
+msgstr "Échap, F8"
+
+#. type: Content of: <ol><li><table><tr><td>
+msgid "Clevo"
+msgstr ""
+
+#. type: Content of: <ol><li><table><tr><td>
+msgid "F7"
 msgstr ""
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Dell"
-msgstr ""
+msgstr "Dell"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "F12"
-msgstr ""
+msgstr "F12"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Fujitsu"
-msgstr ""
+msgstr "Fujitsu"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "F12, Esc"
-msgstr ""
+msgstr "F12, Échap"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "HP"
-msgstr ""
+msgstr "HP"
 
 #. type: Content of: <ol><li><table><tr><td>
-msgid "Esc, F9"
-msgstr ""
+msgid "F9, Esc"
+msgstr "F9, Échap"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Lenovo"
-msgstr ""
+msgstr "Lenovo"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "F12, Novo, F8, F10"
-msgstr ""
+msgstr "F12, Novo, F8, F10"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Samsung"
-msgstr ""
+msgstr "Samsung"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Esc, F12, F2"
-msgstr ""
+msgstr "Échap, F12, F2"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Sony"
-msgstr ""
+msgstr "Sony"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "F11, Esc, F10"
-msgstr ""
+msgstr "F11, Échap, F10"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "Toshiba"
-msgstr ""
+msgstr "Toshiba"
 
 #. type: Content of: <ol><li><table><tr><td>
 msgid "others&hellip;"
@@ -229,8 +246,8 @@ msgstr ""
 #. type: Content of: <ol><li><div><p>
 msgid ""
 "If the boot menu key that works on your computer is a different one than the "
-"first in the list, please let us know. You can write to [[sajolida@pimienta."
-"org]] (private email)."
+"first in the list, please let us know so we can improve the list. You can "
+"write to [[sajolida@pimienta.org]] (private email)."
 msgstr ""
 
 #. type: Content of: <p>
@@ -407,67 +424,38 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <div><p>
+#, fuzzy
+#| msgid ""
+#| "   <div class=\"bug\">\n"
+#| "   <p>If none of these options work, we are sorry but you might not be\n"
+#| "   able to use Tails on this computer.</p>\n"
+#| "   </div>\n"
 msgid ""
 "If none of these options work, we are sorry but you might not be able to use "
-"Tails on this computer. Feel free to [[!toggle id=\"report-toggle\" text="
-"\"report the problem to our support team\"]]."
+"Tails on this computer. Feel free to [[!toggle id=\"report-toggle-2\" text="
+"\"report the problem to our help desk\"]]."
 msgstr ""
+"   <div class=\"bug\">\n"
+"   <p>Si aucune de ces options ne marche, nous sommes désolés mais il est\n"
+"   possible que vous ne puissiez pas utiliser Tails sur cet ordinateur.</p>\n"
+"   </div>\n"
 
 #. type: Content of: outside any tag (error?)
 msgid ""
-"[[!toggleable id=\"report-toggle\" text=\"\"\" <span class=\"hide\">[[!"
-"toggle id=\"report-toggle\" text=\"\"]]</span>"
+"[[!toggleable id=\"report-toggle-2\" text=\"\"\" <span class=\"hide\">[[!"
+"toggle id=\"report-toggle-2\" text=\"\"]]</span> [[!inline pages=\"install/"
+"inc/steps/reporting.inline\" raw=\"yes\"]] \"\"\"]]"
 msgstr ""
 
-#. type: Content of: <h3>
-msgid "Reporting the problem to our support team"
-msgstr ""
-
-#. type: Content of: <p>
-msgid ""
-"Please send the following information to [[tails-support-private@boum.org]]:"
-msgstr ""
-
-#. type: Content of: <ol><li><p>
-msgid "Which version of Tails are you trying to start?"
-msgstr ""
-
-#. type: Content of: <ol><li><p>
-msgid "How did you verify the USB image?"
-msgstr ""
-
-#. type: Content of: <ol><li><p>
-msgid "What is the brand and model of your computer?"
-msgstr ""
-
-#. type: Content of: <ol><li><p>
-msgid ""
-"What exactly happens when trying to start? Report the complete error message "
-"that appears on the screen, if any."
-msgstr ""
-
-#. type: Content of: <ol><li><p>
 #, fuzzy
-#| msgid "Which program did you use to install your USB stick:"
-msgid "What program did you use to install your USB stick?"
-msgstr "Quel programme avez-vous utilisé pour installer votre clé USB :"
+#~| msgid "   ### Report the problem to our support team\n"
+#~ msgid "Reporting the problem to our help desk"
+#~ msgstr "   ### Signaler le problème à notre équipe d'assistance\n"
 
-#. type: Content of: <ol><li><p>
-msgid ""
-"Does the USB stick start successfully on other computers? If so, what are "
-"the brands and models of those computers?"
-msgstr ""
-
-#. type: Content of: <ol><li><p>
-msgid ""
-"Have you been able to successfully start another version of Tails on this "
-"computer before? If so, which version?"
-msgstr ""
-
-#. type: Content of: outside any tag (error?)
-msgid ""
-"[[!inline pages=\"support/talk/languages.inline\" raw=\"yes\"]] \"\"\"]]"
-msgstr ""
+#, fuzzy
+#~| msgid "Which program did you use to install your USB stick:"
+#~ msgid "What program did you use to install your USB stick?"
+#~ msgstr "Quel programme avez-vous utilisé pour installer votre clé USB :"
 
 #~ msgid ""
 #~ "1. <p>\n"
@@ -787,22 +775,6 @@ msgstr ""
 
 #~ msgid "Disable **UEFI**"
 #~ msgstr "Désactiver l'**UEFI**"
-
-#~ msgid "   ### Report the problem to our support team\n"
-#~ msgstr "   ### Signaler le problème à notre équipe d'assistance\n"
-
-#~ msgid ""
-#~ "   <div class=\"bug\">\n"
-#~ "   <p>If none of these options work, we are sorry but you might not be\n"
-#~ "   able to use Tails on this computer.</p>\n"
-#~ "   </div>\n"
-#~ msgstr ""
-#~ "   <div class=\"bug\">\n"
-#~ "   <p>Si aucune de ces options ne marche, nous sommes désolés mais il "
-#~ "est\n"
-#~ "   possible que vous ne puissiez pas utiliser Tails sur cet ordinateur.</"
-#~ "p>\n"
-#~ "   </div>\n"
 
 #~ msgid ""
 #~ "   Please, [[send an email to our support team|support/talk]], including\n"

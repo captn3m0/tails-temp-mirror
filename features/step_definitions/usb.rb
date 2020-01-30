@@ -1,3 +1,4 @@
+# coding: utf-8
 # Returns a hash that for each persistence preset the running Tails is aware of,
 # for each of the corresponding configuration lines,
 # maps the source to the destination.
@@ -170,22 +171,11 @@ Then /^(no|the "([^"]+)") USB drive is selected$/ do |mode, name|
   end
 end
 
-When /^I (install|reinstall|upgrade) Tails (?:to|on) USB drive "([^"]+)" (by cloning|from an ISO)$/ do |action, name, source|
+When /^I (install|reinstall|upgrade) Tails (?:to|on) USB drive "([^"]+)" by cloning$/ do |action, name|
   step "I start Tails Installer"
   # If the device was plugged *just* before this step, it might not be
   # completely ready (so it's shown) at this stage.
   try_for(10) { tails_installer_is_device_selected?(name) }
-  if source == 'from an ISO'
-    iso_radio = @installer.child('Use a downloaded Tails ISO image',
-                                 roleName: 'radio button')
-    iso_radio.click
-    iso_radio.parent.button('(None)').click
-    file_chooser = @installer.child('Select a File', roleName: 'file chooser')
-    @screen.type("l", Sikuli::KeyModifier.CTRL)
-    # The only visible text element will be the path entry
-    file_chooser.child(roleName: 'text').typeText(@iso_path + '\n')
-    file_chooser.button('Open').click
-  end
   begin
     if action == 'reinstall'
       label = 'Reinstall (delete all data)'
@@ -212,9 +202,9 @@ When /^I (install|reinstall|upgrade) Tails (?:to|on) USB drive "([^"]+)" (by clo
   end
 end
 
-Given /^I plug and mount a USB drive containing the Tails ISO$/ do
-  iso_dir = share_host_files(TAILS_ISO)
-  @iso_path = "#{iso_dir}/#{File.basename(TAILS_ISO)}"
+Given(/^I plug and mount a USB drive containing a Tails USB image$/) do
+  usb_image_dir = share_host_files(TAILS_IMG)
+  @usb_image_path = "#{usb_image_dir}/#{File.basename(TAILS_IMG)}"
 end
 
 Given /^I enable all persistence presets$/ do
@@ -339,14 +329,6 @@ end
 Then /^the running Tails is installed on USB drive "([^"]+)"$/ do |target_name|
   loader = boot_device_type == "usb" ? "syslinux" : "isolinux"
   tails_is_installed_helper(target_name, "/lib/live/mount/medium", loader)
-end
-
-Then /^the ISO's Tails is installed on USB drive "([^"]+)"$/ do |target_name|
-  iso_root = "/mnt/iso"
-  $vm.execute("mkdir -p #{iso_root}")
-  $vm.execute("mount -o loop #{@iso_path} #{iso_root}")
-  tails_is_installed_helper(target_name, iso_root, "isolinux")
-  $vm.execute("umount #{iso_root}")
 end
 
 Then /^there is no persistence partition on USB drive "([^"]+)"$/ do |name|
@@ -555,10 +537,8 @@ Then /^all persistence configuration files have safe access rights$/ do
   persistent_volumes_mountpoints.each do |mountpoint|
     assert($vm.execute("test -e #{mountpoint}/persistence.conf").success?,
            "#{mountpoint}/persistence.conf does not exist, while it should")
-    if running_tails_version.to_f >= 3.13
-      assert($vm.execute("test -e #{mountpoint}/persistence.conf.bak").success?,
-             "#{mountpoint}/persistence.conf.bak does not exist, while it should")
-    end
+    assert($vm.execute("test -e #{mountpoint}/persistence.conf.bak").success?,
+           "#{mountpoint}/persistence.conf.bak does not exist, while it should")
     assert($vm.execute("test ! -e #{mountpoint}/live-persistence.conf").success?,
            "#{mountpoint}/live-persistence.conf does exist, while it should not")
     $vm.execute(
@@ -721,10 +701,11 @@ Given /^I create a ([[:alpha:]]+) label on disk "([^"]+)"$/ do |type, name|
   $vm.storage.disk_mklabel(name, type)
 end
 
-Given /^the file system changes introduced in version (.+) are (not )?present(?: in the (\S+) Browser's chroot)?$/ do |version, not_present, chroot_browser|
-  assert_equal('1.1~test', version)
-  upgrade_applied = not_present.nil?
-  chroot_browser = "#{chroot_browser.downcase}-browser" if chroot_browser
+# The (crude) bin/create-test-iuks script can be used to generate the IUKs,
+# meant to apply these exact changes, that are used by the test suite.
+# It's nice to keep that script updated when updating the list of expected
+# changes here and uploading new test IUKs.
+def iuk_changes(version)
   changes = [
     {
       filesystem: :rootfs,
@@ -766,6 +747,41 @@ TAILS_VERSION_ID="#{version}"
       status: :removed
     },
   ]
+
+  case version
+  when '2.2~test'
+    changes
+  when '2.3~test'
+    changes + [
+      {
+        filesystem: :rootfs,
+        path: 'some_new_file_2.3',
+        status: :added,
+        new_content: <<-EOF
+Some content 2.3
+      EOF
+      },
+      {
+        filesystem: :rootfs,
+        path: 'usr/share/common-licenses/MPL-1.1',
+        status: :removed
+      },
+      {
+        filesystem: :medium,
+        path: 'utils/mbr/mbr.bin',
+        status: :removed
+      },
+    ]
+  else
+    raise "Test suite implementation error: unsupported version #{version}"
+  end
+end
+
+Given /^the file system changes introduced in version (.+) are (not )?present(?: in the (\S+) Browser's chroot)?$/ do |version, not_present, chroot_browser|
+  assert(['2.2~test', '2.3~test'].include? version)
+  upgrade_applied = not_present.nil?
+  chroot_browser = "#{chroot_browser.downcase}-browser" if chroot_browser
+  changes = iuk_changes(version)
   changes.each do |change|
     case change[:filesystem]
     when :rootfs
@@ -775,7 +791,7 @@ TAILS_VERSION_ID="#{version}"
     when :medium
       path = '/lib/live/mount/medium/' + change[:path]
     else
-      raise "Unknown filesysten '#{change[:filesystem]}'"
+      raise "Unknown filesystem '#{change[:filesystem]}'"
     end
     case change[:status]
     when :removed
@@ -810,6 +826,9 @@ Then /^I am proposed to install an incremental upgrade to version (.+)$/ do |ver
 end
 
 When /^I agree to install the incremental upgrade$/ do
+  @orig_syslinux_cfg = $vm.file_content(
+    '/lib/live/mount/medium/syslinux/syslinux.cfg'
+  )
   @screen.click('TailsUpgraderUpgradeNowButton.png')
 end
 
@@ -828,6 +847,105 @@ Then /^I can successfully install the incremental upgrade to version (.+)$/ do |
   end
   @screen.click('TailsUpgraderApplyUpgradeButton.png')
   @screen.wait('TailsUpgraderDone.png', 60)
+  # Restore syslinux.cfg: our test IUKs replace it with something
+  # that would break the next boot
+  $vm.file_overwrite(
+    '/lib/live/mount/medium/syslinux/syslinux.cfg',
+    @orig_syslinux_cfg
+  )
+end
+
+def default_squash
+  'filesystem.squashfs'
+end
+
+def installed_squashes
+  live = '/lib/live/mount/medium/live'
+  listed_squashes = $vm.file_content("#{live}/Tails.module").chomp.split("\n")
+  assert_equal(
+    default_squash,
+    listed_squashes.first,
+    "Tails.module does not list #{default_squash} on the first line"
+  )
+  present_squashes = $vm.file_glob("#{live}/*.squashfs").map { |f|
+    f.sub('/lib/live/mount/medium/live/', '')
+  }
+  # Sanity check
+  assert_equal(
+    listed_squashes.sort,
+    present_squashes.sort,
+    'Tails.module does not match the present .squashfs files'
+  )
+  return listed_squashes
+end
+
+Given /^Tails is fooled to think a (.+) SquashFS delta is installed$/ do |version|
+  old_squashes = installed_squashes
+  medium = '/lib/live/mount/medium'
+  live = "#{medium}/live"
+  new_squash = "#{version}.squashfs"
+  $vm.execute_successfully("mount -o remount,rw #{medium}")
+  $vm.execute_successfully("touch #{live}/#{new_squash}")
+  $vm.file_append("#{live}/Tails.module", new_squash + "\n")
+  $vm.execute_successfully("mount -o remount,ro #{medium}")
+  assert_equal(
+    old_squashes + [new_squash],
+    installed_squashes,
+    'Implementation error, alert the test suite maintainer!'
+  )
+  last_version = installed_squashes.last.sub(/\.squashfs$/, '')
+  $vm.execute_successfully(
+    "sed --regexp-extended -i '1s/^\S+ /#{version}/' /etc/amnesia/version"
+  )
+  $vm.execute_successfully(
+    "sed -i 's/^TAILS_VERSION_ID=.*/TAILS_VERSION_ID=#{version}/' " +
+    "/etc/amnesia/version"
+  )
+end
+
+Then /^the Upgrader considers the system as up-to-date$/ do
+  try_for(120, :delay => 10) do
+    $vm.execute_successfully(
+      "systemctl --user status tails-upgrade-frontend.service",
+      :user => LIVE_USER
+    )
+    $vm.execute_successfully(
+      "journalctl | grep -q -E 'tails-upgrade-frontend-wrapper\[[0-9]+\]: The system is up-to-date'"
+    )
+  end
+end
+
+def upgrader_trusted_signing_subkeys
+  $vm.execute_successfully(
+    "sudo -u tails-upgrade-frontend gpg --batch --list-keys --with-colons '#{TAILS_SIGNING_KEY}'",
+  ).stdout.split("\n")
+    .select { |line| /^sub:/.match(line) }
+    .map { |line| line[/^sub:.:\d+:\d+:(?<subkeyid>[A-F0-9]+):/, 'subkeyid'] }
+end
+
+Given /^the signing key used by the Upgrader is outdated$/ do
+  upgrader_trusted_signing_subkeys.each { |subkeyid|
+    $vm.execute_successfully(
+      "sudo -u tails-upgrade-frontend gpg --batch --yes --delete-keys '#{subkeyid}!'"
+    )
+  }
+  assert_equal(0, upgrader_trusted_signing_subkeys.length)
+end
+
+Given /^a current signing key is available on our website$/ do
+  # We already check this via features/keys.feature so let's not bother here
+  # ⇒ this step is only here to improve the Gherkin scenario.
+  true
+end
+
+Then /^(?:no|only the (.+)) SquashFS delta is installed$/ do |version|
+  expected_squashes = [default_squash]
+  expected_squashes << "#{version}.squashfs" if version
+  assert_equal(
+    expected_squashes,
+    installed_squashes,
+    'Unexpected .squashfs files encountered'
+  )
 end
 
 Then /^the label of the system partition on "([^"]+)" is "([^"]+)"$/ do |name, label|
@@ -908,4 +1026,45 @@ Then /^the system partition on "([^"]+)" has the expected flags$/ do |name|
   expected_flags = 0xd000000000000005
   assert(flags == expected_flags.to_s,
          "Got #{flags} as partition flags on #{part_dev} (for #{name}), instead of the expected #{expected_flags}")
+end
+
+
+Given(/^I install a Tails USB image to the (\d+) MiB disk with GNOME Disks$/) do |size_in_MiB_of_destination_disk|
+  # GNOME Disks displays devices sizes in GB, with 1 decimal digit precision
+  size_in_GB_of_destination_disk = convert_from_bytes(
+    convert_to_bytes(size_in_MiB_of_destination_disk.to_i, 'MiB'),
+    'GB'
+  ).round(1).to_s
+  debug_log("Expected size of destination disk: " +
+            size_in_GB_of_destination_disk)
+
+  step 'I start "Disks" via GNOME Activities Overview'
+  disks = Dogtail::Application.new('gnome-disks')
+  disks.children(roleName: 'table cell').find { |row|
+    /^#{size_in_GB_of_destination_disk} GB Drive/.match(row.name)
+  }.grabFocus
+  disks.child('Menu', roleName: 'toggle button').click
+  disks.child('Restore Disk Image…', roleName: 'menu item').click
+  restore_dialog = disks.child('Restore Disk Image', roleName: 'dialog',
+                               showingOnly: true)
+  # Open the file chooser
+  disks.pressKey('Enter')
+  select_disk_image_dialog = disks.child('Select Disk Image to Restore',
+                                         roleName: 'file chooser',
+                                         showingOnly: true)
+  disks.typeText(@usb_image_path)
+  sleep 2 # avoid ENTER being eaten by the auto-completion system
+  disks.pressKey('Enter')
+  try_for(10) do
+    ! select_disk_image_dialog.showing
+  end
+  restore_dialog.child('Start Restoring…', roleName: 'push button').click
+  disks.child('Information', roleName: 'alert', showingOnly: true)
+    .child('Restore', roleName: 'push button', showingOnly: true)
+    .click
+  # Wait until the restoration job is finished
+  job = disks.child('Job', roleName: 'label', showingOnly: true)
+  try_for(60) do
+    ! job.showing
+  end
 end

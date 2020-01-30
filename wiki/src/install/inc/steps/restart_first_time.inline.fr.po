@@ -6,15 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tails\n"
-"POT-Creation-Date: 2019-06-13 18:13+0000\n"
-"PO-Revision-Date: 2019-01-19 15:13+0000\n"
-"Last-Translator: \n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2019-10-18 01:54+0000\n"
+"PO-Revision-Date: 2020-01-03 14:25+0000\n"
+"Last-Translator: xin <xin@riseup.net>\n"
 "Language-Team: Tails translators <tails@boum.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. type: Plain text
 #, no-wrap
@@ -107,6 +109,27 @@ msgstr "   [[!img install/inc/qrcodes/tails_boum_org_upgrade_clone_back_1.png cl
 msgid "   [[!img install/inc/qrcodes/tails_boum_org_upgrade_tails_back_1.png class=\"upgrade-tails qrcode\" link=\"no\" alt=\"\"]]\n"
 msgstr "   [[!img install/inc/qrcodes/tails_boum_org_upgrade_tails_back_1.png class=\"upgrade-tails qrcode\" link=\"no\" alt=\"\"]]\n"
 
+#. type: Plain text
+#, no-wrap
+msgid "   [[!img install/inc/qrcodes/tails_boum_org_upgrade_win_back_1.png class=\"upgrade-windows qrcode\" link=\"no\" alt=\"\"]]\n"
+msgstr ""
+"   [[!img install/inc/qrcodes/tails_boum_org_upgrade_win_back_1.png class"
+"=\"upgrade-windows qrcode\" link=\"no\" alt=\"\"]]\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "   [[!img install/inc/qrcodes/tails_boum_org_upgrade_mac_back_1.png class=\"upgrade-mac qrcode\" link=\"no\" alt=\"\"]]\n"
+msgstr ""
+"   [[!img install/inc/qrcodes/tails_boum_org_upgrade_mac_back_1.png class"
+"=\"upgrade-mac qrcode\" link=\"no\" alt=\"\"]]\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "   [[!img install/inc/qrcodes/tails_boum_org_upgrade_linux_back_1.png class=\"upgrade-linux qrcode\" link=\"no\" alt=\"\"]]\n"
+msgstr ""
+"   [[!img install/inc/qrcodes/tails_boum_org_upgrade_linux_back_1.png class"
+"=\"upgrade-linux qrcode\" link=\"no\" alt=\"\"]]\n"
+
 #. type: Bullet: '   - '
 msgid ""
 "Open this page on your smartphone, tablet, or another computer (recommended)."
@@ -133,26 +156,45 @@ msgid ""
 "     <span class=\"linux\">`https://tails.boum.org/install/linux/usb?back=1`</span>\n"
 "     <span class=\"upgrade-clone\">`https://tails.boum.org/upgrade/clone?back=1`</span>\n"
 "     <span class=\"upgrade-tails\">`https://tails.boum.org/upgrade/tails?back=1`</span>\n"
+"     <span class=\"upgrade-windows\">`https://tails.boum.org/upgrade/win?back=1`</span>\n"
+"     <span class=\"upgrade-mac\">`https://tails.boum.org/upgrade/mac?back=1`</span>\n"
+"     <span class=\"upgrade-linux\">`https://tails.boum.org/upgrade/linux?back=1`</span>\n"
 msgstr ""
-"     <span class=\"install-clone\">`https://tails.boum.org/install/clone/index.fr.html?back=1`</span>\n"
-"     <span class=\"windows\">`https://tails.boum.org/install/win/usb/index.fr.html?back=1`</span>\n"
-"     <span class=\"mac\">`https://tails.boum.org/install/mac/usb/index.fr.html?back=1`</span>\n"
-"     <span class=\"mac-clone\">`https://tails.boum.org/install/mac/clone/index.fr.html?back=1`</span>\n"
-"     <span class=\"expert\">`https://tails.boum.org/install/expert/usb/index.fr.html?back=1`</span>\n"
-"     <span class=\"linux\">`https://tails.boum.org/install/linux/usb/index.fr.html?back=1`</span>\n"
-"     <span class=\"upgrade-clone\">`https://tails.boum.org/upgrade/clone/index.fr.html?back=1`</span>\n"
-"     <span class=\"upgrade-tails\">`https://tails.boum.org/upgrade/tails/index.fr.html?back=1`</span>\n"
+"     <span class=\"install-clone\">`https://tails.boum.org/install/clone/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"windows\">`https://tails.boum.org/install/win/usb/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"mac\">`https://tails.boum.org/install/mac/usb/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"mac-clone\">`https://tails.boum.org/install/mac/clone/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"expert\">`https://tails.boum.org/install/expert/usb/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"linux\">`https://tails.boum.org/install/linux/usb/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"upgrade-clone\">`https://tails.boum.org/upgrade/clone/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"upgrade-tails\">`https://tails.boum.org/upgrade/tails/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"upgrade-windows\">`https://tails.boum.org/upgrade/win/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"upgrade-mac\">`https://tails.boum.org/upgrade/mac/"
+"index.fr.html?back=1`</span>\n"
+"     <span class=\"upgrade-linux\">`https://tails.boum.org/upgrade/linux/"
+"index.fr.html?back=1`</span>\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
-"<h1 id=\"start-intermediary\" class=\"upgrade-tails\">Restart on the intermediary Tails</h1>\n"
+"<h1 id=\"start-intermediary\" class=\"upgrade-tails upgrade-os\">Restart on the intermediary Tails</h1>\n"
 "<h1 id=\"start-other\" class=\"clone\">Restart on the other Tails</h1>\n"
 "<h1 id=\"start-tails\" class=\"windows linux mac expert\">Restart on Tails</h1>\n"
 msgstr ""
-"<h1 id=\"start-intermediary\" class=\"upgrade-tails\">Redémarrer sur le Tails intermédiaire</h1>\n"
+"<h1 id=\"start-intermediary\" class=\"upgrade-tails upgrade-os\">Redémarrer "
+"sur le Tails intermédiaire</h1>\n"
 "<h1 id=\"start-other\" class=\"clone\">Redémarrer sur l'autre Tails</h1>\n"
-"<h1 id=\"start-tails\" class=\"windows linux mac expert\">Redémarrer sous Tails</h1>\n"
+"<h1 id=\"start-tails\" class=\"windows linux mac expert\">Redémarrer sous "
+"Tails</h1>\n"
 
 #. type: Plain text
 #, no-wrap
@@ -171,8 +213,11 @@ msgstr "[[!img install/inc/infography/restart-on-tails.png link=\"no\" class=\"w
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!img install/inc/infography/restart-on-other-tails.png link=\"no\" class=\"clone\" alt=\"Computer restarted on USB stick on the left\"]]\n"
-msgstr "[[!img install/inc/infography/restart-on-other-tails.png link=\"no\" class=\"clone\" alt=\"Ordinateur redémarrant avec la clé USB sur la gauche\"]]\n"
+msgid "[[!img install/inc/infography/restart-on-other-tails.png link=\"no\" class=\"clone upgrade-os\" alt=\"Computer restarted on USB stick on the left\"]]\n"
+msgstr ""
+"[[!img install/inc/infography/restart-on-other-tails.png link=\"no\" class=\""
+"clone upgrade-os\" alt=\"Ordinateur redémarrant avec la clé USB sur la "
+"gauche\"]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -181,46 +226,40 @@ msgstr "[[!img install/inc/infography/restart-on-upgrade-usb.png link=\"no\" cla
 
 #. type: Plain text
 #, no-wrap
-msgid "<div class=\"windows linux expert install-clone upgrade-clone upgrade-tails\">\n"
+msgid "<div class=\"windows linux expert install-clone upgrade-clone upgrade-tails upgrade-windows upgrade-linux\">\n"
 msgstr ""
+"<div class=\"windows linux expert install-clone upgrade-clone upgrade-tails "
+"upgrade-windows upgrade-linux\">\n"
 
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "   [[!inline pages=\"install/inc/steps/not_at_all.inline\" raw=\"yes\" sort=\"age\"]]\n"
+#, no-wrap
 msgid "[[!inline pages=\"install/inc/steps/pc_boot_menu.inline\" raw=\"yes\" sort=\"age\"]]\n"
-msgstr "   [[!inline pages=\"install/inc/steps/not_at_all.inline.fr\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"install/inc/steps/pc_boot_menu.inline.fr\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "   <div class=\"mac mac-clone\">\n"
-msgid "<div class=\"mac mac-clone\">\n"
-msgstr "   <div class=\"mac mac-clone\">\n"
+#, no-wrap
+msgid "<div class=\"mac mac-clone upgrade-mac\">\n"
+msgstr "<div class=\"mac mac-clone upgrade-mac\">\n"
 
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "   [[!inline pages=\"install/inc/steps/mac_startup_disks.inline\" raw=\"yes\" sort=\"age\"]]\n"
+#, no-wrap
 msgid "[[!inline pages=\"install/inc/steps/mac_startup_disks.inline\" raw=\"yes\" sort=\"age\"]]\n"
-msgstr "   [[!inline pages=\"install/inc/steps/mac_startup_disks.inline.fr\" raw=\"yes\" sort=\"age\"]]\n"
+msgstr "[[!inline pages=\"install/inc/steps/mac_startup_disks.inline.fr\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "<h2 id=\"greeter\">Tails Greeter</h2>\n"
-msgstr ""
+msgstr "<h2 id=\"greeter\">Tails Greeter</h2>\n"
 
 #. type: Bullet: '1. '
-#, fuzzy
-#| msgid ""
-#| "   The following section applies if the <span class=\"application\">Boot "
-#| "Loader Menu</span> appears but not\n"
-#| "   <span class=\"application\">Tails Greeter</span> when starting Tails.\n"
 msgid ""
 "One to two minutes after the <span class=\"application\">Boot Loader Menu</"
 "span>, another screen called <span class=\"application\">Tails Greeter</"
 "span> appears."
 msgstr ""
-"   La section suivante s'applique si le <span class=\"application\">menu du "
-"chargeur d’amorçage</span> apparaît mais pas le\n"
-"   <span class=\"application\">Tails Greeter</span> quand Tails démarre.\n"
+"Une à deux minutes après le <span class=\"application\">menu du chargeur "
+"d’amorçage</span>, un autre écran appelé <span class=\"application\">Tails "
+"Greeter</span> apparaît."
 
 #. type: Plain text
 #, no-wrap
@@ -359,57 +398,13 @@ msgstr "Pour démarrer Tails, appuyer sur <span class=\"keycap\">Entrée</span>.
 #. type: Bullet: '   1. '
 msgid ""
 "Hopefully, error messages now appear when starting Tails. You can [[send "
-"them to our support team by email|support/talk]], for example by taking a "
+"them to our help desk by email|support/talk]], for example by taking a "
 "picture of the last screen and error messages."
 msgstr ""
 "Espérons que des messages d'erreur apparaissent désormais au démarrage de "
 "Tails. Vous pouvez les [[envoyer à notre équipe d'assistance par courrier "
 "électronique|support/talk]], en faisant par exemple une capture du dernier "
 "écran et des derniers messages d'erreur."
-
-#. type: Bullet: '   1. '
-msgid ""
-"If the error message is <span class=\"code\">/bin/sh: can't access tty; job "
-"control turned off</span> followed by <span class=\"code\">(initramfs)</"
-"span>, then try removing the <span class=\"code\">live-media=removable</"
-"span> option from the boot command line."
-msgstr ""
-"Si le message d'erreur est <span class=\"code\">/bin/sh: can't access tty; "
-"job control turned off</span> suivi de <span class=\"code\">(initramfs)</"
-"span>, alors essayez d'enlever l'option <span class=\"code\">live-"
-"media=removable</span> de la ligne de commande de démarrage."
-
-#. type: Plain text
-#, no-wrap
-msgid ""
-"      If removing <span class=\"code\">live-media=removable</span> allows you to start Tails, please\n"
-"      report the problem to our [[support team|support/talk]].\n"
-"      This contributes to improving the [[list\n"
-"      of problematic USB sticks|support/known_issues#problematic-usb-sticks]].\n"
-"      Then try installing Tails on another USB stick.\n"
-msgstr ""
-"      Si enlever <span class=\"code\">live-media=removable</span> vous permet de démarrer Tails, merci\n"
-"      de signaler le problème à notre [[équipe d'assistance|support/talk]].\n"
-"      Cela contribue à améliorer la [[liste\n"
-"      des clés USB problématiques|support/known_issues#problematic-usb-sticks]].\n"
-"      Ensuite, essayez d'installer Tails sur une autre clé USB.\n"
-
-#. type: Plain text
-#, no-wrap
-msgid ""
-"   <div class=\"caution\">\n"
-"   <p>Removing the <span class=\"code\">live-media=removable</span> option\n"
-"   might be dangerous. If an adversary had access to the computer and\n"
-"   installed a malicious Tails on an internal hard disk, the computer\n"
-"   might start on the malicious Tails instead of on the USB stick.</p>\n"
-"   </div>\n"
-msgstr ""
-"   <div class=\"caution\">\n"
-"   <p>Supprimer l'option <span class=\"code\">live-media=removable</span>\n"
-"   peut-être dangereux. Si un adversaire a eu accès à l'ordinateur et\n"
-"   a installé un Tails malicieux sur le disque dur interne, l'ordinateur\n"
-"   pourrait démarrer sur le Tails malicieux à la place de la clé USB.</p>\n"
-"   </div>\n"
 
 #. type: Plain text
 #, no-wrap
@@ -435,3 +430,59 @@ msgstr "Après 15&ndash;30 secondes, le bureau de Tails apparaît."
 #, no-wrap
 msgid "   [[!img install/inc/screenshots/desktop.png link=\"no\" alt=\"Tails desktop\"]]\n"
 msgstr "   [[!img install/inc/screenshots/desktop.png link=\"no\" alt=\"Bureau Tails\"]]\n"
+
+#~ msgid ""
+#~ "If the error message is <span class=\"code\">/bin/sh: can't access tty; "
+#~ "job control turned off</span> followed by <span class=\"code"
+#~ "\">(initramfs)</span>, then try removing the <span class=\"code\">live-"
+#~ "media=removable</span> option from the boot command line."
+#~ msgstr ""
+#~ "Si le message d'erreur est <span class=\"code\">/bin/sh: can't access "
+#~ "tty; job control turned off</span> suivi de <span class=\"code"
+#~ "\">(initramfs)</span>, alors essayez d'enlever l'option <span class=\"code"
+#~ "\">live-media=removable</span> de la ligne de commande de démarrage."
+
+#, fuzzy
+#~| msgid ""
+#~| "      If removing <span class=\"code\">live-media=removable</span> "
+#~| "allows you to start Tails, please\n"
+#~| "      report the problem to our [[support team|support/talk]].\n"
+#~| "      This contributes to improving the [[list\n"
+#~| "      of problematic USB sticks|support/known_issues#problematic-usb-"
+#~| "sticks]].\n"
+#~| "      Then try installing Tails on another USB stick.\n"
+#~ msgid ""
+#~ "      If removing <span class=\"code\">live-media=removable</span> allows "
+#~ "you to start Tails, please\n"
+#~ "      report the problem to our [[help desk|support/talk]].\n"
+#~ "      This contributes to improving the [[list\n"
+#~ "      of problematic USB sticks|support/known_issues#problematic-usb-"
+#~ "sticks]].\n"
+#~ "      Then try installing Tails on another USB stick.\n"
+#~ msgstr ""
+#~ "      Si enlever <span class=\"code\">live-media=removable</span> vous "
+#~ "permet de démarrer Tails, merci\n"
+#~ "      de signaler le problème à notre [[équipe d'assistance|support/"
+#~ "talk]].\n"
+#~ "      Cela contribue à améliorer la [[liste\n"
+#~ "      des clés USB problématiques|support/known_issues#problematic-usb-"
+#~ "sticks]].\n"
+#~ "      Ensuite, essayez d'installer Tails sur une autre clé USB.\n"
+
+#~ msgid ""
+#~ "   <div class=\"caution\">\n"
+#~ "   <p>Removing the <span class=\"code\">live-media=removable</span> "
+#~ "option\n"
+#~ "   might be dangerous. If an adversary had access to the computer and\n"
+#~ "   installed a malicious Tails on an internal hard disk, the computer\n"
+#~ "   might start on the malicious Tails instead of on the USB stick.</p>\n"
+#~ "   </div>\n"
+#~ msgstr ""
+#~ "   <div class=\"caution\">\n"
+#~ "   <p>Supprimer l'option <span class=\"code\">live-media=removable</"
+#~ "span>\n"
+#~ "   peut-être dangereux. Si un adversaire a eu accès à l'ordinateur et\n"
+#~ "   a installé un Tails malicieux sur le disque dur interne, l'ordinateur\n"
+#~ "   pourrait démarrer sur le Tails malicieux à la place de la clé USB.</"
+#~ "p>\n"
+#~ "   </div>\n"

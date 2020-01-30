@@ -37,7 +37,7 @@ following screenshot is an example of a boot menu:</p>
 <ol>
 
 <li>
-  <p class="usb">Shut down the computer while leaving the USB stick plugged in.</p>
+  <p class="usb upgrade-windows">Shut down the computer while leaving the USB stick plugged in.</p>
   <p class="clone upgrade-tails">Shut down the computer.</p>
   <p class="clone">Plug in the other Tails USB stick that you want to
   <span class="install-clone">install</span>
@@ -54,9 +54,10 @@ following screenshot is an example of a boot menu:</p>
     <tr><th>Manufacturer</th><th>Key</th></tr>
     <tr><td>Acer</td><td>Esc, F12, F9</td></tr>
     <tr><td>Asus</td><td>Esc, F8</td></tr>
+    <tr><td>Clevo</td><td>F7</td></tr>
     <tr><td>Dell</td><td>F12</td></tr>
     <tr><td>Fujitsu</td><td>F12, Esc</td></tr>
-    <tr><td>HP</td><td>Esc, F9</td></tr>
+    <tr><td>HP</td><td>F9, Esc</td></tr>
     <tr><td>Lenovo</td><td>F12, Novo, F8, F10</td></tr>
     <tr><td>Samsung</td><td>Esc, F12, F2</td></tr>
     <tr><td>Sony</td><td>F11, Esc, F10</td></tr>
@@ -85,7 +86,7 @@ following screenshot is an example of a boot menu:</p>
 
   <div class="note">
   <p>If the boot menu key that works on your computer is a different one than
-  the first in the list, please let us know. You can write to
+  the first in the list, please let us know so we can improve the list. You can write to
   [[sajolida@pimienta.org]] (private email).</p>
   </div>
 </li>
@@ -169,36 +170,12 @@ operating system.</p>
 <div class="bug" id="report">
 <p>If none of these options work, we are sorry but you might not be
 able to use Tails on this computer. Feel free to
-[[!toggle id="report-toggle" text="report the problem to our support team"]].</p>
+[[!toggle id="report-toggle-2" text="report the problem to our help desk"]].</p>
 </div>
 
-[[!toggleable id="report-toggle" text="""
-<span class="hide">[[!toggle id="report-toggle" text=""]]</span>
+[[!toggleable id="report-toggle-2" text="""
+<span class="hide">[[!toggle id="report-toggle-2" text=""]]</span>
 
-<h3>Reporting the problem to our support team</h3>
-
-<p>Please send the following information to [[tails-support-private@boum.org]]:</p>
-
-<ol>
-  <li><p>Which version of Tails are you trying to start?</p></li>
-
-  <li><p>How did you verify the USB image?</p></li>
-
-  <li><p>What is the brand and model of your computer?</p></li>
-
-  <li><p>What exactly happens when trying to start? Report the complete error
-      message that appears on the screen, if any.</p></li>
-
-  <li><p>What program did you use to install your USB stick?</p></li>
-
-  <li><p>Does the USB stick start successfully on other computers? If so,
-      what are the brands and models of those computers?</p></li>
-
-  <li><p>Have you been able to successfully start another version of Tails
-      on this computer before? If so, which version?</p></li>
-
-</ol>
-
-[[!inline pages="support/talk/languages.inline" raw="yes"]]
+[[!inline pages="install/inc/steps/reporting.inline" raw="yes"]]
 
 """]]

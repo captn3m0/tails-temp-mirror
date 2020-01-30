@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Tails\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
 "POT-Creation-Date: 2019-05-27 14:15+0000\n"
-"PO-Revision-Date: 2019-07-21 13:29+0000\n"
+"PO-Revision-Date: 2020-01-12 13:31+0000\n"
 "Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: Spanish <http://translate.tails.boum.org/projects/tails/"
 "introduction_to_gnome_and_the_tails_desktop/es/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.20\n"
+"X-Generator: Weblate 3.5.1\n"
 
 #. type: Plain text
 #, no-wrap
@@ -91,8 +91,8 @@ msgstr "<div class=\"icon\">\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!img help-browser.png link=no]]\n"
-msgstr "[[!img help-browser.png link=no]]\n"
+msgid "[[!img lib/help-browser.png link=no]]\n"
+msgstr "[[!img lib/help-browser.png link=no]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -133,8 +133,9 @@ msgid ""
 msgstr ""
 "<div class=\"text\">\n"
 "  <span class=\"guimenuitem\">Configuración</span>:\n"
-"  para cambiar varias configuraciones del sistema, como el teclado, el ratón y el touchpad,\n"
-"  o elección de pantallas\n"
+"  para cambiar varias configuraciones del sistema, como el teclado, el ratón "
+"y el touchpad,\n"
+"  y las pantallas, elige\n"
 "  <span class=\"menuchoice\">\n"
 "    <span class=\"guisubmenu\">Herramientas del sistema</span>&nbsp;▸\n"
 "    <span class=\"guimenuitem\">Configuración</span></span>\n"
@@ -149,14 +150,13 @@ msgstr "<div class=\"tip\">\n"
 #. type: Plain text
 #, no-wrap
 msgid ""
-"<p>To learn about the many keyboard shortcuts in GNOME, click on\n"
-"<span class=\"guilabel\">Keyboard</span> from the <span class=\"guilabel\">System\n"
-"Settings</span> and open the <span class=\"guilabel\">Shortcuts</span>\n"
-"tab.</p>\n"
+"<p>To learn about the many keyboard shortcuts in GNOME,\n"
+"open the <span class=\"application\">Settings</span> utility and choose\n"
+"<span class=\"guimenuitem\">Keyboard</span>.</p>\n"
 msgstr ""
-"<p>Para aprender los muchos atajos de teclado de GNOME, haz click en\n"
-"<span class=\"guilabel\">Teclado</span> desde <span class=\"guilabel\">System\n"
-"Settings</span> y abre la pestaña de <span class=\"guilabel\">Atajos</span>.</p>\n"
+"<p>Para aprender los muchos atajos de teclado de GNOME,\n"
+"abre <span class=\"application\">Configuración</span> y elige\n"
+"<span class=\"guimenuitem\">Teclado</span>.</p>\n"
 
 #. type: Plain text
 #, no-wrap
@@ -284,21 +284,44 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!img keepassx.png link=no]]\n"
-msgstr "[[!img keepassx.png link=no]]\n"
+msgid "[[!img keepassxc.png link=no]]\n"
+msgstr "[[!img keepassxc.png link=no]]\n"
 
 #. type: Plain text
 #, no-wrap
 msgid ""
 "<div class=\"text\">\n"
-"<strong>KeePassX</strong>: password manager<br/>\n"
+"<strong>KeePassXC</strong>: password manager<br/>\n"
 "[[See the corresponding documentation|encryption_and_privacy/manage_passwords]]\n"
 "</div>\n"
 "</div>\n"
 msgstr ""
 "<div class=\"text\">\n"
-"<strong>KeePassX</strong>: password manager<br/>\n"
-"[[Lee la documentación correspondiente|encryption_and_privacy/manage_passwords]]\n"
+"<strong>KeePassXC</strong>: password manager<br/>\n"
+"[[Lee la documentación correspondiente|encryption_and_privacy/"
+"manage_passwords]]\n"
+"</div>\n"
+"</div>\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "[[!img files.png link=no alt=\"\"]]\n"
+msgstr "[[!img files.png link=no alt=\"\"]]\n"
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"<div class=\"text\">\n"
+"<strong>Files</strong>: the <span class=\"application\">Files</span> manager<br/>\n"
+"[[See the corresponding documentation|introduction_to_gnome_and_the_tails_desktop#files]]\n"
+"</div>\n"
+"</div>\n"
+msgstr ""
+"<div class=\"text\">\n"
+"<strong>Archivos</strong>: el gestor de <span class=\"application\""
+">Archivos</span><br/>\n"
+"[[Lee la documentación "
+"correspondiente|introduction_to_gnome_and_the_tails_desktop#files]]\n"
 "</div>\n"
 "</div>\n"
 
@@ -309,8 +332,8 @@ msgstr "<a id=\"terminal\"></a>\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!img gnome-terminal.png link=no]]\n"
-msgstr "[[!img gnome-terminal.png link=no]]\n"
+msgid "[[!img utilities-terminal.png link=no]]\n"
+msgstr "[[!img utilities-terminal.png link=no]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -454,17 +477,14 @@ msgid "System menu\n"
 msgstr "menú Sistema\n"
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "In the top-right corner of the top bar, the system menu allows you to "
-#| "manage your systems settings and your computer."
 msgid ""
 "In the top-right corner of the top navigation bar, the system menu allows "
 "you to manage your settings, connect to a Wi-Fi network, and restart your "
 "computer."
 msgstr ""
-"En la esquina superior derecha de la barra superior, el menú del sistema "
-"permite gestionar tus ajustes del sistema y tu equipo."
+"En la esquina superior derecha de la barra de navegación, el menú del "
+"sistema permite gestionar tus ajustes, conectarte a una red Wi-Fi y "
+"reiniciar tu equipo."
 
 #. type: Plain text
 #, no-wrap
@@ -481,46 +501,34 @@ msgid "From the system menu, you can choose which Wi-Fi network to connect to."
 msgstr ""
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "<p>See also the documentation on [[connecting to the network|"
-#| "anonymous_internet/networkmanager]].</p>\n"
 msgid ""
 "See also the documentation on [[connecting to a network|anonymous_internet/"
 "networkmanager]]."
 msgstr ""
-"<p>Ver también la documentación en [[conectandose a la red|"
-"anonymous_internet/networkmanager]].</p>\n"
+"Vea también la documentación sobre [[conectarse a una red|anonymous_internet/"
+"networkmanager]]."
 
 #. type: Title ###
-#, fuzzy, no-wrap
-#| msgid "System menu\n"
+#, no-wrap
 msgid "System settings"
-msgstr "menú Sistema\n"
+msgstr "Configuración del sistema"
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "Click on the <span class=\"button\">[[!img lib/network-wireless-encrypted."
-#| "png alt=\"Lock\" class=\"symbolic\" link=\"no\"]]</span>\n"
-#| "button in the system menu to lock your screen with a password.\n"
 msgid ""
 "Click on the [[!img lib/preferences-system.png alt=\"Settings\" class="
 "\"symbolic\" link=\"no\"]] button to edit your system settings."
 msgstr ""
-"Haz click en el botón <span class=\"button\">[[!img lib/network-wireless-"
-"encrypted.png alt=\"Candado\" class=\"symbolic\" link=\"no\"]]</span>\n"
-"del menú de sistema para bloquear tu pantalla con una contraseña.\n"
+"Haz click en el botón [[!img lib/preferences-system.png alt=\"Configuración"
+"\" class=\"symbolic\" link=\"no\"]] para editar tu configuración del sistema."
 
 #. type: Plain text
 msgid "These settings will not be saved when you restart Tails."
-msgstr ""
+msgstr "Esta configuración no se guardará cuando reinicies Tails."
 
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "<a id=\"florence\"></a>\n"
+#, no-wrap
 msgid "<a id=\"screen-locker\"></a>\n"
-msgstr "<a id=\"florence\"></a>\n"
+msgstr "<a id=\"screen-locker\"></a>\n"
 
 #. type: Title ###
 #, no-wrap
@@ -528,18 +536,13 @@ msgid "Screen locker"
 msgstr ""
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "Click on the <span class=\"button\">[[!img lib/network-wireless-encrypted."
-#| "png alt=\"Lock\" class=\"symbolic\" link=\"no\"]]</span>\n"
-#| "button in the system menu to lock your screen with a password.\n"
 msgid ""
 "Click on the [[!img lib/network-wireless-encrypted.png alt=\"Lock Screen\" "
 "class=\"symbolic\" link=\"no\"]] button to lock your screen with a password."
 msgstr ""
-"Haz click en el botón <span class=\"button\">[[!img lib/network-wireless-"
-"encrypted.png alt=\"Candado\" class=\"symbolic\" link=\"no\"]]</span>\n"
-"del menú de sistema para bloquear tu pantalla con una contraseña.\n"
+"Haz click en el botón [[!img lib/network-wireless-encrypted.png alt=\""
+"Bloquear pantalla\" class=\"symbolic\" link=\"no\"]] para bloquear tu "
+"pantalla con una contraseña."
 
 #. type: Bullet: '- '
 msgid ""
@@ -564,6 +567,8 @@ msgstr ""
 #, no-wrap
 msgid "  <p class=\"pre command\">gsettings set org.gnome.desktop.screensaver lock-enabled false</p>\n"
 msgstr ""
+"  <p class=\"pre command\">gsettings set org.gnome.desktop.screensaver lock-"
+"enabled false</p>\n"
 
 #. type: Plain text
 #, no-wrap
@@ -586,21 +591,15 @@ msgstr "  [[!img screen-locker.png alt=\"\" link=\"no\"]]\n"
 #. type: Title ###
 #, no-wrap
 msgid "Suspend"
-msgstr ""
+msgstr "Suspender"
 
 #. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "Click on the <span class=\"button\">[[!img lib/network-wireless-encrypted."
-#| "png alt=\"Lock\" class=\"symbolic\" link=\"no\"]]</span>\n"
-#| "button in the system menu to lock your screen with a password.\n"
 msgid ""
 "Click on the [[!img lib/media-playback-pause.png alt=\"Suspend\" class="
 "\"symbolic\" link=\"no\"]] button to suspend your computer."
 msgstr ""
-"Haz click en el botón <span class=\"button\">[[!img lib/network-wireless-"
-"encrypted.png alt=\"Candado\" class=\"symbolic\" link=\"no\"]]</span>\n"
-"del menú de sistema para bloquear tu pantalla con una contraseña.\n"
+"Haz click en el botón [[!img lib/media-playback-pause.png alt=\"Suspender\" "
+"class=\"symbolic\" link=\"no\"]] para suspender tu computadora."
 
 #. type: Plain text
 msgid ""
@@ -662,7 +661,7 @@ msgstr ""
 #. type: Title ###
 #, no-wrap
 msgid "Shutdown"
-msgstr ""
+msgstr "Apagar"
 
 #. type: Plain text
 #, fuzzy
@@ -727,24 +726,8 @@ msgstr "Atajos de Escritorio\n"
 
 #. type: Plain text
 #, no-wrap
-msgid "[[!img user-home.png link=no]]\n"
-msgstr "[[!img user-home.png link=no]]\n"
-
-#. type: Plain text
-#, no-wrap
-msgid ""
-"<div class=\"text\"><strong>Home</strong>: shortcut to the default\n"
-"user's folder</div>\n"
-"</div>\n"
-msgstr ""
-"<div class=\"text\"><strong>Home</strong>: atajo a la carpeta por defecto\n"
-"del usuario</div>\n"
-"</div>\n"
-
-#. type: Plain text
-#, no-wrap
-msgid "[[!img system-help.png link=no]]\n"
-msgstr "[[!img system-help.png link=no]]\n"
+msgid "[[!img tails-help.png link=no]]\n"
+msgstr "[[!img tails-help.png link=no]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -792,12 +775,13 @@ msgstr ""
 "</div>\n"
 
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "<a id=\"nautilus\"></a>\n"
+#, no-wrap
 msgid ""
 "<a id=\"nautilus\"></a>\n"
 "<a id=\"files\"></a>\n"
-msgstr "<a id=\"nautilus\"></a>\n"
+msgstr ""
+"<a id=\"nautilus\"></a>\n"
+"<a id=\"files\"></a>\n"
 
 #. type: Title =
 #, fuzzy, no-wrap
@@ -818,30 +802,18 @@ msgid ""
 "either:\n"
 msgstr "el menú de <span class=\"guimenu\">Aplicaciones</span>"
 
-#. type: Bullet: '- '
-msgid ""
-"Open the <span class=\"guilabel\">Home</span> shortcut from the desktop."
-msgstr ""
-
 #. type: Plain text
-#, fuzzy, no-wrap
-#| msgid ""
-#| "  - Choose <span class=\"menuchoice\">\n"
-#| "      <span class=\"guisubmenu\">Applications</span>&nbsp;▸\n"
-#| "      <span class=\"guimenuitem\">Activities Overview</span></span>.\n"
-#| "  - Throw your mouse pointer to the top-left hot corner.\n"
-#| "  - Press the windows key on your keyboard.\n"
+#, no-wrap
 msgid ""
 "- Choose <span class=\"menuchoice\">\n"
 "    <span class=\"guimenu\">Applications</span>&nbsp;▸\n"
 "    <span class=\"guisubmenu\">Accessories</span>&nbsp;▸\n"
 "    <span class=\"guimenuitem\">Files</span></span>.\n"
 msgstr ""
-"  - Escoger <span class=\"menuchoice\">\n"
-"      <span class=\"guisubmenu\">Aplicaciones</span>&nbsp;▸\n"
-"      <span class=\"guimenuitem\">Resumen de actividades</span></span>.\n"
-"  - Lleva el puntero de tu ratón a la esquina superior izquierda.\n"
-"  - Pulsa la tecla de Windows en tu teclado.\n"
+"- Escoge <span class=\"menuchoice\">\n"
+"    <span class=\"guimenu\">Aplicaciones</span>&nbsp;▸\n"
+"    <span class=\"guisubmenu\">Accesorios</span>&nbsp;▸\n"
+"    <span class=\"guimenuitem\">Archivos</span></span>.\n"
 
 #. type: Bullet: '- '
 #, fuzzy
@@ -876,13 +848,67 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "   <p class=\"pre command\">ssh://user@example.com/</p>\n"
+msgstr "   <p class=\"pre command\">ssh://usuario@ejemplo.com/</p>\n"
+
+#. type: Bullet: '1. '
+msgid "Click <span class=\"button\">Connect</span>."
+msgstr "Haz click en <span class=\"button\">Conectar</span>."
+
+#. type: Plain text
+#, fuzzy, no-wrap
+#| msgid "<a id=\"empty_trash\"></a>\n"
+msgid "<a id=\"empty-trash\"></a>\n"
+msgstr "<a id=\"empty_trash\"></a>\n"
+
+#. type: Title -
+#, no-wrap
+msgid "Emptying the trash\n"
 msgstr ""
 
 #. type: Bullet: '1. '
-#, fuzzy
-#| msgid "the <span class=\"guimenu\">Places</span> menu"
-msgid "Click <span class=\"button\">Connect</span>."
-msgstr "el menú de <span class=\"guimenu\">Lugares</span>"
+msgid "Open the <span class=\"application\">Files</span> browser."
+msgstr "Abre el explorador de <span class=\"application\">Archivos</span>."
+
+#. type: Bullet: '1. '
+msgid ""
+"Click on the disk on which you want to empty the trash in the left pane to "
+"open it."
+msgstr ""
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"   To empty the trash of the persistent volume, open the\n"
+"   <span class=\"filename\">Persistent</span> folder.\n"
+msgstr ""
+
+#. type: Bullet: '1. '
+msgid ""
+"Click on the <span class=\"guimenu\">[[!img lib/pan-down.png alt=\"menu "
+"toggle\" class=\"symbolic\" link=\"no\"]]</span> button in the title bar and "
+"choose <span class=\"guilabel\">Show Hidden Files</span>."
+msgstr ""
+"Haz click en el botón <span class=\"guimenu\">[[!img lib/pan-down.png alt=\""
+"abre menú\" class=symbolic link=\"no\"]]</span> en la barra de título, y "
+"elige <span class=\"guilabel\">Mostrar archivos ocultos</span>."
+
+#. type: Bullet: '1. '
+msgid ""
+"Delete the <span class=\"filename\">.Trash-1000</span> folder or similar."
+msgstr ""
+
+#~ msgid "[[!img user-home.png link=no]]\n"
+#~ msgstr "[[!img user-home.png link=no]]\n"
+
+#~ msgid ""
+#~ "<div class=\"text\"><strong>Home</strong>: shortcut to the default\n"
+#~ "user's folder</div>\n"
+#~ "</div>\n"
+#~ msgstr ""
+#~ "<div class=\"text\"><strong>Home</strong>: atajo a la carpeta por "
+#~ "defecto\n"
+#~ "del usuario</div>\n"
+#~ "</div>\n"
 
 #~ msgid "Managing files with Nautilus\n"
 #~ msgstr "Manejando archivos con Nautilus\n"
