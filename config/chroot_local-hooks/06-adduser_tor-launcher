@@ -12,6 +12,3 @@ echo "creating the tor-launcher user"
 addgroup --system --quiet --gid 127 tor-launcher
 adduser --system --quiet --uid 119 --gid 127 tor-launcher
 adduser tor-launcher debian-tor
-
-# Needed for Moat
-install -d -o tor-launcher -g tor-launcher /home/tor-launcher/Tor
