@@ -29,7 +29,7 @@ install_fake_package tails-perl5lib 4.0
 
 apt-get install --yes tails-persistence-setup
 
-for patch in /usr/share/tails/build/run_t-p-s_as_its_dedicated_user.diff ; do
+for patch in /usr/share/tails/build/tails-persistence-setup-patches/* ; do
    (cd / && patch --forward --batch -p1 < "$patch")
    rm "$patch"
 done
