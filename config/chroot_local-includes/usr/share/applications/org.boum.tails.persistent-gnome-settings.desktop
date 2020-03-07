@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Choose Persistent GNOME Settings
+Exec=/usr/local/lib/persistent-gnome-settings
+Terminal=false
+NoDisplay=true

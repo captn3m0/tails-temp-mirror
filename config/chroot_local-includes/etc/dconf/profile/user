@@ -1,2 +1,2 @@
-user-db:user
+service-db:keyfile/user
 system-db:local

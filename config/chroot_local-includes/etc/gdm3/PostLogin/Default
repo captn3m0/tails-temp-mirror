@@ -22,6 +22,7 @@ KBDSET=/etc/default/keyboard
 CONSET=/etc/default/console-setup
 LOCALE_CFG=/etc/default/locale
 CODSET="Uni1" # universal codeset to properly display glyphs in localized console
+PERSISTENT_GNOME_SETTINGS=/live/persistence/TailsData_unlocked/gnome-settings.conf
 
 log() {
     echo "$1" >&2
@@ -144,5 +145,46 @@ echo "AdminIdentities=unix-user:${LIVE_USERNAME}" >> "${POLKIT}"
 
 # Configure su-to-root to use sudo
 sudo -u "${LIVE_USERNAME}" sh -c "echo 'SU_TO_ROOT_SU=sudo' >> /home/${LIVE_USERNAME}/.su-to-rootrc"
+
+### Filter persistent GNOME settings
+if [ -f "${PERSISTENT_GNOME_SETTINGS}" ] && [ -f "${DCONF_USER_DB}" ]; then
+  dconf_config_dir="/home/${LIVE_USERNAME}/.config/dconf/"
+  persistent_settings="$(cat "${PERSISTENT_GNOME_SETTINGS}")"
+
+  # Create temporary dconf profile
+  echo "service-db:keyfile/tmp" > /tmp/dconf-profile
+  # Move the user dconf database to a temporary dconf database
+  mv "${dconf_config_dir}/user.txt" "${dconf_config_dir}/tmp.txt"
+
+  dconf_tmp="sudo -u "${LIVE_USERNAME}"
+             DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+             DCONF_PROFILE=/tmp/dconf-profile
+             dconf"
+
+  dconf_user="sudo -u "${LIVE_USERNAME}"
+             DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+             DCONF_PROFILE=user
+             dconf"
+
+  # Copy whitelisted settings back to the user dconf database
+  for path in ${persistent_settings}; do
+    case "${path}" in
+      */)
+        # It's a directory path, so we dump and load it
+        $dconf_tmp dump "${path}" | $dconf_user load "${path}"
+        ;;
+      *)
+        # It's a key path, so we read and write it
+        value="$($dconf_tmp read "${path}")"
+        if [ -n "${value}" ]; then
+          $dconf_user write "${path}" "${value}"
+        fi
+        ;;
+    esac
+  done
+
+  # Delete the temporary dconf profile and database
+  rm "${tmp}" "${dconf_config_dir}/tmp.txt"
+fi
 
 log "Leaving PostLogin"
