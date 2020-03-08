@@ -24,6 +24,9 @@ LOCALE_CFG=/etc/default/locale
 CODSET="Uni1" # universal codeset to properly display glyphs in localized console
 PERSISTENT_GNOME_SETTINGS=/live/persistence/TailsData_unlocked/gnome-settings.conf
 
+# Enable tracing if Tails was booted with the debug flag
+grep -qw "debug" /proc/cmdline && set -x
+
 log() {
     echo "$1" >&2
 }
