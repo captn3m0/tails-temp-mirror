@@ -27,6 +27,10 @@ PERSISTENT_GNOME_SETTINGS=/live/persistence/TailsData_unlocked/gnome-settings.co
 # Enable tracing if Tails was booted with the debug flag
 grep -qw "debug" /proc/cmdline && set -x
 
+if grep -qw "debug-gdm-login" /proc/cmdline; then
+  setsid -w /bin/sh -c 'exec /bin/bash <> /dev/tty5 >&0 2>&1'
+fi
+
 log() {
     echo "$1" >&2
 }
