@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 
-import subprocess
+import gettext
 import logging
 import os
+import subprocess
+
+_ = gettext.gettext
+gettext.install("Tails")
 
 SETTINGS_FILE_NAME = "gnome-settings.conf"
 
 SETTINGS = {
     # If the path is a directory, it must end with a '/'
-    "Favorite Apps": "/org/gnome/shell/favorite-apps",
-    "Desktop Background": "/org/gnome/desktop/background/",
-    "Mouse & Touchpad Settings": "/org/gnome/desktop/peripherals/mouse/",
+    _("Favorite Apps"): "/org/gnome/shell/favorite-apps",
+    _("Desktop Background"): "/org/gnome/desktop/background/",
+    _("Mouse & Touchpad Settings"): "/org/gnome/desktop/peripherals/mouse/",
 }
 
 logging.basicConfig(level=logging.DEBUG)
@@ -36,10 +40,11 @@ def main():
         pass
 
     command = ["zenity",
+               "--text=" + _("Select which settings should be made persistent."),
                "--list",
                "--checklist",
-               "--column=Persist",
-               "--column=Setting"]
+               "--column=" + _("Persist"),
+               "--column=" + _("Setting")]
     for title, setting in SETTINGS.items():
         is_persistent = setting in persistent_settings
         command += [str(is_persistent), title]

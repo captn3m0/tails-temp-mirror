@@ -34,6 +34,7 @@ PYTHON_PROGS="/etc/whisperback/config.py \
     /usr/local/bin/tails-screen-locker \
     /usr/local/bin/tails-upgrade-frontend-wrapper \
     /usr/local/lib/tails-additional-software-notify \
+    /usr/local/lib/persistent-gnome-settings \
     /usr/local/sbin/tails-additional-software"
 SHELL_PROGS="/etc/NetworkManager/dispatcher.d/60-tor-ready.sh \
     /usr/local/bin/keepassxc \
@@ -92,11 +93,13 @@ create_pot () {
     proglang=$2
     progpath="config/chroot_local-includes${prog}"
     if [ -e "${progpath}" ]; then
+        echo "creating pot for ${prog}"
         pot="$(prog_potfile "${prog}")"
         mkdir -p "$(dirname ${pot})"
         xgettext --language="${proglang}" --from-code=UTF-8 \
                  --add-comments="Translators:" -o "${pot}" "${progpath}"
         if [ -f "${pot}" ]; then
+            echo "pot created: ${pot}"
             normalize_pot "${pot}"
         fi
     else
@@ -192,7 +195,7 @@ while [ -n "${@:-}" ]; do
 done
 
 # Schedule clean up
-trap "rm -fr po/*.new po/*.orig ; [ "$KEEP_TMP_POT" = yes ] || rm -fr tmp/pot" EXIT
+# trap "rm -fr po/*.new po/*.orig ; [ "$KEEP_TMP_POT" = yes ] || rm -fr tmp/pot" EXIT
 
 # Update POT files
 mkdir -p tmp/pot
