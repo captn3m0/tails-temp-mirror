@@ -327,6 +327,7 @@ end
 When /^I configure some (\w+) pluggable transports in Tor Launcher$/ do |bridge_type|
   @screen.wait_and_click('TorLauncherConfigureButton.png', 10)
   @screen.wait_and_click('TorLauncherBridgeCheckbox.png', 10)
+  @screen.wait_and_click('TorLauncherBridgeListRadioButton.png', 10)
   @screen.wait_and_click('TorLauncherBridgeList.png', 10)
   @bridge_hosts = []
   chutney_src_dir = "#{GIT_DIR}/submodules/chutney"

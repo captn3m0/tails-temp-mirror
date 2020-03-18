@@ -78,6 +78,15 @@ install_tor_browser() {
     # so disable this for now.
     # cp "${prep}"/TorBrowser/Tor/libstdc++/libstdc++.so.6 "${prep}"
 
+    mv "${prep}"/TorBrowser/Tor/PluggableTransports /usr/local/lib/obfs4proxy
+    chmod -R a+rX /usr/local/lib/obfs4proxy
+    chown -R root:root /usr/local/lib/obfs4proxy
+    sed -i 's/attach_disconnected/attach_disconnected,complain/' /etc/apparmor.d/system_tor
+    mkdir -p /etc/xul-ext
+    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
+                     extensions.torlauncher.transportproxy_path \
+                     '"/usr/local/lib/obfs4proxy/obfs4proxy"'
+
     # We don't need the Tor binary, the shared libraries Tor needs
     # (but Firefox doesn't) and documentation shipped in the TBB.
     rm -r "${prep}"/TorBrowser/Tor "${prep}"/TorBrowser/Docs
@@ -137,6 +146,11 @@ MaxVersion=*.*.*
 [Shell]
 Icon=icon.png
 EOF
+
+    # Moat does not work so we disable it
+    sed -i 's@<radio id="bridgeRadioBridgeDB"@<radio id="bridgeRadioBridgeDB" hidden="true"@' \
+	   "${destination}/chrome/content/network-settings-shared.js"
+
     chmod -R a+rX "${destination}"
     rm -r "${tmp}"
 }
@@ -248,6 +262,13 @@ apply_prefs_hacks() {
     (
         cd "${tmp}"
         7z x -tzip "${tbb_install}/browser/omni.ja"
+
+        # Include Tor's default Meek pluggable transports
+        mkdir -p /etc/xul-ext
+        grep '^pref("extensions.torlauncher.default_bridge.meek-' \
+            defaults/preferences/000-tor-browser.js \
+            >> /etc/xul-ext/tor-launcher.js
+
         # Remove TBB's Tor Launcher settings since we don't enable it in
         # our Tor Browser.
         sed -i '/extensions\.torlauncher\./d' defaults/preferences/000-tor-browser.js

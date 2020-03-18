@@ -9,6 +9,7 @@
     GETINFO:
       - 'status/bootstrap-phase'
   confs:
+    ClientTransportPlugin:
     UseBridges: ['', '.*']
     Bridge: ['', '.*']
     Socks4Proxy: ['', '.*']
