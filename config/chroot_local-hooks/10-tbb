@@ -121,7 +121,7 @@ install_tor_launcher() {
     done
     mkdir -p "${destination}"/defaults/preferences
     cp "${tmp}/defaults/preferences/torlauncher-prefs.js" \
-       "${destination}/defaults/preferences/prefs.js"
+       "${destination}/defaults/preferences/torlauncher-prefs.js"
     # ... and then we extract only the Tor Launcher parts from the
     # manifest, and adapt to how we moved files around above:
     grep torlauncher "${tmp}/chrome//chrome.manifest" \
@@ -148,8 +148,41 @@ Icon=icon.png
 EOF
 
     # Moat does not work so we disable it
-    sed -i 's@<radio id="bridgeRadioBridgeDB"@<radio id="bridgeRadioBridgeDB" hidden="true"@' \
-	   "${destination}/chrome/content/network-settings-shared.js"
+    #sed -i 's@<radio id="bridgeRadioBridgeDB"@<radio id="bridgeRadioBridgeDB" hidden="true"@' \
+    #	   "${destination}/chrome/content/network-settings-shared.js"
+
+    (
+        cd "${destination}"
+        patch -p2 <<EOF
+diff --git a/src/modules/tl-logger.jsm b/src/modules/tl-logger.jsm
+index 551ad92..bad0cd5 100644
+--- a/src/modules/tl-logger.jsm
++++ b/src/modules/tl-logger.jsm
+@@ -23,11 +23,17 @@ Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+ XPCOMUtils.defineLazyModuleGetter(this, "TorLauncherUtil",
+                           "resource://torlauncher/modules/tl-util.jsm");
+ 
++let full_log = "";
+ 
+ let TorLauncherLogger = // Public
+ {
+   formatLog: function(str, level)
+   {
++    full_log += str + "\n";
++    var chSvc = Cc["@mozilla.org/widget/clipboardhelper;1"]
++                               .getService(Ci.nsIClipboardHelper);
++    chSvc.copyString(full_log);
++
+     var d = new Date();
+     var logLevelStr = kLogString[level];
+     if (!logLevelStr)
+EOF
+    )
+
+    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
+                     extensions.torlauncher.loglevel 1
+    set_mozilla_pref /etc/xul-ext/tor-launcher.js \
+                     extensions.torlauncher.logmethod 0
 
     chmod -R a+rX "${destination}"
     rm -r "${tmp}"
