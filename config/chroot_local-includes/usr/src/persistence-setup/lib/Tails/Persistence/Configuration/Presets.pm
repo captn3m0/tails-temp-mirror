@@ -66,6 +66,22 @@ method _build__presets () {
             ]
         },
         {
+            id          => 'GNOMESettings',
+            name        => $self->encoding->decode(gettext(q{GNOME Settings})),
+            description => $self->encoding->decode(gettext(
+                q{Settings of the GNOME Desktop}
+            )),
+            icon_name   => 'gnome-settings',
+            enabled     => 0,
+            configuration_app_desktop_id => 'org.boum.tails.persistent-gnome-settings.desktop',
+            atoms_args  => [
+                {
+                    destination => '/home/amnesia/.config/dconf',
+                    options     => [ 'source=gnome-settings' ],
+                },
+            ]
+        },
+        {
             id          => 'BrowserBookmarks',
             name        => $self->encoding->decode(gettext(q{Browser Bookmarks})),
             description => $self->encoding->decode(gettext(
