@@ -200,7 +200,7 @@ while [ -n "${@:-}" ]; do
 done
 
 # Schedule clean up
-# trap "rm -fr po/*.new po/*.orig ; [ "$KEEP_TMP_POT" = yes ] || rm -fr tmp/pot" EXIT
+trap "rm -fr po/*.new po/*.orig ; [ "$KEEP_TMP_POT" = yes ] || rm -fr tmp/pot" EXIT
 
 # Update POT files
 mkdir -p tmp/pot
