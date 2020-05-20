@@ -73,7 +73,7 @@ EOF
     # Enable the transports we support. We cannot do this in general,
     # when bridge mode is not enabled, since we then use seccomp
     # sandboxing.
-    tor_control_setconf 'ClientTransportPlugin="obfs2,obfs3,obfs4,meek_lite exec /usr/local/lib/obfs4proxy/obfs4proxy managed"'
+    tor_control_setconf 'ClientTransportPlugin="obfs2,obfs3,obfs4,meek_lite exec /usr/local/lib/obfs4proxy/obfs4proxy -enableLogging=true -logLevel DEBUG managed"'
 
     /usr/local/sbin/tails-tor-launcher &
 
