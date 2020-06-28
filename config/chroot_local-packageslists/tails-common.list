@@ -129,7 +129,6 @@ gstreamer1.0-plugins-ugly
 gtk2-engines-pixbuf
 gvfs-backends
 hardlink
-haveged
 # needed by laptop-mode-tools to spin-down hard drives
 hdparm
 inkscape

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+PREREQS="udev"
+
+prereqs() { echo "$PREREQS"; }
+
+case "$1" in
+	prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+set -eu
+
+# Print executed commands for debugging
+if [ -n "$debug" ]; then
+	set -x
+fi
+
+# Read 512 bytes from /dev/random, to ensure that the entropy pool
+# contains at least 512 bytes, which ensures that subsequent reads
+# from /dev/urandom will not return bad random numbers.
+# If the entropy pool does not contain 512 bytes yet, it will
+# quickly be filled via the kernel's built-in random number generator.
+dd if=/dev/random of=/dev/null bs=512 count=1
