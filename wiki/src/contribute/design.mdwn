@@ -562,21 +562,6 @@ that might de-anonymize or facilitate recording of a user, such as
 hardware [keyloggers](http://en.wikipedia.org/wiki/Keylogger). Thus a
 virtual keyboard (usable with the mouse) MUST be available.
 
-<a id="spec-entropy"></a>
-
-#### 2.6.3.8 Entropy
-
-Some crucial applications of the PELD, such as the Tor client, make
-heavy use of cryptographic techniques and therefore rely on a high
-quality pseudo-random number generator (PRNG). Initializing (seeding)
-a PRNG is tricky in a Live system context as the system state after
-boot, if not fully deterministic, is parameterized by far fewer
-variables than in the case of a non-Live system.
-
-Using an auxiliary entropy source such as
-[haveged](http://www.irisa.fr/caps/projects/hipsor/) is thus
-REQUIRED.
-
 ### 2.6.4 Usability
 
 Security is usually hard to get. Therefore steps SHOULD be taken in

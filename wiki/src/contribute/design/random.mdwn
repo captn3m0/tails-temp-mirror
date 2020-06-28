@@ -9,131 +9,73 @@ and the work that is left to be done.
 
 # Entropy sources
 
-In addition to the Linux kernel's own entropy gathering facilities,
-Tails uses auxiliary entropy sources, that we describe below.
+Tails is relying on the Linux kernel's entropy gathering facilities.
 
-<a id="haveged"></a>
+Tails does not trust the CPU's hardware random number generator to
+be correctly implemented and not having a back door, so it disables
+the CONFIG_RANDOM_TRUST_CPU kernel option. Note that the entropy
+from the CPU's hardware random number generator is still mixed into
+the entropy pool, but it is not credited as "good" entropy. 
 
 ## haveged
 
-Tails ships [HAVEGE](http://www.irisa.fr/caps/projects/hipsor/), that
-fills `/dev/random` whenever the supply of random bits in
-`/dev/random` falls below the low water mark of the device.
-Quoting its homepage, HAVEGE "exploits [these] modifications of the
-internal volatile hardware states as a source of uncertainty".
+<a id="haveged"></a>
 
-The default configuration shipped with the
-[[!debpts haveged desc="Debian package"]] passes `-w 1024` to the
-`haveged` daemon. That is, it sets
-`/proc/sys/kernel/random/write_wakeup_threshold` to 1024.
-We [[!tails_gitweb config/chroot_local-hooks/62-haveged desc="modify that"]]
-to use the same watermark as rngd, i.e. 2048 bits. The goal here is to
-avoid the situation when rngd starts first and always keeps the
-entropy pool between 1024 and 2048 bits, thus dominating the
-entropy pool.
+Tails used to ship [haveged](http://issihosts.com/haveged/).
+haveged implements the HAVEGE algorithm to gather randomness from
+CPU timings. It runs as a service in the userspace and fills the entropy
+pool immediately when it is started and keeps filling it if the kernel’s
+entropy count falls low by reads from /dev/random.
 
-<a id="rngd"></a>
+There are multiple issues with haveged:
 
-## rngd
+* The fact that it tries to use timing information from CPU
+  instructions while running in userspace, thereby being subjected to
+  the kernel’s scheduler, which could impact the randomness of the
+  timings [^1]
 
-`rngd` gets entropy from a hardware RNG, if available. Otherwise, it
-does not start.
+* The CPU instruction it uses (RDTSC) returns predictable results in
+  some virtualized environments [^2]
 
-`rngd` fills up the pool using an `ioctl` on `/dev/random` to add
-entropy. It does that unless `fill-watermark` bits are available.
-The `fill-watermark` defaults to 50% of the size of the entropy pool,
-which itself defaults to 4096 bits on Linux 3.14, so basically `rngd`
-feeds the entropy pool unless there are already 2048 bits in it.
-The [[!debpts rng-tools desc="Debian package"]] does not override this
-default configuration, and neither does Tails.
+* No one seems to know whether haveged actually provides any good
+  randomness. AFAIK, it was never thoroughly analyzed by experts. The
+  haveged tests which are supposed evaluate the produced randomness
+  also pass if haveged is fed with a constant input instead of the CPU
+  timings [^3].
 
-Note: `rngd` (2-unofficial-mt.14-1) does not modify any parameter in
-`/proc/sys/kernel/random/`.
+[^1]: https://twitter.com/mjg59/status/1181426468519383041
+[^2]: https://tls.mbed.org/tech-updates/security-advisories/polarssl-security-advisory-2011-02
+[^3]: http://jakob.engbloms.se/archives/1374
+
+Since Linux 5.6, using the getrandom system call and reading from
+/dev/random will not block (for long) anymore on x86 systems, because
+the kernel now has a built-in random number generator which uses CPU
+timings. This is superior to haveged because it is not subjected to the
+kernel's scheduler. So Tails now relies on that instead of haveged.
+
+Tails also ensures that reading from /dev/urandom returns good random
+numbers, by ensuring that the entropy pool used by urandom is filled
+with at least 512 bytes of entropy during boot. This is done in 
+[[!tails_gitweb config/chroot_local-includes/usr/share/initramfs-tools/scripts/init-top/random]].
+
+To also ensure that reading from /dev/urandom returns good random
+numbers, Tails ensures that the entropy pool used by urandom is filled with at least 512 bytes
+of good entropy.
 
 # Remaining concerns
 
-## HAVEGE reliability
+## Persistent entropy pool seed
 
-haveged relies on the RDTSC instruction, that apparently is useless in
-some virtualized environments. Also, the quality of random numbers
-output by HAVEGE is unclear, and the topic of many discussions.
+Quoting [the Linux kernel documentation](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/char/random.c):
 
-Further research on this topic is [[!tails_ticket 7102 desc="left to
-be done"]].
+    When any operating system starts up, it will go through a sequence
+    of actions that are fairly predictable by an adversary, especially
+    if the start-up does not involve interaction with a human operator.
+    This reduces the actual number of bits of unpredictability in the
+    entropy pool below the value in entropy_count.  In order to
+    counteract this effect, it helps to carry information in the
+    entropy pool across shut-downs and start-ups.
 
-This is why Tails also ships `rngd`. Still, it is not clear how these
-two daemons [[act together|contribute/design/random#race]].
-
-## Hardware RNG trustworthiness and availability
-
-It is not clear how much one can trust a hardware RNG, that is hard,
-if not impossible, to audit. Also, not all computers include
-a hardware RNG.
-
-This is why Tails also ships HAVEGE. Still, it is not clear how these
-two daemons [[act together|contribute/design/random#race]].
-
-<a id="race"></a>
-
-## Interaction between haveged and rngd
-
-This discussion only makes sense whenever a hardware RNG supported by
-`rngd` is available. Otherwise, only `haveged` is used.
-
-The way it is configured in Debian, haveged sets
-`/proc/sys/kernel/random/write_wakeup_threshold` to 2048, so that
-processes that are waiting to write to `/dev/random` are woken up
-whenever less than 2048 bits of entropy is available. In practice,
-this probably means that Linux wakes up both `haveged` and `rngd` more
-or less at the same time.
-
-In such a case, `haveged` tries to write as many bytes as needed to
-fill the pool via a single `ioctl`, while `rngd` tries to write 512
-bits (the default value of `random_step` being 64 bytes) at a time,
-until the pool contains 2048 bits (default value of the pool water
-mark). It's unclear which one wins the race. Let's discuss the
-possible cases:
-
-* If `haveged` always wins the case, then it is actually useless to
-  run `rngd` at all.
-
-* If `rngd` always wins the race, then it dominates the entropy pool,
-  but shipping `haveged` is still useful when no hardware RNG
-  is available.
-
-* If the one that wins the race may change depending on the context, then it's
-  still useful to ship both `rngd` and `haveged`: it achieves our goal
-  of not relying purely on either one.
-
-## Interaction between haveged and rngd
-
-This area is left to be researched.
-
-## Random pool seeding
-
-On Debian Jessie, in the absence of any `/var/lib/systemd/random-seed`
-(Tails ships no such file), `urandom.service` runs
-`systemd-random-seed load`, that won't write anything to
-`/dev/urandom` (so we rely purely on the kernel and current system
-entropy to get `/dev/urandom` right).
-
-This behavior is basically what Jake suggested earlier on this ticket,
-combined with [[!tails_ticket 10779]].
-
-We've been in undefined behavior area forever: on Debian Wheezy, the
-`urandom` initscript was seeding `/dev/urandom` at boot time with the
-output of `date +%s.%N`, concatenated with the content of
-`/var/lib/urandom/random-seed`; this file was included in Tails ISO
-images, and its content was fixed, public, and shared between
-all -systems running a given Tails release.
-
-So this can't be much worse, and the fact it's the new debootstrap and
-systemd default behavior tends to be somewhat reassuring.
-
-Still, not persisting the state of the entropy pools between Tails boots
-seems to be wrong: [[!tails_ticket 7675]].
-
-## Early boot time
-
-One should audit random numbers availability at early boot time:
-[[!tails_ticket 6116]].
+Tails does currently not persist an entropy pool seed, which means that
+it does not carry any information in the entropy pool across shutdowns
+and startups. Solving this is work in progress on [[!tails_ticket 11897]].

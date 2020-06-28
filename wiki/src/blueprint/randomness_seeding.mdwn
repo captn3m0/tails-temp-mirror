@@ -48,13 +48,6 @@ to get `/dev/urandom`. It's commonly admitted to be quite good, but given the
 Live nature of Tails, and the fact that good cryptography is a must, we may
 want to add additional measures to ensure any Tails system has enough entropy.
 
-Tails ships Haveged and rngd since a while. Still there are concerns about
-Haveged's reliability to provide cryptographically secure randomness, and rngd
-is only really useful when random generator devices are used.
-
-Taking other measures to seed the Linux Kernel CSPRNG with good material seems
-worth spending efforts on.
-
 # Use cases
 
 Tails is used in different ways with different live devices. That requires
@@ -141,31 +134,6 @@ This is WIP on [[!tails_ticket 11897]].
 We may alternatively not update it, and use it only when the persistence is not
 enabled. That would still be a unique source of entropy per Tails installation,
 so that would be a better situation than the current one.
-
-## Use stronger/more entropy collectors [[!tails_ticket 5650]]
-
-As already stated, Tails runs Haveged and rngd.
-
-We may want to add other sources though, given there are concerns about Haveged,
-and rngd starts only when a hardware RNG is detected, which is not so often the
-case.
-
-XXX: It would be nice to have a study (read: a survey of packages, etc)
-of all the useful entropy gathering daemons that might be of use on a
-Tails system (and have this tested on computers with/without Intel RDRAND
-or things like an Entropy Key).
-
-An evaluation of some of them [has been done
-already](https://volumelabs.net/best-random-data-software/)
-
-Possible candidates:
-
-* [entropy gathering daemon](http://egd.sourceforge.net/): not packaged into Debian.
-* [twuewand](http://www.finnie.org/software/twuewand/): used by Finnix LiveCD
-  (so made for this kind of environment), not in Debian.
-* [timer entropy daemon](https://www.vanheusden.com/te/): not packaged into Debian
-* randomsound: probably a bad idea in the Tails context as we're discussing a
-  Greeter option to deactivate the microphone.
 
 ## Block booting until enough entropy has been gathered
 
