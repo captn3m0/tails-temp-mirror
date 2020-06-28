@@ -19,6 +19,12 @@ export SOURCE_DATE_FAKETIME="$(date --utc --date="$(dpkg-parsechangelog --show-f
 # need to set block.events_dfl_poll_msecs
 AMNESIA_APPEND="live-media=removable nopersistence noprompt timezone=Etc/UTC block.events_dfl_poll_msecs=1000 splash noautologin module=Tails slab_nomerge slub_debug=FZP mce=0 vsyscall=none page_poison=1 init_on_alloc=1 init_on_free=1 mds=full,nosmt"
 
+# Don't trust the CPU's hardware random number generator, because we
+# don't know if it is correctly implemented and is free of backdoors.
+# The entropy is still mixed into the entropy pool, it is simply not
+# credited.
+AMNESIA_APPEND="${AMNESIA_APPEND} random.trust_cpu=off"
+
 # Options passed to isohybrid
 AMNESIA_ISOHYBRID_OPTS="-h 255 -s 63 --id 42 --verbose"
 
