@@ -231,34 +231,30 @@ For more expert information see the Tor design paper, "[Tor Project: The Second-
 Router](https://svn.torproject.org/svn/projects/design-paper/tor-design.pdf)",
 specifically, "Part 3. Design goals and assumptions."
 
-<h1 id="identities">Tails doesn't magically separate your different contextual identities</h1>
+<h1 id="identities">Use Tails for one identity at a time</h1>
 
-It is usually not advisable to use the same Tails session to perform two tasks
-or endorse two contextual identities that you really want to keep separate
-from one another. For example hiding your location to check your email and
-anonymously publishing a document.
+We often want to sepparate our identities online. One good way to do that is to use different sesssions in Tails and Tor for each activity. For example, maybe you don't want to associate your activism activities such as blog posts with your pesonal email activity. Using Tails doesn't magically make that happen. If you intend to keep your activist identity appart from your personal identity, that is, if you want to isolate your contextual identities [LINK][1], it is advisable to use different Tails sessions or USB sticks. So:
 
-First, because Tor tends to reuse the same circuits, for example, within the same
-browsing session. Since the exit node of a circuit knows both the destination
-server (and possibly the content of the communication if it's not encrypted) and the
-address of the previous relay it received the communication from, it makes it
-easier to correlate several browsing requests as part of a same circuit and
-possibly made by the same user. If you are facing a global adversary as described
-above, it might then also be in a position to do this correlation.
+If you use **Tails and no Persistent Storage**, use Tor's New Identity Button or restart Tails:
 
-Second, in case of a security hole or an error in using Tails or one of its
-applications, information about your session could be leaked. That could reveal
-that the same person was behind the various actions made during the session.
+When navigating via Tor, use New Identity button to change circuits for each new set of activities. For example, when finished checking your anonymous webmail, switch circuits if you want to log in to another account or access personal stuff like social media. 
 
-**The solution to both threats is to shutdown and restart Tails** every time
-you're using a new identity, if you really want to isolate them better.
+When using different applications in you Tails session, make sure to complete one set of tasks per session. Online applications in Tails use different circuits. But If you want to use different accounts of the same provider in Thunderbird, you should restart Tails in order to change sessions. This way you'll change circuits for that application and your activity in previous session can hardly be linked to your activity in the new one.
 
-The [[<span class="guilabel">New Identity</span> feature of
-<span class="application">Tor Browser</span>|doc/anonymous_internet/Tor_Browser#new-identity]]
-is limited to the browser.
+If you use **Tails with Persistent Storage** use Tor's New Identity Button or 2 different USB Sticks:
 
-There is no <span class="guilabel">New Identity</span> button for Tails as a
-whole.
+When navigating via Tor, use New Identity button to change circuits for each new set of activities. 
+ 
+When using different applications in you Tails session, if you have Pidgin or Thunderbird configured for different accounts, it is best to swich USB sticks and use one for each set of activities. For example, if you are a victim of domestic violence and want to hide your escape from you family or attacker close to you, it is not interesting to do mix private and public matters in the same device to avoid direct linkage of you public and private identities (in case your attacker has physical access to your device).
+
+And why is that? It is recommended to take this precautions because of **Tor's and Tails's vulnerabilities**: 
+
+**It is possible to link transactions via the same Tor circuit** Tor browser has certain <a href="https://2019.www.torproject.org/projects/torbrowser/design/#privacy"> privacy requirements</a> to avoid linking your activity in different websites. For example, it relates your interaction with each website in the URL BAR. So, even if two websites embed the same third-party trackers, they'll get information over different circuits, information will travel via different nodes. But if you log in to two accounts at the same service, such as in our email example, Tor Browser will reuse the same circuit because the requests are from the same URL. This behavior is vulnerable to traffic correlation attacks. Your activities can be inferred by an adversary capable of monitonring entry and exit nodes. See <a href="https://tb-manual.torproject.org/managing-identities/">Tor Project Manual: "Managing Identities"</a> and <a href="https://2019.www.torproject.org/projects/torbrowser/design/#attacks">Tor Project Design Documentation: "Adversary Capabilities - Attacks"</a>.</p> for more information.
+
+**It is possible to access data from your session in Tails.** There are complex exploits that allow and attacker to recover your data from a Tails session. But, more commonly, physical access to your USB Stick or shared/public computers used to start Tails can compomise your identity. For example, an attacker with acccess to your USB Stick could guess or crack your persistent storage password. 
+
+Even though not all adversaries [[<span class="guilabel">(see Global Adversaries session)</span>|doc/about/warning/index.en.html#global-adversary]] are in a position to monitor your communications or have physical access to your devices, this measures aim to make you confident against identity correlation.
+
 
 <h1 id="passwords">Tails doesn't make your crappy passwords stronger</h1>
 
