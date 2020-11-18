@@ -334,7 +334,11 @@ Then /^there is no persistence partition on USB drive "([^"]+)"$/ do |name|
          "USB drive #{name} has a partition '#{data_part_dev}'")
 end
 
-def assert_luks2(device)
+def assert_luks2(name, device)
+  # Tails 4.13 and older created LUKS1 persistence
+  return if name == 'old' && !$old_version.nil? \
+            && system("dpkg --compare-versions '#{$old_version}' le 4.13")
+
   luks_info = $vm.execute("cryptsetup status #{device}").stdout
   assert_match(/^ +type: +LUKS2$/, luks_info,
                "Device #{device} is not LUKS2")
@@ -367,7 +371,7 @@ Then /^a Tails persistence partition exists on USB drive "([^"]+)"$/ do |name|
     luks_dev = "/dev/mapper/#{name}"
   end
 
-  assert_luks2(luks_dev)
+  assert_luks2(name, luks_dev)
 
   # Adapting check_part_integrity() seems like a bad idea so here goes
   info = $vm.execute("udisksctl info --block-device '#{luks_dev}'").stdout
