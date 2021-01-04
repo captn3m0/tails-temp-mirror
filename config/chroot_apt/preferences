@@ -82,6 +82,16 @@ Package: keepassxc
 Pin: release o=Debian,n=buster-backports
 Pin-Priority: 999
 
+Explanation: unavailable in Buster
+Package: gir1.2-handy-1 libhandy-1-0
+Pin: release o=Debian,n=buster-backports
+Pin-Priority: 999
+
+Explanation: We use capsh options which are not available in Buster.
+Package: libcap2 libcap2-bin
+Pin: release o=Debian,n=bullseye
+Pin-Priority: 999
+
 Package: linux-compiler-* linux-headers-* linux-image-* linux-kbuild-* linux-source-*
 Pin: release o=Debian,n=bullseye
 Pin-Priority: 999
@@ -131,6 +141,12 @@ Pin-Priority: 999
 
 Package: squashfs-tools libzstd1
 Pin: release o=Debian,n=bullseye-security
+Pin-Priority: 999
+
+Explanation: tails-persistent-setup needs mount >= 2.16.1 which supports
+Explanation: nosymfollow, to prevent symlink attacks
+Package: util-linux
+Pin: release o=Debian,n=bullseye
 Pin-Priority: 999
 
 Package: virtualbox*
