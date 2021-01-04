@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DIR="/live/persistence/TailsData_unlocked/dont-ask-again"
+mkdir -p "${DIR}"
+chown amnesia:amnesia "${DIR}"

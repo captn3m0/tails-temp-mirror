@@ -24,6 +24,13 @@ tmp/pot/replace-su-with-sudo.pot
 tmp/pot/RunningSystem.pm.pot
 tmp/pot/seahorse-tool-wrapper.pot
 tmp/pot/status-menu-helper-extension.js.pot
+tmp/pot/tps-mount.py.pot
+tmp/pot/tps-frontend-application.py.pot
+tmp/pot/tps-frontend-change_passphrase_dialog.py.pot
+tmp/pot/tps-frontend-error_dialog.py.pot
+tmp/pot/tps-frontend-feature.py.pot
+tmp/pot/tps-frontend-passphrase_strength_hint.py.pot
+tmp/pot/tps-frontend-window.py.pot
 tmp/pot/tails-about.pot
 tmp/pot/tails-additional-software.pot
 tmp/pot/tails-additional-software-notify.pot
@@ -48,12 +55,11 @@ tmp/pot/whisperBack-whisperback.py.pot
 # Files updated by intltool-update --desktop-style
 config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in
 config/chroot_local-includes/etc/skel/Desktop/tails-documentation.desktop.in
+config/chroot_local-includes/usr/share/applications/org.boum.tails.PersistentStorage.desktop.in
 config/chroot_local-includes/usr/share/applications/root-terminal.desktop.in
 config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in
 config/chroot_local-includes/usr/share/applications/tails-about.desktop.in
 config/chroot_local-includes/usr/share/applications/tails-installer.desktop.in
-config/chroot_local-includes/usr/share/applications/tails-persistence-delete.desktop.in
-config/chroot_local-includes/usr/share/applications/tails-persistence-setup.desktop.in
 config/chroot_local-includes/usr/share/applications/tor-browser.desktop.in
 config/chroot_local-includes/usr/share/applications/unsafe-browser.desktop.in
 config/chroot_local-includes/usr/share/applications/unlock-veracrypt-volumes.desktop.in
@@ -68,6 +74,14 @@ config/chroot_local-includes/usr/share/tails/greeter/additional_settings.ui.in
 config/chroot_local-includes/usr/share/tails/greeter/main.ui.in
 config/chroot_local-includes/usr/share/tails/greeter/region_settings.ui.in
 config/chroot_local-includes/usr/share/tails/greeter/setting.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/change_passphrase_dialog.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/creation_view.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/deletion_view.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/fail_view.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/features_view.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/passphrase_view.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/welcome_view.ui.in
+config/chroot_local-includes/usr/share/tails/persistent-storage/window.ui.in
 config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/main.ui.in
 config/chroot_local-includes/usr/share/tails/unlock-veracrypt-volumes/volume.ui.in
 config/chroot_local-includes/usr/share/tails-installer/tails-installer.ui.in

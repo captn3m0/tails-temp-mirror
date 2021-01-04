@@ -67,6 +67,11 @@ Package: keepassxc
 Pin: release o=Debian,n=buster-backports
 Pin-Priority: 999
 
+Explanation: unavailable in Buster
+Package: gir1.2-handy-1 libhandy-1-0
+Pin: release o=Debian,n=buster-backports
+Pin-Priority: 999
+
 Package: linux-compiler-* linux-headers-* linux-image-* linux-kbuild-* linux-source-*
 Pin: release o=Debian,n=bullseye
 Pin-Priority: 999

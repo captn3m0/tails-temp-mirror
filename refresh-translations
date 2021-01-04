@@ -36,6 +36,14 @@ PYTHON_PROGS="/etc/whisperback/config.py \
     /usr/lib/python3/dist-packages/tailsgreeter/ui/additional_settings.py \
     /usr/lib/python3/dist-packages/tailsgreeter/ui/persistent_storage.py \
     /usr/lib/python3/dist-packages/tailsgreeter/ui/region_settings.py \
+    /usr/lib/python3/dist-packages/tps/configuration/mount.py \
+    /usr/lib/python3/dist-packages/tps_frontend/error_dialog.py \
+    /usr/lib/python3/dist-packages/tps_frontend/application.py \
+    /usr/lib/python3/dist-packages/tps_frontend/change_passphrase_dialog.py \
+    /usr/lib/python3/dist-packages/tps_frontend/feature.py \
+    /usr/lib/python3/dist-packages/tps_frontend/passphrase_strength_hint.py \
+    /usr/lib/python3/dist-packages/tps_frontend/views/passphrase_view.py \
+    /usr/lib/python3/dist-packages/tps_frontend/window.py \
     /usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume.py \
     /usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_list.py \
     /usr/lib/python3/dist-packages/unlock_veracrypt_volumes/volume_manager.py \
@@ -84,6 +92,12 @@ prog_potfile () {
             ;;
 	/usr/share/gnome-shell/extensions/torstatus@tails.boum.org/extension.js)
             domain=torstatus-extension.js
+            ;;
+        /usr/lib/python3/dist-packages/tps/*)
+            domain="tps-$(basename "$prog")"
+            ;;
+        /usr/lib/python3/dist-packages/tps_frontend/*)
+            domain="tps-frontend-$(basename "$prog")"
             ;;
         /usr/lib/python3/dist-packages/unlock_veracrypt_volumes/*)
             domain="unlock-veracrypt-volumes-$(basename "$prog")"

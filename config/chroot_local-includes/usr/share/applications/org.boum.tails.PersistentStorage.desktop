@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Application
+Name=Persistent Storage
+Comment=Configure which files and application configuration are saved between working sessions
+Comment[da]=Konfigurer hvilke filer og programkonfiguration som gemmes mellem arbejdssessioner
+Comment[es]=Configurar qué archivos y qué configuración de la aplicación se guardan en las sesiones de trabajo
+Comment[es_AR]=Configurar qué archivos y que configuración de la aplicación se guardan entre sesiones de trabajo
+Comment[fr]=Configurer quels fichiers et configurations d’application sont enregistrés entre les sessions de travail
+Comment[ga]=Roghnaigh na comhaid agus na cumraíochtai feidhmchláir a shábhálfar ó sheisiún go seisiún
+Comment[hr]=Konfiguriraj datoteke i konfiguraciju programa koji se spremaju između radnih sesija
+Comment[hu]=Állítsa be mely fájlok és alkalmazás konfigurációk legyenek mentve két munkamenet között
+Comment[mk]=Конфигурирај кои датотеки и конфигурација на апликација да бидат зачувани помеѓу работните сесии
+Comment[tr]=Çalışma oturumları arasında kaydedilecek dosya ve uygulama ayarlarını yapılandırır.
+Comment[zh_CN]=在工作会话之间设置保存哪些文件和应用程序配置
+Icon=tails-persistent-storage.svg
+Exec=/usr/local/bin/tps-frontend-wrapper
+Terminal=false
+Categories=System;Tails;
+StartupNotify=true

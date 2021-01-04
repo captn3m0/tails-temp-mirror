@@ -2,27 +2,25 @@
 # for each of the corresponding configuration lines,
 # maps the source to the destination.
 def get_persistence_presets_config(skip_links = false)
-  # Perl script that prints all persistence configuration lines (one per line)
-  # in the form: <mount_point>:<comma-separated-list-of-options>
+  # Python script that prints all persistence configuration lines (one per
+  # line) in the form: <mount_point>\t<comma-separated-list-of-options>
   script = <<-SCRIPT
-  use strict;
-  use warnings FATAL => "all";
-  use Tails::Persistence::Configuration::Presets;
-  foreach my $atom (Tails::Persistence::Configuration::Presets->new()->atoms) {
-    say $atom->destination, ":", join(",", @{$atom->options});
-  }
-  SCRIPT
-  # VMCommand:s cannot handle newlines, and they're irrelevant in the
-  # above perl script any way
-  script.delete!("\n")
-  presets_configs = $vm.execute_successfully("perl -E '#{script}'")
+from tps.configuration import features
+for feature in features.get_classes():
+  for mount in feature.Mounts:
+    print(mount)
+SCRIPT
+  # VMCommand:s cannot handle newlines, so we replace them with
+  # semicolons.
+  script.sub!("\n", ";")
+  presets_configs = $vm.execute_successfully("python3 -c '#{script}'")
                        .stdout.chomp.split("\n")
   assert presets_configs.size >= 10,
          "Got #{presets_configs.size} persistence preset configuration " \
          'lines, which is too few'
   persistence_mapping = {}
   presets_configs.each do |line|
-    destination, options_str = line.split(':')
+    destination, options_str = line.split('\t')
     options = options_str.split(',')
     is_link = options.include? 'link'
     next if is_link && skip_links

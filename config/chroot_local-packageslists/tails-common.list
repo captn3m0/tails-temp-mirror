@@ -33,6 +33,9 @@ libnotify-bin
 libgtk-3-bin
 # needed by live-persist
 acl
+# needed by Persistent Storage settings
+gir1.2-handy-1
+libpwquality-tools
 # needed by the Unsafe Browser
 zenity
 # Needed by tails-htp-notify-user and others

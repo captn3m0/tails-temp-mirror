@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-_Name=Configure persistent volume
+_Name=Persistent Storage
 _Comment=Configure which files and application configuration are saved between working sessions
-Icon=tails-persistence-setup.png
-Exec=/usr/local/bin/tails-persistence-setup
+Icon=tails-persistent-storage.svg
+Exec=/usr/local/bin/tps-frontend-wrapper
 Terminal=false
 Categories=System;Tails;
-StartupNotify=false
+StartupNotify=true

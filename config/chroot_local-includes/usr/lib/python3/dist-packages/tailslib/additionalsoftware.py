@@ -26,21 +26,12 @@ class ASPDataError(ASPError):
 
 
 def _write_config(packages, search_new_persistence=False):
-    config_file_owner_uid = pwd.getpwnam(PERSISTENCE_SETUP_USERNAME).pw_uid
-    config_file_owner_gid = grp.getgrnam(PERSISTENCE_SETUP_USERNAME).gr_gid
-
     packages_list_path = get_packages_list_path(search_new_persistence)
-    try:
-        os.setegid(config_file_owner_gid)
-        os.seteuid(config_file_owner_uid)
-        with atomicwrites.atomic_write(packages_list_path,
-                                       overwrite=True) as f:
-            for package in sorted(packages):
-                f.write(package + '\n')
-        os.chmod(packages_list_path, 0o0644)
-    finally:
-        os.seteuid(0)
-        os.setegid(0)
+    with atomicwrites.atomic_write(packages_list_path,
+                                   overwrite=True) as f:
+        for package in sorted(packages):
+            f.write(package + '\n')
+    os.chmod(packages_list_path, 0o0644)
 
 
 def filter_package_details(pkg):
