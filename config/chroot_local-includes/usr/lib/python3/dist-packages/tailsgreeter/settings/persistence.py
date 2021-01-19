@@ -65,17 +65,6 @@ class PersistenceSettings(object):
                 pass
         return False
 
-    def lock(self):
-        logging.debug("Locking persistence")
-        try:
-            self.unmount_persistence()
-            self.lock_device()
-            self.is_unlocked = False
-            return True
-        except tailsgreeter.errors.LivePersistError as e:
-            logging.exception(e)
-            return False
-
     @staticmethod
     def list_containers():
         """Returns a list of persistence containers we might want to unlock."""
@@ -125,21 +114,6 @@ class PersistenceSettings(object):
             logging.debug("crytpsetup success")
         return self.cleartext_device
 
-    def lock_device(self):
-        """Unlock the LUKS persistent device"""
-        if os.path.exists(self.cleartext_device):
-            args = [
-                "/usr/bin/sudo", "-n",
-                "/sbin/cryptsetup", "luksClose",
-                self.cleartext_name
-                ]
-            tailsgreeter.utils.check_output_and_error(
-                args,
-                exception=tailsgreeter.errors.LivePersistError,
-                error_message=_("cryptsetup failed with return code "
-                                "{returncode}:\n"
-                                "{stdout}\n{stderr}")
-                )
 
     @staticmethod
     def setup_persistence(cleartext_device):
@@ -154,16 +128,3 @@ class PersistenceSettings(object):
                             "{returncode}:\n"
                             "{stdout}\n{stderr}")
             )
-
-    def unmount_persistence(self):
-        args = [
-            "/usr/bin/sudo", "-n",
-            "/bin/umount", "-A",
-            self.cleartext_device
-            ]
-        tailsgreeter.utils.check_output_and_error(
-            args,
-            exception=tailsgreeter.errors.LivePersistError,
-            error_message=_("umount failed with return code {returncode}:\n"
-                            "{stdout}\n{stderr}")
-                            )
