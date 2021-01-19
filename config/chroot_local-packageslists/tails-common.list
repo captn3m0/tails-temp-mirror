@@ -31,7 +31,7 @@ inotify-tools
 libnotify-bin
 # needed by tails-documentation
 libgtk-3-bin
-# needed by live-persist
+# needed by the Persistent Storage service
 acl
 # needed by Persistent Storage settings
 gir1.2-handy-1
