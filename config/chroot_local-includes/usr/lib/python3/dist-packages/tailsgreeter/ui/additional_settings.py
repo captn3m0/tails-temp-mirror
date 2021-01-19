@@ -2,7 +2,6 @@ import gi
 
 from tailsgreeter import TRANSLATION_DOMAIN
 import tailsgreeter.config
-import tailsgreeter.utils
 from tailsgreeter.settings import SettingNotFoundError
 from tailsgreeter.settings.network import NETCONF_DIRECT, NETCONF_DISABLED, NETCONF_OBSTACLE
 from tailsgreeter.ui import _
