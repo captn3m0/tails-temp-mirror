@@ -1,5 +1,6 @@
 import gi
 import logging
+from typing import List
 
 import tailsgreeter.config
 from tailsgreeter.settings import SettingNotFoundError
@@ -130,18 +131,21 @@ class KeyboardSetting(LocalizationSetting):
         logging.debug('got %d layouts for %s', len(layouts), lang_code)
         return layouts
 
-    def _layouts_for_country(self, country) -> [str]:
-        """Return the list of available layouts for given country
-        """
-        # XXX: it would be logical to use:
-        #     self.__xklinfo.get_layouts_for_language(country)
-        # but it doesn't actually return the list of all layouts matching a
-        # country.
+    def _layouts_for_country(self, country: str) -> List[str]:
+        """Return the list of available layouts for given country"""
         def country_filter(layout):
             cc = country.lower()
             return (layout == cc) or ('+' in layout) and (layout.split('+')[0] == cc)
 
+        # look for a country-specific keyboard layout
         layouts = list(filter(country_filter, self.get_all()))
+
+        # See #12638: not every locale has a country-specific keyboard layout
+        # so let's also look at xkbinfo. Even this method is not perfect: not every country has
+        # proper values, but that still improves the output for some locale.
+        if not layouts:
+            logging.debug('first country-based method found nothing')
+            layouts = self.xkbinfo.get_layouts_for_country(country.upper())
 
         logging.debug('got %d layouts for %s', len(layouts), country)
         return layouts
