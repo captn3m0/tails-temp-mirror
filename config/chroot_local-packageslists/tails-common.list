@@ -33,6 +33,9 @@ libnotify-bin
 libgtk-3-bin
 # needed by the Persistent Storage service
 acl
+libblockdev-crypto2
+# needed by the Persistent Storage frontend
+gnome-icon-theme
 # needed by Persistent Storage settings
 gir1.2-handy-1
 libpwquality-tools

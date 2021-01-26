@@ -12,7 +12,6 @@ systemctl enable memlockd.service
 systemctl enable initramfs-shutdown.service
 systemctl enable onion-grater.service
 systemctl enable tails-allow-external-TailsData-access.service
-systemctl enable tails-synchronize-data-to-new-persistent-volume-on-shutdown.service
 systemctl enable tails-autotest-broken-Xorg.service
 systemctl enable tails-autotest-remote-shell.service
 systemctl enable tails-persistent-storage.service

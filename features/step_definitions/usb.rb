@@ -335,7 +335,7 @@ Then /^a Tails persistence partition exists on USB drive "([^"]+)"$/ do |name|
 
   luks_dev = nil
   # The LUKS container may already be opened, e.g. by udisks after
-  # we've run tails-persistence-setup.
+  # we've created the Persistent Storage.
   c = $vm.execute("ls -1 --hide 'control' /dev/mapper/")
   if c.success?
     c.stdout.split("\n").each do |candidate|
@@ -558,8 +558,8 @@ Then /^all persistence configuration files have safe access rights$/ do
       file_owner = $vm.execute("stat -c %U '#{f}'").stdout.chomp
       file_group = $vm.execute("stat -c %G '#{f}'").stdout.chomp
       file_perms = $vm.execute("stat -c %a '#{f}'").stdout.chomp
-      assert_equal('tails-persistence-setup', file_owner)
-      assert_equal('tails-persistence-setup', file_group)
+      assert_equal('root', file_owner)
+      assert_equal('root', file_group)
       case f
       when %r{.*/live-additional-software.conf$}
         assert_equal('644', file_perms)

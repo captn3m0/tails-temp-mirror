@@ -96,7 +96,7 @@ class PersistentStorageSettings(object):
             )
 
         # This file must be world-readable so that software running
-        # as amnesia or tails-persistence-setup can read it.
+        # as amnesia can read it.
         with open(tailsgreeter.config.persistence_state_file, 'w') as f:
             os.chmod(tailsgreeter.config.persistence_state_file, 0o644)
             f.write('TAILS_PERSISTENCE_ENABLED=true\n')
