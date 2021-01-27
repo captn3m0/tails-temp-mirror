@@ -1,6 +1,6 @@
 import gi
 import logging
-from typing import List
+from typing import List, Dict
 
 import tailsgreeter.config
 from tailsgreeter.settings import SettingNotFoundError
@@ -16,7 +16,11 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gio, GLib, GnomeDesktop, GObject, Gtk
 
 
+
 class KeyboardSetting(LocalizationSetting):
+    LOCALE_HARDCODE: Dict[str, str] = {
+            'id_ID': 'us',
+            }
 
     def __init__(self):
         super().__init__()
@@ -188,9 +192,12 @@ class KeyboardSetting(LocalizationSetting):
                 layouts = filtered_layouts
         return layouts
 
-    def get_layout_for_locale(self, locale: str):
+    def get_layout_for_locale(self, locale: str) -> str:
+        if locale in self.__class__.LOCALE_HARDCODE:
+            return self.__class__.LOCALE_HARDCODE[locale]
         language = language_from_locale(locale)
         country = country_from_locale(locale)
+
 
         # First, build a list of layouts to consider for the language
         language_layouts = self._layouts_for_language(language)
