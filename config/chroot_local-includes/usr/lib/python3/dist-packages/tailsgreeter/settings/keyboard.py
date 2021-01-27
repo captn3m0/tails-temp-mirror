@@ -1,6 +1,6 @@
 import gi
 import logging
-from typing import List, Dict
+from typing import List, Dict, Tuple, Set, Optional
 
 import tailsgreeter.config
 from tailsgreeter.settings import SettingNotFoundError
@@ -42,7 +42,7 @@ class KeyboardSetting(LocalizationSetting):
             'IS_DEFAULT': is_default,
         })
 
-    def load(self) -> (str, bool):
+    def load(self) -> Tuple[str, bool]:
         try:
             settings = read_settings(self.settings_file)
         except FileNotFoundError:
@@ -84,7 +84,7 @@ class KeyboardSetting(LocalizationSetting):
     def get_name(self, value: str) -> str:
         return self._layout_name(value)
 
-    def get_all(self) -> [str]:
+    def get_all(self) -> List[str]:
         """Return a list of all keyboard layout codes
 
         """
@@ -97,8 +97,8 @@ class KeyboardSetting(LocalizationSetting):
             logging.warning("Layout code '%s' does not exist", layout_code)
         return display_name
 
-    def _layouts_split_names(self, layout_codes) -> [str]:
-        layouts_names = {}
+    def _layouts_split_names(self, layout_codes) -> Dict[str, Set[str]]:
+        layouts_names: Dict[str, Set[str]] = {}
         for layout_code in layout_codes:
             layout_name = self._layout_name(layout_code)
             country_name, s, v = layout_name.partition(' (')
@@ -108,7 +108,7 @@ class KeyboardSetting(LocalizationSetting):
                 layouts_names[country_name].add(layout_code)
         return layouts_names
 
-    def _layouts_for_language(self, lang_code) -> [str]:
+    def _layouts_for_language(self, lang_code) -> List[str]:
         """Return the list of available layouts for given language
         """
         try:
@@ -155,7 +155,7 @@ class KeyboardSetting(LocalizationSetting):
         return layouts
 
     @staticmethod
-    def _split_variant(layout_code) -> (str, str):
+    def _split_variant(layout_code) -> Tuple[str, Optional[str]]:
         if '+' in layout_code:
             return layout_code.split('+')
         else:
@@ -204,7 +204,7 @@ class KeyboardSetting(LocalizationSetting):
         logging.debug("Language %s layouts: %s", language, language_layouts)
         country_layouts = self._layouts_for_country(country)
         logging.debug("Country %s layouts: %s", country, country_layouts)
-        layouts = set(language_layouts).intersection(country_layouts)
+        layouts: Set[str] = set(language_layouts).intersection(country_layouts)
         logging.debug("Intersection of language %s and country %s: %s",
                       language, country, layouts)
 
@@ -217,7 +217,7 @@ class KeyboardSetting(LocalizationSetting):
             logging.debug("List still empty, filter by language %s only: %s",
                           language, layouts)
         if not layouts:
-            layouts = language_layouts
+            layouts = set(language_layouts)
             logging.debug("List still empty, use all language %s layouts: %s",
                           language, layouts)
 
@@ -225,7 +225,7 @@ class KeyboardSetting(LocalizationSetting):
         layouts = self._filter_layouts(layouts, country, language)
         if len(layouts) != 1:
             # Can't find a single result, build a new list for the country
-            layouts = country_layouts
+            layouts = set(country_layouts)
             logging.debug("Still not 1 layouts. Try again using all country "
                           "%s layouts: %s", country, layouts)
             layouts = self._filter_layouts(layouts, country, language)
