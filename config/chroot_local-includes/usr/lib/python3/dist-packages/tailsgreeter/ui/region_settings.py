@@ -181,7 +181,6 @@ class LanguageSettingUI(LocalizationSettingUI):
 
     def apply(self):
         super().apply()
-        self._setting.apply_language(self.value)
         self.changed_cb(self.value)
 
     def load(self) -> bool:
@@ -190,7 +189,6 @@ class LanguageSettingUI(LocalizationSettingUI):
         except SettingNotFoundError:
             raise
         if changed:
-            self._setting.apply_language(self.value)
             self.changed_cb(self.value)
         return changed
 

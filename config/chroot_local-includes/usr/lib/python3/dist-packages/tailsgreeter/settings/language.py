@@ -40,7 +40,6 @@ class LanguageSetting(LocalizationSetting):
     def __init__(self, locales: [str]):
         super().__init__()
         self.locales = locales
-        self._user_account = None
         self.settings_file = tailsgreeter.config.language_setting_path
 
         self.lang_codes = self._languages_from_locales(locales)
@@ -180,18 +179,6 @@ class LanguageSetting(LocalizationSetting):
                     local_country=country_name_locale)
         except AttributeError:
             return locale_code
-
-    def apply_language(self, language_code: str):
-        normalized_code = locale.normalize(language_code + '.' + locale.getpreferredencoding())
-        logging.debug("Setting session language to %s", normalized_code)
-        if self._user_account:
-            # For some reason, this produces the following warning, but
-            # the language is actually applied.
-            #     AccountsService-WARNING **: 19:29:39.181: SetLanguage for language de_DE.UTF-8 failed:
-            #     GDBus.Error:org.freedesktop.Accounts.Error.PermissionDenied: Not authorized
-            GLib.idle_add(lambda: self._user_account.set_language(normalized_code))
-        else:
-            logging.warning("AccountsManager not ready")
 
     def _make_language_to_locale_dict(self, locale_codes: [str]) -> {str: str}:
         """assemble dictionary of language codes to corresponding locales list

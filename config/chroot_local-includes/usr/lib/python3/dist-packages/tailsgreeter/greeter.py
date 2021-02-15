@@ -22,11 +22,14 @@ import gi
 import logging
 import os
 
-from tailsgreeter.config import settings_dir, persistent_settings_dir
+from tailsgreeter.config import settings_dir, persistent_settings_dir, \
+    supported_locales_path
 from tailsgreeter.gdmclient import GdmClient
 from tailsgreeter.settings import localization
 from tailsgreeter.settings.admin import AdminSetting
-from tailsgreeter.settings.localization_settings import LocalisationSettings
+from tailsgreeter.settings.formats import FormatsSetting
+from tailsgreeter.settings.keyboard import KeyboardSetting
+from tailsgreeter.settings.language import LanguageSetting
 from tailsgreeter.settings.macspoof import MacSpoofSetting
 from tailsgreeter.settings.network import NetworkSetting
 from tailsgreeter.settings.persistence import PersistentStorageSettings
@@ -52,7 +55,6 @@ class GreeterApplication(object):
         self.forced = False
         self.postponed = False
         self.postponed_text = None
-        self.ready = False
         self.translated = False
 
         self._sessionmanager = Gio.DBusProxy.new_for_bus_sync(
@@ -72,10 +74,13 @@ class GreeterApplication(object):
         # Load models
         self.gdmclient = GdmClient(session_opened_cb=self.close_app)
 
+        # Load locales
+        locales = self._get_locales()
+
         persistence = PersistentStorageSettings()
-        self.localisationsettings = LocalisationSettings(
-            usermanager_loaded_cb=self.usermanager_loaded,
-        )
+        self.language = LanguageSetting(locales)
+        self.keyboard = KeyboardSetting()
+        self.formats = FormatsSetting(locales)
         self.admin_setting = AdminSetting()
         self.macspoof_setting = MacSpoofSetting()
         self.network_setting = NetworkSetting()
@@ -83,9 +88,9 @@ class GreeterApplication(object):
 
         # Initialize the settings
         self.settings = GreeterSettingsCollection(
-            LanguageSettingUI(self.localisationsettings.language, self.on_language_changed),
-            KeyboardSettingUI(self.localisationsettings.keyboard),
-            FormatsSettingUI(self.localisationsettings.formats),
+            LanguageSettingUI(self.language, self.on_language_changed),
+            KeyboardSettingUI(self.keyboard),
+            FormatsSettingUI(self.formats),
             AdminSettingUI(self.admin_setting),
             MACSpoofSettingUI(self.macspoof_setting),
             NetworkSettingUI(self.network_setting),
@@ -102,6 +107,8 @@ class GreeterApplication(object):
         # Inhibit the session being marked as idle
         self.inhibit_idle()
 
+        self.mainwindow.show()
+
     def translate_to(self, lang):
         """Translate all windows to target language"""
         TranslatableWindow.translate_all(lang)
@@ -111,13 +118,6 @@ class GreeterApplication(object):
         logging.debug("login called")
         self.mainwindow.hide()
         self.gdmclient.do_login()
-
-    def usermanager_loaded(self):
-        """UserManager is ready"""
-        logging.debug("Entering usermanager_loaded")
-        self.ready = True
-        logging.info("tails-greeter is ready.")
-        self.mainwindow.show()
 
     def on_language_changed(self, locale_code: str):
         """Translate to the given locale"""
@@ -145,3 +145,8 @@ class GreeterApplication(object):
                 "Greeter session shouldn't idle",
                 8)  # Inhibit the session being marked as idle
         logging.debug("inhibitor cookie=%i", cookie)
+
+    @staticmethod
+    def _get_locales() -> [str]:
+        with open(supported_locales_path, 'r') as f:
+            return [line.rstrip('\n') for line in f.readlines()]
