@@ -1,0 +1,4 @@
+[Allow amnesia to set the locale,keyboard,date/time without prompting]
+Identity=unix-group:admin;unix-group:sudo;unix-user:amnesia
+Action=org.freedesktop.locale1.set-locale;org.freedesktop.locale1.set-keyboard;org.gnome.controlcenter.datetime.configure
+ResultActive=yes
