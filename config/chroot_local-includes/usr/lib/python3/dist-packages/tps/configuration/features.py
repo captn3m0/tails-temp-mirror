@@ -25,6 +25,14 @@ class BrowserBookmarks(Feature):
     ]
 
 
+class LanguageAndRegion(Feature):
+    Id = "LanguageAndRegion"
+    # XXX: We also need to mount the dconf settings file and
+    # load the keyboard and region settings from it on boot
+    # (see #17367)
+    Mounts = [Mount("locale", "/etc/default/locale")]
+
+
 class NetworkConnections(Feature):
     Id = "NetworkConnections"
     Mounts = [Mount("nm-system-connections",

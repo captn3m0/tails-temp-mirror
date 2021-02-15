@@ -19,9 +19,9 @@ class BrowserBookmarks(Feature):
     pass
 
 # XXX: Use once implemented in the backend
-# class LanguageAndRegion(Feature):
-#     pass
-#
+class LanguageAndRegion(Feature):
+    pass
+
 # class AdministrationPassword(Feature):
 #     pass
 
