@@ -1,0 +1,4 @@
+[Allow the Greeter to set the locale]
+Identity=unix-user:Debian-gdm
+Action=org.freedesktop.locale1.set-locale
+ResultActive=yes

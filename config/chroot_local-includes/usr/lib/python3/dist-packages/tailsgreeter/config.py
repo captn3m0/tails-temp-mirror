@@ -38,12 +38,6 @@ settings_dir = '/var/lib/gdm3/settings'
 # Directory where the persistent Greeter settings are stored
 persistent_settings_dir = '/var/lib/gdm3/settings/persistent'
 
-# File where the session language setting is stored
-language_setting_path = os.path.join(settings_dir, 'tails.language')
-
-# File where the session formats setting is stored
-formats_setting_path = os.path.join(settings_dir, 'tails.formats')
-
 # File where the session keyboard setting is stored
 keyboard_setting_path = os.path.join(settings_dir, 'tails.keyboard')
 

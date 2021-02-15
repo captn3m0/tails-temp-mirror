@@ -58,12 +58,12 @@ class LocalizationSettingUI(GreeterSetting):
         self.treeview.set_model(self.treestore_filtered)
 
     def apply(self):
-        self._setting.save(self.value, is_default=False)
+        self._setting.save(self.value)
         super().apply()
 
     def load(self) -> bool:
         try:
-            value, is_default = self._setting.load()
+            value = self._setting.load()
         except SettingNotFoundError:
             raise
 
@@ -71,7 +71,6 @@ class LocalizationSettingUI(GreeterSetting):
             return False
 
         self.value = value
-        self.value_changed_by_user = not is_default
         self.apply()
         return True
 
@@ -227,7 +226,7 @@ class FormatsSettingUI(LocalizationSettingUI):
 
         self.value = locale
         self.update_value_label()
-        self._setting.save(locale, is_default=True)
+        self._setting.save(locale)
 
 
 class KeyboardSettingUI(LocalizationSettingUI):
@@ -270,5 +269,5 @@ class KeyboardSettingUI(LocalizationSettingUI):
 
         self.value = layout
         self.update_value_label()
-        self._setting.save(layout, is_default=True)
+        self._setting.save(layout)
         self._setting.apply_layout_to_current_screen(self.value)

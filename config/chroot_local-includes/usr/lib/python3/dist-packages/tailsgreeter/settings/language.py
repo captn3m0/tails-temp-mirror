@@ -20,19 +20,18 @@
 from collections import OrderedDict
 import gi
 import logging
-import locale
+import subprocess
 
-import tailsgreeter.config
 from tailsgreeter.settings import SettingNotFoundError
 from tailsgreeter.settings.localization import LocalizationSetting, \
     language_from_locale, country_from_locale
-from tailsgreeter.settings.utils import read_settings, write_settings
+from tailsgreeter.settings.utils import read_settings
 
 gi.require_version('GLib', '2.0')
 gi.require_version('GObject', '2.0')
 gi.require_version('GnomeDesktop', '3.0')
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, GObject, GnomeDesktop, Gtk
+from gi.repository import GObject, GnomeDesktop, Gtk
 
 
 class LanguageSetting(LocalizationSetting):
@@ -40,31 +39,27 @@ class LanguageSetting(LocalizationSetting):
     def __init__(self, locales: [str]):
         super().__init__()
         self.locales = locales
-        self.settings_file = tailsgreeter.config.language_setting_path
+        self.settings_file = "/etc/default/locale"
 
         self.lang_codes = self._languages_from_locales(locales)
         self.locales_per_language = self._make_language_to_locale_dict(locales)
         self.language_names_per_language = self._make_language_to_language_name_dict(self.lang_codes)
 
-    def save(self, language: str, is_default: bool):
-        write_settings(self.settings_file, {
-            'TAILS_LOCALE_NAME': language,
-            'IS_DEFAULT': is_default,
-        })
+    def save(self, language: str):
+        subprocess.check_call(["localectl", "set-locale", f"LANG={language}.UTF-8"])
 
-    def load(self) -> (str, bool):
+    def load(self) -> str:
         try:
             settings = read_settings(self.settings_file)
         except FileNotFoundError:
             raise SettingNotFoundError("No persistent language settings file found (path: %s)" % self.settings_file)
 
-        language = settings.get('TAILS_LOCALE_NAME')
+        language = settings.get('LANG')
         if language is None:
             raise SettingNotFoundError("No language setting found in settings file (path: %s)" % self.settings_file)
 
-        is_default = settings.get('IS_DEFAULT') == 'true'
-        logging.debug("Loaded language setting '%s' (is default: %s)", language, is_default)
-        return language, is_default
+        logging.debug("Loaded language setting '%s'", language)
+        return language
 
     def get_tree(self) -> Gtk.TreeStore:
         treestore = Gtk.TreeStore(GObject.TYPE_STRING,  # id

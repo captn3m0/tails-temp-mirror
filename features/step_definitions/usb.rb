@@ -1162,7 +1162,6 @@ Then /^all Greeter options are set to (non-)?default values$/ do |non_default|
   if non_default
     expected = <<~EXPECTED
       TAILS_FORMATS=de_DE
-      TAILS_LOCALE_NAME=de_DE
       TAILS_MACSPOOF_ENABLED=false
       TAILS_NETCONF=obstacle
       TAILS_UNSAFE_BROWSER_ENABLED=true
@@ -1170,6 +1169,7 @@ Then /^all Greeter options are set to (non-)?default values$/ do |non_default|
       TAILS_XKBMODEL=pc105
       TAILS_XKBVARIANT=
     EXPECTED
+    $vm.execute_successfully('grep "^LANG=de_DE" /etc/default/locale')
     $vm.execute_successfully(
       'grep "^TAILS_USER_PASSWORD=\'.\+\'$" ' \
       '/var/lib/gdm3/settings/tails.password'
@@ -1181,7 +1181,6 @@ Then /^all Greeter options are set to (non-)?default values$/ do |non_default|
   else
     expected = <<~EXPECTED
       TAILS_FORMATS=en_US
-      TAILS_LOCALE_NAME=en_US
       TAILS_MACSPOOF_ENABLED=true
       TAILS_NETCONF=direct
       TAILS_UNSAFE_BROWSER_ENABLED=false
@@ -1189,6 +1188,7 @@ Then /^all Greeter options are set to (non-)?default values$/ do |non_default|
       TAILS_XKBMODEL=pc105
       TAILS_XKBVARIANT=
     EXPECTED
+    $vm.execute_successfully('grep "^LANG=en_US" /etc/default/locale')
     assert(!$vm.file_exist?('/var/lib/gdm3/settings/tails.password'))
   end
   assert_equal(expected, settings)

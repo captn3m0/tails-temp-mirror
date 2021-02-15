@@ -7,8 +7,6 @@
 # =====
 #
 # * /etc/live/config.d/username.conf : $LIVE_USERNAME
-# * /var/lib/gdm3/settings/tails.language: $TAILS_LOCALE_NAME
-# * /var/lib/gdm3/settings/tails.formats: $TAILS_FORMATS
 # * /var/lib/gdm3/settings/tails.keyboard: $TAILS_XKBMODEL,
 #   $TAILS_XKBLAYOUT, $TAILS_XKBVARIANT, $TAILS_XKBOPTIONS
 # * /var/lib/gdm3/settings/tails.password : $TAILS_USER_PASSWORD
@@ -85,29 +83,24 @@ fi
 ### Localization
 
 # Import locale settings
-. /var/lib/gdm3/settings/tails.language || log_n_exit "Language settings file not found."
-. /var/lib/gdm3/settings/tails.formats || log_n_exit "Formats settings file not found."
 . /var/lib/gdm3/settings/tails.keyboard || log_n_exit "Keyboard settings file not found."
-if [ -z "${TAILS_LOCALE_NAME}" ] ; then
-    log_n_exit "Locale variable not found."
-fi
 
 # Set the keyboard mapping for X11 and the console
 localectl set-x11-keymap "$TAILS_XKBLAYOUT" "$TAILS_XKBMODEL" "$TAILS_XKBVARIANT" "$TAILS_XKBOPTIONS"
 
-# Set the system locale and formats
-localectl set-locale \
-    "LANG=${TAILS_LOCALE_NAME}.UTF-8" \
-    "LC_TIME=${TAILS_FORMATS}.UTF-8" \
-    "LC_NUMERIC=${TAILS_FORMATS}.UTF-8" \
-    "LC_MONETARY=${TAILS_FORMATS}.UTF-8" \
-    "LC_MEASUREMENT=${TAILS_FORMATS}.UTF-8" \
-    "LC_PAPER=${TAILS_FORMATS}.UTF-8" \
-
 # Set the system locale GSetting (#16806)
+# Try to get the format from /etc/default/locale (we use LC_TIME here,
+# but we could also use any of the other formats set by the greeter,
+# we're setting them all to the same value).
+# If no format was set in /etc/default/locale, that means that the
+# default format "en_US" is used.
+FORMAT=$(sed -n '/^LC_TIME=/ s/^LC_TIME=//p' /etc/default/locale)
+if [ -z "${FORMAT}" ]; then
+  FORMAT="en_US"
+fi
 cat > /etc/dconf/db/local.d/01_Tails_settings << EOF
 [system/locale]
-region = '${TAILS_FORMATS}.UTF-8'
+region = '${FORMAT}.UTF-8'
 EOF
 dconf update
 

@@ -22,7 +22,7 @@ class KeyboardSetting(LocalizationSetting):
         self.xkbinfo = GnomeDesktop.XkbInfo()
         self.settings_file = tailsgreeter.config.keyboard_setting_path
 
-    def save(self, value: str, is_default: bool):
+    def save(self, value: str):
         try:
             layout, variant = value.split('+')
         except ValueError:
@@ -34,10 +34,9 @@ class KeyboardSetting(LocalizationSetting):
             'TAILS_XKBMODEL': 'pc105',
             'TAILS_XKBLAYOUT': layout,
             'TAILS_XKBVARIANT': variant,
-            'IS_DEFAULT': is_default,
         })
 
-    def load(self) -> (str, bool):
+    def load(self) -> str:
         try:
             settings = read_settings(self.settings_file)
         except FileNotFoundError:
@@ -51,9 +50,8 @@ class KeyboardSetting(LocalizationSetting):
         if keyboard_variant:
             keyboard_layout += "+" + keyboard_variant
 
-        is_default = settings.get('IS_DEFAULT') == 'true'
-        logging.debug("Loaded keyboard setting '%s' (is default: %s)", keyboard_layout, is_default)
-        return keyboard_layout, is_default
+        logging.debug("Loaded keyboard setting '%s'", keyboard_layout)
+        return keyboard_layout
 
     def get_tree(self, layout_codes=None) -> Gtk.TreeStore:
         if not layout_codes:

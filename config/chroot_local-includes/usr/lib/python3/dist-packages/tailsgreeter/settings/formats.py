@@ -1,5 +1,6 @@
 import gi
 import logging
+import subprocess
 
 import tailsgreeter.config
 from tailsgreeter.settings import SettingNotFoundError
@@ -16,27 +17,28 @@ class FormatsSetting(LocalizationSetting):
     def __init__(self, language_codes: [str]):
         super().__init__()
         self.locales_per_country = self._make_locales_per_country_dict(language_codes)
-        self.settings_file = tailsgreeter.config.formats_setting_path
+        self.settings_file = "/etc/default/locale"
 
-    def save(self, locale: str, is_default: bool):
-        write_settings(self.settings_file, {
-            'TAILS_FORMATS': locale,
-            'IS_DEFAULT': is_default,
-        })
+    def save(self, locale: str):
+        subprocess.check_call(["localectl", "set-locale",
+                               f"LC_MEASUREMENT={locale}.UTF-8",
+                               f"LC_MONETARY={locale}.UTF-8",
+                               f"LC_NUMERIC={locale}.UTF-8",
+                               f"LC_PAPER={locale}.UTF-8",
+                               f"LC_TIME={locale}.UTF-8"])
 
-    def load(self) -> (str, bool):
+    def load(self) -> str:
         try:
             settings = read_settings(self.settings_file)
         except FileNotFoundError:
             raise SettingNotFoundError("No persistent formats settings file found (path: %s)" % self.settings_file)
 
-        formats = settings.get('TAILS_FORMATS')
+        formats = settings.get('LC_TIME')
         if formats is None:
             raise SettingNotFoundError("No formats setting found in settings file (path: %s)" % self.settings_file)
 
-        is_default = settings.get('IS_DEFAULT') == 'true'
-        logging.debug("Loaded formats setting '%s' (is default: %s)", formats, is_default)
-        return formats, is_default
+        logging.debug("Loaded formats setting '%s'", formats)
+        return formats
 
     def get_tree(self) -> Gtk.TreeStore:
         treestore = Gtk.TreeStore(GObject.TYPE_STRING,  # id

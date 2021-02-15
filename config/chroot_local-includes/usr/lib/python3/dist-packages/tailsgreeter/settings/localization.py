@@ -44,10 +44,10 @@ class LocalizationSetting(GObject.Object, object):
     def get_tree(self) -> "Gtk.Treestore":
         raise NotImplementedError
 
-    def save(self, value: str, is_default: bool):
+    def save(self, value: str):
         pass
 
-    def load(self) -> (str, bool):
+    def load(self) -> str:
         pass
 
 
