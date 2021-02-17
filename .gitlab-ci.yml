@@ -10,6 +10,7 @@ lint-po:
   image: tailslive/lint-po:v1
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
+    - if: '$CI_COMMIT_REF_NAME =~ /\+po-tests/'
     - changes:
         - ./**.po
   script:
@@ -19,6 +20,7 @@ lint-latest-po:
   image: tailslive/lint-po:v1
   rules:
     - if: '$CI_COMMIT_BRANCH == "stable"'
+    - if: '$CI_COMMIT_REF_NAME =~ /\+po-tests/'
   script:
     - ./import-translations
     - /tmp/jenkins-tools/slaves/lint_po po/*.po
@@ -26,6 +28,7 @@ lint-latest-po:
 check-po-msgfmt:
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
+    - if: '$CI_COMMIT_REF_NAME =~ /\+po-tests/'
     - changes:
         - ./**.po
   script:
@@ -34,6 +37,7 @@ check-po-msgfmt:
 check-po-meta-date:
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
+    - if: '$CI_COMMIT_REF_NAME =~ /\+po-tests/'
     - changes:
         - ./**.po
   script:
