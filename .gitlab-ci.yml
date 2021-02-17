@@ -4,33 +4,22 @@ workflow:
     - if: $CI_COMMIT_TAG
     - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
 
-image: debian:buster
-
-before_script:
-  - export DEBIAN_FRONTEND=noninteractive
-  - apt-get update -qq
-
-.prepare-lint-po: &prepare-lint-po
-  - apt-get -qy install git i18nspector
-  - git clone https://gitlab.tails.boum.org/tails/jenkins-tools.git /tmp/jenkins-tools
+image: tailslive/debian-buster:v1
 
 lint-po:
-  image: debian:testing
+  image: tailslive/lint-po:v1
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
     - changes:
         - ./**.po
   script:
-    - *prepare-lint-po
     - /tmp/jenkins-tools/slaves/lint_po
 
 lint-latest-po:
-  image: debian:testing
+  image: tailslive/lint-po:v1
   rules:
     - if: '$CI_COMMIT_BRANCH == "stable"'
   script:
-    - *prepare-lint-po
-    - apt-get -qy install intltool
     - ./import-translations
     - /tmp/jenkins-tools/slaves/lint_po po/*.po
 
@@ -40,7 +29,6 @@ check-po-msgfmt:
     - changes:
         - ./**.po
   script:
-    - apt-get -qy install python3 gettext
     - ./bin/check-po-msgfmt
 
 check-po-meta-date:
@@ -49,36 +37,19 @@ check-po-meta-date:
     - changes:
         - ./**.po
   script:
-    - apt-get -qy install git ruby
     - ./bin/sanity-check-website
 
 check-translatable-live-website-urls:
   script:
-    - apt-get -qy install python3-polib
     - ./bin/check-translatable-live-website-urls po/tails.pot
 
 test-iuk:
   script:
+  - apt-get update
   - 'cat config/chroot_local-packageslists/tails-perl5lib.list
          config/chroot_local-packageslists/tails-iuk.list
        | grep -E -v "^#"
        | xargs apt-get -qy install'
-  - 'apt-get -qy install
-       apt-file
-       libdist-zilla-plugin-test-notabs-perl
-       libdist-zilla-plugin-test-perl-critic-perl
-       libdist-zilla-app-command-authordebs-perl
-       libmodule-build-perl
-       sudo
-       attr
-       bsdtar
-       libdevice-cdio-perl
-       faketime
-       genisoimage
-       gnutls-bin
-       libdata-dumper-concise-perl
-       libdatetime-perl
-       libfile-copy-recursive-perl'
   - apt-get update -qq # Take into account APT configuration added by apt-file
   # Otherwise, apt-get called by "dzil authordebs --install" asks confirmation
   - echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/yes
@@ -94,16 +65,10 @@ test-iuk:
 
 test-perl5lib:
   script:
+  - apt-get update
   - 'cat config/chroot_local-packageslists/tails-perl5lib.list
        | grep -E -v "^#"
        | xargs apt-get -qy install'
-  - 'apt-get -qy install
-       apt-file
-       libdist-zilla-plugin-test-notabs-perl
-       libdist-zilla-plugin-test-perl-critic-perl
-       libdist-zilla-app-command-authordebs-perl
-       libmodule-build-perl
-       sudo'
   - apt-get update -qq # Take into account APT configuration added by apt-file
   # Otherwise, apt-get called by "dzil authordebs --install" asks confirmation
   - echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/yes
@@ -173,14 +138,12 @@ test-persistence-setup:
 
 test-python-doctest:
   script:
-    - apt-get -qy install python3
     - config/chroot_local-includes/usr/local/lib/tails-gdm-error-message doctest --verbose
 
 test-whisperback:
   script:
     - 'cat config/chroot_local-packageslists/whisperback.list | grep -E -v "^#"
          | xargs apt-get -qy install'
-    - apt-get -qy install python3-pytest
     - 'PYTHONPATH=config/chroot_local-includes/usr/lib/python3/dist-packages
          pytest-3 --verbose --junit-xml=report.xml
          config/chroot_local-includes/usr/lib/python3/dist-packages/whisperBack/test.py'
@@ -191,7 +154,6 @@ test-whisperback:
 
 apt-snapshots-expiry:
   script:
-    - apt-get -qy install curl git
     - ./bin/apt-snapshots-expiry
   rules:
     - if: '$CI_COMMIT_BRANCH =~ /^stable|testing|devel$/'
