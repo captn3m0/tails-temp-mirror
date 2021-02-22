@@ -31,17 +31,17 @@ class IsInactiveException(Exception):
 
 
 class Mount(object):
-    """A mapping of a source directory to a target directory. When a
-    feature is activated, all of its mounts are mounted, i.e. for each
-    mount the source directory is mounted to the target directory.
+    """A mapping of a source file or directory to a target file or
+    directory. When a feature is activated, all of its mounts are
+    mounted, i.e. for each mount the source file or directory is mounted
+    to the target file or directory.
 
-    By default, the directory is mounted via a bind-mount. If
-    uses_symlinks is true, instead of bind-mounting the directory,
-    symlinks are created from each file in the source directory to the
-    target directory.
-
-    This corresponds to the "link" option of live-boot(5). Below is the
-    description of that option from the live-boot(5) man page.
+    By default, the source is mounted via a bind mount. If uses_symlinks
+    is true, instead of using a bind mount, symlinks are created from
+    the source file or, if the source is a directory, each file in the
+    source directory, to the target file or directory. This corresponds
+    to the "link" option of live-boot(5). Below is the description of
+    that option from the live-boot(5) man page:
 
     Create the directory structure of the source directory on the persistence media in DIR
     and create symbolic links from the corresponding place in DIR  to  each  file  in  the
@@ -57,7 +57,7 @@ class Mount(object):
     whole directory they're in, e.g. some configuration files in a user's home directory."""
 
     def __init__(self, src: Union[str, Path], dest: Union[str, Path],
-                 uses_symlinks=False,
+                 is_file=False, uses_symlinks=False,
                  persistent_storage_mount_point: str = PERSISTENT_STORAGE_MOUNT_POINT):
 
         self.persistent_storage_mount_point = persistent_storage_mount_point
@@ -69,6 +69,7 @@ class Mount(object):
         else:
             self.src = Path(src).resolve()
         self.dest = Path(dest)
+        self.is_file = is_file
         self.uses_symlinks = uses_symlinks
         try:
             self._relative_src = \
@@ -146,13 +147,21 @@ class Mount(object):
         # Check if anything else is mounted on the destination
         src = _what_is_mounted_on(self.dest)
         if src:
-            raise FailedPrecondition(f"Directory {src} is mounted on "
-                                     f"{self.dest}")
+            raise FailedPrecondition(f"Path {src} is mounted on {self.dest}")
 
-        # Create the destination directory if it doesn't exist
-        if not os.path.exists(self.dest):
-            _create_dest_directory(self.dest)
-        elif not os.path.isdir(self.dest):
+        # Create the mountpoint if it doesn't exist
+        if not self.dest.exists():
+            if self.is_file:
+                self.dest.touch(mode=0o600)
+            else:
+                _create_dest_directory(self.dest)
+
+        # Check that the mountpoint has the expected type (file or
+        # directory)
+        if self.is_file and not self.dest.is_file():
+            raise FailedPrecondition(f"Destination {self.dest} exists but "
+                                     f"is not a regular file")
+        if not self.is_file and not self.dest.is_dir():
             raise FailedPrecondition(f"Destination {self.dest} exists but "
                                      f"is not a directory")
 
@@ -162,16 +171,25 @@ class Mount(object):
             self._activate_using_bind_mount()
 
     def _activate_using_symlinks(self):
+        if self.is_file:
+            # Create the source file if it doesn't exist
+            if not self.src.exists():
+                self.src.touch(mode=0o700)
+            # Create the symlink
+            self._create_symlink(self.src, self.dest)
+            return
+
         # Create the source directory if it doesn't exist
         if not self.src.exists():
-            self.src.mkdir(parents=True)
+            self.src.mkdir(mode=0o700, parents=True)
             # Set the same ownership and permissions of the destination
             # directory on the source directory
             _chown_ref(self.dest, self.src)
             _chmod_ref(self.dest, self.src)
+            # The directory is empty, so there are no symlinks to create
             return
 
-        # Create symlinks
+        # Create symlinks for all files in the directory
         for dir, subdirs, files in os.walk(self.src):
             dest_dir = os.path.join(self.dest, os.path.relpath(dir, self.src))
             for f in subdirs + files:
@@ -200,7 +218,7 @@ class Mount(object):
 
         if src.is_dir():
             # Create the destination directory if it doesn't exist
-            dest.mkdir(parents=True, exist_ok=True)
+            dest.mkdir(mode=0o700, parents=True, exist_ok=True)
             # Make the destination have the same owner and permissions
             # as the source directory.
             _chown_ref(src, dest)
@@ -215,16 +233,15 @@ class Mount(object):
             _chown_ref(src, dest)
 
     def _activate_using_bind_mount(self):
-        # If the source directory doesn't exist on the Persistent
-        # Storage, we bootstrap it with the content of the destination
-        # directory, as it's done by live-boot's activate_custom_mounts()
-        # function.
+        # If the source doesn't exist on the Persistent Storage, we
+        # bootstrap it with the content of the destination, as it's done
+        # by live-boot's activate_custom_mounts() function.
         if not self.src.exists():
             # Create the parent directory
             self.src.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
             executil.check_call(["cp", "-a", self.dest, self.src])
 
-        # Bind-mount the source directory to the destination directory
+        # Bind-mount the source to the destination
         executil.check_call(["mount", "--bind", self.src, self.dest])
 
     def deactivate(self):

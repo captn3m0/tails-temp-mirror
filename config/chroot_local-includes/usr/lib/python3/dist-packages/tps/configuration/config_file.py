@@ -181,6 +181,7 @@ class ConfigFile(object):
     @staticmethod
     def _parse_line(line: str) -> Optional["Mount"]:
         dest, src = "", ""
+        is_file = False
         uses_symlinks = False
 
         # Get the white-space separated elements of the config line
@@ -200,6 +201,8 @@ class ConfigFile(object):
                 src = option[7:]
             elif option == "link":
                 uses_symlinks = True
+            elif option == "file":
+                is_file = True
             else:
                 logger.warning("Ignoring config line with invalid option "
                                "%r: %r", option, line)
@@ -210,4 +213,4 @@ class ConfigFile(object):
             return
 
         # Create and return the Mount object
-        return Mount(src, dest, uses_symlinks)
+        return Mount(src, dest, is_file, uses_symlinks)
