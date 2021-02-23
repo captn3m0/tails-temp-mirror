@@ -44,6 +44,7 @@ def ensure_chutney_is_running
     # The default value (60s) is too short for "chutney wait_for_bootstrap"
     # to succeed reliably.
     'CHUTNEY_START_TIME'     => '600',
+    'CHUTNEY_TOR_SANDBOX'    => '0',
   }
 
   chutney_data_dir_cleanup = proc do
