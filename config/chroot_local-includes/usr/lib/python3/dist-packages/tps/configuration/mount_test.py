@@ -113,47 +113,61 @@ atexit.register(cleanUpModule)
 
 
 class MountTestCase(TestCase):
-    dest_dir: str
+    use_file: bool = False
+    dest: Path
     test_mounts: List[Mount]
 
     @classmethod
     def setUp(cls):
-        # Create a temporary directory which is used as the destination
-        # directory in the tests.
-        cls.dest_dir = mkdtemp(prefix="dest-TailsData")
+        # Create a temporary destination file or directory
+        if cls.use_file:
+            cls.dest = Path(NamedTemporaryFile().name)
+        else:
+            cls.dest = Path(mkdtemp(prefix="dest-TailsData"))
 
-        cls.test_mounts = [
-            Mount("foo", os.path.join(cls.dest_dir, "foo"),
-                  persistent_storage_mount_point=mount_point),
-            Mount("dotfiles", os.path.join(cls.dest_dir, "dotfiles"),
-                  uses_symlinks=True,
-                  persistent_storage_mount_point=mount_point)
-        ]
+        if cls.use_file:
+            cls.test_mounts = [
+                Mount("foo", cls.dest,
+                      persistent_storage_mount_point=mount_point),
+                Mount("dotfile", cls.dest, uses_symlinks=True,
+                      persistent_storage_mount_point=mount_point)
+            ]
+        else:
+            cls.test_mounts = [
+                Mount("foo", os.path.join(cls.dest, "foo"),
+                      persistent_storage_mount_point=mount_point),
+                Mount("dotfiles", os.path.join(cls.dest, "dotfiles"),
+                      uses_symlinks=True,
+                      persistent_storage_mount_point=mount_point)
+            ]
 
     @classmethod
     def tearDown(cls):
         # Remove the temporary destination directory
-        shutil.rmtree(cls.dest_dir)
+        shutil.rmtree(cls.dest)
         # Remove the content of the mount point
         _rm_contents(Path(mount_point))
 
 
     @classmethod
     def check_same_permissions_and_owner_recursively(cls,
-                                                     dir1: Union[str, Path],
-                                                     dir2: Union[str, Path]):
-        files1 = sorted(Path(dir1).iterdir())
-        files2 = sorted(Path(dir2).iterdir())
-        for child1, child2 in zip(files1, files2):
-            if child1.is_file() != child2.is_file():
-                raise AssertionError(f"Only one of {child1} and {child2} is a"
-                                     f"regular file (or a symlink pointing to "
-                                     f"a regular file)")
-            if child1.is_file:
-                cls.check_same_permissions_and_owner(child1, child2)
-            else:
-                cls.check_same_permissions_and_owner_recursively(
-                    child1, child2)
+                                                     file1: Union[str, Path],
+                                                     file2: Union[str, Path]):
+        file1 = Path(file1)
+        file2 = Path(file2)
+
+        cls.check_same_permissions_and_owner(file1, file2)
+
+        if file1.is_file() != file2.is_file():
+            raise AssertionError(f"Only one of {file1} and {file2} is a"
+                                 f"regular file (or a symlink pointing to "
+                                 f"a regular file)")
+
+        if file1.is_dir():
+            files1 = sorted(Path(file1).iterdir())
+            files2 = sorted(Path(file2).iterdir())
+            for child1, child2 in zip(files1, files2):
+                cls.check_same_permissions_and_owner_recursively(child1, child2)
 
 
     @classmethod
@@ -176,7 +190,7 @@ class MountTestCase(TestCase):
                                  f"{file2}")
 
 
-class TestActivate(MountTestCase):
+class TestActivateDir(MountTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -205,6 +219,11 @@ class TestActivate(MountTestCase):
             mount.activate()
             # Check if the mount was activated
             mount.check_is_active()
+            # Check that both src and dest are empty directories
+            self.assertTrue(mount.src.is_dir())
+            self.assertFalse(any(mount.src.iterdir()))
+            self.assertTrue(mount.dest.is_dir())
+            self.assertFalse(any(mount.dest.iterdir()))
 
     def test_non_existent_src_dir(self):
         # In the case that a dest dir exists, but the src dir does not,
@@ -277,6 +296,10 @@ class TestActivate(MountTestCase):
             if not mount.uses_symlinks:
                 self.check_same_permissions_and_owner_recursively(
                     mount.src, mount.dest)
+            else:
+                with self.assertRaises(AssertionError):
+                    self.check_same_permissions_and_owner_recursively(
+                        mount.src, mount.dest)
 
     def test_files_with_different_owner_in_src(self):
         for mount in self.test_mounts:
@@ -303,7 +326,7 @@ class TestActivate(MountTestCase):
             Path(mount.dest, "root", "public").is_symlink()
             Path(mount.dest, "user", "secret").is_symlink()
             # Check if the newly created dest dir has the same
-            # permissions as the source dir.
+            # permissions as the source dir
             self.check_same_permissions_and_owner_recursively(
                 mount.src, mount.dest)
             # Deactivate the mount
@@ -366,7 +389,7 @@ class TestActivate(MountTestCase):
                 subprocess.check_call(["umount", "--force", mount.dest])
 
 
-class TestDeactivate(MountTestCase):
+class TestDeactivateDir(MountTestCase):
     def test_deactivate(self):
         for mount in self.test_mounts:
             # Create the source directory
@@ -384,6 +407,176 @@ class TestDeactivate(MountTestCase):
             # Check that the file does not exist anymore in the
             # destination
             self.assertFalse(Path(mount.dest, "dir/bla").exists())
+
+
+class TestActivateFile(MountTestCase):
+    use_file = True
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+    def tearDown(self):
+        # Ensure that after each test, all test mounts are unmounted
+        # again.
+        for mount in self.test_mounts:
+            try:
+                mount.deactivate()
+            except FileNotFoundError:
+                pass
+        super().tearDown()
+
+    def test_invalid_mount(self):
+        # Check that a mount with a source outside of the mount point
+        # raises a InvalidMountError.
+        with self.assertRaises(InvalidMountError):
+            Mount("/foo", "/bar")
+
+    def test_non_existent_src_and_dest_file(self):
+        for mount in self.test_mounts:
+            # Check that the mount is inactive
+            mount.check_is_inactive()
+            # Activate the mount
+            mount.activate()
+            # Check if the mount was activated
+            mount.check_is_active()
+            # Check that both src and dest are empty files
+            self.assertTrue(mount.src.is_file())
+            self.assertTrue(mount.src.stat().st_size == 0)
+            self.assertTrue(mount.dest.is_file())
+            self.assertTrue(mount.src.stat().st_size == 0)
+
+            if mount.uses_symlinks:
+                # Check that the destination file is a symlink to the
+                # source file
+                self.assertTrue(mount.dest.is_symlink())
+                self.assertEqual(mount.dest.resolve(),
+                                 mount.src.resolve())
+
+    def test_non_existent_src_file(self):
+        # In the case that dest exists, but src does not, dest should be
+        # copied to src along with its permissions.
+        for mount in self.test_mounts:
+            # Create the dest file
+            mount.dest.touch(mode=0o660)
+            # Write some text to the dest file
+            mount.dest.write_text("foo")
+            # Change the dest owner to a different owner (we run as
+            # root, so we have UID 0)
+            os.chown(mount.dest, 1000, -1)
+            # Check that the mount is inactive
+            mount.check_is_inactive()
+            # Activate the mount
+            mount.activate()
+            # Check if the mount was activated
+            mount.check_is_active()
+            # Check if the src has the same permissions as the dest
+            self.check_same_permissions_and_owner_recursively(
+                mount.src, mount.dest)
+            # Check that src now contains the same text as dest
+            self.assertEqual(mount.src.read_text(), "foo")
+
+    def test_non_existent_dest_file(self):
+        for mount in self.test_mounts:
+            # Create the source file
+            mount.src.touch(mode=0o600)
+            # Write some text to the source file
+            mount.src.write_text("foo")
+            # Check that the mount is inactive
+            mount.check_is_inactive()
+            # Check that check_is_active raises an IsInactiveException
+            with self.assertRaises(IsInactiveException):
+                mount.check_is_active()
+            # Activate the mount
+            mount.activate()
+            # Check if the mount was activated
+            mount.check_is_active()
+            # Check that check_is_inactive raises an IsActiveException
+            with self.assertRaises(IsActiveException):
+                mount.check_is_inactive()
+            # Check if the newly created dest file has the same
+            # permissions as the source file.
+            self.check_same_permissions_and_owner_recursively(
+                mount.src, mount.dest)
+            # Check that dest now contains the same text as src
+            self.assertEqual(mount.dest.read_text(), "foo")
+
+    def test_existent_src_and_dest_file(self):
+        for mount in self.test_mounts:
+            # Create the source file
+            mount.src.touch(mode=0o600)
+            # Create the dest file with a different mode
+            mount.dest.touch(mode=0o660)
+            # Change the dest dir owner to a different owner
+            # (we run as root, so we have UID 0)
+            os.chown(mount.dest, 1000, -1)
+            # Activate the mount
+            mount.activate()
+            # Check if the mount was activated
+            mount.check_is_active()
+            # Check if the dest file now has the same permissions
+            # as the src file, if this mount does not use symlinks
+            # (the behavior of live-boot for a symlink mount is to not
+            # change permissions of an existing source directory and we
+            # want to mirror that behavior also for source files).
+            if not mount.uses_symlinks:
+                self.check_same_permissions_and_owner_recursively(
+                    mount.src, mount.dest)
+            else:
+                with self.assertRaises(AssertionError):
+                    self.check_same_permissions_and_owner_recursively(
+                        mount.src, mount.dest)
+
+    def test_symlink_with_different_owner_in_dest(self):
+        for mount in self.test_mounts:
+            # This test is only for mounts using symlinks
+            if not mount.uses_symlinks:
+                continue
+            # Create the dotfiles source file owned by UID 1000
+            mount.src.touch(mode=0o700)
+            os.chown(mount.src, 1000, 1000)
+            # Create the dest file as a symlink to some file owned by root
+            with NamedTemporaryFile().name as tmpfile:
+                mount.dest.symlink_to(tmpfile)
+                # Make the dest file be owned by UID 1000
+                os.chown(mount.dest, 1000, 1000, follow_symlinks=False)
+                # Assert that activating the mount raises an
+                # IncorrectOwnerException
+                with self.assertRaises(IncorrectOwnerException):
+                    mount.activate()
+
+    def test_already_mounted(self):
+        for mount in self.test_mounts:
+            # Activate the mount
+            mount.activate()
+            # Check we don't raise an exception in the case that an
+            # already activated mount is activated again (see comment
+            # in activate()).
+            mount.activate()
+
+    def test_dir_in_place_of_dest_file(self):
+        for mount in self.test_mounts:
+            # Create a directory in the place of the dest file
+            mount.dest.mkdir()
+            # Check that activating the mount raises a
+            # FailedPrecondition exception
+            with self.assertRaises(FailedPrecondition):
+                mount.activate()
+
+    def test_something_else_mounted(self):
+        for mount in self.test_mounts:
+            # Create the destination file
+            mount.dest.touch()
+            # Create a temporary directory
+            with NamedTemporaryFile().name as tmpfile:
+                # Bind mount the temporary directory to the dest file
+                subprocess.check_call(["mount", "--bind", tmpfile, mount.dest])
+                # Check that activating the mount raises a
+                # FailedPrecondition exception
+                with self.assertRaises(FailedPrecondition):
+                    mount.activate()
+                # Unmount the temporary file
+                subprocess.check_call(["umount", "--force", mount.dest])
 
 
 def _rm_contents(path: Path):
