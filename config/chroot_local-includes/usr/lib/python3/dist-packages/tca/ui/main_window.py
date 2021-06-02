@@ -2,7 +2,7 @@ import logging
 import os.path
 import json
 import gettext
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple, Optional
 
 import gi
 import stem
@@ -602,6 +602,7 @@ class TCAMainWindow(
                 self.state["step"] = "progress"
 
         self.current_language = "en"
+        self.timer_check: Optional[int] = None  # checks the bootstrap-phase during progress
         self.connect("delete-event", self.cb_window_delete_event, None)
         self.set_position(Gtk.WindowPosition.CENTER)
 
@@ -739,7 +740,9 @@ class TCAMainWindow(
         step = self.state["step"]
         if not up:
             if self.state["step"] == "progress":
-                GLib.source_remove(self.timer_check)
+                if self.timer_check is not None:
+                    GLib.source_remove(self.timer_check)
+                    self.timer_check = None
                 self.state["offline"]["previous"] = self.state["step"]
                 self.change_box("offline")
             elif self.state["step"] in ["error", "hide"]:
