@@ -259,8 +259,9 @@ class StepConnectProgressMixin:
         self.save_conf()
         self.state["progress"]["error"] = None
         self.builder.get_object("step_progress_box").show()
-        for obj in ['box_start', 'box_tortestok', 'box_internetok', 'box_internettest', 'box_tor_direct_fail']:
-            self.get_object(obj).hide()
+        self.builder.get_object("step_progress_box_internettest").hide()
+        self.builder.get_object("step_progress_box_internetok").hide()
+        self.get_object("box_tor_direct_fail").hide()
         self.connection_progress.set_fraction(0.0, allow_going_back=True)
         if not self.state["progress"]["success"]:
             self.spawn_tor_connect()
@@ -580,7 +581,7 @@ class TCAMainWindow(
             "bridge": {},
             "proxy": {},
             "progress": {},
-            "step": "",
+            "step": "hide",
             "offline": {},
         }
         if self.app.args.debug_statefile is not None:
@@ -671,9 +672,6 @@ class TCAMainWindow(
         self.builder.get_object("main_img_side").set_from_pixbuf(pixbuf)
 
     def change_box(self, name: str, **kwargs):
-        if self.state["step"] == name:
-            log.debug("State was already %s, not changed", name)
-            return
         self.state["step"] = name
         self.set_image(IMG_SIDE[self.state["step"]])
         self.stack.set_visible_child_name(name)
@@ -741,6 +739,7 @@ class TCAMainWindow(
         step = self.state["step"]
         if not up:
             if self.state["step"] == "progress":
+                GLib.source_remove(self.timer_check)
                 self.state["offline"]["previous"] = self.state["step"]
                 self.change_box("offline")
             elif self.state["step"] in ["error", "hide"]:
