@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+from logging import getLogger
+
+from tailslib.logutils import configure_logging
+from subprocess import Popen
+
+log = getLogger('timesync')
+
+def main():
+    configure_logging(hint="syslog", ident="tails-time-sync")
+    log.info("Time sync starting")
+
+    Popen(['systemctl', 'start', 'htpdate.service'])
+    log.info("Htpdate started")
+
+    return
+
+
+if __name__ == "__main__":
+    main()

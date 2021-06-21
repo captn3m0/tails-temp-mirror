@@ -1,0 +1,12 @@
+[Unit]
+Description=Handle the run of the time sync
+Documentation=https://tails.boum.org/contribute/design/Time_syncing/
+After=tails-tor-has-bootstrapped.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/tails-time-sync
+RemainAfterExit=yes
+
+[Install]
+WantedBy=desktop.target

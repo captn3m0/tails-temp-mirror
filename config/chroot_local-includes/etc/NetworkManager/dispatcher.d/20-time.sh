@@ -233,6 +233,3 @@ wait_for_working_tor
 
 touch $TORDATE_DONE_FILE
 
-log "Restarting htpdate"
-systemctl restart htpdate.service
-log "htpdate service restarted with return code $?"
