@@ -1,7 +1,8 @@
 [Unit]
-Description=Handle the run of the time sync
+Description=Wrapper to run the time sync
 Documentation=https://tails.boum.org/contribute/design/Time_syncing/
 After=tails-tor-has-bootstrapped.target
+Requires=tails-tor-has-bootstrapped.target
 
 [Service]
 Type=oneshot
