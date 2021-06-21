@@ -47,7 +47,7 @@ fi
 ### Functions
 
 log() {
-	logger -t time "$@"
+	logger -t 20-time "$@"
 }
 
 has_consensus() {
