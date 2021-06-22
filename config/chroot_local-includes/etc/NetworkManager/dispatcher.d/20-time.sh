@@ -212,6 +212,8 @@ start_notification_helper() {
 
 start_notification_helper
 
+/bin/systemctl --no-block start tails-time-sync.service
+
 # Delegate time setting to other daemons if Tor connections work
 if tor_is_working; then
 	log "Tor has already opened a circuit"
