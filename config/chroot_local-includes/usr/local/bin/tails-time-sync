@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import os.path
+import time
 from logging import getLogger
 
 from tailslib.logutils import configure_logging
@@ -9,8 +11,11 @@ log = getLogger("timesync")
 
 def main():
     configure_logging(hint="syslog", ident="tails-time-sync", level="DEBUG")
-    log.info("Time sync starting")
+    log.info("Time sync starting; waiting for a connection")
 
+    while not os.path.exists('/run/tor-has-bootstrapped/done'):
+        time.sleep(1)
+    log.info("Tor connected; we can start htpdate now")
     Popen(["systemctl", "start", "htpdate.service"])
     log.info("Htpdate started")
 

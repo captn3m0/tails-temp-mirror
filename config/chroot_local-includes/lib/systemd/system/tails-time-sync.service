@@ -5,12 +5,8 @@
 Description=Wrapper to run the time sync
 Documentation=https://tails.boum.org/contribute/design/Time_syncing/
 After=tails-wait-until-tor-has-bootstrapped.service
-Requires=tails-wait-until-tor-has-bootstrapped.service
 
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/tails-time-sync
 RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target
