@@ -1,3 +1,6 @@
+# This extra unit mostly starts htpdate.service
+# why not having just htpdate started, then? to allow for quick hacks during debugging
+
 [Unit]
 Description=Wrapper to run the time sync
 Documentation=https://tails.boum.org/contribute/design/Time_syncing/

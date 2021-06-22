@@ -4,14 +4,14 @@ from logging import getLogger
 from tailslib.logutils import configure_logging
 from subprocess import Popen
 
-log = getLogger('timesync')
+log = getLogger("timesync")
 
 
 def main():
-    configure_logging(hint="syslog", ident="tails-time-sync", level='DEBUG')
+    configure_logging(hint="syslog", ident="tails-time-sync", level="DEBUG")
     log.info("Time sync starting")
 
-    Popen(['systemctl', 'start', 'htpdate.service'])
+    Popen(["systemctl", "start", "htpdate.service"])
     log.info("Htpdate started")
 
     return
