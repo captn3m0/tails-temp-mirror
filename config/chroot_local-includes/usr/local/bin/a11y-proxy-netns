@@ -95,13 +95,19 @@ def main():
         sys.exit(1)
 
     try:
-        p.communicate()
-    except KeyboardInterrupt:
-        # this except clause will handle SIGINT, but not other signals
-        # we should probably explicitly do that!
-        p.kill()
-        log.debug("Killed %s", args[0])
-    return
+        systemd.daemon.notify("MAINPID=%d" % p.pid)
+    except OSError:
+        log.error("Notify systemd of the real MAINPID failed. Staying alive")
+        try:
+            p.communicate()
+        except KeyboardInterrupt:
+            # this except clause will handle SIGINT, but not other signals
+            # we should probably explicitly do that!
+            p.kill()
+            log.debug("Killed %s", args[0])
+    else:
+        log.info("MAINPID is now xdg-dbus-proxy. We can leave.")
+        return
 
 
 if __name__ == "__main__":
