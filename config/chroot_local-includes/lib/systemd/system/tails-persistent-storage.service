@@ -1,6 +1,7 @@
 [Service]
 Type=dbus
 BusName=org.boum.tails.PersistentStorage
-ExecStart=/usr/local/lib/tps
+# XXX: Remove the --debug option
+ExecStart=/usr/local/lib/tps --debug
 ExecStartPre=/usr/local/lib/persistent-storage/pre-start
 # XXX: Add sandboxing options
