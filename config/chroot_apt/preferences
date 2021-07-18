@@ -143,12 +143,6 @@ Package: squashfs-tools libzstd1
 Pin: release o=Debian,n=bullseye-security
 Pin-Priority: 999
 
-Explanation: tails-persistent-setup needs mount >= 2.16.1 which supports
-Explanation: nosymfollow, to prevent symlink attacks
-Package: util-linux
-Pin: release o=Debian,n=bullseye
-Pin-Priority: 999
-
 Package: virtualbox*
 Pin: release o=Debian,n=sid
 Pin-Priority: 999

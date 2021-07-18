@@ -11,5 +11,8 @@ NOSYMFOLLOW_MOUNTPOINT=/var/lib/tails-persistent-storage/nosymfollow
 if ! mountpoint --quiet "${NOSYMFOLLOW_MOUNTPOINT}"; then
   mkdir -p -m 700 "${NOSYMFOLLOW_MOUNTPOINT}"
   mount --bind / "${NOSYMFOLLOW_MOUNTPOINT}"
-  mount -o remount,nosymfollow "${NOSYMFOLLOW_MOUNTPOINT}"
+  # XXX:Bullseye: With the util-linux version on bullseye, we can use this
+  # command instead of our own remount-nosymfollow script
+  # mount -o remount,nosymfollow "${NOSYMFOLLOW_MOUNTPOINT}"
+  /usr/local/lib/persistent-storage/remount-nosymfollow "${NOSYMFOLLOW_MOUNTPOINT}"
 fi

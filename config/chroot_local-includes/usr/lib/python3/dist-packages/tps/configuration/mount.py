@@ -393,7 +393,7 @@ def _what_is_mounted_on(path: Union[str, Path]) -> Optional[str]:
 
 def _is_mountpoint(path: Union[str, Path]) -> bool:
     try:
-        executil.check_call(["mountpoint", "--quiet", "--nofollow", path])
+        executil.check_call(["mountpoint", "--quiet", path])
     except subprocess.CalledProcessError:
         return False
     return True

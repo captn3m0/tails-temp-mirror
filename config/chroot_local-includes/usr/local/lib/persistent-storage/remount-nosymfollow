@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import sys
+
+from tps.mountutil import mount, MOUNTFLAG_NOSYMFOLLOW, MOUNTFLAG_NOATIME, \
+    MOUNTFLAG_REMOUNT
+
+def main():
+    mountpoint = sys.argv[1]
+    mount(
+        src="", # The source is ignored when remounting
+        dest=mountpoint,
+        flags=MOUNTFLAG_REMOUNT | MOUNTFLAG_NOATIME | MOUNTFLAG_NOSYMFOLLOW,
+    )
+
+if __name__ == "__main__":
+    main()
