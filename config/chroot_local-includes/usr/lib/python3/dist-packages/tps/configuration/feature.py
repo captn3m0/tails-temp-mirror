@@ -4,7 +4,6 @@ from logging import getLogger
 import os
 from pathlib import Path
 import psutil
-import subprocess
 import time
 from typing import TYPE_CHECKING, Dict, List, Optional
 
@@ -14,7 +13,7 @@ from tps import State, DBUS_FEATURE_INTERFACE, DBUS_FEATURES_PATH, \
 from tps.configuration.mount import Mount, IsActiveException, \
     IsInactiveException, IncorrectOwnerException
 from tps.dbus.errors import ActivationFailedError, \
-    AlreadyActivatedError, NotActivatedError, JobCancelledError, \
+    AlreadyActivatedError, NotActivatedError, \
     FailedPreconditionError, IncorrectOwnerError
 from tps.dbus.object import DBusObject
 from tps.job import ServiceUsingJobs
@@ -51,10 +50,9 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
         logger.debug("Initializing feature %r", self.Id)
         super().__init__(connection=service.connection)
         self.service = service
+        self._is_active = False
 
-        # Check if the feature is active
-        config_file = self.service.config_file
-        self._is_active = config_file.exists() and config_file.contains(self)
+        self.refresh_is_active()
 
     # ----- Exported functions ----- #
 
@@ -201,7 +199,7 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
             # cancelled by the user before the conflicting processes
             # terminate, an exception will be thrown, which will be passed
             # on to the client and handled there.
-            self.wait_for_conflicting_processes_to_terminate(job)
+            job.wait_for_apps_to_terminate(apps)
 
         for mount in self.Mounts:
             mount.activate()
@@ -225,7 +223,9 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
         # cancelled by the user before the conflicting processes
         # terminate, an exception will be thrown, which will be passed
         # on to the client and handled there.
-        self.wait_for_conflicting_processes_to_terminate(job)
+        apps = self.get_running_conflicting_apps()
+        if apps:
+            job.wait_for_apps_to_terminate(apps)
 
         for mount in self.Mounts:
             mount.deactivate()
@@ -251,75 +251,14 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
         executil.execute_hooks(hooks_dir)
 
     def refresh_is_active(self) -> bool:
+        print("XXX: service state: ", self.service.state)
+        if self.service.state in (State.NOT_CREATED, State.NOT_UNLOCKED):
+            return False
+
         config_file = self.service.config_file
         is_active = config_file.exists() and config_file.contains(self)
         self.IsActive = is_active
         return is_active
-
-    def wait_for_conflicting_processes_to_terminate(self, job: "Job"):
-        """Waits until all conflicting processes were terminated.
-        Raises a JobCancelledError if the job was cancelled while
-        waiting."""
-
-        # We tried to automatically find processes which use any of the
-        # destination directories via lsof. We encountered some issues
-        # with that:
-        #  * lsof without any options can take a long time if there are
-        #    a lot of active processes with a lot of open files.
-        #  * lsof +D calls stat on each file in the directory, which
-        #    can also take a long time if the directory is large.
-        #  * lsof +D furthermore exits with exit code 1 if any of the
-        #    files in the directory do *not* have any file use, which
-        #    makes it hard to distinguish this (expected) case from
-        #    actual error cases.
-        #  * lsof +f with a mounted-on directory of a file system does
-        #    not seem to list all files open on the file system.
-        #    For example, this does not list the vim swap file:
-        #       # vim /test
-        #       # lsof +f -- / | grep test
-        #    ... while this does:
-        #       # vim /test
-        #       # lsof -x +d / | grep test
-        #
-        # In the end, we decided to not automatically check for
-        # processes using the destination directories, but only check
-        # for those processes which should definitely not be running.
-
-        apps = self.get_running_conflicting_apps()
-
-        # Set the conflicting processes, so that the frontend can tell
-        # the user to close the corresponding applications
-        job.ConflictingApps = apps
-
-        if not job.ConflictingApps:
-            # There are no conflicting processes, so we don't have
-            # to wait for anything
-            return
-
-        logger.info(f"Waiting for the user to terminate processes "
-                    f"{apps}")
-        while any(job.ConflictingApps.values()):
-            if job.cancellable.is_cancelled():
-                logger.info("Job was cancelled")
-                # We raise an exception here to handle the case that the
-                # job was cancelled unexpectedly. We expect the client
-                # to cancel the cancellable of the GDBus method call
-                # *before* cancelling the job, so in that case they
-                # won't receive the error anyway.
-                raise JobCancelledError()
-
-            # Check if processes were terminated
-            for app in job.ConflictingApps:
-                for pid in job.ConflictingApps[app]:
-                    if not psutil.pid_exists(pid):
-                        logger.info(f"Conflicting process {pid} was "
-                                    f"terminated")
-                        job.ConflictingApps[app].remove(pid)
-
-            time.sleep(0.2)
-
-        logger.info("All conflicting processes were terminated, continuing")
-        return
 
     def get_running_conflicting_apps(self) -> Dict[str, List[int]]:
         res = dict()

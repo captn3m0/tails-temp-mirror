@@ -2,12 +2,15 @@ import abc
 from contextlib import contextmanager
 from logging import getLogger
 import os
+import psutil
 import threading
+import time
 from typing import Dict, List, Optional
 
 from gi.repository import Gio, GLib
 
 from tps import DBUS_JOBS_PATH, DBUS_JOB_INTERFACE
+from tps.dbus.errors import JobCancelledError
 from tps.dbus.object import DBusObject
 
 logger = getLogger(__name__)
@@ -152,3 +155,68 @@ class Job(DBusObject):
             DBUS_JOB_INTERFACE,
             changed_properties,
         )
+
+    # ----- Non-exported function ----- #
+
+    def wait_for_apps_to_terminate(self, apps: Dict[str, List[int]]):
+        """Waits until all conflicting processes were terminated.
+        Raises a JobCancelledError if the job was cancelled while
+        waiting."""
+
+        # We tried to automatically find processes which use any of the
+        # destination directories via lsof. We encountered some issues
+        # with that:
+        #  * lsof without any options can take a long time if there are
+        #    a lot of active processes with a lot of open files.
+        #  * lsof +D calls stat on each file in the directory, which
+        #    can also take a long time if the directory is large.
+        #  * lsof +D furthermore exits with exit code 1 if any of the
+        #    files in the directory do *not* have any file use, which
+        #    makes it hard to distinguish this (expected) case from
+        #    actual error cases.
+        #  * lsof +f with a mounted-on directory of a file system does
+        #    not seem to list all files open on the file system.
+        #    For example, this does not list the vim swap file:
+        #       # vim /test
+        #       # lsof +f -- / | grep test
+        #    ... while this does:
+        #       # vim /test
+        #       # lsof -x +d / | grep test
+        #
+        # In the end, we decided to not automatically check for
+        # processes using the destination directories, but only check
+        # for those processes which should definitely not be running.
+
+        # Set the conflicting processes, so that the frontend can tell
+        # the user to close the corresponding applications
+        self.ConflictingApps = apps
+
+        if not self.ConflictingApps:
+            # There are no conflicting processes, so we don't have
+            # to wait for anything
+            return
+
+        logger.info(f"Waiting for the user to terminate processes "
+                    f"{apps}")
+        while any(self.ConflictingApps.values()):
+            if self.cancellable.is_cancelled():
+                logger.info("Job was cancelled")
+                # We raise an exception here to handle the case that the
+                # job was cancelled unexpectedly. We expect the client
+                # to cancel the cancellable of the GDBus method call
+                # *before* cancelling the job, so in that case they
+                # won't receive the error anyway.
+                raise JobCancelledError()
+
+            # Check if processes were terminated
+            for app in self.ConflictingApps:
+                for pid in self.ConflictingApps[app]:
+                    if not psutil.pid_exists(pid):
+                        logger.info(f"Conflicting process {pid} was "
+                                    f"terminated")
+                        self.ConflictingApps[app].remove(pid)
+
+            time.sleep(0.2)
+
+        logger.info("All conflicting processes were terminated, continuing")
+        return
