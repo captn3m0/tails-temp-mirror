@@ -14,157 +14,157 @@ before_script:
   - apt-get -qy install git i18nspector
   - git clone https://gitlab.tails.boum.org/tails/jenkins-tools.git /tmp/jenkins-tools
 
-lint-po:
-  image: debian:testing
-  rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
-    - changes:
-        - ./**.po
-  script:
-    - *prepare-lint-po
-    - /tmp/jenkins-tools/slaves/lint_po
-
-lint-latest-po:
-  image: debian:testing
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "stable"'
-  script:
-    - *prepare-lint-po
-    - apt-get -qy install intltool
-    - ./import-translations
-    - /tmp/jenkins-tools/slaves/lint_po po/*.po
-
-check-po-msgfmt:
-  rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
-    - changes:
-        - ./**.po
-  script:
-    - apt-get -qy install python3 gettext
-    - ./bin/check-po-msgfmt
-
-check-po-meta-date:
-  rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
-    - changes:
-        - ./**.po
-  script:
-    - apt-get -qy install git ruby
-    - ./bin/sanity-check-website
-
-check-translatable-live-website-urls:
-  script:
-    - apt-get -qy install python3-polib
-    - ./bin/check-translatable-live-website-urls po/tails.pot
-
-test-iuk:
-  script:
-  - 'cat config/chroot_local-packageslists/tails-perl5lib.list
-         config/chroot_local-packageslists/tails-iuk.list
-       | grep -E -v "^#"
-       | xargs apt-get -qy install'
-  - 'apt-get -qy install
-       apt-file
-       libdist-zilla-plugin-test-notabs-perl
-       libdist-zilla-plugin-test-perl-critic-perl
-       libdist-zilla-app-command-authordebs-perl
-       libmodule-build-perl
-       sudo
-       attr
-       libarchive-tools
-       libdevice-cdio-perl
-       faketime
-       genisoimage
-       gnutls-bin
-       libdata-dumper-concise-perl
-       libdatetime-perl
-       libfile-copy-recursive-perl
-       libtest-lwp-useragent-perl'
-  - apt-get update -qq # Take into account APT configuration added by apt-file
-  # Otherwise, apt-get called by "dzil authordebs --install" asks confirmation
-  - echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/yes
-  - cd $CI_PROJECT_DIR/config/chroot_local-includes/usr/src/iuk
-  - dzil authordebs --install
-  - export SOURCE_DATE_EPOCH=$(date --utc +%s)
-  - 'TAILS_GIT_CHECKOUT=$CI_PROJECT_DIR
-     NODE_PATH=$CI_PROJECT_DIR/submodules/mirror-pool-dispatcher/lib/js
-     PATH=$CI_PROJECT_DIR/submodules/mirror-pool-dispatcher/bin:$PATH
-     PERL5LIB=$CI_PROJECT_DIR/config/chroot_local-includes/usr/src/perl5lib/lib
-     LC_ALL=C.UTF-8
-     dzil test --all'
-
-test-perl5lib:
-  script:
-  - 'cat config/chroot_local-packageslists/tails-perl5lib.list
-       | grep -E -v "^#"
-       | xargs apt-get -qy install'
-  - 'apt-get -qy install
-       apt-file
-       libdist-zilla-plugin-test-notabs-perl
-       libdist-zilla-plugin-test-perl-critic-perl
-       libdist-zilla-app-command-authordebs-perl
-       libmodule-build-perl
-       sudo'
-  - apt-get update -qq # Take into account APT configuration added by apt-file
-  # Otherwise, apt-get called by "dzil authordebs --install" asks confirmation
-  - echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/yes
-  - cd $CI_PROJECT_DIR/config/chroot_local-includes/usr/src/perl5lib
-  - dzil authordebs --install
-  - dzil test --all
-
-shellcheck:
-  image: debian:testing
-  script:
-  - apt-get -qy install python3 shellcheck xmlstarlet file
-  - shellcheck --version
-  - './bin/shellcheck-tree --format=checkstyle
-       | xmlstarlet tr config/ci/shellcheck/checkstyle2junit.xslt
-       > shellcheck.xml'
-  artifacts:
-    when: always
-    reports:
-      junit: shellcheck.xml
+#lint-po:
+#  image: debian:testing
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
+#    - changes:
+#        - ./**.po
+#  script:
+#    - *prepare-lint-po
+#    - /tmp/jenkins-tools/slaves/lint_po
+#
+#lint-latest-po:
+#  image: debian:testing
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH == "stable"'
+#  script:
+#    - *prepare-lint-po
+#    - apt-get -qy install intltool
+#    - ./import-translations
+#    - /tmp/jenkins-tools/slaves/lint_po po/*.po
+#
+#check-po-msgfmt:
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
+#    - changes:
+#        - ./**.po
+#  script:
+#    - apt-get -qy install python3 gettext
+#    - ./bin/check-po-msgfmt
+#
+#check-po-meta-date:
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH =~ /^master|stable|testing|devel$/'
+#    - changes:
+#        - ./**.po
+#  script:
+#    - apt-get -qy install git ruby
+#    - ./bin/sanity-check-website
+#
+#check-translatable-live-website-urls:
+#  script:
+#    - apt-get -qy install python3-polib
+#    - ./bin/check-translatable-live-website-urls po/tails.pot
+#
+#test-iuk:
+#  script:
+#  - 'cat config/chroot_local-packageslists/tails-perl5lib.list
+#         config/chroot_local-packageslists/tails-iuk.list
+#       | grep -E -v "^#"
+#       | xargs apt-get -qy install'
+#  - 'apt-get -qy install
+#       apt-file
+#       libdist-zilla-plugin-test-notabs-perl
+#       libdist-zilla-plugin-test-perl-critic-perl
+#       libdist-zilla-app-command-authordebs-perl
+#       libmodule-build-perl
+#       sudo
+#       attr
+#       libarchive-tools
+#       libdevice-cdio-perl
+#       faketime
+#       genisoimage
+#       gnutls-bin
+#       libdata-dumper-concise-perl
+#       libdatetime-perl
+#       libfile-copy-recursive-perl
+#       libtest-lwp-useragent-perl'
+#  - apt-get update -qq # Take into account APT configuration added by apt-file
+#  # Otherwise, apt-get called by "dzil authordebs --install" asks confirmation
+#  - echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/yes
+#  - cd $CI_PROJECT_DIR/config/chroot_local-includes/usr/src/iuk
+#  - dzil authordebs --install
+#  - export SOURCE_DATE_EPOCH=$(date --utc +%s)
+#  - 'TAILS_GIT_CHECKOUT=$CI_PROJECT_DIR
+#     NODE_PATH=$CI_PROJECT_DIR/submodules/mirror-pool-dispatcher/lib/js
+#     PATH=$CI_PROJECT_DIR/submodules/mirror-pool-dispatcher/bin:$PATH
+#     PERL5LIB=$CI_PROJECT_DIR/config/chroot_local-includes/usr/src/perl5lib/lib
+#     LC_ALL=C.UTF-8
+#     dzil test --all'
+#
+#test-perl5lib:
+#  script:
+#  - 'cat config/chroot_local-packageslists/tails-perl5lib.list
+#       | grep -E -v "^#"
+#       | xargs apt-get -qy install'
+#  - 'apt-get -qy install
+#       apt-file
+#       libdist-zilla-plugin-test-notabs-perl
+#       libdist-zilla-plugin-test-perl-critic-perl
+#       libdist-zilla-app-command-authordebs-perl
+#       libmodule-build-perl
+#       sudo'
+#  - apt-get update -qq # Take into account APT configuration added by apt-file
+#  # Otherwise, apt-get called by "dzil authordebs --install" asks confirmation
+#  - echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/yes
+#  - cd $CI_PROJECT_DIR/config/chroot_local-includes/usr/src/perl5lib
+#  - dzil authordebs --install
+#  - dzil test --all
+#
+#shellcheck:
+#  image: debian:testing
+#  script:
+#  - apt-get -qy install python3 shellcheck xmlstarlet file
+#  - shellcheck --version
+#  - './bin/shellcheck-tree --format=checkstyle
+#       | xmlstarlet tr config/ci/shellcheck/checkstyle2junit.xslt
+#       > shellcheck.xml'
+#  artifacts:
+#    when: always
+#    reports:
+#      junit: shellcheck.xml
 
 test-persistent-storage:
   script:
     - apt-get -qy install python3 python3-behave python3-gi python3-pkg-resources acl
     - config/chroot_local-includes/usr/lib/python3/dist-packages/tps/configuration/tests/run-tests.sh
 
-test-python-doctest:
-  script:
-    - apt-get -qy install python3 python3-sh
-    - config/chroot_local-includes/usr/local/lib/tails-gdm-error-message doctest --verbose
-    - env PYTHONPATH=config/chroot_local-includes/usr/lib/python3/dist-packages python3 config/chroot_local-includes/usr/local/bin/tails-documentation --doctest
-
-test-tca:
-  script:
-    - apt-get -qy install python3 python3-stem python3-gi gir1.2-gtk-3.0 python3-dbus python3-prctl python3-tinyrpc
-    - 'cd config/chroot_local-includes/usr/lib/python3/dist-packages ; find tca -name "*.py" -print0 | xargs -0 -L1 env PYTHONPATH=. python3 -m doctest'
-
-test-tailslib:
-  script:
-    - apt-get -qy install python3 python3-atomicwrites python3-sh git
-    - 'cd config/chroot_local-includes/usr/lib/python3/dist-packages ; find tailslib -name "*.py" -print0 | grep --null-data -v -e netnsdrop.py -e gnome.py | xargs -0 -L1 env PYTHONPATH=. python3 -m doctest'
-
-test-whisperback:
-  script:
-    - 'cat config/chroot_local-packageslists/whisperback.list | grep -E -v "^#"
-         | xargs apt-get -qy install'
-    - apt-get -qy install python3-pytest
-    - 'PYTHONPATH=config/chroot_local-includes/usr/lib/python3/dist-packages
-         pytest-3 --verbose --junit-xml=report.xml
-         config/chroot_local-includes/usr/lib/python3/dist-packages/whisperBack/test.py'
-  artifacts:
-    when: always
-    reports:
-      junit: report.xml
-
-apt-snapshots-expiry:
-  script:
-    - apt-get -qy install curl git
-    - ./bin/apt-snapshots-expiry
-  rules:
-    - if: '$CI_COMMIT_BRANCH =~ /^stable|testing|devel$/'
-    - changes:
-        - config/APT_snapshots.d/*/serial
-        - vagrant/definitions/tails-builder/config/APT_snapshots.d/*/serial
+#test-python-doctest:
+#  script:
+#    - apt-get -qy install python3 python3-sh
+#    - config/chroot_local-includes/usr/local/lib/tails-gdm-error-message doctest --verbose
+#    - env PYTHONPATH=config/chroot_local-includes/usr/lib/python3/dist-packages python3 config/chroot_local-includes/usr/local/bin/tails-documentation --doctest
+#
+#test-tca:
+#  script:
+#    - apt-get -qy install python3 python3-stem python3-gi gir1.2-gtk-3.0 python3-dbus python3-prctl python3-tinyrpc
+#    - 'cd config/chroot_local-includes/usr/lib/python3/dist-packages ; find tca -name "*.py" -print0 | xargs -0 -L1 env PYTHONPATH=. python3 -m doctest'
+#
+#test-tailslib:
+#  script:
+#    - apt-get -qy install python3 python3-atomicwrites python3-sh git
+#    - 'cd config/chroot_local-includes/usr/lib/python3/dist-packages ; find tailslib -name "*.py" -print0 | grep --null-data -v -e netnsdrop.py -e gnome.py | xargs -0 -L1 env PYTHONPATH=. python3 -m doctest'
+#
+#test-whisperback:
+#  script:
+#    - 'cat config/chroot_local-packageslists/whisperback.list | grep -E -v "^#"
+#         | xargs apt-get -qy install'
+#    - apt-get -qy install python3-pytest
+#    - 'PYTHONPATH=config/chroot_local-includes/usr/lib/python3/dist-packages
+#         pytest-3 --verbose --junit-xml=report.xml
+#         config/chroot_local-includes/usr/lib/python3/dist-packages/whisperBack/test.py'
+#  artifacts:
+#    when: always
+#    reports:
+#      junit: report.xml
+#
+#apt-snapshots-expiry:
+#  script:
+#    - apt-get -qy install curl git
+#    - ./bin/apt-snapshots-expiry
+#  rules:
+#    - if: '$CI_COMMIT_BRANCH =~ /^stable|testing|devel$/'
+#    - changes:
+#        - config/APT_snapshots.d/*/serial
+#        - vagrant/definitions/tails-builder/config/APT_snapshots.d/*/serial
