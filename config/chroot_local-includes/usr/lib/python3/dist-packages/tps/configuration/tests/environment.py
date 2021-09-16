@@ -133,11 +133,15 @@ def after_scenario(context: EnvironmentContext, scenario):
 
     # Clean up any content that the scenario might have created on the
     # mount point
+    print(f"XXX: Cleaning up {context.mount_point}")
     for p in Path(context.mount_point).iterdir():
+        print(f"XXX: Removing {p}")
         shutil.rmtree(p)
     # Also clean up any content of the mount point below the nosymfollow
     # mount point
+    print(f"XXX: Cleaning up {NOSYMFOLLOW_MOUNTPOINT + str(context.mount_point)}")
     for p in Path(NOSYMFOLLOW_MOUNTPOINT + str(context.mount_point)).iterdir():
+        print(f"XXX: Removing {p}")
         # We don't use shutil.rmtree here because apparently it tries
         # to follow symlinks, which will fail below the nosymfollow
         # mountpoint
