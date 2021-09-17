@@ -132,7 +132,7 @@ class Feature(object):
         try:
             proxy.call_finish(res)
         except GLib.Error as e:
-            logger.error(f"failed to activate feature: {e.message}")
+            logger.error(f"error activating feature: {e.message}")
 
             if e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.CANCELLED):
                 # The operation was cancelled by the user, so we cancel
@@ -147,7 +147,7 @@ class Feature(object):
                 # This is an expected error which we don't want error
                 # reports for.
                 IncorrectOwnerError.strip_remote_error(e)
-                self.window.display_error(_("Failed to activate feature"),
+                self.window.display_error(_("Error activating feature"),
                                           e.message,
                                           with_send_report_button=False)
             elif SymlinkSourceDirectoryError.is_instance(e):
@@ -156,11 +156,11 @@ class Feature(object):
                 # This is an expected error which we don't want error
                 # reports for.
                 SymlinkSourceDirectoryError.strip_remote_error(e)
-                self.window.display_error(_("Failed to activate feature"),
+                self.window.display_error(_("Error activating feature"),
                                           e.message,
                                           with_send_report_button=False)
             else:
-                self.window.display_error(_("Failed to activate feature"),
+                self.window.display_error(_("Error activating feature"),
                                           e.message)
 
             # Ensure that the switch displays the correct state
@@ -178,7 +178,7 @@ class Feature(object):
         try:
             proxy.call_finish(res)
         except GLib.Error as e:
-            logger.error(f"failed to deactivate feature: {e.message}")
+            logger.error(f"error deactivating feature: {e.message}")
 
             if e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.CANCELLED):
                 # The operation was cancelled by the user, so we cancel
@@ -193,7 +193,7 @@ class Feature(object):
                 # This is an expected error which we don't want error
                 # reports for.
                 IncorrectOwnerError.strip_remote_error(e)
-                self.window.display_error(_("Failed to activate feature"),
+                self.window.display_error(_("Error deactivating feature"),
                                           e.message,
                                           with_send_report_button=False)
             elif TargetIsBusyError.is_instance(e):
@@ -201,11 +201,11 @@ class Feature(object):
                 # an expected error which we don't want error reports
                 # for.
                 TargetIsBusyError.strip_remote_error(e)
-                self.window.display_error(_("Failed to deactivate feature"),
+                self.window.display_error(_("Error deactivating feature"),
                                           e.message,
                                           with_send_report_button=False)
             else:
-                self.window.display_error(_("Failed to deactivate feature"),
+                self.window.display_error(_("Error deactivating feature"),
                                           e.message)
 
             # Ensure that the switch displays the correct state
