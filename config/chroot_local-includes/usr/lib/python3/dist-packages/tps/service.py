@@ -1,5 +1,8 @@
 from gi.repository import Gio, GLib
 from logging import getLogger
+import os
+from pathlib import Path
+import subprocess
 import time
 from typing import TYPE_CHECKING, List, Optional
 
@@ -9,8 +12,7 @@ from tps.configuration.config_file import ConfigFile, InvalidStatError
 from tps.configuration.feature import ConflictingProcessesError
 from tps.dbus.errors import InvalidConfigFileError, FailedPreconditionError
 from tps.dbus.object import DBusObject
-from tps.device import udisks, BootDevice, Partition, InvalidBootDeviceError, \
-    InvalidPartitionError, PartitionNotUnlockedError
+from tps.device import udisks, BootDevice, Partition, InvalidBootDeviceError
 from tps.job import ServiceUsingJobs
 from tps.udisks_monitor import UDisksCreationMonitor
 from tps import State, IN_PROGRESS_STATES, DBUS_ROOT_OBJECT_PATH, \
@@ -153,25 +155,17 @@ class Service(DBusObject, ServiceUsingJobs):
                   self.state.name
             raise FailedPreconditionError(msg)
 
+        # Delete the partition
         try:
-            if self.state == State.UNLOCKED:
-                # Disable all features, to ensure that no conflicting
-                # apps are running
-                for feature in [feature for feature in self.features if
-                                feature.IsActive]:
-                    feature.Deactivate()
-
             self.State = State.DELETING
-
-            # Delete the partition
             self._partition.delete()
         finally:
             # Refresh the state
             self.refresh_state(overwrite_in_progress=True)
 
-            # Refresh IsActive of all features
-            for feature in self.features:
-                feature.refresh_is_active()
+        # Refresh IsActive of all features
+        for feature in self.features:
+            feature.refresh_is_active()
 
     def Activate(self):
         """Activate all Persistent Storage features which are currently
@@ -423,14 +417,7 @@ class Service(DBusObject, ServiceUsingJobs):
         self.IsCreated = True
 
         # Check if the partition is unlocked
-        try:
-            cleartext_device = self._partition.get_cleartext_device()
-            # Automatically mount the cleartext device if it is not
-            # mounted, else we would be in an inconsistent state -
-            # unlocked but not mounted.
-            if not cleartext_device.is_mounted():
-                cleartext_device.mount()
-        except (InvalidPartitionError, PartitionNotUnlockedError):
+        if not self._partition.is_unlocked():
             self.State = State.NOT_UNLOCKED
             self.IsUnlocked = False
             return
