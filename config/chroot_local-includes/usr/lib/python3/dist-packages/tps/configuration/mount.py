@@ -6,6 +6,7 @@ import subprocess
 import sys
 from typing import List, Union, Optional
 
+from tailslib import LIVE_USERNAME, LIVE_USER_UID
 from tps import _, TPS_MOUNT_POINT
 from tps import executil
 from tps.mountutil import mount, MOUNTFLAG_BIND
@@ -15,7 +16,6 @@ from tps.dbus.errors import TargetIsBusyError, \
 logger = logging.getLogger(__name__)
 
 NOSYMFOLLOW_MOUNTPOINT = "/var/lib/tails-persistent-storage/nosymfollow"
-AMNESIA_UID = 1000
 
 
 class FailedPrecondition(Exception):
@@ -415,12 +415,12 @@ def _create_dest_directory(path: Path):
             # Delete existing files that are in the way
             p.unlink()
         p.mkdir(mode=0o700, parents=True, exist_ok=True)
-        if Path("/home/amnesia") in p.parents:
+        if Path(f"/home/{LIVE_USERNAME}") in p.parents:
             logger.debug(f"Changing owner of mount destination {path} to "
-                         f"UID {AMNESIA_UID}")
+                         f"UID {LIVE_USER_UID}")
             # If dest is in /home/amnesia, set ownership to the amnesia
             # user.
-            os.chown(p, AMNESIA_UID, AMNESIA_UID)
+            os.chown(p, LIVE_USER_UID, LIVE_USER_UID)
 
 
 def _chown_ref(source: Union[str, Path], dest: Union[str, Path]):

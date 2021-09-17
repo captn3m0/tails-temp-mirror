@@ -7,6 +7,7 @@ from typing import Optional
 
 from gi.repository import GLib, UDisks
 
+from tailslib import LIVE_USER_UID, LIVE_USERNAME
 from tps import executil
 from tps import TPS_MOUNT_POINT, udisks
 from tps.dbus.errors import IncorrectPassphraseError
@@ -306,7 +307,7 @@ class CleartextDevice(object):
         executil.check_call(["/bin/setfacl", "--remove-all",
                              self.mount_point])
         executil.check_call(["/bin/setfacl", "--modify",
-                             "user:amnesia:x", self.mount_point])
+                             f"user:{LIVE_USERNAME}:x", self.mount_point])
 
         # Ensure that all persistent directories have safe permissions.
         # refs: #7458
@@ -321,7 +322,8 @@ class CleartextDevice(object):
             # a system directory. This e.g. avoids setting wrong
             # permissions on the APT, CUPS and NetworkManager
             # persistent directories.
-            if d.stat().st_uid == 1000 or d.stat().st_gid == 1000:
+            if d.stat().st_uid == LIVE_USER_UID or \
+                    d.stat().st_gid == LIVE_USER_UID:
                 continue
             # Remove all permissions for group and others
             current = stat.S_IMODE(d.stat().st_mode)
