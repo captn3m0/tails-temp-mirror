@@ -213,8 +213,10 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
             msg = f"Activation of feature '{self.Id}' failed unexpectedly"
             raise ActivationFailedError(msg) from e
 
-        self.IsActive = True
-        self.service.save_config_file()
+        try:
+            self.IsActive = True
+        finally:
+            self.service.save_config_file()
 
     def do_deactivate(self, job: Optional["Job"]):
         logger.info(f"Deactivating feature {self.Id}")
@@ -235,8 +237,10 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
             msg = f"Deactivation of feature '{self.Id}' failed unexpectedly"
             raise ActivationFailedError(msg) from e
 
-        self.IsActive = False
-        self.service.save_config_file()
+        try:
+            self.IsActive = False
+        finally:
+            self.service.save_config_file()
 
     def on_activated(self):
         hooks_dir = Path(ON_ACTIVATED_HOOKS_DIR, self.Id)
