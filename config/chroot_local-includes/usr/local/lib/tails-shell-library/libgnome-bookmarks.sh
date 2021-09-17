@@ -17,7 +17,8 @@ _build_bookmark_line() {
 
 add_gnome_bookmark() {
     # Avoid race conditions
-    exec 9>"${LOCK}"
+    touch "${LOCK}" 2>/dev/null || true
+    exec 9<"${LOCK}"
     flock --exclusive 9
 
     mkdir -p "$(dirname "${BOOKMARKS_FILE}")"
@@ -31,7 +32,8 @@ remove_gnome_bookmark() {
     tmpfile=$(mktemp)
 
     # Avoid race conditions
-    exec 9>"${LOCK}"
+    touch "${LOCK}" 2>/dev/null || true
+    exec 9<"${LOCK}"
     flock --exclusive 9
 
     # Check if the line exists
