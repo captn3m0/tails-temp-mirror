@@ -209,7 +209,9 @@ class Mount(object):
                     msg = f"Destination {self.dest} contains a symlink: {p}"
                     raise FailedPrecondition(msg)
 
-        # Create the mountpoint if it doesn't exist
+        # Create the mountpoint if it doesn't exist (we have to check
+        # is_symlink() as well because exists() returns False for
+        # broken symlinks)
         if not self.dest.is_symlink() and not self.dest.exists():
             if self.is_file:
                 self.dest.touch(mode=0o600)
@@ -272,7 +274,9 @@ class Mount(object):
             _chown_ref(src, dest)
             _chmod_ref(src, dest)
         else:
-            # Delete the destination file if it already exists
+            # Delete the destination file if it already exists (we have
+            # to check is_symlink() as well because exists() returns
+            # False for broken symlinks)
             if dest.is_symlink() or dest.exists():
                 logger.info(f"Deleting file {dest} because it's in the way")
                 dest.unlink()
