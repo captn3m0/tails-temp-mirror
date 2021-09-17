@@ -244,8 +244,8 @@ class Feature(object):
                                   invalidated_properties: List[str]):
         logger.debug("changed job properties: %s", changed_properties)
         if "ConflictingApps" in changed_properties.keys():
-            pids = changed_properties["ConflictingApps"]
-            self.show_conflicting_apps_message(pids)
+            apps = changed_properties["ConflictingApps"]
+            self.show_conflicting_apps_message(apps)
 
     def show_conflicting_apps_message(self, apps: Dict[str, List[int]]):
         msg = self.get_conflicting_apps_message(apps)
@@ -290,21 +290,26 @@ class Feature(object):
         return apps_for_pid[0]
 
     def get_conflicting_apps_message(self, apps: Dict[str, List[int]]):
-        # We list each app with the conflicting PIDs. The app names are
-        # already translated.
-        app_reprs = list()
-        for app in apps:
-            pids_repr = " ".join(str(pid) for pid in apps[app])
-            app_reprs.append(
-                # Translators: Don't translate {app} and {pids}, they
-                # are placeholders.
-                _("{app} ({pids})").format(app=app, pids=pids_repr)
-            )
-
+        app_reprs = [self.app_repr_string(app, apps[app]) for app in apps]
         # Translators: Don't translate {applications}, it's a placeholder
         return _("Close {applications} to continue").format(
             applications=_(" and ").join(app_reprs)
         )
+
+    @staticmethod
+    def app_repr_string(app: str, pids: List[int]):
+        # We list each app with the conflicting PIDs. The app names are
+        # already translated.
+        if len(pids) == 1:
+            pid = str(pids[0])
+            # Translators: Don't translate {app} and {pid}, they
+            # are placeholders.
+            return _("{app} (PID: {pid})").format(app=app, pid=pid)
+
+        pids_repr = ", ".join(str(pid) for pid in pids)
+        # Translators: Don't translate {app} and {pids}, they
+        # are placeholders.
+        return _("{app} (PIDs: {pids})").format(app=app, pids=pids_repr)
 
 def camel_to_snake(name):
     """From https://stackoverflow.com/a/1176023
