@@ -13,6 +13,7 @@ from tps.dbus.errors import InvalidConfigFileError
 from tps_frontend import _, WINDOW_UI_FILE
 from tps_frontend.change_passphrase_dialog import ChangePassphraseDialog
 from tps_frontend.views.creation_view import CreationView
+from tps_frontend.views.deleted_view import DeletedView
 from tps_frontend.views.spinner_view import SpinnerView
 from tps_frontend.views.fail_view import FailView
 from tps_frontend.views.features_view import FeaturesView
@@ -44,6 +45,7 @@ class Window(Gtk.ApplicationWindow):
         self.app = app
         self.service_proxy = self.app.service_proxy
         self.active_view = None
+        self.was_deleting = False
 
         # Initialize the fail view (we do this early because it's being
         # used by self.display_error())
@@ -51,6 +53,7 @@ class Window(Gtk.ApplicationWindow):
 
         # Initialize the remaining views
         self.creation_view = CreationView(self)
+        self.deleted_view = DeletedView(self)
         self.spinner_view = SpinnerView(self)
         self.features_view = FeaturesView(self, bus)
         self.passphrase_view = PassphraseView(self)
@@ -81,6 +84,8 @@ class Window(Gtk.ApplicationWindow):
         # Choose which view to show
         if not self.name_owner:
             self.fail_view.show()
+        elif self.state == State.NOT_CREATED and self.was_deleting:
+            self.deleted_view.show()
         elif self.state == State.NOT_CREATED:
             self.welcome_view.show()
         elif self.state == State.NOT_UNLOCKED:
@@ -113,6 +118,12 @@ class Window(Gtk.ApplicationWindow):
 
         variant = changed_properties.lookup_value("State")
         self.state = State[variant.get_string()]
+
+        # We remember if the state was DELETING, so that we know if we
+        # should display the welcome view or the deleted view when the
+        # state changes to NOT_CREATED
+        if self.state == State.DELETING:
+            self.was_deleting = True
 
         # The Persistent Storage state changed, so we check if we have
         # switch to another view

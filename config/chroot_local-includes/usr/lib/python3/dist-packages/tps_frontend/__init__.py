@@ -21,10 +21,11 @@ DATA_DIR = "/usr/share/tails/persistent-storage"
 CSS_FILE = path.join(DATA_DIR, "style.css")
 
 CREATION_VIEW_UI_FILE = path.join(DATA_DIR, "creation_view.ui")
-SPINNER_VIEW_UI_FILE = path.join(DATA_DIR, "spinner_view.ui")
+DELETED_VIEW_UI_FILE = path.join(DATA_DIR, "deleted_view.ui")
 FAIL_VIEW_UI_FILE = path.join(DATA_DIR, "fail_view.ui")
 FEATURES_VIEW_UI_FILE = path.join(DATA_DIR, "features_view.ui")
 PASSPHRASE_VIEW_UI_FILE = path.join(DATA_DIR, "passphrase_view.ui")
+SPINNER_VIEW_UI_FILE = path.join(DATA_DIR, "spinner_view.ui")
 UNLOCK_VIEW_UI_FILE = path.join(DATA_DIR, "unlock_view.ui")
 WELCOME_VIEW_UI_FILE = path.join(DATA_DIR, "welcome_view.ui")
 WINDOW_UI_FILE = path.join(DATA_DIR, "window.ui")
