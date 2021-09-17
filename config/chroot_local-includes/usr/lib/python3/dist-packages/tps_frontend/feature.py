@@ -163,8 +163,9 @@ class Feature(object):
                 self.window.display_error(_("Failed to activate feature"),
                                           e.message)
 
-            # Flip the switch back into the inactive position
-            self.switch.set_active(False)
+            # Ensure that the switch displays the correct state
+            is_active = self.proxy.get_cached_property("IsActive").get_boolean()
+            self.switch.set_active(is_active)
             return
 
         logger.info("Feature successfully activated")
@@ -207,8 +208,9 @@ class Feature(object):
                 self.window.display_error(_("Failed to deactivate feature"),
                                           e.message)
 
-            # Flip the switch back into the active position
-            self.switch.set_active(True)
+            # Ensure that the switch displays the correct state
+            is_active = self.proxy.get_cached_property("IsActive").get_boolean()
+            self.switch.set_active(is_active)
             return
 
         logger.info("Feature successfully deactivated")
