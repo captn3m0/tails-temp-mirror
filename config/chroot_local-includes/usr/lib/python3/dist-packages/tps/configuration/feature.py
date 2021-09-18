@@ -47,10 +47,11 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
     def dbus_path(self):
         return os.path.join(DBUS_FEATURES_PATH, self.Id)
 
-    def __init__(self, service: "Service"):
+    def __init__(self, service: "Service", is_custom: bool = False):
         logger.debug("Initializing feature %r", self.Id)
         super().__init__(connection=service.connection)
         self.service = service
+        self.is_custom = is_custom
 
         # Check if the feature is active
         config_file = self.service.config_file
@@ -96,6 +97,38 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
         except IncorrectOwnerException as e:
             # Convert the internal exception into a D-Bus error
             raise IncorrectOwnerError(e) from e
+        finally:
+            self.service.save_config_file()
+
+    def do_activate(self, job: Optional["Job"], non_blocking=False):
+        logger.info(f"Activating feature {self.Id}")
+
+        apps = self.get_running_conflicting_apps()
+        if apps and non_blocking:
+            # Note that we don't translate this error message because
+            # it's not meant to be passed to the user, but only logged
+            # for debugging purposes.
+            raise ConflictingProcessesError(
+                f"Can't activate feature {self.Id}: Conflicting "
+                f"applications are running ({' '.join(apps)})")
+        elif apps:
+            # Wait for conflicting processes to terminate. If the job is
+            # cancelled by the user before the conflicting processes
+            # terminate, an exception will be thrown, which will be passed
+            # on to the client and handled there.
+            self.wait_for_conflicting_processes_to_terminate(job)
+
+        for mount in self.Mounts:
+            mount.activate()
+
+        # Check if the directories were actually mounted
+        try:
+            for mount in self.Mounts: mount.check_is_active()
+        except IsInactiveException as e:
+            msg = f"Activation of feature '{self.Id}' failed unexpectedly"
+            raise ActivationFailedError(msg) from e
+
+        self.IsActive = True
 
     def Deactivate(self):
         # Check if we can deactivate the feature
@@ -121,6 +154,29 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
         except IncorrectOwnerException as e:
             # Convert the internal exception into a D-Bus error
             raise IncorrectOwnerError(e) from e
+        finally:
+            self.service.save_config_file()
+
+    def do_deactivate(self, job: Optional["Job"]):
+        logger.info(f"Deactivating feature {self.Id}")
+
+        # Wait for conflicting processes to terminate. If the job is
+        # cancelled by the user before the conflicting processes
+        # terminate, an exception will be thrown, which will be passed
+        # on to the client and handled there.
+        self.wait_for_conflicting_processes_to_terminate(job)
+
+        for mount in self.Mounts:
+            mount.deactivate()
+
+        # Check if the directories were actually unmounted
+        try:
+            for mount in self.Mounts: mount.check_is_inactive()
+        except IsActiveException as e:
+            msg = f"Deactivation of feature '{self.Id}' failed unexpectedly"
+            raise ActivationFailedError(msg) from e
+
+        self.IsActive = False
 
     # ----- Exported properties ----- #
 
@@ -184,63 +240,6 @@ class Feature(DBusObject, ServiceUsingJobs, metaclass=abc.ABCMeta):
         return False
 
     # ----- Non-exported functions ----- #
-
-    def do_activate(self, job: Optional["Job"], non_blocking=False):
-        logger.info(f"Activating feature {self.Id}")
-
-        apps = self.get_running_conflicting_apps()
-        if apps and non_blocking:
-            # Note that we don't translate this error message because
-            # it's not meant to be passed to the user, but only logged
-            # for debugging purposes.
-            raise ConflictingProcessesError(
-                f"Can't activate feature {self.Id}: Conflicting "
-                f"applications are running ({' '.join(apps)})")
-        elif apps:
-            # Wait for conflicting processes to terminate. If the job is
-            # cancelled by the user before the conflicting processes
-            # terminate, an exception will be thrown, which will be passed
-            # on to the client and handled there.
-            self.wait_for_conflicting_processes_to_terminate(job)
-
-        for mount in self.Mounts:
-            mount.activate()
-
-        # Check if the directories were actually mounted
-        try:
-            for mount in self.Mounts: mount.check_is_active()
-        except IsInactiveException as e:
-            msg = f"Activation of feature '{self.Id}' failed unexpectedly"
-            raise ActivationFailedError(msg) from e
-
-        try:
-            self.IsActive = True
-        finally:
-            self.service.save_config_file()
-
-    def do_deactivate(self, job: Optional["Job"]):
-        logger.info(f"Deactivating feature {self.Id}")
-
-        # Wait for conflicting processes to terminate. If the job is
-        # cancelled by the user before the conflicting processes
-        # terminate, an exception will be thrown, which will be passed
-        # on to the client and handled there.
-        self.wait_for_conflicting_processes_to_terminate(job)
-
-        for mount in self.Mounts:
-            mount.deactivate()
-
-        # Check if the directories were actually unmounted
-        try:
-            for mount in self.Mounts: mount.check_is_inactive()
-        except IsActiveException as e:
-            msg = f"Deactivation of feature '{self.Id}' failed unexpectedly"
-            raise ActivationFailedError(msg) from e
-
-        try:
-            self.IsActive = False
-        finally:
-            self.service.save_config_file()
 
     def on_activated(self):
         hooks_dir = Path(ON_ACTIVATED_HOOKS_DIR, self.Id)

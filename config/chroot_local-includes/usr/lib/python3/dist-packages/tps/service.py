@@ -1,15 +1,12 @@
 from gi.repository import Gio, GLib
 from logging import getLogger
-import os
-from pathlib import Path
-import subprocess
 import time
 from typing import TYPE_CHECKING, List, Optional
 
 from tps import executil
 from tps.configuration import features
 from tps.configuration.config_file import ConfigFile, InvalidStatError
-from tps.configuration.feature import ConflictingProcessesError
+from tps.configuration.feature import Feature, ConflictingProcessesError
 from tps.dbus.errors import InvalidConfigFileError, FailedPreconditionError
 from tps.dbus.object import DBusObject
 from tps.device import udisks, BootDevice, Partition, InvalidBootDeviceError
@@ -20,7 +17,6 @@ from tps import State, IN_PROGRESS_STATES, DBUS_ROOT_OBJECT_PATH, \
     ON_ACTIVATED_HOOKS_DIR, ON_DEACTIVATED_HOOKS_DIR
 
 if TYPE_CHECKING:
-    from tps.configuration.feature import Feature
     from tps.job import Job
 
 logger = getLogger(__name__)
@@ -123,49 +119,51 @@ class Service(DBusObject, ServiceUsingJobs):
             return FailedPreconditionError(msg)
 
         try:
-            self.State = State.CREATING
-            with self.new_job() as job:
-                with UDisksCreationMonitor(job, self._boot_device):
-                    self._partition = Partition.create(job, passphrase)
+            self.do_create(passphrase)
         finally:
-            # Refresh the state
             self.refresh_state(overwrite_in_progress=True)
+            self.refresh_features()
+
+    def do_create(self, passphrase: str):
+        self.State = State.CREATING
+        with self.new_job() as job:
+            with UDisksCreationMonitor(job, self._boot_device):
+                self._partition = Partition.create(job, passphrase)
 
         # Activate all features that should be enabled by default
-        for feature in self.features:
-            if feature.enabled_by_default:
-                try:
-                    feature.do_activate(None, non_blocking=True)
-                except ConflictingProcessesError as e:
-                    # We can't automatically activate the feature, but
-                    # lets not bother the user about that, because they
-                    # did not explicitly enable the feature. If they try
-                    # to enable it explicitly, they will see a message
-                    # about the conflicting process.
-                    logger.warning(e)
+        for feature in (f for f in self.features if f.enabled_by_default):
+            try:
+                feature.do_activate(None, non_blocking=True)
+            except ConflictingProcessesError as e:
+                # We can't automatically activate the feature, but
+                # lets not bother the user about that, because they
+                # did not explicitly enable the feature. If they try
+                # to enable it explicitly, they will see a message
+                # about the conflicting process.
+                logger.warning(e)
+            finally:
+                self.save_config_file()
 
         self.run_on_activated_hooks()
 
     def Delete(self):
         """Delete the Persistent Storage partition"""
-
         # Check if we can delete the Persistent Storage
         if self.state not in (State.NOT_UNLOCKED, State.UNLOCKED):
             msg = "Can't delete Persistent Storage when state is '%s'" % \
                   self.state.name
             raise FailedPreconditionError(msg)
 
-        # Delete the partition
         try:
-            self.State = State.DELETING
-            self._partition.delete()
+            self.do_delete()
         finally:
-            # Refresh the state
             self.refresh_state(overwrite_in_progress=True)
+            self.refresh_features()
 
-        # Refresh IsActive of all features
-        for feature in self.features:
-            feature.refresh_is_active()
+    def do_delete(self):
+        # Delete the partition
+        self.State = State.DELETING
+        self._partition.delete()
 
     def Activate(self):
         """Activate all Persistent Storage features which are currently
@@ -180,6 +178,13 @@ class Service(DBusObject, ServiceUsingJobs):
         if not partition:
             raise NotCreatedError("No Persistent Storage found")
 
+        try:
+            self.do_activate()
+        finally:
+            self.refresh_state()
+            self.refresh_features()
+
+    def do_activate(self):
         # Ensure that the config file exists
         if not self.config_file.exists():
             self.config_file.save([])
@@ -191,9 +196,11 @@ class Service(DBusObject, ServiceUsingJobs):
             self.config_file.check_file_stat()
         except InvalidStatError as e:
             logger.warning(f"Disabling invalid config file: {e}")
-            self.config_file.disable_and_create_empty()
-            self.run_on_activated_hooks()
-            raise InvalidConfigFileError(e) from e
+            try:
+                self.config_file.disable_and_create_empty()
+                self.run_on_activated_hooks()
+            finally:
+                raise InvalidConfigFileError(e) from e
 
         # XXX: What happens when the config file is invalid? Should we
         # catch an exception here?
@@ -212,22 +219,22 @@ class Service(DBusObject, ServiceUsingJobs):
             raise FailedPreconditionError(msg)
 
         try:
-            self.state = State.UNLOCKING
-            # Unlock the Persistent Storage
-            if not self._partition.is_unlocked():
-                self._partition.unlock(passphrase)
-
-            # Mount the Persistent Storage
-            cleartext_device = self._partition.get_cleartext_device()
-            if not cleartext_device.is_mounted():
-                cleartext_device.mount()
+            self.do_unlock(passphrase)
         finally:
-            # Refresh the state
             self.refresh_state(overwrite_in_progress=True)
+            self.refresh_features()
 
-        # Refresh IsActive of all features
-        for feature in self.features:
-            feature.refresh_is_active()
+    def do_unlock(self, passphrase: str):
+        self.state = State.UNLOCKING
+        # Unlock the Persistent Storage
+        if not self._partition.is_unlocked():
+            self._partition.unlock(passphrase)
+
+        # Mount the Persistent Storage
+        cleartext_device = self._partition.get_cleartext_device()
+        if not cleartext_device.is_mounted():
+            cleartext_device.mount()
+
 
     def ChangePassphrase(self, passphrase: str, new_passphrase: str):
         """Change the passphrase of the Persistent Storage encrypted
@@ -366,6 +373,9 @@ class Service(DBusObject, ServiceUsingJobs):
                 feature = FeatureClass(self)
                 feature.register(self.connection)
                 self.features.append(feature)
+
+            self.refresh_features()
+
             logger.debug("Done registering objects")
         except:
             self.stop()
@@ -388,6 +398,35 @@ class Service(DBusObject, ServiceUsingJobs):
         active_features = [feature for feature in self.features
                            if feature.IsActive]
         self.config_file.save(active_features)
+
+    def refresh_features(self):
+        # Refresh custom features
+        mounts = list()
+        if self.config_file.exists():
+            mounts = self.config_file.parse()
+            known_mounts = [mount for feature in self.features
+                            for mount in feature.Mounts]
+            unknown_mounts = [mount for mount in mounts
+                              if mount not in known_mounts]
+            for i, mount in enumerate(unknown_mounts):
+                class CustomFeature(Feature):
+                    Id = f"CustomFeature{i}"
+                    Mounts = [mount]
+                feature = CustomFeature(self, is_custom=True)
+                feature.register(self.connection)
+                self.features.append(feature)
+
+        # Remove the ones whose mount entry was removed from the config
+        # file
+        custom_features = [f for f in self.features if f.is_custom]
+        for feature in custom_features:
+            if feature.Mounts[0] not in mounts:
+                feature.unregister(self.connection)
+                self.features.remove(feature)
+
+        # Refresh IsActive of all features
+        for feature in self.features:
+            feature.refresh_is_active()
 
     def refresh_state(self, overwrite_in_progress: bool = False):
         if not self._boot_device:

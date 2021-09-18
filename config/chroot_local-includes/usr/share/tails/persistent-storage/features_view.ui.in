@@ -470,6 +470,32 @@ Its content will be available until you shut down Tails.
                         <property name="position">11</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="halign">start</property>
+                        <property name="margin-top">18</property>
+                        <property name="label" translatable="yes">Advanced Settings</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">10</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkFrame" id="custom_features_frame">
+                        <property name="visible">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">11</property>
+                      </packing>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -482,6 +508,24 @@ Its content will be available until you shut down Tails.
         <property name="fill">True</property>
         <property name="position">1</property>
       </packing>
+    </child>
+  </object>
+  <object class="GtkListBox" id="custom_feature_list_box">
+    <property name="visible">True</property>
+    <property name="selection-mode">none</property>
+    <child>
+      <object class="HdyActionRow">
+        <property name="visible">True</property>
+        <property name="icon-name">starred</property>
+        <child>
+          <object class="GtkSwitch" id="custom_feature_switch">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="halign">end</property>
+            <property name="valign">center</property>
+          </object>
+        </child>
+      </object>
     </child>
   </object>
 </interface>

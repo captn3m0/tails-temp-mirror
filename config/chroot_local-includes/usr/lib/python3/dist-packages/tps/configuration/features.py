@@ -1,6 +1,5 @@
 import inspect
-import os
-import subprocess
+from typing import List
 
 from tps.configuration.conflicting_app import ConflictingApp
 from tps.configuration.mount import Mount

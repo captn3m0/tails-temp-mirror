@@ -113,6 +113,13 @@ class Window(Gtk.ApplicationWindow):
     def on_properties_changed(self, proxy: Gio.DBusProxy,
                               changed_properties: GLib.Variant,
                               invalidated_properties: List[str]):
+
+        logger.info("XXX: changed properties: %s" % changed_properties)
+
+        # Check if the list of features was changed
+        if any(p for p in changed_properties.keys() if p == "Features"):
+            logger.info("XXX: features changed")
+
         if not any(p for p in changed_properties.keys() if p == "State"):
             return
 
