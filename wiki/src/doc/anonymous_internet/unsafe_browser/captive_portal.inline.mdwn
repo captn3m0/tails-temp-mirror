@@ -16,6 +16,14 @@ Here are a few examples of captive portals:
 TODO: Add examples of captive portals, 1 with a login and 1 without a login.
 -->
 
+<div class="note">
+
+<p>Not all captive portals require you to enter a login and password to sign
+in to the network. This does not affect the security of your Internet
+connection.</p>
+
+</div>
+
 Tor cannot start when the Internet connection is initially blocked
 by a captive portal. That is why Tails includes an
 *Unsafe Browser* to sign in to a network using a captive
