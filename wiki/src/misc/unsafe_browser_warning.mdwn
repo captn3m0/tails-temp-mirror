@@ -2,7 +2,9 @@
 [[!meta stylesheet="unsafe_browser_warning" rel="stylesheet"]]
 [[!meta robots="noindex"]]
 
-[[!inline pages="doc/anonymous_internet/unsafe_browser/security_implications.inline" raw="yes" sort="age"]]
+This browser should only be used for signing in to a network using a captive
+portal. This browser is not anonymous and websites that you visit using this
+browser can see your real IP address.
 
 Signing in to a network using a captive portal
 ----------------------------------------------
