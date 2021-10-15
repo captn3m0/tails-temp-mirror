@@ -10,10 +10,11 @@ the network or enter information such as an email address. Captive portals are
 commonly encountered at Internet cafés, libraries, airports, hotels, and
 universities.
 
-This is an example of a captive portal (by
-[AlexEng](https://commons.wikimedia.org/wiki/File:Captive_Portal.png)):
+<!--
+Here are a few examples of captive portals:
 
-[[!img captive-portal.png link="no" alt="Welcome! Please enter your credentials to connect."]]
+TODO: Add examples of captive portals, 1 with a login and 1 without a login.
+-->
 
 Tor cannot start when the Internet connection is initially blocked
 by a captive portal. That is why Tails includes an
