@@ -56,7 +56,7 @@ To release Tails you'll need some packages installed:
     them from a more recent Debian release with APT pinning.
 * `perl5lib` [[dependencies|contribute/release_process/perl5lib#build-deps]]
 * `iuk` [[dependencies|contribute/release_process/tails-iuk#build-deps]]
-* `squashfs-tools-ng` and `libsquashfs1` from Bullseye
+* `squashfs-tools-ng` and `libsquashfs1` from Bullseye, to build IUKs
 * `po4a` 0.55:
    - Different versions extract Markdown headings in a different way, which
      makes tons of strings fuzzy.
