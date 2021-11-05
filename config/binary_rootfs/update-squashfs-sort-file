@@ -1,0 +1,86 @@
+#!/usr/bin/python3
+
+# Positional arguments:
+#  - the initial SquashFS sort file
+#  - the directory that will be compressed into a SquashFS
+#
+# Standard output: the contents of the new SquashFS sort file
+
+import os
+from pathlib import Path
+import re
+import sys
+
+
+pattern_groups = {
+    "kernel": [
+        "lib/modules/**/*.ko",
+        "lib/firmware/**/*.bin",
+        "lib/firmware/**/*.fw",
+    ],
+    "binaries": [
+        "bin/*",
+        "usr/bin/*",
+        "lib/**/*.so",
+        "usr/lib/**/*.so",
+    ],
+    "text": [
+        "**/*.service",
+        "**/*.txt",
+        "**/*.conf",
+        "**/*.css",
+        "**/*.html",
+        "**/*.js",
+        "**/*.Debian",
+        "**/*.dic",
+        "**/*.desktop",
+    ],
+    "gettext": ["usr/**/*.mo"],
+    "gzip": ["**/*.gz"],
+    "deb": ["var/lib/dpkg/info/*"],
+}
+
+
+def parse_line(line: str):
+    re_match = re.match(r"^([^ ]+)\s+(\d+)", line)
+    if re_match is None:
+        raise ValueError
+    return [re_match.group(1), re_match.group(2)]
+
+
+def load_sort_file(sort_file: str):
+    priority = {}
+    with Path(sort_file).open() as f:
+        for line in f.readlines():
+            f_path, f_priority = parse_line(line)
+            priority[f_path] = int(f_priority)
+    return priority
+
+
+def add_matching_files(priority, next_priority, name, patterns):
+    for pattern in patterns:
+        for f in Path(".").glob(pattern):
+            if (
+                f.is_file()
+                and not f.is_symlink()
+                and str(f) not in priority
+                and " " not in str(f)
+            ):
+                priority[str(f)] = next_priority
+    return priority
+
+
+if __name__ == "__main__":
+    sort_file = sys.argv[1]
+    chroot = Path(sys.argv[2])
+
+    priority = load_sort_file(sort_file)
+    next_priority = min(priority.values()) - 1
+
+    os.chdir(chroot)
+    for name, patterns in pattern_groups.items():
+        priority = add_matching_files(priority, next_priority, name, patterns)
+        next_priority -= 1
+
+    for f, p in priority.items():
+        print("%s %s" % (f, p))
