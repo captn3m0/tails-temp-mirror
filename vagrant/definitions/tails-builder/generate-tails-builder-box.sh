@@ -131,18 +131,18 @@ steps:
 
   - create-file: /etc/apt/sources.list.d/tails.list
     contents: |
-      deb http://time-based.snapshots.deb.tails.boum.org/tails/${TAILS_SERIAL}/ builder-jessie main
+      deb http://time-based.snapshots.deb.tails.boum.org/tails/${TAILS_SERIAL}/ builder-buster main
 
   - create-file: /etc/apt/preferences.d/tails
     contents: |
       Package: *
-      Pin: release o=Tails,n=builder-jessie
+      Pin: release o=Tails,n=builder-buster
       Pin-Priority: 99
 
   - create-file: /etc/apt/preferences.d/live-build
     contents: |
       Package: live-build
-      Pin: release o=Tails,n=builder-jessie
+      Pin: release o=Tails,n=builder-buster
       Pin-Priority: 999
 
   - create-file: /etc/apt/preferences.d/${DISTRIBUTION}-backports
