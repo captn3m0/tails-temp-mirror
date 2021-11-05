@@ -1,3 +1,9 @@
+tails (4.25) UNRELEASED; urgency=medium
+
+  * Dummy changelog entry for next release
+
+ -- intrigeri <intrigeri@boum.org>  Fri, 05 Nov 2021 09:24:57 +0000
+
 tails (4.24) unstable; urgency=medium
 
   * Upgrade to Tor Browser based on Firefox 91 ESR (tails/tails!639)
