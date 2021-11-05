@@ -82,6 +82,11 @@ Package: keepassxc
 Pin: release o=Debian,n=buster-backports
 Pin-Priority: 999
 
+Explanation: Hopefully improve SquashFS compression
+Package: libzstd1 libzstd-dev zstd
+Pin: release o=Debian,n=buster-backports
+Pin-Priority: 990
+
 Package: linux-compiler-* linux-headers-* linux-image-* linux-kbuild-* linux-source-*
 Pin: release o=Debian,n=bullseye
 Pin-Priority: 999
