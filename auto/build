@@ -110,8 +110,8 @@ DEBOOTSTRAP_OPTIONS="$DEBOOTSTRAP_OPTIONS --keyring=$DEBOOTSTRAP_GNUPG_KEYRING"
 export DEBOOTSTRAP_OPTIONS
 
 # shellcheck disable=SC2223
-: ${MKSQUASHFS_OPTIONS:='-comp xz -Xbcj x86 -b 1024K -Xdict-size 1024K -no-exports'}
-MKSQUASHFS_OPTIONS="${MKSQUASHFS_OPTIONS} -mem 512M -wildcards -ef chroot/usr/share/tails/build/mksquashfs-excludes"
+: ${MKSQUASHFS_OPTIONS:='--compressor zstd --comp-extra level=22 --block-size 1048576'}
+MKSQUASHFS_OPTIONS="${MKSQUASHFS_OPTIONS}"
 export MKSQUASHFS_OPTIONS
 
 # build the doc wiki
