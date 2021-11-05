@@ -16,22 +16,18 @@ IGNORE_PREFIX="/lib/live/mount/rootfs/filesystem.squashfs/"
 
 class ProfileProcessor(ProcessEvent):
     def __init__(self, profile_path):
-        self.priority = 32767
+        self.priority = 1
         self.files = {}
         self.ignored_files = {}
         self.ignore_re = re.compile(IGNORE_RE)
         self.profile_path = profile_path
 
     def add_file(self, path):
-        if ' ' in path:
-            # Skip path with white spaces: mksquashfs -sort does not
-            # handle them!  fscanf(fd, "%s %d", ...)
-            return
         if path.startswith(IGNORE_PREFIX):
             path = path[len(IGNORE_PREFIX)-1:]
         if path not in self.files:
             self.files[path] = self.priority
-            self.priority -= 1
+            self.priority += 1
 
     def ignore_file(self, path):
         if path.startswith(IGNORE_PREFIX):
@@ -62,11 +58,14 @@ class ProfileProcessor(ProcessEvent):
         priorities = {}
         for path, priority in self.files.items():
             if path not in self.ignored_files:
-                priorities[priority] = path
+                if ' ' in path:
+                    priorities[priority] = '"' + path + '"'
+                else:
+                    priorities[priority] = path
         keys = list(priorities.keys())
-        keys.sort(reverse=True)
+        keys.sort()
         for key in keys:
-            profile.write("%-68s %s\n" % (priorities[key][1:], key))
+            profile.write("%-10s %s\n" % (key, priorities[key][1:]))
         profile.close()
 
 def main():
