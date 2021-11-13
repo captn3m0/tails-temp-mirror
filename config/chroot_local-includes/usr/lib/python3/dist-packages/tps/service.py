@@ -400,30 +400,6 @@ class Service(DBusObject, ServiceUsingJobs):
         self.config_file.save(active_features)
 
     def refresh_features(self):
-        # Refresh custom features
-        mounts = list()
-        if self.config_file.exists():
-            mounts = self.config_file.parse()
-            known_mounts = [mount for feature in self.features
-                            for mount in feature.Mounts]
-            unknown_mounts = [mount for mount in mounts
-                              if mount not in known_mounts]
-            for i, mount in enumerate(unknown_mounts):
-                class CustomFeature(Feature):
-                    Id = f"CustomFeature{i}"
-                    Mounts = [mount]
-                feature = CustomFeature(self, is_custom=True)
-                feature.register(self.connection)
-                self.features.append(feature)
-
-        # Remove the ones whose mount entry was removed from the config
-        # file
-        custom_features = [f for f in self.features if f.is_custom]
-        for feature in custom_features:
-            if feature.Mounts[0] not in mounts:
-                feature.unregister(self.connection)
-                self.features.remove(feature)
-
         # Refresh IsActive of all features
         for feature in self.features:
             feature.refresh_is_active()
