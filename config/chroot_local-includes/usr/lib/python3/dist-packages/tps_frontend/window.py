@@ -8,7 +8,7 @@ from gi.repository import Handy
 Handy.init()
 
 from tps import State, IN_PROGRESS_STATES
-from tps.dbus.errors import InvalidConfigFileError
+from tps.dbus.errors import InvalidConfigFileError, IncorrectPassphraseError
 
 from tps_frontend import _, WINDOW_UI_FILE
 from tps_frontend.change_passphrase_dialog import ChangePassphraseDialog
@@ -208,8 +208,14 @@ class Window(Gtk.ApplicationWindow):
             proxy.call_finish(res)
         except GLib.Error as e:
             logger.error(f"failed to unlock Persistent Storage: {e.message}")
-            self.display_error(_("Failed to unlock Persistent Storage"),
-                               e.message)
+            if IncorrectPassphraseError.is_instance(e):
+                self.display_error(_("Failed to unlock Persistent Storage"),
+                                   _("Incorrect passphrase"),
+                                   with_send_report_button=False)
+                return
+            else:
+                self.display_error(_("Failed to unlock Persistent Storage"),
+                                   e.message)
             if self.active_view == self.spinner_view:
                 self.close()
             return
