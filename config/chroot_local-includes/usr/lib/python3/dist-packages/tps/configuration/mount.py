@@ -84,19 +84,19 @@ class Mount(object):
             # We allow specifying the mount point for the nosymfollow
             # bind mount via an environment variable to allow tests to
             # specify a mount point in a temporary directory.
-            nosymfollow_mountpoint = os.getenv("NOSYMFOLLOW_MOUNTPOINT")
+            self.nosymfollow_mountpoint = os.getenv("NOSYMFOLLOW_MOUNTPOINT")
         else:
-            nosymfollow_mountpoint = NOSYMFOLLOW_MOUNTPOINT
+            self.nosymfollow_mountpoint = NOSYMFOLLOW_MOUNTPOINT
 
         # To prevent symlink attacks, we don't allow a bind-mount's
         # source and target to be symlinks. To achieve that, we use the
         # bind-mount we created at NOSYMFOLLOW_MOUNTPOINT with the
         # nosymfollow option (see
         # config/chroot_local-includes/usr/local/lib/persistent-storage/pre-start)
-        self.tps_mount_point = Path(nosymfollow_mountpoint +
+        self.tps_mount_point = Path(self.nosymfollow_mountpoint +
                                     str(tps_mount_point))
-        self.dest = Path(nosymfollow_mountpoint + str(self.dest))
-        self.src = Path(nosymfollow_mountpoint + str(self.src))
+        self.dest = Path(self.nosymfollow_mountpoint + str(self.dest))
+        self.src = Path(self.nosymfollow_mountpoint + str(self.src))
 
         try:
             self._relative_src = \
@@ -216,7 +216,7 @@ class Mount(object):
             if self.is_file:
                 self.dest.touch(mode=0o600)
             else:
-                _create_dest_directory(self.dest)
+                self._create_dest_directory(self.dest)
 
         # Return a meaningful error message when the destination does
         # not have the expected file type. This check is not for
@@ -381,6 +381,26 @@ class Mount(object):
         # mounted on the destination
         return _is_mountpoint(self.dest)
 
+    def _create_dest_directory(self, path: Path):
+        """Create the destination directory of a mount in the same way as
+        it's done in live-boot's activate_custom_mounts() function, i.e.
+        by deleting existing files that are in the way and by setting the
+        owner to the UID of amnesia (live-boot sets it to 1000) on
+        directories below /home/amnesia"""
+        logger.debug(f"Creating mount destination {path}")
+        for p in sorted(path.parents) + [path]:
+            if p.is_file():
+                # Delete existing files that are in the way
+                p.unlink()
+            p.mkdir(mode=0o700, parents=True, exist_ok=True)
+            if Path(f"{self.nosymfollow_mountpoint}/home/{LIVE_USERNAME}") in \
+                    p.parents:
+                logger.debug(f"Changing owner of mount destination {path} to "
+                             f"UID {LIVE_USER_UID}")
+                # If dest is in /home/amnesia, set ownership to the amnesia
+                # user.
+                os.chown(p, LIVE_USER_UID, LIVE_USER_UID)
+
 
 def _what_is_mounted_on(path: Union[str, Path]) -> Optional[str]:
     try:
@@ -401,26 +421,6 @@ def _is_mountpoint(path: Union[str, Path]) -> bool:
     except subprocess.CalledProcessError:
         return False
     return True
-
-
-def _create_dest_directory(path: Path):
-    """Create the destination directory of a mount in the same way as
-    it's done in live-boot's activate_custom_mounts() function, i.e.
-    by deleting existing files that are in the way and by setting the
-    owner to the UID of amnesia (live-boot sets it to 1000) on
-    directories below /home/amnesia"""
-    logger.debug(f"Creating mount destination {path}")
-    for p in sorted(path.parents) + [path]:
-        if p.is_file():
-            # Delete existing files that are in the way
-            p.unlink()
-        p.mkdir(mode=0o700, parents=True, exist_ok=True)
-        if Path(f"/home/{LIVE_USERNAME}") in p.parents:
-            logger.debug(f"Changing owner of mount destination {path} to "
-                         f"UID {LIVE_USER_UID}")
-            # If dest is in /home/amnesia, set ownership to the amnesia
-            # user.
-            os.chown(p, LIVE_USER_UID, LIVE_USER_UID)
 
 
 def _chown_ref(source: Union[str, Path], dest: Union[str, Path]):
