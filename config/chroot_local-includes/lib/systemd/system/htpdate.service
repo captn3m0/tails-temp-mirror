@@ -10,6 +10,8 @@ Environment=DONE_FILE=/run/htpdate/done
 Environment=SUCCESS_FILE=/run/htpdate/success
 Environment=LOG=/var/log/htpdate.log
 EnvironmentFile=/etc/default/htpdate.*
+ExecStartPre=/bin/sh -c 'until [ "$(/usr/local/lib/tor_variable get --type=conf DisableNetwork)" = 0 ]; do /bin/sleep 1; done'
+ExecStartPre=/usr/local/lib/htpdate-notification
 ExecStartPre=/bin/sh -c \
     '[ -n "${HTP_POOL_1}"      ] && \
      [ -n "${HTP_POOL_2}"      ] && \
