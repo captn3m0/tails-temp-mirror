@@ -33,6 +33,13 @@ is_veth_nic() {
     get_all_veth_nics | grep -F --line-regexp -q "${1}"
 }
 
+is_real_nic() {
+    is_veth_nic "$1" && return 1
+    [ "$1" = lo ] && return 1
+    [ -z "$1" ] && return 1
+    return 0
+}
+
 nic_exists() {
     [ -e /sys/class/net/"${1}" ]
 }

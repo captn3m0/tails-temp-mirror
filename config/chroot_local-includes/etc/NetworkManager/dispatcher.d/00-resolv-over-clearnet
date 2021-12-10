@@ -3,10 +3,12 @@
 # This file is needed by the Unsafe Browser, and Tor while in bridge
 # mode.
 
-# Run only when the interface is not "lo":
-if [ -z "$1" ] || [ "$1" = "lo" ]; then
-   exit 0
-fi
+# Import is_real_nic()
+. /usr/local/lib/tails-shell-library/hardware.sh
+
+# Run only for "real" interfaces
+is_real_nic "$1" || exit 0
+
 
 RESOLV_CLEARNET_CONF=/etc/resolv-over-clearnet.conf
 # We are truncating the file as opposed to deleting + recreating it

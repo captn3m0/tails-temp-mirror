@@ -2,10 +2,11 @@
 
 set -e
 
-# Run only when the interface is not "lo":
-if [ -z "$1" ] || [ "$1" = "lo" ]; then
-        exit 0
-fi
+# Import is_real_nic()
+. /usr/local/lib/tails-shell-library/hardware.sh
+
+# Run only for "real" interfaces
+is_real_nic "$1" || exit 0
 
 # Run whenever an interface gets "up", not otherwise:
 if [ "$2" != "up" ]; then
