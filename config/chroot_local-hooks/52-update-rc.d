@@ -26,6 +26,7 @@ systemctl enable tails-tor-has-bootstrapped-flag-file.service
 systemctl enable tca-portal.socket
 systemctl enable run-initramfs.mount
 systemctl enable var-tmp.mount
+systemctl enable tails-additional-software-upgrade.path
 
 # Enable our own systemd user unit files
 systemctl --global enable tails-add-GNOME-bookmarks.service
