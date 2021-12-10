@@ -10,7 +10,7 @@ Environment=DONE_FILE=/run/htpdate/done
 Environment=SUCCESS_FILE=/run/htpdate/success
 Environment=LOG=/var/log/htpdate.log
 EnvironmentFile=/etc/default/htpdate.*
-ExecStartPre=/bin/sh -c 'until [ "$(/usr/local/lib/tor_variable get --type=conf DisableNetwork)" = 0 ]; do /bin/sleep 1; done'
+ExecStartPre=/bin/sh -c 'until test -e /run/tor-has-bootstrapped/done; do /bin/sleep 1; done'
 ExecStartPre=/usr/local/lib/htpdate-notification
 ExecStartPre=/bin/sh -c \
     '[ -n "${HTP_POOL_1}"      ] && \
@@ -19,7 +19,6 @@ ExecStartPre=/bin/sh -c \
 ExecStartPre=/bin/rm -f "${DONE_FILE}"
 ExecStartPre=/bin/rm -f "${SUCCESS_FILE}"
 ExecStartPre=/usr/bin/install -o htp -g nogroup -m 0644 /dev/null "${LOG}"
-ExecStartPre=/bin/sh -c 'until test -e /run/tor-has-bootstrapped/done; do /bin/sleep 1; done'
 ExecStart=/usr/local/sbin/htpdate                   \
               --debug                               \
               --log_file "${LOG}"                   \
