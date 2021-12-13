@@ -6,4 +6,4 @@ After=tails-wait-until-tor-has-bootstrapped.service
 ConditionFileNotEmpty=/live/persistence/TailsData_unlocked/live-additional-software.conf
 
 [Path]
-PathExists=/run/live-additional-software/installed
+PathExists=/run/live-additional-software/should-upgrade

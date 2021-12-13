@@ -72,7 +72,7 @@ with sudo (see
 
 `tails-additional-software-install.service` starts if its configuration exists and executes
 [[!tails_gitweb config/chroot_local-includes/usr/local/sbin/tails-additional-software]]
- `install` then creates `/run/live-additional-software/installed`.
+ `install` then creates `/run/live-additional-software/should-upgrade`.
 
 `tails-additional-software install` reads `live-additional-software.conf` which
 contains a package name per line and install these packages with `apt-get`
@@ -99,7 +99,7 @@ Software upgrade on Internet connection
 
 A network-manager dispatcher hook starts the systemd unit
 [[!tails_gitweb config/chroot_local-includes/lib/systemd/system/tails-additional-software-upgrade.path]]
-which waits for `/run/live-additional-software/installed` then starts the
+which waits for `/run/live-additional-software/should-upgrade` then starts the
 oneshot service `/usr/local/sbin/tails-additional-software upgrade` after
 `tails-wait-until-tor-has-bootstrapped.service` and `tails-additional-software-install.service`
 if the configuration file
