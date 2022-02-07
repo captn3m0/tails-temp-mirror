@@ -671,11 +671,10 @@ Then /^all Internet traffic has only flowed through (.*)$/ do |flow_target|
   when 'Tor'
     allowed_hosts = allowed_hosts_under_tor_enforcement
   when 'the default bridges'
-    allowed_hosts = if $config['DISABLE_CHUTNEY']
+    allowed_hosts = if @real_tor
                       $vm.execute_successfully(
                         'grep ^obfs4 /usr/share/tails/tca/default_bridges.txt | grep -owP \'[0-9.]+:\d+\''
                       ).stdout.chomp.split("\n").reject { |l| l.chomp.empty? }.map do |line|
-                        debug_log("lets look at default_bridges.txt... #{line}")
                         ip, port = line.split(':')
                         { address: ip, port: port.to_i }
                       end
@@ -684,7 +683,6 @@ Then /^all Internet traffic has only flowed through (.*)$/ do |flow_target|
                         { address: b[:address], port: b[:port] }
                       end
                     end
-    debug_log("set to #{allowed_hosts}")
   when 'the configured bridges'
     assert_not_nil(@bridge_hosts, 'No bridges has been configured via the ' \
                                   "'I configure some ... bridges in the " \
