@@ -258,6 +258,7 @@ Before('@product') do |scenario|
 
   @user_wants_pluggable_transports = false
   @tor_network_is_blocked = false
+  @real_tor = $config['DISABLE_CHUTNEY']
 end
 
 # Cucumber After hooks are executed in the *reverse* order they are
@@ -395,6 +396,12 @@ After('@product', '@check_tor_leaks') do |scenario|
       allowed_nodes.include?({ address: c.daddr, port: c.dport })
     end
   end
+end
+
+# this hook relies on the fact that this is called after the Before('@product') above
+# so @real_tor defaults to DISABLE_CHUTNEY, but can be overridden on a per-feature basis
+Before('@product', '@real_tor') do # |scenario|
+  @real_tor = true
 end
 
 # For @source tests
