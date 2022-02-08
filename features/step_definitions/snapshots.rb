@@ -135,13 +135,14 @@ CHECKPOINTS =
 # XXX: giving up on a few worst offenders for now
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
-def reach_checkpoint(name)
+def reach_checkpoint(name, real_tor: false)
+  snapshotname = real_tor ? "real-Tor-#{name}" : name
   scenario_indent = ' ' * 4
   step_indent = ' ' * 6
 
   step 'a computer'
-  if VM.snapshot_exists?(name)
-    $vm.restore_snapshot(name)
+  if VM.snapshot_exists?(snapshotname)
+    $vm.restore_snapshot(snapshotname)
   else
     checkpoint = CHECKPOINTS[name]
     checkpoint_description = checkpoint[:description]
@@ -151,7 +152,7 @@ def reach_checkpoint(name)
       if VM.snapshot_exists?(parent_checkpoint)
         $vm.restore_snapshot(parent_checkpoint)
       else
-        reach_checkpoint(parent_checkpoint)
+        reach_checkpoint(parent_checkpoint, real_tor: real_tor)
       end
       post_snapshot_restore_hook(parent_checkpoint)
     end
@@ -177,7 +178,7 @@ def reach_checkpoint(name)
                 color: :green, timestamp: false)
       step_action = 'And'
     end
-    $vm.save_snapshot(name)
+    $vm.save_snapshot(snapshotname)
   end
   # VM#save_snapshot restores the RAM-only snapshot immediately
   # after saving it, in which case post_snapshot_restore_hook is
@@ -192,7 +193,7 @@ end
 CHECKPOINTS.each do |name, desc|
   step_regex = Regexp.new("^#{Regexp.escape(desc[:description])}$")
   Given step_regex do
-    reach_checkpoint(name)
+    reach_checkpoint(name, real_tor: @real_tor)
   rescue StandardError => e
     debug_log("    Generated snapshot step failed with exception:\n" \
               "      #{e.class}: #{e}\n", color: :red, timestamp: false)
