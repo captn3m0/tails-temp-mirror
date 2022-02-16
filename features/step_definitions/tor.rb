@@ -360,7 +360,7 @@ end
 
 Then /^the Tor Connection Assistant connects to Tor$/ do
   failure_reported = false
-  try_for(120,
+  try_for(2 * 120 +10,
           msg:       'Timed out while waiting for TCA to connect to Tor',
           exception: TCAConnectionTimeout) do
     if tor_connection_assistant.child?('Error connecting to Tor',
