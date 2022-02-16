@@ -295,20 +295,25 @@ After('@product') do |scenario|
     elsif [TorBootstrapFailure, TimeSyncingError].any? { |c| scenario.exception.is_a?(c) }
       save_tor_journal
       save_failure_artifact('Tor logs', "#{$config['TMPDIR']}/log.tor")
-      chutney_logs = sanitize_filename(
-        "#{elapsed}_#{scenario.name}_chutney-data"
-      )
-      FileUtils.mkdir("#{ARTIFACTS_DIR}/#{chutney_logs}")
-      FileUtils.rm(Dir.glob("#{$config['TMPDIR']}/chutney-data/**/control"))
-      FileUtils.copy_entry(
-        "#{$config['TMPDIR']}/chutney-data",
-        "#{ARTIFACTS_DIR}/#{chutney_logs}"
-      )
-      info_log
-      info_log_artifact_location(
-        'Chutney logs',
-        "#{ARTIFACTS_DIR}/#{chutney_logs}"
-      )
+      if File.exist?("#{$config['TMPDIR']}/chutney-data")
+        chutney_logs = sanitize_filename(
+          "#{elapsed}_#{scenario.name}_chutney-data"
+        )
+        FileUtils.mkdir("#{ARTIFACTS_DIR}/#{chutney_logs}")
+        FileUtils.rm(Dir.glob("#{$config['TMPDIR']}/chutney-data/**/control"))
+        FileUtils.copy_entry(
+          "#{$config['TMPDIR']}/chutney-data",
+          "#{ARTIFACTS_DIR}/#{chutney_logs}"
+        )
+        info_log
+        info_log_artifact_location(
+          'Chutney logs',
+          "#{ARTIFACTS_DIR}/#{chutney_logs}"
+        )
+      else
+        info_log('Found no Chutney data')
+      end
+
       if scenario.exception.instance_of?(HtpdateError)
         File.open("#{$config['TMPDIR']}/log.htpdate", 'w') do |f|
           if $vm.file_exist?('/var/log/htpdate.log')
