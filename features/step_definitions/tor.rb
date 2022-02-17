@@ -596,7 +596,7 @@ When /^I close the Tor Connection Assistant$/ do
 end
 
 Then /^the Tor Connection Assistant reports that it failed to connect$/ do
-  try_for(120) do
+  try_for(2 * 120 + 10) do
     tor_connection_assistant.child('Error connecting to Tor', roleName: 'label')
   end
 end
