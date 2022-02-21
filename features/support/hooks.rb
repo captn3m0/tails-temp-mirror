@@ -161,41 +161,42 @@ def add_extra_allowed_host(ipaddr, port)
 end
 
 BeforeFeature('@product') do
-  images = { 'ISO' => TAILS_ISO, 'IMG' => TAILS_IMG }
-  images.each do |type, path|
+  images = [
+    ['ISO', TAILS_ISO, true, true],
+    ['IMG', TAILS_IMG, false, true],
+    ['OLD_ISO', OLD_TAILS_ISO, true, false],
+    ['OLD_IMG', OLD_TAILS_IMG, false, false],
+  ]
+  images.each do |type, path, raise_on_errors, check_readable|
     if path.nil?
       raise "No Tails #{type} image specified, and none could be found " \
             'in the current directory'
     end
 
-    unless File.exist?(path)
-      raise "The specified Tails #{type} image '#{path}' does not exist"
-    end
-
-    if File.directory?(path)
-      raise "The specified Tails #{type} image '#{path}' is a directory"
-    end
-
+    error_message = ''
+    if !File.exist?(path)
+      error_message = "The specified Tails #{type} image '#{path}' does not exist"
+    elsif File.directory?(path)
+      error_message = "The specified Tails #{type} image '#{path}' is a directory"
     # Workaround: when libvirt takes ownership of the ISO/IMG image it may
     # become unreadable for the live user inside the guest in the
     # host-to-guest share used for some tests.
-
-    unless File.world_readable?(path)
+    elsif check_readable && !File.world_readable?(path)
       if File.owned?(path)
         File.chmod(0o644, path)
       else
-        raise "warning: the Tails #{type} image must be world readable " \
+        error_message = "warning: the Tails #{type} image must be world readable " \
               'or be owned by the current user to be available inside ' \
               'the guest VM via host-to-guest shares, which is required ' \
               'by some tests'
       end
     end
-  end
-  unless File.exist?(OLD_TAILS_ISO)
-    raise "The specified old Tails ISO image '#{OLD_TAILS_ISO}' does not exist"
-  end
-  unless File.exist?(OLD_TAILS_IMG)
-    raise "The specified old Tails IMG image '#{OLD_TAILS_IMG}' does not exist"
+
+    next if error_message.empty?
+
+    raise error_message if raise_on_errors
+
+    info_log(error_message)
   end
 
   unless $started_first_product_feature
