@@ -276,7 +276,7 @@ After('@product') do |scenario|
     Process.wait(@video_capture_pid)
     save_failure_artifact('Video', @video_path)
   end
-  if scenario.failed?
+  if scenario.failed? || $config['CAPTURE_ALL']
     time_of_fail = Time.now - TIME_AT_START
     secs = format('%<secs>02d', secs: time_of_fail % 60)
     mins = format('%<mins>02d', mins: (time_of_fail / 60) % 60)
