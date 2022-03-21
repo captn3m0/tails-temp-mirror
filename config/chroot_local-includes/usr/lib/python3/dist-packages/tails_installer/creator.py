@@ -121,11 +121,14 @@ class TailsInstallerCreator(object):
         self.log.addHandler(self.file_handler)
 
     def try_getting_udisks_object(self, object_path: str) -> UDisks.Object:
-        for attempt in range(1, 10):
+        # total waiting time: 5.5 seconds
+        for attempt in range(6):
+            time.sleep(0.1 * (attempt ** 2))  # at first iteration, this is 0
             udisks_object = self._udisksclient.get_object(object_path)
             if udisks_object is not None:
+                self.log.debug("Got a udisks object at attempt %d", attempt)
+
                 return udisks_object
-            time.sleep(0.1)
         raise Exception("Could not get udisks object %s" % object_path)
 
     def detect_partition(self, udi: str, callback=None, force_partitions=False):
