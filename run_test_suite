@@ -67,6 +67,7 @@ Options for '@product' features:
                      encoding. Requires x264.
   --capture-all      Keep videos for all scenarios, including those that
                      succeed (implies --capture).
+  --collect-always   Keep artifacts (logs, videos) even for successful scenarios
   --interactive-debugging
                      On failure, pause test suite until pressing Enter. Also
                      offer the option to open an interactive Ruby shell (pry)
@@ -228,7 +229,7 @@ KEEP_SNAPSHOTS=
 TAILS_ISO=
 OLD_TAILS_ISO=
 
-LONGOPTS="allow-non-root,artifacts-base-uri:,view,view-interact,vnc-server-only,capture,capture-all,help,tmpdir:,keep-chutney,keep-snapshots,disable-chutney,live-patch:,iso:,old-iso:,interactive-debugging,image-bumping-mode"
+LONGOPTS="allow-non-root,artifacts-base-uri:,view,view-interact,vnc-server-only,capture,capture-all,collect-always,help,tmpdir:,keep-chutney,keep-snapshots,disable-chutney,live-patch:,iso:,old-iso:,interactive-debugging,image-bumping-mode"
 OPTS=$(getopt -o "" --longoptions $LONGOPTS -n "${NAME}" -- "$@")
 eval set -- "$OPTS"
 while [ $# -gt 0 ]; do
@@ -265,6 +266,9 @@ while [ $# -gt 0 ]; do
             check_dependencies x264
             export CAPTURE="yes"
             export CAPTURE_ALL="yes"
+            ;;
+        --collect-always)
+            export COLLECT_ALWAYS="yes"
             ;;
         --interactive-debugging)
             export INTERACTIVE_DEBUGGING="yes"

@@ -260,6 +260,27 @@ Before('@product') do |scenario|
   @tor_network_is_blocked = false
 end
 
+def save_asp_artifacts(scenario)
+  return unless scenario.feature.file == 'features/additional_software_packages.feature'
+
+  save_vm_command_output(
+    command: 'ls -lAR --full-time /var/lib/apt',
+    id:      'var_lib_apt'
+  )
+  save_vm_command_output(
+    command: 'mount',
+    id:      'mount'
+  )
+  # When removing the logging below, also revert commit
+  # c8429eecf23570274b0bb2134a87ae1fcf72ce07
+  save_vm_command_output(
+    command: 'ls -lA --full-time /live/persistence/TailsData_unlocked',
+    id:      'persistent_volume'
+  )
+  save_vm_file_content('/var/log/live-persist')
+  save_vm_file_content('/run/live-additional-software/log')
+end
+
 # Cucumber After hooks are executed in the *reverse* order they are
 # listed, and we want this hook to always run second last, so it must always
 # be the *second* After hook matching @product listed in this file --
@@ -276,7 +297,7 @@ After('@product') do |scenario|
     Process.wait(@video_capture_pid)
     save_failure_artifact('Video', @video_path)
   end
-  if scenario.failed?
+  if scenario.failed? || $config['COLLECT_ALWAYS']
     time_of_fail = Time.now - TIME_AT_START
     secs = format('%<secs>02d', secs: time_of_fail % 60)
     mins = format('%<mins>02d', mins: (time_of_fail / 60) % 60)
@@ -338,25 +359,7 @@ After('@product') do |scenario|
     # on the remote shell here:
     if $vm&.remote_shell_is_up?
       save_journal
-      if scenario.feature.file \
-         == 'features/additional_software_packages.feature'
-        save_vm_command_output(
-          command: 'ls -lAR --full-time /var/lib/apt',
-          id:      'var_lib_apt'
-        )
-        save_vm_command_output(
-          command: 'mount',
-          id:      'mount'
-        )
-        # When removing the logging below, also revert commit
-        # c8429eecf23570274b0bb2134a87ae1fcf72ce07
-        save_vm_command_output(
-          command: 'ls -lA --full-time /live/persistence/TailsData_unlocked',
-          id:      'persistent_volume'
-        )
-        save_vm_file_content('/var/log/live-persist')
-        save_vm_file_content('/run/live-additional-software/log')
-      end
+      save_asp_artifacts(scenario)
     end
     $failure_artifacts.sort!
     $failure_artifacts.each do |desc, file|
@@ -375,8 +378,10 @@ After('@product') do |scenario|
         "The error was: #{scenario.exception.class.name}: #{scenario.exception}"
       )
     end
-  elsif @video_path && File.exist?(@video_path) && !(($config['CAPTURE_ALL']))
-    FileUtils.rm(@video_path)
+  else # Scenario successfully completed
+    if @video_path && File.exist?(@video_path) && !(($config['CAPTURE_ALL']))
+      FileUtils.rm(@video_path)
+    end
   end
   # If we don't shut down the system under testing it will continue to
   # run during the next scenario's Before hooks, which we have seen
