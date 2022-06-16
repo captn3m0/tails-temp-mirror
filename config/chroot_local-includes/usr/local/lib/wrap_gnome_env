@@ -1,0 +1,6 @@
+#!/bin/sh
+
+. /usr/local/lib/tails-shell-library/gnome.sh
+export_gnome_env
+
+exec "$@"
