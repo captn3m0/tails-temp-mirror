@@ -642,7 +642,7 @@ class VM
   end
 
   def set_clipboard(text)
-    execute_successfully("echo -n '#{text}' | xsel --input --clipboard",
+    execute_successfully("echo -n '#{text}' | xsel --input --clipboard --display :0",
                          user: LIVE_USER)
     try_for(5) do
       get_clipboard == text
@@ -650,7 +650,7 @@ class VM
   end
 
   def get_clipboard
-    execute_successfully('xsel --output --clipboard', user: LIVE_USER).stdout
+    execute_successfully('xsel --output --clipboard --display :0', user: LIVE_USER).stdout
   end
 
   def internal_snapshot_xml(name)
