@@ -4,7 +4,10 @@ import shlex
 import subprocess
 from functools import lru_cache
 
+import dbus
+
 GNOME_SH_PATH = "/usr/local/lib/tails-shell-library/gnome.sh"
+
 
 def _gnome_sh_wrapper(cmd) -> str:
     command = shlex.split(
@@ -25,3 +28,18 @@ def gnome_env_vars() -> list:
         if key in _get_gnome_env_vars():
             ret.append(key + "=" + value)
     return ret
+
+
+def get_a11y_bus() -> str:
+    bus = dbus.SessionBus()
+    obj = bus.get_object("org.a11y.Bus", "/org/a11y/bus")
+    iface = dbus.Interface(obj, dbus_interface="org.a11y.Bus")
+    response = iface.GetAddress()
+    return str(response)
+
+
+def get_ibus_bus() -> str:
+    address = subprocess.check_output(["/usr/bin/ibus", "address"]).decode('utf-8')
+    path, guid = address.split(",")
+    return path
+

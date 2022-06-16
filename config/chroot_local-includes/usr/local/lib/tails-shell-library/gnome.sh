@@ -18,5 +18,8 @@ export_gnome_env() {
         grep -E "^${vars}=" > "${tmp_env_file}"
     # shellcheck disable=SC2163
     while read -r line; do export "${line}"; done < "${tmp_env_file}"
+    if [ -z "${AT_SPI_BUS_ADDRESS:-}" ]; then
+        export AT_SPI_BUS_ADDRESS="$(python3 -c 'import tailslib.gnome; print(tailslib.gnome.get_a11y_bus())')"
+    fi
     rm "${tmp_env_file}"
 }

@@ -7,8 +7,9 @@ import subprocess
 from logging import getLogger, basicConfig
 from argparse import ArgumentParser
 
-import dbus
 import systemd.daemon
+
+from tailslib.gnome import get_a11y_bus, get_ibus_bus
 
 log = getLogger(os.path.basename(__file__))
 
@@ -22,19 +23,6 @@ def get_parser():
     p.add_argument("netns")
     return p
 
-
-def get_a11y_bus() -> str:
-    bus = dbus.SessionBus()
-    obj = bus.get_object("org.a11y.Bus", "/org/a11y/bus")
-    iface = dbus.Interface(obj, dbus_interface="org.a11y.Bus")
-    response = iface.GetAddress()
-    return str(response)
-
-
-def get_ibus_bus() -> str:
-    address = subprocess.check_output(["/usr/bin/ibus", "address"]).decode('utf-8')
-    path, guid = address.split(",")
-    return path
 
 
 def netns_exists(name: str) -> bool:
