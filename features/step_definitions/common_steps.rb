@@ -12,6 +12,7 @@ end
 
 def post_snapshot_restore_hook(snapshot_name)
   $vm.wait_until_remote_shell_is_up
+  @screen.wake_up
   unless snapshot_name.end_with?('tails-greeter')
     @screen.wait('DesktopTailsDocumentation.png', 10)
   end
@@ -48,6 +49,8 @@ def post_snapshot_restore_hook(snapshot_name)
   # Wait for the menu to be closed
   sleep 1
 
+  @screen.wake_up
+
   # The guest's Tor circuits are likely to get out of sync
   # with our Chutney network, so we ensure that we have fresh circuits.
   # Time jumps and incorrect clocks also confuse Tor in many ways.
@@ -67,6 +70,7 @@ def post_snapshot_restore_hook(snapshot_name)
     end
   end
   $vm.host_to_guest_time_sync unless already_synced_time_host_to_guest
+  @screen.wake_up
 end
 
 Given /^a computer$/ do
@@ -380,6 +384,8 @@ Given /^I set the language to (.*)$/ do |lang|
 end
 
 Given /^I log in to a new session(?: in (.*))?$/ do |lang|
+  @screen.wake_up
+
   # We'll record the location of the login button before changing
   # language so we only need one (English) image for the button while
   # still being able to click it in any language.

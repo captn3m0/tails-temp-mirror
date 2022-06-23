@@ -335,6 +335,14 @@ class Screen
     assert(stdout.empty?, "xdotool reported an error:\n" + stdout)
     [x, y]
   end
+
+  def wake_up
+    3.times do
+      sleep 2
+      hover(@w / 2, @h / 2)
+      hover(@w / 2 + 42, @h / 2 + 42)
+    end
+  end
 end
 
 class ImageBumpFailed < StandardError
