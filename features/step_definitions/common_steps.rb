@@ -362,6 +362,10 @@ Given /^the computer (?:re)?boots Tails( with genuine APT sources)?$/ do |keep_a
   end
   $vm.wait_until_remote_shell_is_up
   post_vm_start_hook
+  $vm.execute_successfully(
+    'xset -dpms',
+    user: 'Debian-gdm'
+  )
   configure_simulated_Tor_network unless $config['DISABLE_CHUTNEY']
   # This is required to use APT in the test suite as explained in
   # commit e2510fae79870ff724d190677ff3b228b2bf7eac
@@ -463,6 +467,10 @@ Given /^the Tails desktop is ready$/ do
   # a snapshot created a while ago.
   $vm.execute_successfully(
     'gsettings set org.gnome.desktop.session idle-delay 0',
+    user: LIVE_USER
+  )
+  $vm.execute_successfully(
+    'xset -dpms',
     user: LIVE_USER
   )
   # We need to enable the accessibility toolkit for dogtail.
