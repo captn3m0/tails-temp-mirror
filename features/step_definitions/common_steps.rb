@@ -459,7 +459,8 @@ Given /^the Tails desktop is ready$/ do
   @screen.press('super', 'home')
   # Disable screen blanking since we sometimes need to wait long
   # enough for it to activate, which can cause problems when we are
-  # waiting for an image for a very long time.
+  # waiting for an image for a very long time, or when we restore
+  # a snapshot created a while ago.
   $vm.execute_successfully(
     'gsettings set org.gnome.desktop.session idle-delay 0',
     user: LIVE_USER
