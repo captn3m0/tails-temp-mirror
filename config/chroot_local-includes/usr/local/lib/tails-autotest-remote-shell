@@ -35,6 +35,7 @@ import base64
 import fcntl
 import json
 import os
+import psutil
 import pwd
 import signal
 import subprocess
@@ -57,7 +58,27 @@ def mk_switch_user_fn(user):
     return switch_user
 
 
-def get_user_env(user):
+def _get_gdm_env():
+    """Get the GNOME environment of GDM, since export_gnome_env() only
+    works for the amnesia user. This function is only used by the test suite,
+    so here we don't need to worry about security, contrary to what we did
+    for the amnesia user in !819."""
+    gnome_shell_procs = [
+        proc.info
+        for proc in psutil.process_iter(
+                ["exe", "name", "username", "environ", "create_time"]
+        )
+        if proc.info["exe"] == "/usr/bin/gnome-shell"
+        and proc.info["name"] == "gnome-shell"
+        and proc.info["username"] == "Debian-gdm"
+    ]
+    gnome_shell_oldest_proc = min(
+        gnome_shell_procs, key=lambda p: p["create_time"]
+    )
+    return gnome_shell_oldest_proc["environ"]
+
+
+def _get_user_env(user):
     # We try to create an environment identical to what's expected
     # inside Tails for the user by logging in (via `su`) as the user,
     # setting up the GNOME shell environment, and extracting the
@@ -72,6 +93,13 @@ def get_user_env(user):
                             shell=True)
     env_data = pipe.communicate()[0].decode('utf-8')
     return dict((line.split('=', 1) for line in env_data.splitlines()))
+
+
+def get_user_env(user):
+    if user == "Debian-gdm":
+        return _get_gdm_env()
+    else:
+        return _get_user_env(user)
 
 
 # Dogtail does not seem to support the root user interacting with
