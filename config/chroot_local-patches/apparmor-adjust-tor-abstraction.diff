@@ -8,4 +8,9 @@
  
    /proc/sys/kernel/random/uuid r,
    /sys/devices/system/cpu/ r,
+@@ -29,3 +30,5 @@
 
+   /usr/bin/obfsproxy PUx,
+   /usr/bin/obfs4proxy Pix,
++
++  /usr/bin/snowflake-client Pix,

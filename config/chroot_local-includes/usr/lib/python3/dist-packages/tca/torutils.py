@@ -170,7 +170,7 @@ class InvalidBridgeTypeException(InvalidBridgeException):
     pass
 
 
-VALID_BRIDGE_TYPES = {"bridge", "obfs4"}
+VALID_BRIDGE_TYPES = {"bridge", "obfs4", "snowflake"}
 
 
 class TorConnectionConfig:
