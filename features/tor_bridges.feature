@@ -34,6 +34,15 @@ Feature: Using Tor bridges and pluggable transports
     And Tor is configured to use the default bridges
     And all Internet traffic has only flowed through the default bridges or connectivity check service
 
+  @supports_real_tor
+  Scenario: Snowflake
+    When I configure some snowflake bridges in the Tor Connection Assistant in easy mode
+    Then I wait until Tor is ready
+    # XXX: This doesn't work with the current implementation
+    # And tca.conf includes the configured bridges
+    And available upgrades have been checked
+    And OnionCircuits only show snowflake bridges
+
   Scenario: Fall back to default bridges if failing to connect directly to the Tor network
     Given the Tor network is blocked
     When I configure a direct connection in the Tor Connection Assistant

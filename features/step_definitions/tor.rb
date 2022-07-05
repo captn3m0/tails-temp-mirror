@@ -475,6 +475,15 @@ end
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
 def chutney_bridges(bridge_type, chutney_tag: nil)
+  if bridge_type == 'snowflake'
+    return [{
+      type:    'snowflake',
+      address: '192.0.2.3',
+      port:    1,
+      line:    'snowflake 192.0.2.3:1',
+    }]
+  end
+
   chutney_tag = bridge_type if chutney_tag.nil?
   bridge_dirs = Dir.glob(
     "#{$config['TMPDIR']}/chutney-data/nodes/*#{chutney_tag}/"
@@ -918,4 +927,29 @@ When /^I apply a workaround to make sure Tor bridges are copied to persistence$/
   $vm.execute_successfully(
     '/usr/local/lib/tails-synchronize-tor-configuration-to-persistent-storage'
   )
+end
+
+def tor_circuits_via_onioncircuits
+  step 'I start "Onion Circuits" via GNOME Activities Overview'
+  oc = Dogtail::Application.new('onioncircuits', translation_domain: 'tails')
+  circuit_header = oc.child('Circuit', roleName: 'table column header')
+  container = circuit_header.parent
+
+  circuits = container.children(roleName: 'table cell').map do |n|
+    n.text.split(',').map(&:strip)
+  end
+
+  circuits.filter do |c|
+    c.size > 1
+  end
+end
+
+Then /^OnionCircuits only show snowflake bridges$/ do
+  circuits = tor_circuits_via_onioncircuits
+  debug_log("Active circuits: #{circuits}")
+  assert_not_empty(circuits)
+
+  assert(circuits.all? do |c|
+    /^flakey\d+$/.match?(c.first)
+  end)
 end

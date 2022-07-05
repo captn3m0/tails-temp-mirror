@@ -243,6 +243,7 @@ class TorConnectionConfig:
             return None
         if line.startswith("#"):
             return None
+
         parts = line.split()
         transport_name_re = re.compile(r"^[a-zA-Z0-9_]+$")
         if not transport_name_re.match(parts[0]):
