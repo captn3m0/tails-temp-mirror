@@ -952,7 +952,7 @@ Then /^tca.conf includes the configured bridges$/ do
     @bridge_hosts,
     tca_conf['tor']['bridges'].map do |bridge|
       bridge_parts = bridge.split
-      bridge_info = if bridge_parts[0] == 'obfs4'
+      bridge_info = if ['obfs4', 'snowflake'].include?(bridge_parts[0])
                       bridge_parts[1]
                     else
                       bridge_parts[0]

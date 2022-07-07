@@ -38,8 +38,7 @@ Feature: Using Tor bridges and pluggable transports
   Scenario: Snowflake
     When I configure some snowflake bridges in the Tor Connection Assistant in easy mode
     Then I wait until Tor is ready
-    # XXX: This doesn't work with the current implementation
-    # And tca.conf includes the configured bridges
+    And tca.conf includes the configured bridges
     And available upgrades have been checked
     And OnionCircuits only show snowflake bridges
     And all Internet traffic has only flowed through snowflake or connectivity check service
