@@ -464,6 +464,10 @@ Given /^the Tails desktop is ready$/ do
     'gsettings set org.gnome.desktop.session idle-delay 0',
     user: LIVE_USER
   )
+  $vm.execute_successfully(
+    'gsettings set org.gnome.settings-daemon.plugins.power idle-dim false',
+    user: LIVE_USER
+  )
   # We need to enable the accessibility toolkit for dogtail.
   $vm.execute_successfully(
     'gsettings set org.gnome.desktop.interface toolkit-accessibility true',

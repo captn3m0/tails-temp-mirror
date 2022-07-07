@@ -25,3 +25,4 @@ active = false
 power-button-action = 'nothing'
 lid-close-ac-action = 'blank'
 lid-close-battery-action = 'blank'
+idle-dim = false
