@@ -766,13 +766,11 @@ def bridges_to_ipport(file_content)
 end
 
 def allowed_hosts_snowflake
-  names = [
-    $vm.execute_successfully('echo ${SNOWFLAKE_URL}', libs: 'tor').stdout .strip .delete_prefix('https://') .delete_suffix('/'),
-  ] + $vm.execute_successfully('echo ${SNOWFLAKE_ICE}', libs: 'tor').stdout .split(',') .map(&:strip) .map do |ice|
-        ice.delete_prefix('stun:')
-      end
+  ices = $vm.execute_successfully('echo ${SNOWFLAKE_ICE}', libs: 'tor').stdout.split(',').map do |ice|
+    ice.strip.delete_prefix('stun:')
+  end
 
-  ipport_list = names.map do |n|
+  ices_ipport_list = ices.flat_map do |n|
     hostport = n.split(':')
     port = if hostport.size > 1
              hostport[1].to_i
@@ -780,12 +778,18 @@ def allowed_hosts_snowflake
              443
            end
     host = hostport.first
-    Resolv.getaddresses(host).map do |ip|
+    Resolv.getaddresses(host).filter_map do |ip|
+      next unless IPAddr.new(ip).ipv4?
+
       { address: ip, port: port }
     end
   end
 
-  ipport_list.flatten
+  ices_ipport_list
+end
+
+def whois_orgname(ipaddr)
+  `whois #{ipaddr} | grep --perl-regexp --only-matching '^OrgName:\\s*\\K.*$'`.strip
 end
 
 Then /^all Internet traffic has only flowed through (Tor|the \w+ bridges|snowflake)( or (?:fake )?connectivity check service|)$/ do |flow_target, connectivity_check|
@@ -844,13 +848,24 @@ Then /^all Internet traffic has only flowed through (Tor|the \w+ bridges|snowfla
                     .join(', ')
   debug_log("These hosts (#{flow_target_s}) are allowed: #{allowed_hosts_s}")
   assert_all_connections(@sniffer.pcap_file) do |c|
-    allowed_hosts.include?({ address: c.daddr, port: c.dport })
+    next true if allowed_hosts.include?({ address: c.daddr, port: c.dport })
+
+    if flow_target == 'snowflake'
+      # this rule is really permissive; it would be better if we could check that it's only connecting to
+      # specific snowflake hosts.
+      # however, this only applies to the "snowflake" test, which reduces the scope of the problem
+      next true if c.protocol == 'udp'
+
+      next true if c.protocol == 'tcp' && c.dport == 443 && whois_orgname(c.daddr) == 'Fastly, Inc.'
+    end
+
+    false
   end
 
   debug_log("Allowed hosts: #{allowed_hosts}")
   debug_log("Allowed DNS queries: #{allowed_dns_queries}")
 
-  assert_no_leaks(@sniffer.pcap_file, allowed_hosts, allowed_dns_queries)
+  assert_no_leaks(@sniffer.pcap_file, allowed_hosts, allowed_dns_queries) unless flow_target == 'snowflake'
   debug_useless_dns_exceptions(@sniffer.pcap_file, allowed_dns_queries)
 end
 
