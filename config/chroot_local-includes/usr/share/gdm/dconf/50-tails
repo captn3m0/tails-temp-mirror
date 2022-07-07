@@ -12,6 +12,7 @@ two-finger-scrolling-enabled = true
 
 [org/gnome/desktop/session]
 session-name='gdm-tails'
+idle-delay=0
 
 [org/gnome/desktop/sound]
 event-sounds=false
