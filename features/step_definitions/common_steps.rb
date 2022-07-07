@@ -69,6 +69,11 @@ def post_snapshot_restore_hook(snapshot_name)
   end
   $vm.host_to_guest_time_sync unless already_synced_time_host_to_guest
   @screen.wake_up
+  sleep 5
+  # We cannot do this in the Welcome Screen due to #19049
+  unless snapshot_name.end_with?('tails-greeter')
+    $vm.execute_successfully('xset dpms force on', user: LIVE_USER)
+  end
 end
 
 Given /^a computer$/ do
