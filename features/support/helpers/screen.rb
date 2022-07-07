@@ -333,6 +333,10 @@ class Screen
     assert(stdout.empty?, "xdotool reported an error:\n" + stdout)
     [x, y]
   end
+
+  def wake_up
+    type('!')
+  end
 end
 
 class ImageBumpFailed < StandardError
