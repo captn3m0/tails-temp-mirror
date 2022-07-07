@@ -179,15 +179,28 @@ def configure_simulated_Tor_network # rubocop:disable Naming/MethodName
     f.grep(/^(Alternate)?(Dir|Bridge)Authority\s/)
   end
   client_torrc_lines.concat(dir_auth_lines)
+  $vm.execute_successfully('cp /etc/tor/torrc /etc/tor/torrc.bak')
   $vm.file_append('/etc/tor/torrc', client_torrc_lines)
 
   # Since we use a simulated Tor network (via Chutney) we have to
   # switch to its default bridges.
   default_bridges_path = '/usr/share/tails/tca/default_bridges.txt'
+  $vm.execute_successfully("cp #{default_bridges_path} #{default_bridges_path + '.bak'}")
   $vm.file_overwrite(default_bridges_path, '')
   chutney_bridges('obfs4', chutney_tag: 'defbr').each do |bridge|
     $vm.file_append(default_bridges_path, bridge[:line])
   end
 
+  $vm.execute_successfully('systemctl restart tor@default.service')
+end
+
+Given 'I reconfigure the host to use the real Tor' do
+  default_bridges_path = '/usr/share/tails/tca/default_bridges.txt'
+  [
+    [default_bridges_path + '.bak', default_bridges_path],
+    ['/etc/tor/torrc.bak', '/etc/tor/torrc'],
+  ].each do |src, dst|
+    $vm.execute_successfully("mv #{src} #{dst}") if $vm.file_exist?(src)
+  end
   $vm.execute_successfully('systemctl restart tor@default.service')
 end
