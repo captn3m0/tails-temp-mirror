@@ -13,7 +13,7 @@ end
 def post_snapshot_restore_hook(snapshot_name)
   $vm.wait_until_remote_shell_is_up
   @screen.wake_up
-  if !snapshot_name.end_with?('tails-greeter')
+  unless snapshot_name.end_with?('tails-greeter')
     @screen.wait('DesktopTailsDocumentation.png', 10)
   end
   post_vm_start_hook
