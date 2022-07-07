@@ -42,6 +42,7 @@ Feature: Using Tor bridges and pluggable transports
     # And tca.conf includes the configured bridges
     And available upgrades have been checked
     And OnionCircuits only show snowflake bridges
+    And all Internet traffic has only flowed through snowflake or connectivity check service
 
   Scenario: Fall back to default bridges if failing to connect directly to the Tor network
     Given the Tor network is blocked

@@ -765,7 +765,30 @@ def bridges_to_ipport(file_content)
     .map { |ip, port| { address: ip, port: port.to_i } }
 end
 
-Then /^all Internet traffic has only flowed through (Tor|the \w+ bridges)( or (?:fake )?connectivity check service|)$/ do |flow_target, connectivity_check|
+def allowed_hosts_snowflake
+  names = [
+    $vm.execute_successfully('echo ${SNOWFLAKE_URL}', libs: 'tor').stdout .strip .delete_prefix('https://') .delete_suffix('/'),
+  ] + $vm.execute_successfully('echo ${SNOWFLAKE_ICE}', libs: 'tor').stdout .split(',') .map(&:strip) .map do |ice|
+        ice.delete_prefix('stun:')
+      end
+
+  ipport_list = names.map do |n|
+    hostport = n.split(':')
+    port = if hostport.size > 1
+             hostport[1].to_i
+           else
+             443
+           end
+    host = hostport.first
+    Resolv.getaddresses(host).map do |ip|
+      { address: ip, port: port }
+    end
+  end
+
+  ipport_list.flatten
+end
+
+Then /^all Internet traffic has only flowed through (Tor|the \w+ bridges|snowflake)( or (?:fake )?connectivity check service|)$/ do |flow_target, connectivity_check|
   case flow_target
   when 'Tor'
     allowed_hosts = allowed_hosts_under_tor_enforcement
@@ -784,6 +807,8 @@ Then /^all Internet traffic has only flowed through (Tor|the \w+ bridges)( or (?
                                   "'I configure some ... bridges in the " \
                                   "Tor Connection Assistant' step")
     allowed_hosts = @bridge_hosts
+  when 'snowflake'
+    allowed_hosts = allowed_hosts_snowflake
   else
     raise "Unsupported flow target '#{flow_target}'"
   end
