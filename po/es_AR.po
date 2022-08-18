@@ -11,13 +11,13 @@
 # ezemelano <melanoeze@gmail.com>, 2014
 # Pablo Di Noto <pdinoto@gmail.com>, 2016
 # psss <facevedo@openmailbox.org>, 2016
-# Waldo Luis Ribeiro, 2021
+# 8b7f539cfdb680c92813b22b241ff5ad_86793ec, 2021
 # Zuhualime Akoochimoya, 2018-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-04 08:10+0200\n"
+"POT-Creation-Date: 2022-07-25 11:59+0200\n"
 "PO-Revision-Date: 2013-07-25 09:07+0000\n"
 "Last-Translator: Zuhualime Akoochimoya, 2018-2022\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/otf/torproject/"
@@ -2363,7 +2363,7 @@ msgstr ""
 "Navegador Inseguro, primero tenés que conectarte a una red Wi-Fi, alámbrica "
 "o móvil."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:155
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:156
 msgid "Failed to run browser."
 msgstr "Falla al ejecutar el Navegador."
 

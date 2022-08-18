@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-04 08:10+0200\n"
+"POT-Creation-Date: 2022-07-25 11:59+0200\n"
 "PO-Revision-Date: 2013-07-25 09:07+0000\n"
 "Last-Translator: Emma Peel, 2019,2021-2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/torproject/"
@@ -2266,7 +2266,7 @@ msgstr ""
 "您尚未连接到本地网络。\\n\\n无法启动非安全浏览器，您需要先连接到 Wi-Fi、有线"
 "或移动网络。"
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:155
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:156
 msgid "Failed to run browser."
 msgstr "运行浏览器失败。"
 

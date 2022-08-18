@@ -10,7 +10,7 @@
 # el buve, 2015
 # Emma Peel, 2015,2017-2022
 # ErigamerP <erigamerp@gmail.com>, 2021
-# eulalio barbero espinosa <eulaliob@gmail.com>, 2018-2022
+# eulalio barbero espinosa <eulalio@disroot.org>, 2018-2022
 # Joaquín Serna <bubuanabelas@cryptolab.net>, 2019,2021-2022
 # Jose Luis Tirado <joseluis.tirado@gmail.com>, 2014-2015
 # Manuel Herrera <ma_herrer@yahoo.com.mx>, 2013
@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-04 08:10+0200\n"
+"POT-Creation-Date: 2022-07-25 11:59+0200\n"
 "PO-Revision-Date: 2013-07-25 09:07+0000\n"
 "Last-Translator: Emma Peel, 2015,2017-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/torproject/language/"
@@ -2361,7 +2361,7 @@ msgstr ""
 "Navegador No Seguro, primero necesitas conectarte a una red Wi-Fi, cableada "
 "o móvil."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:155
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:156
 msgid "Failed to run browser."
 msgstr "Falló al iniciar el navegador."
 

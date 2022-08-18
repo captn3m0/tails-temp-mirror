@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-04 08:10+0200\n"
+"POT-Creation-Date: 2022-07-25 11:59+0200\n"
 "PO-Revision-Date: 2013-07-25 09:07+0000\n"
 "Last-Translator: Sokhem Khoem <sokhem@open.org.kh>, 2014\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/torproject/language/km/)\n"
@@ -2060,7 +2060,7 @@ msgid ""
 "network."
 msgstr ""
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:155
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:156
 msgid "Failed to run browser."
 msgstr ""
 

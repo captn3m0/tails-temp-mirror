@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-04 08:10+0200\n"
+"POT-Creation-Date: 2022-07-25 11:59+0200\n"
 "PO-Revision-Date: 2013-07-25 09:07+0000\n"
 "Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2015-2022\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/torproject/language/"
@@ -2347,7 +2347,7 @@ msgstr ""
 "Tarayıcıyı başlatabilmek için öncelikle bir Wi-Fi, kablo ya da mobil ağı ile "
 "bağlantı kurmalısınız."
 
-#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:155
+#: config/chroot_local-includes/usr/local/sbin/unsafe-browser:156
 msgid "Failed to run browser."
 msgstr "Tarayıcıyı çalıştırılamadı."
 
