@@ -961,6 +961,23 @@
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
+                  <object class="GtkButton" id="step_error_btn_scanqrcode">
+                    <property name="label" translatable="yes">Scan QR code</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <accessibility>
+                      <relation type="controller-for" target="step_error_text"/>
+                    </accessibility>
+                    <signal name="clicked" handler="cb_step_error_btn_scanqrcode_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkEntry" id="step_error_text">
                     <property name="name">step_error_text</property>
                     <property name="visible">True</property>
@@ -976,23 +993,6 @@
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="step_error_btn_scanqrcode">
-                    <property name="label" translatable="yes">Scan QR code</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                    <accessibility>
-                      <relation type="controller-for" target="step_error_text"/>
-                    </accessibility>
-                    <signal name="clicked" handler="cb_step_error_btn_scanqrcode_clicked" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
