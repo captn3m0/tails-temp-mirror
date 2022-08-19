@@ -918,7 +918,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">• Bridge over email</property>
+                <property name="label" translatable="yes">• Bridge by email</property>
                 <attributes>
                   <attribute name="weight" value="semibold"/>
                 </attributes>
@@ -938,11 +938,7 @@
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="margin-top">6</property>
-                <property name="label" translatable="yes">To request new Tor bridges, you can also:
-
-            1. Send an empty email to &lt;tt&gt;bridges@torproject.org&lt;/tt&gt; from a Gmail or Riseup email address.
-
-              2. Either type below one of the bridges that you received by email, or scan the QR code.</property>
+		<property name="label" translatable="yes">Send an empty email to &lt;tt&gt;bridges@torproject.org&lt;/tt&gt; from a Gmail or Riseup email address with your phone and scan the QR code that is attached to the automatic reply.</property>
                 <property name="use-markup">True</property>
                 <style>
                   <class name="step-error-section-description"/>
