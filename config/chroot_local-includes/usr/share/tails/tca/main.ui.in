@@ -940,6 +940,7 @@
                 <property name="margin-top">6</property>
 		<property name="label" translatable="yes">Send an empty email to &lt;tt&gt;bridges@torproject.org&lt;/tt&gt; from a Gmail or Riseup email address with your phone and scan the QR code that is attached to the automatic reply.</property>
                 <property name="use-markup">True</property>
+                <property name="wrap">True</property>
                 <style>
                   <class name="step-error-section-description"/>
                 </style>
