@@ -37,10 +37,10 @@ ${*}"
 verify_start () {
     # Make sure the user really wants to start the browser
     local dialog_msg launch exit
-    dialog_msg="<b><big>$(gettext "Launch the Unsafe Browser?")</big></b>
+    dialog_msg="<b><big>$(gettext "Start the Unsafe Browser?")</big></b>
 
 $(gettext "Only use the Unsafe Browser to sign in to the network, then close it.")"
-    launch="$(gettext "_Launch")"
+    launch="$(gettext "_Start")"
     exit="$(gettext "_Exit")"
     if ! sudo -u "${SUDO_USER}" \
          zenity --question --ellipsize --title "" --text "${dialog_msg}" --default-cancel \
