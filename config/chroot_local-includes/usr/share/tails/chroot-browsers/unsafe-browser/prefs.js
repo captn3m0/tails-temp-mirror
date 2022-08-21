@@ -1,3 +1,5 @@
+user_pref("dom.security.https_only_mode", false);
+
 // Disable proxying in the chroot
 user_pref("extensions.torbutton.use_nontor_proxy", true);
 user_pref("network.proxy.type", 0);
