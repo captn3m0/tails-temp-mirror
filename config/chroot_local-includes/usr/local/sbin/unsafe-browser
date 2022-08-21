@@ -51,7 +51,7 @@ $(gettext "Only use the Unsafe Browser to sign in to the network, then close it.
 
 exit_because_disabled() {
     local msg restart cancel confirm_msg confirm_button
-    msg="$("Only use the Unsafe Browser to sign in to the network, then close it.\n\nThe Unsafe Browser is disabled by default for security.\n\n\
+    msg="$(gettext "Only use the Unsafe Browser to sign in to the network, then close it.\n\nThe Unsafe Browser is disabled by default for security.\n\n\
 To <a href='file:///usr/share/doc/tails/website/doc/anonymous_internet/unsafe_browser.en.html#use'>use the Unsafe Browser</a>, restart Tails and enable \
 the Unsafe Browser in the additional settings of the Welcome Screen.")"
     # Only mention the Persistent Storage if there is one (see #18551)
