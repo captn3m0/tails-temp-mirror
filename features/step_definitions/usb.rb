@@ -1162,6 +1162,11 @@ Given /^I install a Tails USB image to the (\d+) MiB disk with GNOME Disks$/ do 
   disks.child('Information', roleName: 'alert', showingOnly: true)
        .child('Restore', roleName: 'push button', showingOnly: true)
        .click
+
+  # The restoration job takes some time to start. If we only use the existence of the 'Job' label as signal
+  # that the job is in progress, we might think that it is over when actually it hasn't even started.
+  # Waiting is not elegant, but will do.
+  sleep 5
   # Wait until the restoration job is finished
   job = disks.child('Job', roleName: 'label', showingOnly: true)
   try_for(60) do
