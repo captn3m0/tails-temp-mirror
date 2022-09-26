@@ -1168,8 +1168,8 @@ Given /^I install a Tails USB image to the (\d+) MiB disk with GNOME Disks$/ do 
   # Waiting is not elegant, but will do.
   sleep 5
   # Wait until the restoration job is finished
-  job = disks.child('Job', roleName: 'label', showingOnly: true)
   try_for(60) do
+    job = disks.child('Job', roleName: 'label', showingOnly: true)
     !job.showing
   end
 end
