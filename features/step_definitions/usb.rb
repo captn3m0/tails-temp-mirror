@@ -1170,6 +1170,10 @@ Given /^I install a Tails USB image to the (\d+) MiB disk with GNOME Disks$/ do 
   # Wait until the restoration job is finished
   try_for(60) do
     job = disks.child('Job', roleName: 'label', showingOnly: true)
+  # XXX: we should really specify the class to avoid over-rescuing
+  rescue
+    true
+  else
     !job.showing
   end
 end
