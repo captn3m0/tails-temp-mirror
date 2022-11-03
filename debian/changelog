@@ -1,8 +1,12 @@
-tails (5.8) UNRELEASED; urgency=medium
+tails (5.10) UNRELEASED; urgency=medium
 
+  [ boyska ]
   * Dummy entry for next release.
 
- -- boyska <boyska@riseup.net>  Mon, 17 Oct 2022 12:18:41 +0200
+  [ intrigeri ]
+  * Dummy entry for next release.
+
+ -- intrigeri <intrigeri@debian.org>  Thu, 03 Nov 2022 11:22:51 +0000
 
 tails (5.6) unstable; urgency=medium
 
