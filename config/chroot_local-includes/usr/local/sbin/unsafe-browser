@@ -65,6 +65,31 @@ $(gettext "The Unsafe Browser is not anonymous and the websites that you visit c
     fi
 }
 
+parent_is_tca_portal() {
+    ppid="$(ps -o ppid= "$$"|tr -dc '[:digit:]')"
+    exe="$(readlink "/proc/${ppid}/exe")"
+    while [ "$exe" = /usr/bin/sudo ] || [ "$exe" = /sbin/runuser ]
+    do
+        ppid="$(ps -o ppid= "$ppid"|tr -dc '[:digit:]')"
+        exe="$(readlink "/proc/${ppid}/exe")"
+    done
+    logger -t unsafe-browser "ppid=$ppid:${exe}"
+    [ "$(xargs -0 < "/proc/$ppid/cmdline")" = '/usr/bin/python3 /usr/local/lib/tca-portal --systemd-socket' ]
+}
+
+parent_is_allowed() {
+    set -x
+    parent_is_tca_portal && return 0
+
+    ppid="$(ps -o ppid= "$$"|tr -dc '[:digit:]')"
+    exe="$(readlink "/proc/${ppid}/exe")"
+    [ "$exe" = /usr/bin/sudo ] || return 1
+    ppid="$(ps -o ppid= "$ppid"|tr -dc '[:digit:]')"
+    exe="$(readlink "/proc/${ppid}/exe")"
+    logger -t unsafe-browser "exe=${exe}"
+    [ "${exe}" = /usr/bin/gnome-shell ]
+}
+
 exit_because_disabled() {
     local msg restart cancel confirm_msg confirm_button
     msg="$(gettext "The Unsafe Browser was disabled in the Welcome Screen.\n\n")"
@@ -124,6 +149,11 @@ HOME_PAGE="$(localized_tails_doc_page "${WARNING_PAGE}")"
 
 # Check if the Unsafe Browser was disabled in the startup options
 unsafe_browser_is_enabled || exit_because_disabled
+
+if ! parent_is_allowed; then
+    logger -t unsafe-browser -p error "ERROR: unauthorized application tried to start the Unsafe Browser, aborting"
+    exit 1
+fi
 
 # Prevent multiple instances of the script.
 exec 9>"${LOCK}"
