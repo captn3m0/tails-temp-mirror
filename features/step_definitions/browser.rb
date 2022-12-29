@@ -46,12 +46,11 @@ def tor_browser_application_info(defaults)
               "/home/#{user}/\.tor-browser/profile\.default"
   defaults.merge(
     {
-      user:                        user,
-      cmd_regex:                   cmd_regex,
-      chroot:                      '',
-      new_tab_button_image:        'TorBrowserNewTabButton.png',
-      browser_reload_button_image: 'TorBrowserReloadButton.png',
-      browser_stop_button_image:   'TorBrowserStopButton.png',
+      user:                      user,
+      cmd_regex:                 cmd_regex,
+      chroot:                    '',
+      new_tab_button_image:      'TorBrowserNewTabButton.png',
+      browser_stop_button_image: 'TorBrowserStopButton.png',
     }
   )
 end
@@ -65,12 +64,11 @@ def unsafe_browser_application_info(defaults)
               "--profile /home/#{user}/\.unsafe-browser/profile\.default"
   defaults.merge(
     {
-      user:                        user,
-      cmd_regex:                   cmd_regex,
-      chroot:                      '/var/lib/unsafe-browser/chroot',
-      new_tab_button_image:        'UnsafeBrowserNewTabButton.png',
-      browser_reload_button_image: 'UnsafeBrowserReloadButton.png',
-      browser_stop_button_image:   'UnsafeBrowserStopButton.png',
+      user:                      user,
+      cmd_regex:                 cmd_regex,
+      chroot:                    '/var/lib/unsafe-browser/chroot',
+      new_tab_button_image:      'UnsafeBrowserNewTabButton.png',
+      browser_stop_button_image: 'UnsafeBrowserStopButton.png',
     }
   )
 end
