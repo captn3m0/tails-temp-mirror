@@ -626,6 +626,10 @@ Given /^the Tor Browser (?:has started|starts)$/ do
   end
   browser_info = xul_application_info('Tor Browser')
   @screen.wait(browser_info[:new_tab_button_image], 10)
+  try_for(120, delay: 3) do
+    !@torbrowser.child?('Stop', roleName: 'push button', retry: false) &&
+      @torbrowser.child?('Reload', roleName: 'push button', retry: false)
+  end
 end
 
 Given /^the Tor Browser loads the (startup page|Tails homepage|Tails GitLab)$/ do |page|
